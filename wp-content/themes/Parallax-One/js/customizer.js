@@ -209,6 +209,42 @@
 		} );
 		
     });
+    
+        /******************************************************
+	*********** WHICH STYLE SECTION **************
+	*******************************************************/
+	
+	//Title
+	wp.customize("parallax_one_which_style_title", function(value) {
+		
+        value.bind(function( to ) {
+			
+			if( to != '' ) {
+				$( '#services .section-header h2' ).removeClass( 'paralax_one_only_customizer' );
+				$( '#services .colored-line').removeClass(  'paralax_one_only_customizer' );
+			}
+			else {
+				$( '#services .section-header h2' ).addClass( 'paralax_one_only_customizer' );
+				$( '#services .section-header .colored-line').addClass( 'paralax_one_only_customizer' );
+			}
+			$( '#services .section-header h2' ).text( to );
+	    } );
+		
+        });
+	
+	//Subtitle
+	wp.customize("parallax_one_which_style_subtitle", function(value) {
+		
+        value.bind(function( to ) {
+			if( to != '' ) {
+				$( '#services .section-header .sub-heading' ).removeClass( 'paralax_one_only_customizer' );
+			} else {
+				$( '#services .section-header .sub-heading' ).addClass( 'paralax_one_only_customizer' );
+			}
+			$( '#services .section-header .sub-heading' ).text( to );
+		} );
+		
+        });
 
 	
 	/******************************************************

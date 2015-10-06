@@ -15,3 +15,7 @@ wp-content/plugins/hello.php
 nbproject
 /readme.html
 /license.txt
+wp-content/themes/zerif-lite/
+wp-content/themes/skt-white/
+wp-content/themes/parallax/
+\[dev\]/
