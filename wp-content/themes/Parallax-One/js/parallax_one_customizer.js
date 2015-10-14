@@ -31,6 +31,10 @@ function media_upload(button_class) {
 							display_field.val(attachment.sizes.parallax_one_services.url);
                             display_field.trigger('change');
 							break
+						case 'parallax_one_which_style':
+							display_field.val(attachment.sizes.parallax_one_which_style.url);
+                            display_field.trigger('change');
+							break
 						case 'parallax_one_customers':
 							display_field.val(attachment.sizes.parallax_one_customers.url);
                             display_field.trigger('change');
@@ -66,15 +70,21 @@ function parallax_one_refresh_general_control_values(){
             var text = jQuery(this).find(".parallax_one_text_control").val();
             var link = jQuery(this).find(".parallax_one_link_control").val();
             var image_url = jQuery(this).find(".custom_media_url").val();
+            var video_url = jQuery(this).find(".video_url").val();
+            //replace the normal youtube link with iFrame-friendly one
+            if (String(video_url).indexOf("youtube") != -1 && String(video_url).indexOf("watch?v=") != -1) {
+                video_url = String(video_url).replace("watch?v=", "embed/");
+            }
             var choice = jQuery(this).find(".parallax_one_image_choice").val();
             var title = jQuery(this).find(".parallax_one_title_control").val();
             var subtitle = jQuery(this).find(".parallax_one_subtitle_control").val();
-            if( text !='' || image_url!='' || title!='' || subtitle!='' ){
+            if( text !='' || image_url!='' || title!='' || subtitle!='' || video_url!='' ){
                 values.push({
                     "icon_value" : icon_value,
                     "text" : text,
                     "link" : link,
                     "image_url" : image_url,
+                    "video_url" : video_url,
                     "choice" : choice,
                     "title" : title,
                     "subtitle" : subtitle
@@ -142,6 +152,7 @@ jQuery(document).ready(function(){
                 field.find(".parallax_one_general_control_remove_field").show();
                 field.find(".parallax_one_icon_control").val('');
                 field.find(".parallax_one_text_control").val('');
+                field.find(".video_url").val('');
                 field.find(".parallax_one_link_control").val('');
                 field.find(".custom_media_url").val('');
                 field.find(".parallax_one_title_control").val('');
@@ -176,6 +187,10 @@ jQuery(document).ready(function(){
 	});
 	
 	jQuery("#customize-theme-controls").on('keyup', '.parallax_one_link_control',function(){
+		parallax_one_refresh_general_control_values();
+	});
+        
+        jQuery("#customize-theme-controls").on('keyup', '.video_url',function(){
 		parallax_one_refresh_general_control_values();
 	});
 	

@@ -316,11 +316,92 @@ function parallax_one_customize_register( $wp_customize ) {
 		'section' => 'parallax_one_services_section',
 		'active_callback' => 'parallax_one_show_on_front',
 		'priority' => 3,
-        'parallax_image_control' => true,
-        'parallax_icon_control' => true,
-		'parallax_title_control' => true,
-        'parallax_text_control' => true
+    'parallax_image_control' => true,
+    'parallax_icon_control' => true,
+    'parallax_title_control' => true,
+    'parallax_text_control' => true
 	) ) );
+  
+	/********************************************************/
+	/****************** WHICH STYLE OPTIONS  *******************/
+	/********************************************************/
+	
+	
+	/* WHICH STYLE SECTION */
+	$wp_customize->add_section( 'which_style_section' , array(
+			'title'       => esc_html__( 'Which style section', 'parallax-one' ),
+			'priority'    => 32,
+	));
+	
+	/* Which style HEADER title */
+	$wp_customize->add_setting( 'which_style_title', array(
+		'default' => esc_html__('DANCE4WATER STYLES','parallax-one'),
+		'sanitize_callback' => 'parallax_one_sanitize_text',
+		'transport' => 'postMessage'
+	));
+	$wp_customize->add_control( 'which_style_title', array(
+		'label'    => esc_html__( 'Main title', 'parallax-one' ),
+		'section'  => 'which_style_section',
+		'active_callback' => 'parallax_one_show_on_front',
+		'priority'    => 1
+	));
+	
+	/* Which style HEADER subtitle */
+	$wp_customize->add_setting( 'which_style_subtitle', array(
+		'default' => esc_html__('Introductory text','parallax-one'),
+		'sanitize_callback' => 'parallax_one_sanitize_text',
+		'transport' => 'postMessage'
+	));
+	$wp_customize->add_control( 'which_style_subtitle', array(
+		'label'    => esc_html__( 'Subtitle', 'parallax-one' ),
+		'section'  => 'which_style_section',
+		'active_callback' => 'parallax_one_show_on_front',
+		'priority'    => 2
+	));
+    
+    
+  /* Which style CONTENT */
+	$wp_customize->add_setting( 
+    'which_style_content', 
+    array(
+      'sanitize_callback' => 'parallax_one_sanitize_text',
+      'default' => json_encode(
+        array(
+          array(
+            'title' => esc_html__('CUBAN SALSA','parallax-one'),
+            'text' => esc_html__('Description of the dance and blabla','parallax-one'),
+            'video_url' => esc_html__('https://www.youtube.com/embed/bs8SU24k8P4', 'parallax-one'),
+          ),
+          array(
+            'title' => esc_html__('BACHATA','parallax-one'),
+            'text' => esc_html__('Description of bachata and blabla','parallax-one'),
+            'video_url' => esc_html__('https://www.youtube.com/embed/iCVQmEeBfbU', 'parallax-one'),
+          ),
+          array(
+            'title' => esc_html__('ZOUK','parallax-one'),
+            'text' => esc_html__('Description of zouk and blabla','parallax-one'),
+            'video_url' => esc_html__('https://www.youtube.com/embed/_QkP168_Ltc', 'parallax-one'),
+          )
+        )
+      )
+    )
+  );
+	$wp_customize->add_control( 
+    new Parallax_One_General_Repeater( 
+      $wp_customize, 
+      'which_style_content', 
+      array(
+        'label' => esc_html__('Add new service box','parallax-one'),
+        'section' => 'which_style_section',
+        'active_callback' => 'parallax_one_show_on_front',
+        'priority' => 3,
+        'parallax_title_control' => true,
+        'parallax_video_url_control' => true,
+        'parallax_text_control' => true
+      ) 
+    ) 
+  );  
+  
 	/********************************************************/
 	/******************** ABOUT OPTIONS  ********************/
 	/********************************************************/
