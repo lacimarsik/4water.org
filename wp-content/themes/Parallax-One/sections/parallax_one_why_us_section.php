@@ -8,9 +8,9 @@
     json_encode(
       array(
         array(
-            'image_url' => parallax_get_file('/images/why-us-shoe.png'),
-            'title' => esc_html__('NO DRESS CODE', 'parallax-one'),
-            'text' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ...','parallax-one'),
+          'image_url' => parallax_get_file('/images/why-us-shoe.png'),
+          'title' => esc_html__('NO DRESS CODE', 'parallax-one'),
+          'text' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ...','parallax-one'),
         ),
         array(
           'image_url' => parallax_get_file('/images/why-us-clock.png'),

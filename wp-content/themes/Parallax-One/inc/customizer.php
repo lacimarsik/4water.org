@@ -449,7 +449,7 @@ function parallax_one_customize_register( $wp_customize ) {
       $wp_customize, 
       'which_style_content', 
       array(
-        'label' => esc_html__('Add new service box','parallax-one'),
+        'label' => esc_html__('Add new style','parallax-one'),
         'section' => 'which_style_section',
         'active_callback' => 'parallax_one_show_on_front',
         'priority' => 3,
@@ -459,6 +459,70 @@ function parallax_one_customize_register( $wp_customize ) {
       ) 
     ) 
   );  
+  
+  /********************************************************/
+	/******************  WHY US OPTIONS   *******************/
+	/********************************************************/
+	
+	$wp_customize->add_section('why_us_section', array(
+			'title'       => esc_html__('Why us section', 'parallax-one'),
+			'priority'    => 32,
+	));
+	
+	/* Why us title */
+	$wp_customize->add_setting('why_us_title', array(
+		'default' => esc_html__('WHY DANCE WITH US?','parallax-one'),
+		'sanitize_callback' => 'parallax_one_sanitize_text',
+		'transport' => 'postMessage'
+	));
+	$wp_customize->add_control('why_us_title', array(
+		'label'    => esc_html__('Section title', 'parallax-one'),
+		'section'  => 'why_us_section',
+		'active_callback' => 'parallax_one_show_on_front',
+		'priority'    => 1
+	));
+	
+	/* Why us content */
+	$wp_customize->add_setting( 
+    'why_us_content', 
+    array(
+      'sanitize_callback' => 'parallax_one_sanitize_text',
+      'default' => json_encode(
+        array(
+          array(
+            'image_url' => parallax_get_file('/images/why-us-shoe.png'),
+            'title' => esc_html__('NO DRESS CODE', 'parallax-one'),
+            'text' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ...','parallax-one'),
+          ),
+          array(
+            'image_url' => parallax_get_file('/images/why-us-clock.png'),
+            'title' => esc_html__('JOIN US ANYTIME','parallax-one'),
+            'text' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ...','parallax-one'),
+          ),
+          array(
+            'image_url' => parallax_get_file('/images/why-us-paper.png'),
+            'title' => esc_html__('NO REGISTRATION','parallax-one'),
+            'text' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ...','parallax-one'),
+          )
+        )
+      )
+    )
+  );
+	$wp_customize->add_control( 
+    new Parallax_One_General_Repeater( 
+      $wp_customize, 
+      'why_us_content', 
+      array(
+        'label' => esc_html__('Add new reason "why us"','parallax-one'),
+        'section' => 'why_us_section',
+        'active_callback' => 'parallax_one_show_on_front',
+        'priority' => 3,
+        'parallax_image_control' => true,
+        'parallax_title_control' => true,
+        'parallax_text_control' => true
+      ) 
+    ) 
+  ); 
   
 	/********************************************************/
 	/******************** ABOUT OPTIONS  ********************/

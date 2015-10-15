@@ -9,20 +9,20 @@
     json_encode(
       array(
         array(
-            'title' => esc_html__('CUBAN SALSA','parallax-one'),
-            'text' => esc_html__('Description of the dance and blabla','parallax-one'),
-            'video_url' => esc_html__('https://www.youtube.com/embed/bs8SU24k8P4', 'parallax-one'),
-          ),
-          array(
-            'title' => esc_html__('BACHATA','parallax-one'),
-            'text' => esc_html__('Description of bachata and blabla','parallax-one'),
-            'video_url' => esc_html__('https://www.youtube.com/embed/iCVQmEeBfbU', 'parallax-one'),
-          ),
-          array(
-            'title' => esc_html__('ZOUK','parallax-one'),
-            'text' => esc_html__('Description of zouk and blabla','parallax-one'),
-            'video_url' => esc_html__('https://www.youtube.com/embed/_QkP168_Ltc', 'parallax-one'),
-          )
+          'title' => esc_html__('CUBAN SALSA','parallax-one'),
+          'text' => esc_html__('Description of the dance and blabla','parallax-one'),
+          'video_url' => esc_html__('https://www.youtube.com/embed/bs8SU24k8P4', 'parallax-one'),
+        ),
+        array(
+          'title' => esc_html__('BACHATA','parallax-one'),
+          'text' => esc_html__('Description of bachata and blabla','parallax-one'),
+          'video_url' => esc_html__('https://www.youtube.com/embed/iCVQmEeBfbU', 'parallax-one'),
+        ),
+        array(
+          'title' => esc_html__('ZOUK','parallax-one'),
+          'text' => esc_html__('Description of zouk and blabla','parallax-one'),
+          'video_url' => esc_html__('https://www.youtube.com/embed/_QkP168_Ltc', 'parallax-one'),
+        )
       )
     )
 	);
