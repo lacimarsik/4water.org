@@ -863,6 +863,168 @@ label{
 }
 
 /*---------------------------------------
+   INTRODUCTION
+-----------------------------------------*/
+
+div#intro-container {
+    padding: 40px 15% 0 15%;
+}
+
+div#intro-video {
+    float: left;
+    width: 33%;
+}
+
+p#intro-video-text {
+    font-size: 0.8em;
+    text-align: center;
+}
+
+div#intro-text {
+    width: 66%;
+    padding-left: 20px;
+    float: left;
+}
+
+h3#intro-title {
+    margin-top: -4px;
+    font-size: 1.4em;
+}
+
+/*---------------------------------------
+   WHICH STYLE
+-----------------------------------------*/
+
+.which_style-wrap {
+	text-align: center;
+	position: relative;
+	padding-bottom: 50px;
+}
+
+.which_style {
+	background-color: #F7F8FA;
+	border-bottom: 1px solid #eaebec;
+}
+
+.which_style .section-overlay-layer {
+}
+
+.single-service {
+	padding: 40px 35px 40px 35px;
+	background: #ffffff;
+	border-top: 1px solid #eaeaea;
+	border-left: 1px solid #eaeaea;
+	border-right: 1px solid #eaeaea;
+	border-bottom: 4px solid #eaeaea;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-transition: all ease 0.55s;
+	transition: all ease 0.55s;
+}
+
+.which_style-wrap .service-box {
+	display: inline-block;
+	width: 100%;
+	text-align: center;
+}
+
+.which_style-wrap > .service-box {
+    width: 31.5%;
+    margin: 0 1.25% 0 1.25%;
+    margin-bottom: 30px;
+    vertical-align: top;
+}
+
+.which_style-wrap > .service-box:nth-child(3n+1){
+	margin-left: 0;
+	clear: left;
+}
+
+.which_style-wrap > .service-box:nth-child(3n){
+	margin-right: 0;
+	clear: right;
+}
+
+.single-service .service-icon {
+	font-size: 60px;
+	margin-bottom: 35px;
+}
+
+.single-service h3 {
+	margin-bottom: 15px;
+	padding-top: 5px;
+}
+
+.galcolumn .single-service {
+	width: 100%;
+}
+
+.display-none {
+	display: none !important;
+}
+
+.parallax_one_grid_col_4 > div,
+.parallax_one_grid_col_3 > div,
+.parallax_one_grid_col_2 > div,
+.parallax_one_grid_col_1 > div {
+	margin-bottom: 30px;
+	text-align: center;
+}
+
+.parallax_one_grid_col_4 {
+	float: left;
+	width: 23%;
+	margin: 0 1.25% 0 1.25%;
+}
+
+.parallax_one_grid_col_3 {
+    float: left;
+    width: 31.5%;
+    margin: 0 1.25% 0 1.25%;
+}
+
+.parallax_one_grid_col_2 {
+	float: left;
+	width: 48%;
+	margin: 0 1.75% 0 1.75%;
+}
+
+.parallax_one_grid_col_1 {
+	float: left;
+	width: 100%;
+}
+
+.parallax_one_grid_first {
+	margin-left: 0;
+	padding-left: 0;
+}
+
+.parallax_one_grid_last {
+	margin-right: 0;
+	padding-right: 0;
+}
+
+/*---------------------------------------
+   WHY US
+-----------------------------------------*/
+
+div#why-us-wrap {
+    padding: 40px 10% 30px 10%;
+    margin: 0 auto;
+}
+
+div.why-us-box {
+    display: inline-block;
+    text-align: center;
+    padding: 0 30px;
+}
+
+img.why-us-img {
+    
+}
+
+/*---------------------------------------
    3.1 SECTION: HOME / HEADER         
 -----------------------------------------*/
 .paralax_one_only_customizer{
@@ -1351,119 +1513,6 @@ header .navbar-brand {
 }
 
 .services-wrap > .service-box:nth-child(3n){
-	margin-right: 0;
-	clear: right;
-}
-
-.single-service .service-icon {
-	font-size: 60px;
-	margin-bottom: 35px;
-}
-
-.single-service h3 {
-	margin-bottom: 15px;
-	padding-top: 5px;
-}
-
-.galcolumn .single-service {
-	width: 100%;
-}
-
-.display-none {
-	display: none !important;
-}
-
-.parallax_one_grid_col_4 > div,
-.parallax_one_grid_col_3 > div,
-.parallax_one_grid_col_2 > div,
-.parallax_one_grid_col_1 > div {
-	margin-bottom: 30px;
-	text-align: center;
-}
-
-.parallax_one_grid_col_4 {
-	float: left;
-	width: 23%;
-	margin: 0 1.25% 0 1.25%;
-}
-
-.parallax_one_grid_col_3 {
-    float: left;
-    width: 31.5%;
-    margin: 0 1.25% 0 1.25%;
-}
-
-.parallax_one_grid_col_2 {
-	float: left;
-	width: 48%;
-	margin: 0 1.75% 0 1.75%;
-}
-
-.parallax_one_grid_col_1 {
-	float: left;
-	width: 100%;
-}
-
-.parallax_one_grid_first {
-	margin-left: 0;
-	padding-left: 0;
-}
-
-.parallax_one_grid_last {
-	margin-right: 0;
-	padding-right: 0;
-}
-
-/*---------------------------------------
-   3.3 SECTION: WHICH STYLE
------------------------------------------*/
-.which_style-wrap {
-	text-align: center;
-	position: relative;
-	padding-bottom: 50px;
-}
-
-.which_style {
-	background-color: #F7F8FA;
-	border-bottom: 1px solid #eaebec;
-}
-
-.which_style .section-overlay-layer {
-}
-
-.single-service {
-	padding: 40px 35px 40px 35px;
-	background: #ffffff;
-	border-top: 1px solid #eaeaea;
-	border-left: 1px solid #eaeaea;
-	border-right: 1px solid #eaeaea;
-	border-bottom: 4px solid #eaeaea;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
-	-webkit-transition: all ease 0.55s;
-	transition: all ease 0.55s;
-}
-
-.which_style-wrap .service-box {
-	display: inline-block;
-	width: 100%;
-	text-align: center;
-}
-
-.which_style-wrap > .service-box {
-    width: 31.5%;
-    margin: 0 1.25% 0 1.25%;
-    margin-bottom: 30px;
-    vertical-align: top;
-}
-
-.which_style-wrap > .service-box:nth-child(3n+1){
-	margin-left: 0;
-	clear: left;
-}
-
-.which_style-wrap > .service-box:nth-child(3n){
 	margin-right: 0;
 	clear: right;
 }
