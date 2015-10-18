@@ -18,7 +18,9 @@ if ( 'posts' == get_option( 'show_on_front' ) ) {
 		$sections_array = apply_filters("parallax_one_pro_sections_filter", array(
 //        'sections/parallax_one_logos_section',
 //        'sections/parallax_one_our_services_section',
+        'sections/parallax_one_introduction_section',
         'sections/parallax_one_which_style_section',
+        'sections/parallax_one_why_us_section',
 //        'sections/parallax_one_our_story_section',
 //        'sections/parallax_one_our_team_section',
 //        'sections/parallax_one_happy_customers_section',
