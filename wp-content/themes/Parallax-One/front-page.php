@@ -21,6 +21,7 @@ if ( 'posts' == get_option( 'show_on_front' ) ) {
         'sections/parallax_one_introduction_section',
         'sections/parallax_one_which_style_section',
         'sections/parallax_one_why_us_section',
+        'sections/parallax_one_how_we_teach_section',
 //        'sections/parallax_one_our_story_section',
 //        'sections/parallax_one_our_team_section',
 //        'sections/parallax_one_happy_customers_section',
