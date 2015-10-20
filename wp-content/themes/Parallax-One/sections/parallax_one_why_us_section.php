@@ -35,18 +35,18 @@
 
 					<!-- HEADER -->
 					<div class="section-header">
-						<?php
+<?php
 							if(!empty($why_us_title)) {
 								echo '<h2 class="dark-text">'.esc_attr($why_us_title).'</h2>';
 							} elseif (isset($wp_customize)) {
 								echo '<h2 class="dark-text paralax_one_only_customizer"></h2>';
                 echo '<div class="colored-line paralax_one_only_customizer"></div>';
 							}
-						?>
+?>
 					</div>
 
           <!-- WHY US CONTENT-->
-					<?php
+<?php
 						if(!empty($why_us_content)) {
 							$why_us_decoded = json_decode($why_us_content);
               $width_perc = 90 / count($why_us_decoded);
@@ -73,7 +73,7 @@
 								}
 							echo '</div>';
 						}
-					?>
+?>
 				</div>	
 			</div>
 		</section>

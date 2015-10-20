@@ -18,24 +18,24 @@
 
             <!-- VIDEO -->
             <div id="intro-video">
-              <?php
+<?php
                 if(!empty($intro_video_link)) {
-              ?>
+?>
               <iframe width="100%" id="iframe-intro-video" src="<?php echo esc_url($intro_video_link) ?>" frameborder="0" allowfullscreen></iframe>
               <script type="text/javascript">
                 document.getElementById("iframe-intro-video").src = document.getElementById("iframe-intro-video").src;
               </script>
-              <?php
+<?php
                 } elseif (isset($wp_customize)) {
 
                 }
 
                 if(!empty($intro_video_caption)){
-              ?>
+?>
               <p id="intro-video-text"><?php echo esc_attr($intro_video_caption) ?></p>
-              <?php
+<?php
                 } elseif (isset( $wp_customize)) {}
-              ?>
+?>
             </div>
 
             <!-- INTRO TEXT -->

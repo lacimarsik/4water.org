@@ -37,26 +37,26 @@
 
 					<!-- HEADER -->
 					<div class="section-header">
-						<?php
+<?php
 							if(!empty($which_style_title)) {
 								echo '<h2 class="dark-text">'.esc_attr($which_style_title).'</h2>';
 							} elseif (isset($wp_customize)) {
 								echo '<h2 class="dark-text paralax_one_only_customizer"></h2>';
                 echo '<div class="colored-line paralax_one_only_customizer"></div>';
 							}
-						?>
+?>
 
-						<?php
+<?php
 							if(!empty($which_style_subtitle)) {
 								echo '<div class="sub-heading">'.esc_attr($which_style_subtitle).'</div>';
 							} elseif (isset($wp_customize)) {
 								echo '<div class="sub-heading paralax_one_only_customizer"></div>';
 							}
-						?>
+?>
 					</div>
 
           <!-- DANCE STYLES -->
-					<?php
+<?php
 						if(!empty($which_style_dances)) {
 							$which_style_decoded = json_decode($which_style_dances);
 							echo '<div id="which_style_wrap" class="which_style-wrap">';
@@ -86,7 +86,7 @@
 								}
 							echo '</div>';
 						}
-					?>
+?>
 				</div>	
 			</div>
 		</section>
