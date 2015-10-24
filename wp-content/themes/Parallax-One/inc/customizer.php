@@ -460,7 +460,7 @@ function parallax_one_customize_register( $wp_customize ) {
     ) 
   );  
   
-  /********************************************************/
+        /********************************************************/
 	/******************  WHY US OPTIONS   *******************/
 	/********************************************************/
 	
@@ -523,6 +523,80 @@ function parallax_one_customize_register( $wp_customize ) {
       ) 
     ) 
   ); 
+        
+        /********************************************************/
+	/******************  HOW WE TEACH OPTIONS   *******************/
+	/********************************************************/
+	
+	$wp_customize->add_section('how_we_teach_section', array(
+			'title'       => esc_html__('How we teach section', 'parallax-one'),
+			'priority'    => 32,
+	));
+                
+        /* How we teach caption 1 */
+	$wp_customize->add_setting('how_we_teach_caption_1', array(
+		'default' => esc_html__('No partner needed','parallax-one'),
+		'sanitize_callback' => 'parallax_one_sanitize_text',
+		'transport' => 'postMessage'
+	));
+	$wp_customize->add_control('how_we_teach_caption_1', array(
+		'label'    => esc_html__('How we teach caption 1', 'parallax-one'),
+		'section'  => 'how_we_teach_section',
+		'active_callback' => 'parallax_one_show_on_front',
+		'priority'    => 1
+	));
+        
+        /* How we teach image 1 */
+	$wp_customize->add_setting('how_we_teach_image_1', array(
+                'default' => parallax_get_file('/images/no-partner.png'),
+		'sanitize_callback' => 'parallax_one_sanitize_text',
+		'transport' => 'postMessage'
+	));
+	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'how_we_teach_image_1', array(
+		'label'    => esc_html__('How we teach image 1', 'parallax-one'),
+		'section'  => 'how_we_teach_section',
+		'active_callback' => 'parallax_one_show_on_front',
+		'priority'    => 1
+	)));
+                
+        /* How we teach caption 2 */
+	$wp_customize->add_setting('how_we_teach_caption_2', array(
+		'default' => esc_html__('Rueda de casino','parallax-one'),
+		'sanitize_callback' => 'parallax_one_sanitize_text',
+		'transport' => 'postMessage'
+	));
+	$wp_customize->add_control('how_we_teach_caption_2', array(
+		'label'    => esc_html__('How we teach caption 2', 'parallax-one'),
+		'section'  => 'how_we_teach_section',
+		'active_callback' => 'parallax_one_show_on_front',
+		'priority'    => 1
+	));
+        
+        /* How we teach image 2 */
+	$wp_customize->add_setting('how_we_teach_image_2', array(
+                'default' => parallax_get_file('/images/rueda.png'),
+		'sanitize_callback' => 'parallax_one_sanitize_text',
+		'transport' => 'postMessage'
+	));
+	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'how_we_teach_image_2', array(
+		'label'    => esc_html__('How we teach image 2', 'parallax-one'),
+		'section'  => 'how_we_teach_section',
+		'active_callback' => 'parallax_one_show_on_front',
+		'priority'    => 1
+	)));
+        
+        /* How we teach text */
+	$wp_customize->add_setting('how_we_teach_text', array(
+		'default' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ...','parallax-one'),
+		'sanitize_callback' => 'parallax_one_sanitize_text',
+		'transport' => 'postMessage'
+	));
+	$wp_customize->add_control('how_we_teach_text', array(
+		'label'    => esc_html__('How we teach text', 'parallax-one'),
+		'section'  => 'how_we_teach_section',
+		'active_callback' => 'parallax_one_show_on_front',
+		'priority'    => 2
+	)); 
   
 	/********************************************************/
 	/******************** ABOUT OPTIONS  ********************/
