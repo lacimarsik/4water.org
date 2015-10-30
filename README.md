@@ -82,4 +82,4 @@ You can use an FTP client (like filezilla), connect to ftp://salsa.forma.sk and 
 
 You can also use the deploy.py script:
 `git log` to find the hash of the PR merge commit, then
-`python3 deploy.py -c 3e4bda9f21347f878365e584bfc452827f782544` to deploy - it will show you the list of files corresponding to that commit, ask for confirmation, ftp password and ciao
+`python3 deploy.py -c 3e4bda9f21347f878365e584bfc452827f782544` to deploy - it will show you the list of files corresponding to that commit, ask for confirmation, ftp password and then ciao!
