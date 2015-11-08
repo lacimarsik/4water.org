@@ -10,7 +10,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: parallax-one
 Tags:black, blue, gray, white, light, responsive-layout, one-column, two-columns, right-sidebar, custom-background, custom-colors, custom-menu, featured-images, front-page-post-form, full-width-template, rtl-language-support, threaded-comments, translation-ready
 
-This theme, like WordPvress, is licensed under the GPL.
+This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
 
 Parallax One is based on Underscores http://underscores.me/, (C) 2012-2015 Automattic, Inc.
@@ -1023,6 +1023,36 @@ div.why-us-box {
 
 img.why-us-img {
     
+}
+
+/*---------------------------------------
+   HOW WE TEACH
+-----------------------------------------*/
+
+#how_we_teach {
+    background-color: #3a98cb;
+}
+
+div.how-we-teach-wrap {
+    padding: 20px 0px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+div.how-we-teach-left {
+    display: inline-block;
+    padding: 0 15px;
+}
+
+div.how-we-teach-center {
+    display: inline-block;
+    padding: 0 15px;
+    color: white;
+}
+
+div.how-we-teach-right {
+    display: inline-block;
+    padding: 0 15px;
 }
 
 /*---------------------------------------
