@@ -10,6 +10,7 @@ import re
 import subprocess
 import getpass
 import ftplib
+import os
 
 # ---------------------------------------------------------------
 # Methods
@@ -61,6 +62,10 @@ def confirm(prompt=None, resp=False):
 def main():
     # parse command line args
     argv = sys.argv[1:]
+    if len(argv) == 0:
+        print_help()
+        sys.exit()
+
     try:
         opts, args = getopt.getopt(argv, "hc:f:",["help", "commit=", "filelist="])
     except getopt.GetoptError:
@@ -101,9 +106,13 @@ def main():
     for fname in filelist:
         fname = fname.strip()
         try:
-            print("Uploading " + fname + "... ", end="")
-            fl = open(fname, 'rb')
-            ftp.storbinary('STOR ' + fname, fl)
+            if os.path.exists(fname):
+                print("Uploading " + fname + " to server... ", end="")
+                fl = open(fname, 'rb')
+                ftp.storbinary('STOR ' + fname, fl)
+            else:
+                print("Deleting " + fname + " from server... ", end="")
+                ftp.delete(fname)
             print("OK!")
         except Exception as e:
             print("Error: " + str(e))
