@@ -15,34 +15,36 @@
       <div class="section-overlay-layer">
         <div class="container">
           <div id="intro-container">
-
+            <!-- INTRO TEXT -->
+            <div id="intro-text" class="col-md-7 col-md-push-5">
+              <h3 class="dark-text" id="intro-title"><?php echo esc_attr($intro_title) ?></h3>
+              <?php echo $intro_text ?>
+            </div>
+              
             <!-- VIDEO -->
-            <div id="intro-video">
+            <div class="col-md-5 col-md-pull-7">
+              <div id="intro-video-container">
 <?php
-              if(!empty($intro_video_link)) {
+                if(!empty($intro_video_link)) {
 ?>
-                <iframe width="100%" id="iframe-intro-video" src="<?php echo esc_url($intro_video_link) ?>" frameborder="0" allowfullscreen></iframe>
-                <script type="text/javascript">
-                  document.getElementById("iframe-intro-video").src = document.getElementById("iframe-intro-video").src;
-                </script>
+                  <iframe id="iframe-intro-video" src="<?php echo esc_url($intro_video_link) ?>" frameborder="0" allowfullscreen></iframe>
+                  <script type="text/javascript">
+                    document.getElementById("iframe-intro-video").src = document.getElementById("iframe-intro-video").src;
+                  </script>
 <?php
-              } elseif (isset($wp_customize)) {
-
-              }
+                }
+?>
+              </div>
+<?php
 
               if(!empty($intro_video_caption)){
 ?>
                 <p id="intro-video-text"><?php echo esc_attr($intro_video_caption) ?></p>
 <?php
-              } elseif (isset( $wp_customize)) {}
+              }
 ?>
             </div>
-
-            <!-- INTRO TEXT -->
-            <div id="intro-text">
-              <h3 class="dark-text" id="intro-title"><?php echo esc_attr($intro_title) ?></h3>
-              <?php echo $intro_text ?>
-            </div>
+            <div class="clearfix"></div>
           </div>
         </div>  
       </div>

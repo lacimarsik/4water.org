@@ -18,8 +18,7 @@
       <div class="section-overlay-layer">
         <div class="container">
           <div class="how-we-teach-wrap">
-            <div class="how-we-teach-left">
-
+            <div class="col-md-4 how-we-teach-left">
               <!-- HOW WE TEACH IMAGE 1 -->
 <?php
               if(!empty($how_we_teach_image_1) && !empty($how_we_teach_caption_1)) {
@@ -28,7 +27,7 @@
 ?>
             </div>
 
-            <div class="how-we-teach-center">
+            <div class="col-md-4 how-we-teach-center">
               <!-- HOW WE TEACH TEXT -->
               <p class="how-we-teach-text">
 <?php
@@ -36,12 +35,10 @@
                   echo $how_we_teach_text;
                 }
 ?>
-                        
               </p>
             </div>
 
-            <div class="how-we-teach-right">
-
+            <div class="col-md-4 how-we-teach-right">
               <!-- HOW WE TEACH IMAGE 2 -->
 <?php
               if(!empty($how_we_teach_image_2) && !empty($how_we_teach_caption_2)) {
