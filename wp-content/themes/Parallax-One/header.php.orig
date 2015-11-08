@@ -9,18 +9,58 @@
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
+<<<<<<< HEAD
+<head>
+<meta charset="<?php bloginfo( 'charset' ); ?>">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+  if (!window.jQuery) { 
+    document.write('<script src="<?= get_bloginfo("template_url"); ?>/js/jquery-1.11.3.js"><\/script>'); 
+  }
+</script>
+<title><?php wp_title( '|', true, 'right' ); ?></title>
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
+<?php wp_head(); ?>
+</head>
+
+<body <?php body_class(); ?>>
+
+	<!-- =========================
+     PRE LOADER       
+    ============================== -->
+	<?php
+		
+	 global $wp_customize;
+
+// TODO - consider uncommenting this. This piece of code does not display the front page
+// until it's fully loaded (with all external content as well). Instead, a "loader wheel" 
+// is displayed instead
+//	 if(is_front_page() && !isset( $wp_customize ) && get_option( 'show_on_front' ) != 'page' ): 
+//	 
+//		$parallax_one_disable_preloader = get_theme_mod('paralax_one_disable_preloader');
+//		
+//		if( isset($parallax_one_disable_preloader) && ($parallax_one_disable_preloader != 1)):
+//			 
+//			echo '<div class="preloader">';
+//				echo '<div class="status">&nbsp;</div>';
+//			echo '</div>';
+//			
+//		endif;	
+//
+//	endif; ?>
+
+
+	<!-- =========================
+     SECTION: HOME / HEADER  
+=======
   <head>
     <meta charset="<?php bloginfo( 'charset' ); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?php wp_title( '|', true, 'right' ); ?></title>
     <link rel="profile" href="http://gmpg.org/xfn/11">
     <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script>
-	  if (!window.jQuery) { 
-		document.write('<script src="<?= get_bloginfo("template_url"); ?>/js/jquery-1.11.3.js"><\/script>'); 
-	  }
-	</script>
     <?php wp_head(); ?>
   </head>
   <body <?php body_class(); ?>>
@@ -31,21 +71,19 @@
 <?php
     global $wp_customize;
     
-	// TODO - consider uncommenting this. This piece of code does not display the front page
-	// until it's fully loaded (with all external content as well). Instead, a "loader wheel" 
-	// is displayed instead
-//    if(is_front_page() && !isset( $wp_customize ) && get_option( 'show_on_front' ) != 'page' ): 
-//      $parallax_one_disable_preloader = get_theme_mod('paralax_one_disable_preloader');
-//      if( isset($parallax_one_disable_preloader) && ($parallax_one_disable_preloader != 1)):	 
-//        echo '<div class="preloader">';
-//        echo '<div class="status">&nbsp;</div>';
-//        echo '</div>';
-//      endif;	
-//    endif; 
+    if(is_front_page() && !isset( $wp_customize ) && get_option( 'show_on_front' ) != 'page' ): 
+      $parallax_one_disable_preloader = get_theme_mod('paralax_one_disable_preloader');
+      if( isset($parallax_one_disable_preloader) && ($parallax_one_disable_preloader != 1)):	 
+        echo '<div class="preloader">';
+        echo '<div class="status">&nbsp;</div>';
+        echo '</div>';
+      endif;	
+    endif; 
 ?>
     
     <!-- ============================
        SECTION: HOME / HEADER  
+>>>>>>> 011dda84a09293fc7325d06528b533e7bc934bd6
     ============================== -->
     <header class="header header-style-one" data-stellar-background-ratio="0.5" id="home">
     <!-- COLOR OVER IMAGE -->
