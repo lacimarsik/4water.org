@@ -15,6 +15,12 @@
     <title><?php wp_title( '|', true, 'right' ); ?></title>
     <link rel="profile" href="http://gmpg.org/xfn/11">
     <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script>
+	  if (!window.jQuery) { 
+		document.write('<script src="<?= get_bloginfo("template_url"); ?>/js/jquery-1.11.3.js"><\/script>'); 
+	  }
+	</script>
     <?php wp_head(); ?>
   </head>
   <body <?php body_class(); ?>>
@@ -25,14 +31,17 @@
 <?php
     global $wp_customize;
     
-    if(is_front_page() && !isset( $wp_customize ) && get_option( 'show_on_front' ) != 'page' ): 
-      $parallax_one_disable_preloader = get_theme_mod('paralax_one_disable_preloader');
-      if( isset($parallax_one_disable_preloader) && ($parallax_one_disable_preloader != 1)):	 
-        echo '<div class="preloader">';
-        echo '<div class="status">&nbsp;</div>';
-        echo '</div>';
-      endif;	
-    endif; 
+	// TODO - consider uncommenting this. This piece of code does not display the front page
+	// until it's fully loaded (with all external content as well). Instead, a "loader wheel" 
+	// is displayed instead
+//    if(is_front_page() && !isset( $wp_customize ) && get_option( 'show_on_front' ) != 'page' ): 
+//      $parallax_one_disable_preloader = get_theme_mod('paralax_one_disable_preloader');
+//      if( isset($parallax_one_disable_preloader) && ($parallax_one_disable_preloader != 1)):	 
+//        echo '<div class="preloader">';
+//        echo '<div class="status">&nbsp;</div>';
+//        echo '</div>';
+//      endif;	
+//    endif; 
 ?>
     
     <!-- ============================

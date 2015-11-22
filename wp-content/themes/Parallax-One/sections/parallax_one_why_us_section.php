@@ -29,7 +29,7 @@
   if(!empty($why_us_title) || 
      !empty($why_us_content)) {
 ?>
-    <section class="why_us" id="why_us">
+    <section id="why-us">
       <div class="section-overlay-layer">
         <div class="container">
 
@@ -44,19 +44,25 @@
             }
 ?>
           </div>
-
+          
           <!-- WHY US CONTENT-->
 <?php
           if(!empty($why_us_content)) {
             $why_us_decoded = json_decode($why_us_content);
-            $width_perc = 90 / count($why_us_decoded);
-            echo '<div id="why-us-wrap" class="why-us-wrap">';
+            echo '<div id="why-us-wrap">';
               $counter = 0;
               foreach($why_us_decoded as $service_box) {
                 if(!empty($service_box->image_url)
                     || !empty($service_box->title) 
                     || !empty($service_box->text)) {
-                  echo '<div class="why-us-box" style="width:'.$width_perc.'%">';
+                  if ($counter % 3 == 0) {
+                    if ($counter > 0) {
+                      echo '</div>';
+                    }
+                    echo '<div class="why-us-row">';
+                  }
+                  
+                  echo '<div class="col-md-4 why-us-box">';
                   if(!empty($service_box->image_url)) {
                     echo '<img class="why-us-img" src="'.$service_box->image_url.'" alt="'.$service_box->title.'">';
                   }
@@ -69,9 +75,11 @@
                     echo '<p>'. esc_attr($service_box->text).'</p>';
                   }
                   echo '</div>';
+                  $counter++;
                 }
               }
-            echo '</div>';
+            echo '</div>'; //row
+            echo '</div>'; //why-us-wrap
           }
 ?>
         </div>  
