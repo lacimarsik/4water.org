@@ -944,7 +944,7 @@ div.which-style-box {
 
 /* when which-style boxes are next to each other in wider viewport */
 
-@media (min-width: 993x) {
+@media (min-width: 992x) {
     div.which-style-row {
         width: 100%;
     }
@@ -1031,7 +1031,7 @@ img.why-us-img {
 
 /* when why-us boxes are next to each other in wider viewport */
 
-@media (min-width: 993px) {
+@media (min-width: 992px) {
     div.why-us-row {
         width: 100%;
     }
@@ -1040,18 +1040,6 @@ img.why-us-img {
         margin-bottom: 0px;
         padding-top: 10px;
         padding-bottom: 10px;
-    }
-    
-    /* clearing if we have more then 3 boxes */
-
-    .why-us-box:nth-child(3n+1){
-        margin-left: 0;
-        clear: left;
-    }
-
-    .why-us-box:nth-child(3n){
-        margin-right: 0;
-        clear: right;
     }
 }
 

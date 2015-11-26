@@ -5,7 +5,7 @@
  * 
  * See e.g. parallax_one_which_style_section.php for example of usage
  * */
-function align_col_heights(row_class, col_class) {
+function align_col_heights(row_class, col_class, min_width) {   
   var rows = $('.' + row_class);
   var rows_len = rows.length;
   for (var i = 0; i < rows_len; i++) {               
@@ -14,6 +14,8 @@ function align_col_heights(row_class, col_class) {
     cols.css({
       'height': 'initial'
     });
+    
+    if ($(window).width() < min_width) continue;
 
     //now get the maximum height
     var boxes_len = cols.length;

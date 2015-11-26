@@ -58,14 +58,12 @@
           <script src="<?= get_bloginfo("template_url"); ?>/js/align_col_heights.js"></script>
           <script>          
             align_which_style_boxes = function () {
-              align_col_heights('which-style-row', 'which-style-box');
+              align_col_heights('which-style-row', 'which-style-box', 992);
             };
             
             //adjust the heights of boxes only in wider viewports
-            if ($(window).width() > 768) {
-              $(window).load(align_which_style_boxes);
-              $(window).resize(align_which_style_boxes);
-            }
+            $(window).load(align_which_style_boxes);
+            $(window).resize(align_which_style_boxes);
           </script>
           
           <!-- DANCE STYLES -->

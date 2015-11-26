@@ -59,7 +59,7 @@
                     if ($counter > 0) {
                       echo '</div>';
                     }
-                    echo '<div class="why-us-row">';
+                    echo '<div class="why-us-row col-md-12">';
                   }
                   
                   echo '<div class="col-md-4 why-us-box">';
