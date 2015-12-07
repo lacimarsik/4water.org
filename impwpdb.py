@@ -1,5 +1,14 @@
 #!/usr/bin/python3
 
+# This is a script that can be used to import a remote wordpress database to localhost. 
+# The first step - exporting the tables of remote WP database must be done manually (e.g. in 
+# phpmyadmin). Then this script can be used, provided you set the correct constants further
+# below in this source code (above main method)
+#
+# This script only works with the SQL database - it does not move any media files. Thus if the 
+# customized content (from customizer) contains links to images, these will not be changed and 
+# will be served from live server. (Todo - this can be improved in the future)
+
 # ---------------------------------------------------------------
 # Imports
 # ---------------------------------------------------------------

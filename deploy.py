@@ -1,5 +1,8 @@
 #!/usr/bin/python3
 
+# This is a script that can be used to upload specified files, or files specified by commit hash
+# to the live server. 
+
 # ---------------------------------------------------------------
 # Imports
 # ---------------------------------------------------------------
@@ -20,7 +23,8 @@ def print_help():
     print(
 """Usage:
 deploy [options]
-- deploys the specified files via FTP to the 4water server
+- deploys the specified files via FTP to the 4water server. Files from the list that do not exist 
+locally will be deleted from live server too.
 
 Options:
 -h, --help:                shows this help
