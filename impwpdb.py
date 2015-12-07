@@ -23,7 +23,7 @@ def print_help():
 impwpdb <sql file>
 - imports the given SQL file - the export of a remote wordpress DB
 
-Set the constants below (above main method) to suit your needs.
+For correct functioning, set the constants in the script's source (above the main method).
 
 Options:
 -h, --help:                shows this help
