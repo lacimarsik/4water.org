@@ -80,7 +80,7 @@
                     if ($counter > 0) {
                       echo '</div>';
                     }
-                    echo '<div class="which-style-row">';
+                    echo '<div class="which-style-row col-md-12">';
                   }
                   
                   echo '<div class="col-md-4 which-style-wrap-box">';

@@ -22,7 +22,7 @@
               <!-- HOW WE TEACH IMAGE 1 -->
 <?php
               if(!empty($how_we_teach_image_1) && !empty($how_we_teach_caption_1)) {
-                echo '<img class="how-we-teach-image-1" src="'.$how_we_teach_image_1.'" title="'.$how_we_teach_caption_1.'" alt="'.$how_we_teach_caption_1.'">';
+                echo '<img class="how-we-teach-image" src="'.$how_we_teach_image_1.'" title="'.$how_we_teach_caption_1.'" alt="'.$how_we_teach_caption_1.'">';
               }
 ?>
             </div>
@@ -42,7 +42,7 @@
               <!-- HOW WE TEACH IMAGE 2 -->
 <?php
               if(!empty($how_we_teach_image_2) && !empty($how_we_teach_caption_2)) {
-                echo '<img class="how-we-teach-image-2" src="'.$how_we_teach_image_2.'" title="'.$how_we_teach_caption_2.'" alt="'.$how_we_teach_caption_2.'">';
+                echo '<img class="how-we-teach-image" src="'.$how_we_teach_image_2.'" title="'.$how_we_teach_caption_2.'" alt="'.$how_we_teach_caption_2.'">';
               }
 ?>
             </div>

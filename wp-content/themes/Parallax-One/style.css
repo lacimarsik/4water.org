@@ -958,18 +958,6 @@ div.which-style-box {
         padding-top: 10px;
         padding-bottom: 10px;
     }
-    
-    /* clearing if we have more then 3 boxes */
-
-    .which-style-wrap-box:nth-child(3n+1){
-        margin-left: 0;
-        clear: left;
-    }
-
-    .which-style-wrap-box:nth-child(3n){
-        margin-right: 0;
-        clear: right;
-    }
 }
 
 /* make the video aspect ratio the same */
@@ -1054,20 +1042,31 @@ img.why-us-img {
 div.how-we-teach-wrap {
     padding: 20px 0px;
     margin: 0 auto;
-    text-align: left;
+    text-align: center;
+    height: 250px;
 }
 
-div.how-we-teach-left {
-    text-align: center;
+div.how-we-teach-left,
+div.how-we-teach-center,
+div.how-we-teach-right {
+    height: 100%;
+    display: table;
 }
 
 div.how-we-teach-center {
-    text-align: center;
     color: white;
 }
 
-div.how-we-teach-right {
-    text-align: center;
+p.how-we-teach-text {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+img.how-we-teach-image {
+    display: table-cell;
+    margin: auto;
+    vertical-align: middle;
+    height: 100%;
 }
 
 /*---------------------------------------
