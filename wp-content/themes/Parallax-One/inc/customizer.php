@@ -460,7 +460,7 @@ function parallax_one_customize_register( $wp_customize ) {
     ) 
   );  
   
-        /********************************************************/
+  /********************************************************/
 	/******************  WHY US OPTIONS   *******************/
 	/********************************************************/
 	
@@ -524,7 +524,7 @@ function parallax_one_customize_register( $wp_customize ) {
     ) 
   ); 
         
-        /********************************************************/
+  /********************************************************/
 	/******************  HOW WE TEACH OPTIONS   *******************/
 	/********************************************************/
 	
@@ -533,7 +533,7 @@ function parallax_one_customize_register( $wp_customize ) {
 			'priority'    => 32,
 	));
                 
-        /* How we teach caption 1 */
+  /* How we teach caption 1 */
 	$wp_customize->add_setting('how_we_teach_caption_1', array(
 		'default' => esc_html__('No partner needed','parallax-one'),
 		'sanitize_callback' => 'parallax_one_sanitize_text',
@@ -546,9 +546,9 @@ function parallax_one_customize_register( $wp_customize ) {
 		'priority'    => 1
 	));
         
-        /* How we teach image 1 */
+  /* How we teach image 1 */
 	$wp_customize->add_setting('how_we_teach_image_1', array(
-                'default' => parallax_get_file('/images/no-partner.png'),
+    'default' => parallax_get_file('/images/no-partner.png'),
 		'sanitize_callback' => 'parallax_one_sanitize_text',
 		'transport' => 'postMessage'
 	));
@@ -559,7 +559,7 @@ function parallax_one_customize_register( $wp_customize ) {
 		'priority'    => 1
 	)));
                 
-        /* How we teach caption 2 */
+  /* How we teach caption 2 */
 	$wp_customize->add_setting('how_we_teach_caption_2', array(
 		'default' => esc_html__('Rueda de casino','parallax-one'),
 		'sanitize_callback' => 'parallax_one_sanitize_text',
@@ -572,7 +572,7 @@ function parallax_one_customize_register( $wp_customize ) {
 		'priority'    => 1
 	));
         
-        /* How we teach image 2 */
+  /* How we teach image 2 */
 	$wp_customize->add_setting('how_we_teach_image_2', array(
                 'default' => parallax_get_file('/images/rueda.png'),
 		'sanitize_callback' => 'parallax_one_sanitize_text',
@@ -585,7 +585,7 @@ function parallax_one_customize_register( $wp_customize ) {
 		'priority'    => 1
 	)));
         
-        /* How we teach text */
+  /* How we teach text */
 	$wp_customize->add_setting('how_we_teach_text', array(
 		'default' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ...','parallax-one'),
 		'sanitize_callback' => 'parallax_one_sanitize_text',
@@ -597,6 +597,56 @@ function parallax_one_customize_register( $wp_customize ) {
 		'active_callback' => 'parallax_one_show_on_front',
 		'priority'    => 2
 	)); 
+  
+  /********************************************************/
+	/******************  PRICES OPTIONS   *******************/
+	/********************************************************/
+	
+	$wp_customize->add_section('prices_section', array(
+			'title'       => esc_html__('Prices section', 'parallax-one'),
+			'priority'    => 32,
+	));
+  
+  $wp_customize->add_setting( 
+    'prices_student', 
+    array(
+      'sanitize_callback' => 'parallax_one_sanitize_text',
+      'default' => json_encode(
+        array(
+          array(
+            'type' => esc_html__('ONE TIME ENTRY', 'parallax-one'),
+            'desc' => esc_html__('Come and taste our vibrant atmosphere...', 'parallax-one'),
+            'length' => esc_html__('1 day (2 lessons in a row)','parallax-one'),
+            'price' => esc_html__('70 CZK','parallax-one'),
+          ),
+          array(
+            'type' => esc_html__('WORKSHOP', 'parallax-one'),
+            'desc' => esc_html__('Come and taste our vibrant atmosphere...', 'parallax-one'),
+            'length' => esc_html__('1 day (2 lessons in a row)','parallax-one'),
+            'price' => esc_html__('100 CZK','parallax-one'),
+          )
+        )
+      )
+    )
+  );
+	$wp_customize->add_control( 
+    new Parallax_One_General_Repeater( 
+      $wp_customize, 
+      'prices_student', 
+      array(
+        'label' => esc_html__('Add new price entry for students','parallax-one'),
+        'section' => 'prices_section',
+        'active_callback' => 'parallax_one_show_on_front',
+        'priority' => 3,
+        'fields' => array(
+            'type' => array('title', 'Type: '),
+            'desc' => array('text', 'Description: '),
+            'length' => array('text', 'Length: '),
+            'price' => array('text', 'Price: '),
+        )
+      ) 
+    ) 
+  );
   
 	/********************************************************/
 	/******************** ABOUT OPTIONS  ********************/
