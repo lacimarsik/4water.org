@@ -62,36 +62,26 @@ function media_upload(button_class) {
 *** General Repeater ***
 *********************************************/
 function parallax_one_refresh_general_control_values(){
-	jQuery(".parallax_one_general_control_repeater").each(function(){
+    jQuery(".parallax_one_general_control_repeater").each(function(){
         var values = [];
         var th = jQuery(this);
         th.find(".parallax_one_general_control_repeater_container").each(function(){
-            var icon_value = jQuery(this).find('.parallax_one_icon_control').val();
-            var text = jQuery(this).find(".parallax_one_text_control").val();
-            var link = jQuery(this).find(".parallax_one_link_control").val();
-            var image_url = jQuery(this).find(".custom_media_url").val();
-            var video_url = jQuery(this).find(".video_url").val();
-            //replace the normal youtube link with iFrame-friendly one
-            if (String(video_url).indexOf("youtube") != -1 && String(video_url).indexOf("watch?v=") != -1) {
-                video_url = String(video_url).replace("watch?v=", "embed/");
-            }
-            var choice = jQuery(this).find(".parallax_one_image_choice").val();
-            var title = jQuery(this).find(".parallax_one_title_control").val();
-            var subtitle = jQuery(this).find(".parallax_one_subtitle_control").val();
-            if( text !='' || image_url!='' || title!='' || subtitle!='' || video_url!='' ){
-                values.push({
-                    "icon_value" : icon_value,
-                    "text" : text,
-                    "link" : link,
-                    "image_url" : image_url,
-                    "video_url" : video_url,
-                    "choice" : choice,
-                    "title" : title,
-                    "subtitle" : subtitle
-                });
-            }
-
+            var one_repeater_values = {};
+            jQuery(this).find('.repeater_value').each(function(){
+                var key = jQuery(this).data('key');
+                var val = jQuery(this).val();
+                if (jQuery(this).hasClass('video_url') &&
+                    String(val).indexOf("youtube") !== -1 && 
+                    String(val).indexOf("watch?v=") !== -1) {
+                    val = String(val).replace("watch?v=", "embed/");
+                }
+                if (val !== '') {
+                    one_repeater_values[key] = val;
+                }
+            });
+            values.push(one_repeater_values);
         });
+        console.log(values);
 
         th.find('.parallax_one_repeater_colector').val(JSON.stringify(values));
         th.find('.parallax_one_repeater_colector').trigger('change');

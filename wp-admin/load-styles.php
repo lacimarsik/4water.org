@@ -114,17 +114,17 @@ foreach( $load as $handle ) {
 	if ( !array_key_exists($handle, $wp_styles->registered) )
 		continue;
 
-	$style = $wp_styles->registered[$handle];
-	$path = ABSPATH . $style->src;
+	$price = $wp_styles->registered[$handle];
+	$path = ABSPATH . $price->src;
 
-	if ( $rtl && ! empty( $style->extra['rtl'] ) ) {
+	if ( $rtl && ! empty( $price->extra['rtl'] ) ) {
 		// All default styles have fully independent RTL files.
 		$path = str_replace( '.min.css', '-rtl.min.css', $path );
 	}
 
 	$content = get_file( $path ) . "\n";
 
-	if ( strpos( $style->src, '/' . WPINC . '/css/' ) === 0 ) {
+	if ( strpos( $price->src, '/' . WPINC . '/css/' ) === 0 ) {
 		$content = str_replace( '../images/', '../' . WPINC . '/images/', $content );
 		$content = str_replace( '../js/tinymce/', '../' . WPINC . '/js/tinymce/', $content );
 		$content = str_replace( '../fonts/', '../' . WPINC . '/fonts/', $content );

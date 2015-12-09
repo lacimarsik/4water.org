@@ -1070,6 +1070,39 @@ img.how-we-teach-image {
 }
 
 /*---------------------------------------
+   PRICES
+-----------------------------------------*/
+
+section#prices {
+    padding-bottom: 30px;
+}
+
+div#prices-wrap {
+    padding: 40px 2% 30px 2%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+div.prices-box {
+    text-align: center;
+    padding: 0 30px;
+}
+
+/* when price boxes are next to each other in wider viewport */
+
+@media (min-width: 992px) {
+    div.prices-row {
+        width: 100%;
+    }
+    
+    div.prices-box {
+        margin-bottom: 0px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+}
+
+/*---------------------------------------
    3.1 SECTION: HOME / HEADER         
 -----------------------------------------*/
 .paralax_one_only_customizer{
