@@ -1043,14 +1043,22 @@ div.how-we-teach-wrap {
     padding: 20px 0px;
     margin: 0 auto;
     text-align: center;
-    height: 250px;
+    
 }
 
-div.how-we-teach-left,
-div.how-we-teach-center,
-div.how-we-teach-right {
-    height: 100%;
-    display: table;
+
+
+@media (min-width: 992px) {
+    div.how-we-teach-wrap {
+        height: 250px;
+    }
+    
+    div.how-we-teach-left,
+    div.how-we-teach-center,
+    div.how-we-teach-right {
+        height: 100%;
+        display: table;
+    }
 }
 
 div.how-we-teach-center {
