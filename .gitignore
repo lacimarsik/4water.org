@@ -21,3 +21,4 @@ wp-content/themes/parallax/
 dev/
 php.ini
 *.sql
+.idea
