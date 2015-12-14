@@ -3,7 +3,8 @@
 ========================== -->
 <?php
   $prices_title = get_theme_mod('prices_title', DefPrices::$title);
-  $prices = get_theme_mod('prices_content', DefPrices::$prices_content);
+  $prices_content = get_theme_mod('prices_content', DefPrices::$content);
+  $prices_note = get_theme_mod('prices_note', DefPrices::$note);
   
   if(!empty($prices_title) || !empty($prices_content)) { ?>
     <section id="prices">
@@ -20,7 +21,28 @@
             } ?>
           </div>
           
-          <!-- CONTENT--> <?php
+          <!-- PRICES -->
+          <script>
+            $(document).ready(function() {
+              var $options = $('.student-switch-option');
+              var $prices = $('.prices-value');
+              $('.student-switch-option').on('click', function() {
+                if ($(this).hasClass('student-switch-selected')) {
+                  return;
+                }
+                $options.toggleClass('student-switch-selected');
+                $prices.toggle();
+              });
+            });
+          </script>
+          
+          <div id="student-switch-wrap">
+            <div id="student-switch">
+                <div class="student-switch-option student-switch-selected">Student</div>
+                <div class="student-switch-option">Non-Student</div>
+            </div>
+          </div> <?php
+          
           if(!empty($prices_content)) {
             $prices_decoded = json_decode($prices_content);
             echo '<div id="prices-wrap">';
@@ -41,23 +63,23 @@
                   echo '<div class="col-md-4 prices-box">';
                   
                   if(!empty($price->type)) {
-                    echo '<h3 class="colored-text">'.esc_attr($price->type).'</h3>';
+                    echo '<h3 class="prices-type">'.esc_attr($price->type).'</h3>';
                   }
 
                   if(!empty($price->desc)) {
-                    echo '<p>'. esc_attr($price->desc).'</p>';
+                    echo '<p class="prices-desc">'. esc_attr($price->desc).'</p>';
                   }
                   
                   if(!empty($price->length)) {
-                    echo '<p>'. esc_attr($price->length).'</p>';
+                    echo '<p class="prices-length">'. esc_attr($price->length).'</p>';
                   }
                   
                   if(!empty($price->student_price)) {
-                    echo '<p>'. esc_attr($price->student_price).'</p>';
+                    echo '<p class="prices-value">'. esc_attr($price->student_price).'</p>';
                   }
                   
                   if(!empty($price->non_student_price)) {
-                    echo '<p>'. esc_attr($price->non_student_price).'</p>';
+                    echo '<p class="prices-value" style="display:none">'. esc_attr($price->non_student_price).'</p>';
                   }
                   
                   echo '</div>';
@@ -68,6 +90,11 @@
             echo '</div>'; //prices-wrap
           } ?>
         </div>  
+          
+        <!-- NOTE -->
+        <div id="prices-note">
+          <p><?=$prices_note?></p>
+        </div>
       </div>
     </section> <?php
   } ?>

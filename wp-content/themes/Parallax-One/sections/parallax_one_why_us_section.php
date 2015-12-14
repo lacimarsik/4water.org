@@ -27,9 +27,9 @@
             echo '<div id="why-us-wrap">';
               $counter = 0;
               foreach($why_us_decoded as $price) {
-                if(!empty($price->image_url) || 
-                   !empty($price->title) || 
-                   !empty($price->text)) {
+                if(!empty($price->image) || 
+                   !empty($price->reason) || 
+                   !empty($price->desc)) {
                   if ($counter % 3 == 0) {
                     if ($counter > 0) {
                       echo '</div>';
@@ -38,16 +38,16 @@
                   }
                   
                   echo '<div class="col-md-4 why-us-box">';
-                  if(!empty($price->image_url)) {
-                    echo '<img class="why-us-img" src="'.$price->image_url.'" alt="'.$price->title.'">';
+                  if(!empty($price->image)) {
+                    echo '<img class="why-us-img" src="'.$price->image.'" alt="'.$price->reason.'">';
                   }
 
-                  if(!empty($price->title)) {
-                    echo '<h3 class="colored-text">'.esc_attr($price->title).'</h3>';
+                  if(!empty($price->reason)) {
+                    echo '<h3 class="colored-text">'.esc_attr($price->reason).'</h3>';
                   }
 
-                  if(!empty($price->text)) {
-                    echo '<p>'. esc_attr($price->text).'</p>';
+                  if(!empty($price->desc)) {
+                    echo '<p>'. esc_attr($price->desc).'</p>';
                   }
                   echo '</div>';
                   $counter++;

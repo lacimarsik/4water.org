@@ -86,9 +86,10 @@ class DefHowTeach {
 
 class DefPrices {
   public static $title = 'PRICES';
-  public static $prices_content;  //need to initialize later
+  public static $content;  //need to initialize later
+  public static $note = 'You\'ll pay at the entrance before each class. We are...'; 
 };
-DefPrices::$prices_content = json_encode(
+DefPrices::$content = json_encode(
   array(
     array(
       'type' => esc_html__('ONE TIME ENTRY', 'parallax-one'),

@@ -382,9 +382,9 @@ function parallax_one_customize_register( $wp_customize ) {
         'active_callback' => 'parallax_one_show_on_front',
         'priority' => 3,
         'fields' => array(
-          'style' => array('type' => 'title', 'label' => 'Style', 'placeholder' => 'CUBAN SALSA'),
-          'url' => array('type' => 'video_url', 'label' => 'Video embed URL', 'placeholder' => 'https://www.youtube.com/embed/bs8SU24k8P4'),
-          'desc' => array('type' => 'text', 'label' => 'Description', 'placeholder' => 'Fun, exciting...'),
+          'style' => array('type' => 'text', 'label' => 'Style', 'placeholder' => 'CUBAN SALSA'),
+          'url' => array('type' => 'text', 'label' => 'Video embed URL', 'placeholder' => 'https://www.youtube.com/embed/bs8SU24k8P4'),
+          'desc' => array('type' => 'textarea', 'label' => 'Description', 'placeholder' => 'Fun, exciting...'),
         )
       ) 
     ) 
@@ -431,8 +431,8 @@ function parallax_one_customize_register( $wp_customize ) {
         'priority' => 3,
         'fields' => array(
           'image' => array('type' => 'image', 'label' => 'Image'),
-          'reason' => array('type' => 'title', 'label' => 'Reason', 'placeholder' => 'NO DRESS CODE'),
-          'desc' => array('type' => 'text', 'label' => 'Description', 'placeholder' => 'We don\'t care if you wear sandals or boots...'),
+          'reason' => array('type' => 'text', 'label' => 'Reason', 'placeholder' => 'NO DRESS CODE'),
+          'desc' => array('type' => 'textarea', 'label' => 'Description', 'placeholder' => 'We don\'t care if you wear sandals or boots...'),
         )
       ) 
     ) 
@@ -534,12 +534,25 @@ function parallax_one_customize_register( $wp_customize ) {
 		'priority'    => 1
 	));
   
+  /* prices - note at the bottom */
+	$wp_customize->add_setting('prices_note', array(
+		'default' => esc_html__(DefPrices::$note,'parallax-one'),
+		'sanitize_callback' => 'parallax_one_sanitize_text',
+		'transport' => 'postMessage'
+	));
+	$wp_customize->add_control('prices_note', array(
+		'label'    => esc_html__('Note', 'parallax-one'),
+		'section'  => 'prices_section',
+		'active_callback' => 'parallax_one_show_on_front',
+		'priority'    => 1
+	));
+  
   /* prices */
   $wp_customize->add_setting( 
     'prices_content', 
     array(
       'sanitize_callback' => 'parallax_one_sanitize_text',
-      'default' => DefPrices::$prices_content
+      'default' => DefPrices::$content
     )
   );
 	$wp_customize->add_control( 
@@ -552,8 +565,8 @@ function parallax_one_customize_register( $wp_customize ) {
         'active_callback' => 'parallax_one_show_on_front',
         'priority' => 3,
         'fields' => array(
-          'type' => array('type' => 'title', 'label' => 'Type', 'placeholder' => 'ONE TIME ENTRY'),
-          'desc' => array('type' => 'text', 'label' => 'Description', 'placeholder' => 'Come and taste...'),
+          'type' => array('type' => 'text', 'label' => 'Type', 'placeholder' => 'ONE TIME ENTRY'),
+          'desc' => array('type' => 'textarea', 'label' => 'Description', 'placeholder' => 'Come and taste...'),
           'length' => array('type' => 'text', 'label' => 'Length', 'placeholder' => '1 day (2 lessons...)'),
           'student_price' => array('type' => 'text', 'label' => 'Student price', 'placeholder' => '70CZK'),
           'non_student_price' => array('type' => 'text', 'label' => 'Non-student price', 'placeholder' => '100CZK'),

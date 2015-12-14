@@ -1081,6 +1081,56 @@ img.how-we-teach-image {
    PRICES
 -----------------------------------------*/
 
+div#student-switch-wrap {
+    width: 100%;
+}
+
+div#student-switch {
+    margin: auto;
+    width: 40%;
+}
+
+div.student-switch-option {
+    width: 49%;
+    display: inline-block;
+    border: 1px #3a98cb solid;
+    border-radius: 5px;
+    color: #3a98cb;
+    margin: -1px;
+    text-align: center;
+    cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 15px;
+}
+
+@media (max-width: 650px) {
+    div.student-switch-option {
+        width: 100%;
+        padding: 1vw;
+        font-size: 2.5vw;
+    }
+}
+
+@media (max-width: 400px) {
+    div.student-switch-option {
+        width: 100%;
+        padding: 1vw;
+        font-size: 4vw;
+    }
+}
+
+div.student-switch-option:hover {
+    background-color: #1a78ab;
+    border: 1px #1a78ab solid;
+    color: white;
+}
+
+div.student-switch-selected {
+    color: white;
+    background-color: #3a98cb;
+}
+
 section#prices {
     padding-bottom: 30px;
 }
@@ -1092,8 +1142,30 @@ div#prices-wrap {
 }
 
 div.prices-box {
-    text-align: center;
+    text-align: left;
     padding: 0 30px;
+}
+
+div.prices-box:nth-child(even) {
+    text-align: right;
+}
+
+@media (min-width: 992px) {
+    div.prices-box:nth-child(even) {
+        text-align: left;
+    }
+}
+
+h3.prices-type {
+    color: red;
+}
+
+p.prices-length {
+    color: gray;
+}
+
+p.prices-value {
+    font-weight: bold;
 }
 
 /* when price boxes are next to each other in wider viewport */
@@ -1108,6 +1180,13 @@ div.prices-box {
         padding-top: 10px;
         padding-bottom: 10px;
     }
+}
+
+div#prices-note {
+    width: 100%;
+    text-align: center;
+    font-size: 0.8em;
+    margin-top: 20px;
 }
 
 /*---------------------------------------

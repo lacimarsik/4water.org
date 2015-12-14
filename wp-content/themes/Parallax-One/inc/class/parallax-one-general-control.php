@@ -32,67 +32,26 @@ class Parallax_One_General_Repeater extends WP_Customize_Control {
     $this->options = $args;
   }
 
-  private function render_box(
-          $box_data, 
-          $box_number, 
-          $fields) { 
+  private function render_box($box_data, $box_number, $fields) { 
+    
+    //this (in our case) will make an array object out of stdClass object 
     $box_data = get_object_vars($box_data); ?>
+
     <div class="parallax_one_general_control_repeater_container parallax_one_draggable">
       <div class="parallax-customize-control-title">
-        <?php esc_html_e('Entry '.($box_number + 1),'parallax-one')?>
+        <?php esc_html_e('Entry','parallax-one')?>
       </div>
       <div class="parallax-box-content-hidden">
         <?php
         foreach ($fields as $key => $field) {
-          if ($field['type'] == 'image_icon') { ?>
-            <span class="customize-control-title"><?php esc_html_e('Image type','parallax-one');?></span>
-            <select class="parallax_one_image_choice repeater_value" data-key="<?=$key?>">
-              <option value="parallax_icon" <?php selected($box_data['choice'],'parallax_icon');?>>
-                <?php esc_html_e('Icon','parallax-one');?>
-              </option>
-              <option value="parallax_image" <?php selected($box_data['choice'],'parallax_image');?>>
-                <?php esc_html_e('Image','parallax-one');?>
-              </option>
-              <option value="parallax_none" <?php selected($box_data['choice'],'parallax_none');?>>
-                <?php esc_html_e('None','parallax-one');?>
-              </option>
-            </select>
-
-            <p class="parallax_one_image_control" <?php if(!empty($box_data['choice']) && $box_data['choice'] != 'parallax_image'){ echo 'style="display:none"';}?>>
-              <span class="customize-control-title"><?php esc_html_e($field['label'].' (image):','parallax-one');?></span>
-              <input 
-                  type="text" 
-                  class="widefat custom_media_url repeater_value" 
-                  data-key="<?=$key?>"
-                  value="<?php if(!empty($box_data->image_url)) {echo esc_attr($box_data->image_url);} ?>">
-              <input 
-                  type="button" 
-                  class="button button-primary custom_media_button_parallax_one" 
-                  value="<?php esc_html_e('Upload Image','parallax-one'); ?>" />
-            </p>
-
-            <div class="parallax_one_general_control_icon" <?php  if(!empty($box_data->choice) && $box_data->choice!='parallax_icon'){ echo 'style="display:none"';}?>>
-              <span class="customize-control-title"><?php esc_html_e($field['label'].' (icon):','parallax-one');?></span>
-              <select 
-                  name="<?php echo esc_attr($this->id); ?>" 
-                  class="parallax_one_icon_control repeater_value" 
-                  data-key="<?=$key?>"> 
-                <?php 
-                foreach($icons_array as $contact_icon) {
-                  echo '<option value="'.esc_attr($contact_icon).'" '.selected($box_data->icon_value,$contact_icon).'">'.esc_attr($contact_icon).'</option>';
-                } ?>
-              </select>
-            </div>
-            <?php
-          }
-          elseif ($field['type'] == 'image') { ?>
+          if ($field['type'] == 'image') { ?>
             <span class="customize-control-title"><?php esc_html_e($field['label'],'parallax-one')?></span>
             <p class="parallax_one_image_control">
               <input 
                   type="text" 
                   class="widefat custom_media_url repeater_value" 
                   data-key="<?=$key?>"
-                  value="<?php if(!empty($box_data->image_url)) {echo esc_attr($box_data->image_url);} ?>">
+                  value="<?php if(!empty($box_data[$key])) {echo esc_attr($box_data[$key]);} ?>">
               <input 
                   type="button" 
                   class="button button-primary custom_media_button_parallax_one" 
@@ -107,58 +66,28 @@ class Parallax_One_General_Repeater extends WP_Customize_Control {
                 class="parallax_one_icon_control repeater_value"
                 data-key="<?=$key?>">
               <?php 
-              foreach($icons_array as $contact_icon) {
-                echo '<option value="'.esc_attr($contact_icon).'" '.selected($box_data->icon_value,$contact_icon).'">'.esc_attr($contact_icon).'</option>';
+              foreach($this->icons_array as $contact_icon) {
+                echo '<option value="'.esc_attr($contact_icon).'" '.selected($box_data[$key],$contact_icon).'">'.esc_attr($contact_icon).'</option>';
               } ?>
             </select>
             <?php
           }
-          elseif ($field['type'] == 'title') { ?>
-            <span class="customize-control-title"><?php esc_html_e($field['label'],'parallax-one')?></span>
-            <input 
-              type="text" 
-              value="<?php if(!empty($box_data[$key])) echo esc_attr($box_data[$key]); ?>" 
-              class="parallax_one_title_control repeater_value" 
-              data-key="<?=$key?>"
-              placeholder="<?= esc_html_e(!empty($field['placeholder']) ? $field['placeholder'] : 'Title', 'parallax-one'); ?>"/>
-            <?php
-          }
-          elseif ($field['type'] == 'subtitle') { ?>
-            <span class="customize-control-title"><?php esc_html_e($field['label'],'parallax-one')?></span>
-            <input 
-              type="text" 
-              value="<?php if(!empty($box_data[$key])) echo esc_attr($box_data[$key]); ?>" 
-              class="parallax_one_subtitle_control repeater_value" 
-              data-key="<?=$key?>"
-              placeholder="<?= esc_html_e(!empty($field['placeholder']) ? $field['placeholder'] : 'Subtitle', 'parallax-one'); ?>"/>
-            <?php
-          }
           elseif ($field['type'] == 'text') { ?>
             <span class="customize-control-title"><?php esc_html_e($field['label'],'parallax-one')?></span>
-            <textarea 
-                placeholder="<?= esc_html_e(!empty($field['placeholder']) ? $field['placeholder'] : 'Text', 'parallax-one'); ?>"
-                data-key="<?=$key?>"
-                class="parallax_one_text_control repeater_value"><?php if(!empty($box_data[$key])) {echo esc_attr($box_data[$key]);} ?></textarea>
-            <?php
-          }
-          elseif ($field['type'] == 'link') { ?>
-            <span class="customize-control-title"><?php esc_html_e($field['label'],'parallax-one')?></span>
-            <input 
-              type="text" 
-              value="<?php if(!empty($box_data[$key])) echo esc_url($box_data[$key]); ?>" 
-              class="parallax_one_link_control repeater_value" 
-              data-key="<?=$key?>"
-              placeholder="<?= esc_html_e(!empty($field['placeholder']) ? $field['placeholder'] : 'Link', 'parallax-one'); ?>"/>
-            <?php
-          }
-          elseif ($field['type'] == 'video_url') { ?>
-            <span class="customize-control-title"><?php esc_html_e($field['label'],'parallax-one')?></span>
             <input 
               type="text" 
               value="<?php if(!empty($box_data[$key])) echo esc_attr($box_data[$key]); ?>" 
-              class="video_url repeater_value" 
+              class="parallax_one_text_control repeater_value" 
               data-key="<?=$key?>"
-              placeholder="<?= esc_html_e(!empty($field['placeholder']) ? $field['placeholder'] : 'Link', 'parallax-one'); ?>"/>
+              placeholder="<?= esc_html_e(!empty($field['placeholder']) ? $field['placeholder'] : 'Text', 'parallax-one'); ?>"/>
+            <?php
+          }
+          elseif ($field['type'] == 'textarea') { ?>
+            <span class="customize-control-title"><?php esc_html_e($field['label'],'parallax-one')?></span>
+            <textarea 
+                placeholder="<?= esc_html_e(!empty($field['placeholder']) ? $field['placeholder'] : 'More text', 'parallax-one'); ?>"
+                data-key="<?=$key?>"
+                class="parallax_one_textarea_control repeater_value"><?php if(!empty($box_data[$key])) {echo esc_attr($box_data[$key]);} ?></textarea>
             <?php
           }
         } ?>
