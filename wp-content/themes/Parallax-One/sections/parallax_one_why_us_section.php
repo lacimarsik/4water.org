@@ -26,10 +26,10 @@
             $why_us_decoded = json_decode($why_us_content);
             echo '<div id="why-us-wrap">';
               $counter = 0;
-              foreach($why_us_decoded as $price) {
-                if(!empty($price->image) || 
-                   !empty($price->reason) || 
-                   !empty($price->desc)) {
+              foreach($why_us_decoded as $why_us_item) {
+                if(!empty($why_us_item->image) || 
+                   !empty($why_us_item->reason) || 
+                   !empty($why_us_item->desc)) {
                   if ($counter % 3 == 0) {
                     if ($counter > 0) {
                       echo '</div>';
@@ -38,16 +38,16 @@
                   }
                   
                   echo '<div class="col-md-4 why-us-box">';
-                  if(!empty($price->image)) {
-                    echo '<img class="why-us-img" src="'.$price->image.'" alt="'.$price->reason.'">';
+                  if(!empty($why_us_item->image)) {
+                    echo '<img class="why-us-img" src="'.$why_us_item->image.'" alt="'.$why_us_item->reason.'">';
                   }
 
-                  if(!empty($price->reason)) {
-                    echo '<h3 class="colored-text">'.esc_attr($price->reason).'</h3>';
+                  if(!empty($why_us_item->reason)) {
+                    echo '<h3 class="colored-text">'.esc_attr($why_us_item->reason).'</h3>';
                   }
 
-                  if(!empty($price->desc)) {
-                    echo '<p>'. esc_attr($price->desc).'</p>';
+                  if(!empty($why_us_item->desc)) {
+                    echo '<p>'. esc_attr($why_us_item->desc).'</p>';
                   }
                   echo '</div>';
                   $counter++;

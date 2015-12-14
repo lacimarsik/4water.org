@@ -45,8 +45,8 @@
             $which_style_decoded = json_decode($which_style_dances);
             echo '<div id="which-style-wrap">';
               $counter = 0;
-              foreach($which_style_decoded as $price) {
-                if(!empty($price->url) || !empty($price->style) || !empty($price->desc)) {
+              foreach($which_style_decoded as $which_style) {
+                if(!empty($which_style->url) || !empty($which_style->style) || !empty($which_style->desc)) {
                   if ($counter % 3 == 0) {
                     if ($counter > 0) {
                       echo '</div>';
@@ -58,17 +58,17 @@
                   echo '<div class="which-style-box">';
                   
                   //title
-                  if(!empty($price->style)) {
-                    echo '<h3 class="which-style-box-title">'.esc_attr($price->style).'</h3>';
+                  if(!empty($which_style->style)) {
+                    echo '<h3 class="which-style-box-title">'.esc_attr($which_style->style).'</h3>';
                   }
                   
                   //video
-                  if( !empty($price->url)) { ?>
+                  if( !empty($which_style->url)) { ?>
                     <div class="which-style-video-container">
                       <iframe 
                           class="iframe-which-style-video" 
                           id="frame<?=$counter?>" 
-                          src="<?=esc_url($price->url)?>" 
+                          src="<?=esc_url($which_style->url)?>" 
                           frameborder="0" 
                           allowfullscreen>
                       </iframe>
@@ -81,8 +81,8 @@
                   }
 
                   //text
-                  if(!empty($price->desc)) {
-                    echo '<p class="which-style-box-text">'. esc_attr($price->desc).'</p>';
+                  if(!empty($which_style->desc)) {
+                    echo '<p class="which-style-box-text">'. esc_attr($which_style->desc).'</p>';
                   }
                   
                   $counter++;
