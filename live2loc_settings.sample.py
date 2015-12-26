@@ -1,4 +1,4 @@
-# This file should be added to .gitignore (as everyone has different local settings)
+# Copy this file to live2loc_settings.py, set your settings and put the file to .gitignore
 
 # URLs
 LOCAL_URL = 'http://localhost/4water'
