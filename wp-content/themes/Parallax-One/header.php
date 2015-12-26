@@ -15,12 +15,12 @@
     <title><?php wp_title( '|', true, 'right' ); ?></title>
     <link rel="profile" href="http://gmpg.org/xfn/11">
     <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script>
-	  if (!window.jQuery) { 
-		document.write('<script src="<?= get_bloginfo("template_url"); ?>/js/jquery-1.11.3.js"><\/script>'); 
-	  }
-	</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+      if (!window.jQuery) { 
+        document.write('<script src="<?= get_bloginfo("template_url"); ?>/js/jquery-1.11.3.js"><\/script>'); 
+      }
+    </script>
     <?php wp_head(); ?>
   </head>
   <body <?php body_class(); ?>>

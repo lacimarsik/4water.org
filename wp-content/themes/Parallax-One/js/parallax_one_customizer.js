@@ -57,10 +57,10 @@ function media_upload(button_class) {
 	});
 }
 
-
 /********************************************
 *** General Repeater ***
 *********************************************/
+
 function parallax_one_refresh_general_control_values(){
     jQuery(".parallax_one_general_control_repeater").each(function(){
         var values = [];
@@ -81,7 +81,6 @@ function parallax_one_refresh_general_control_values(){
         th.find('.parallax_one_repeater_colector').trigger('change');
     });
 }
-
 
 jQuery(document).ready(function(){
     jQuery('#customize-theme-controls').on('click','.parallax-customize-control-title',function(){
