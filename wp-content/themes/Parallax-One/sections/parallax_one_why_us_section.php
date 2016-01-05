@@ -2,59 +2,34 @@
  SECTION: WHY US
 ========================== -->
 <?php
-  $why_us_title = get_theme_mod('why_us_title','WHY DANCE WITH US?');
-  $why_us_content = get_theme_mod(
-    'why_us_content', 
-    json_encode(
-      array(
-        array(
-          'image_url' => parallax_get_file('/images/why-us-shoe.png'),
-          'title' => esc_html__('NO DRESS CODE', 'parallax-one'),
-          'text' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ...','parallax-one'),
-        ),
-        array(
-          'image_url' => parallax_get_file('/images/why-us-clock.png'),
-          'title' => esc_html__('JOIN US ANYTIME','parallax-one'),
-          'text' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ...','parallax-one'),
-        ),
-        array(
-          'image_url' => parallax_get_file('/images/why-us-paper.png'),
-          'title' => esc_html__('NO REGISTRATION','parallax-one'),
-          'text' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ...','parallax-one'),
-        )
-      )
-    )
-  );
+  $why_us_title = get_theme_mod('why_us_title', DefWhyUs::$title);
+  $why_us_content = get_theme_mod('why_us_content', DefWhyUs::$content);
   
   if(!empty($why_us_title) || 
-     !empty($why_us_content)) {
-?>
+     !empty($why_us_content)) { ?>
     <section id="why-us">
       <div class="section-overlay-layer">
         <div class="container">
 
           <!-- HEADER -->
-          <div class="section-header">
-<?php
+          <div class="section-header"> <?php
             if(!empty($why_us_title)) {
               echo '<h2 class="dark-text">'.esc_attr($why_us_title).'</h2>';
             } elseif (isset($wp_customize)) {
               echo '<h2 class="dark-text paralax_one_only_customizer"></h2>';
               echo '<div class="colored-line paralax_one_only_customizer"></div>';
-            }
-?>
+            } ?>
           </div>
           
-          <!-- WHY US CONTENT-->
-<?php
+          <!-- WHY US CONTENT--> <?php
           if(!empty($why_us_content)) {
             $why_us_decoded = json_decode($why_us_content);
             echo '<div id="why-us-wrap">';
               $counter = 0;
-              foreach($why_us_decoded as $service_box) {
-                if(!empty($service_box->image_url)
-                    || !empty($service_box->title) 
-                    || !empty($service_box->text)) {
+              foreach($why_us_decoded as $why_us_item) {
+                if(!empty($why_us_item->image) || 
+                   !empty($why_us_item->reason) || 
+                   !empty($why_us_item->desc)) {
                   if ($counter % 3 == 0) {
                     if ($counter > 0) {
                       echo '</div>';
@@ -63,16 +38,16 @@
                   }
                   
                   echo '<div class="col-md-4 why-us-box">';
-                  if(!empty($service_box->image_url)) {
-                    echo '<img class="why-us-img" src="'.$service_box->image_url.'" alt="'.$service_box->title.'">';
+                  if(!empty($why_us_item->image)) {
+                    echo '<img class="why-us-img" src="'.$why_us_item->image.'" alt="'.$why_us_item->reason.'">';
                   }
 
-                  if(!empty($service_box->title)) {
-                    echo '<h3 class="colored-text">'.esc_attr($service_box->title).'</h3>';
+                  if(!empty($why_us_item->reason)) {
+                    echo '<h3 class="colored-text">'.esc_attr($why_us_item->reason).'</h3>';
                   }
 
-                  if(!empty($service_box->text)) {
-                    echo '<p>'. esc_attr($service_box->text).'</p>';
+                  if(!empty($why_us_item->desc)) {
+                    echo '<p>'. esc_attr($why_us_item->desc).'</p>';
                   }
                   echo '</div>';
                   $counter++;
@@ -80,11 +55,8 @@
               }
             echo '</div>'; //row
             echo '</div>'; //why-us-wrap
-          }
-?>
+          } ?>
         </div>  
       </div>
-    </section>
-<?php
-  }
-?>
+    </section> <?php
+  } ?>
