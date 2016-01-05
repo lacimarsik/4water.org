@@ -1,0 +1,120 @@
+/* admin styling */
+
+.plugin-info, .plugin-version, .repeatable-info, .donate{
+	color: #777;
+}
+
+.plugin-header{
+	overflow: hidden;
+	border-bottom: 1px solid #dfdfdf;
+	margin-bottom: 1.4em;
+}
+
+.plugin-info{
+	float: left;
+	width: 75%;
+	margin-right: 5%;
+	font-style: italic;
+}
+
+.plugin-version{
+	float: right;
+	text-align: right;
+	width: 20%;
+}
+
+.repeatable-group{
+	overflow: hidden;
+}
+
+.js .wrap .metabox-holder form{
+	opacity: 0;
+}
+
+.repeatable,.sortable-placeholder{
+	float: left;
+	margin-right: 1.4em;
+	margin-bottom: 1.4em;
+}
+
+.repeatable-info{
+	font-size: 0.9em;
+}
+
+.repeatable-info .shortcode-info .code code{
+	background: none;
+}
+
+.repeatable-info .shortcode-info:hover .code code{
+	background-color: rgba(0,0,0,0.07);
+}
+
+.repeatable .form-table{
+	max-width: 492px;
+}
+
+.repeatable.closed{
+	width: 492px;
+	max-width: 100%;
+}
+
+.repeatable .form-table th{
+	padding-left: 5px;
+}
+
+.repeatable .form-table td{
+	padding-right: 5px;
+}
+
+.repeatable .form-table tr:hover th, .repeatable .form-table tr:hover td{
+	background-color: rgba(0,0,0,0.07);
+}
+
+.repeatable-info{
+	padding: 0 10px 1em 10px;
+	border-bottom: 1px solid #dfdfdf;
+}
+
+.repeatable-tools{
+	padding: 1em 10px 0 10px;
+	border-top: 1px solid #dfdfdf;
+}
+
+.remove-disabled{
+	opacity: 0.5;
+}
+
+.other-buttons .button{
+	margin-right: 0.5em;
+}
+
+.submit{
+	display: inline-block;
+	margin-right: 0.25em;
+}
+
+.plugin-footer{
+	overflow: hidden;
+	border-top: 1px solid #dfdfdf;
+	margin-top: 1.4em;
+}
+
+.donate{
+	margin-top: 1.4em;
+}
+
+.donate span + input{
+	vertical-align: middle;
+}
+
+.description code{
+	font-style: normal;
+}
+
+.oldwp-plugin-help-section{
+	display: none;
+}
+
+.oldwp-plugin-help-section.oldwp-plugin-help-section-active{
+	display: block;
+}
