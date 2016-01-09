@@ -23,3 +23,4 @@ php.ini
 *.sql
 live2loc_settings.py
 .idea
+__pycache__
