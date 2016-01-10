@@ -208,10 +208,6 @@ a:hover {
 	margin-right: 10px;
 }
 
-.hide {
-	display: none;
-}
-
 /* --------------------------------------
 =========================================
    2. COMPONENTS
@@ -1251,7 +1247,7 @@ h2.site-description {
 
 /* STICKY NAVIGATION AND LOGO */
 #stamp-navigation {
-	float: right;
+	float: left;
 }
 
 .appear-on-scroll {
@@ -1444,6 +1440,10 @@ header .navbar-brand {
 }
 
 /* ONLY LOGO */
+.logo-small-screens {
+	display: none;
+}
+
 .centered-logo {
 	text-align: center;
 	width: 100%;
@@ -6100,6 +6100,10 @@ h2.screen-reader-text {
 		float: none;
 		width: 100%;
 		margin: 0;
+	}
+	.logo-small-screens {
+		display: block;
+		float: left;
 	}
 	.menu-align-center #stamp-navigation > ul {
 		margin-left: 0;
