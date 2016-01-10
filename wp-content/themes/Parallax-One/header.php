@@ -76,7 +76,7 @@
       <div class="navbar navbar-inverse bs-docs-nav navbar-fixed-top sticky-navigation appear-on-scroll" role="navigation">
 				<!-- CONTAINER -->
         <div class="container">
-          <div class="navbar-header">
+          <div class="navbar-header hide">
               
             <!-- LOGO ON STICKY NAV BAR -->
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#stamp-navigation">
