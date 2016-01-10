@@ -78,13 +78,6 @@
         <div class="container">
           <!-- NAVBAR HEADER -->
           <div class="navbar-header">
-            <!-- LOGO ON STICKY NAV BAR -->
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#stamp-navigation">
-              <span class="sr-only"><?php esc_html_e('Toggle navigation','parallax-one'); ?></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
             <!-- LOGO (SMALL SCREENS ONLY) -->
             <div class="logo-small-screens">
               <?php
@@ -112,6 +105,14 @@
               ?>
             </div>
             <!-- /END LOGO (SMALL SCREENS ONLY) -->
+            <!-- COLLAPSED MENU -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#stamp-navigation">
+              <span class="sr-only"><?php esc_html_e('Toggle navigation','parallax-one'); ?></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <!-- /END COLLAPSED MENU -->
           </div>
           <!-- /END NAVBAR HEADER -->
 
