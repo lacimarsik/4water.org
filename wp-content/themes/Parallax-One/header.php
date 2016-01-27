@@ -123,7 +123,7 @@
               array( 
                 'theme_location'    => 'primary',
                 'container'         => false,
-                'menu_class'        => 'nav navbar-nav navbar-right main-navigation small-text', 
+                'menu_class'        => 'nav navbar-nav navbar-right main-navigation',
                 'fallback_cb'       => 'parallax_one_wp_page_menu' 
               ) 
             );
