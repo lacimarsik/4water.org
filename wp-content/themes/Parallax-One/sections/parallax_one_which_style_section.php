@@ -9,7 +9,7 @@
   if(!empty($which_style_title) || 
      !empty($which_style_subtitle) ||
      !empty($which_style_dances)) { ?>
-    <section id="section-which-style">
+    <section id="which-style">
       <div class="section-overlay-layer">
         <div class="container">
 
