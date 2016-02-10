@@ -1291,7 +1291,7 @@ header .navbar-brand {
     margin-top: 0;
 }
 
-.sticky-navigation .main-navigation li a:first-child {
+.sticky-navigation .main-navigation li a {
 	line-height: 52px;
 	text-transform: uppercase;
 	padding: 10px 18px;
