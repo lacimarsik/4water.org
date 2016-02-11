@@ -106,12 +106,23 @@
             </div>
             <!-- /END LOGO (SMALL SCREENS ONLY) -->
             <!-- COLLAPSED MENU -->
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#stamp-navigation">
-              <span class="sr-only"><?php esc_html_e('Toggle navigation','parallax-one'); ?></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
+            <div class="collapsed-menu-wrapper">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#stamp-navigation">
+                <span class="sr-only"><?php esc_html_e('Toggle navigation','parallax-one'); ?></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <!-- MENU WIDGET (SMALL SCREENS ONLY) -->
+              <?php
+                $for_water_logo = get_theme_mod('4water_logo', parallax_get_file('/images/4Water_menu.png') );
+                $for_water_raised = 78819;
+              ?>
+              <div class="menu-widget-small-screens">
+                <img class="menu-widget-logo" src="<?php echo $for_water_logo ?>" />
+              </div>
+              <!-- /END MENU WIDGET (SMALL SCREENS ONLY) -->
+            </div>
             <!-- /END COLLAPSED MENU -->
           </div>
           <!-- /END NAVBAR HEADER -->
@@ -130,6 +141,14 @@
   ?>
           </div>
           <!-- /END MENU -->
+          <!-- MENU WIDGET -->
+          <div class="menu-widget">
+            <img class="menu-widget-logo" src="<?php echo $for_water_logo ?>" />
+            <div class="menu-widget-text">
+              <span class="menu-widget-emphasize">£<?php echo $for_water_raised ?></span> raised till now
+            </div>
+          </div>
+          <!-- /END MENU WIDGET -->
         </div>
         <!-- /END CONTAINER -->
       </div>
