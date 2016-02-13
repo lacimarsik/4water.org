@@ -30,10 +30,10 @@
     ============================== -->
 <?php
     global $wp_customize;
-    
-	// TODO - consider uncommenting this. This piece of code does not display the front page
-	// until it's fully loaded (with all external content as well). Instead, a "loader wheel" 
-	// is displayed instead
+
+// TODO - consider uncommenting this. This piece of code does not display the front page
+// until it's fully loaded (with all external content as well). Instead, a "loader wheel"
+// is displayed instead
 //    if(is_front_page() && !isset( $wp_customize ) && get_option( 'show_on_front' ) != 'page' ): 
 //      $parallax_one_disable_preloader = get_theme_mod('paralax_one_disable_preloader');
 //      if( isset($parallax_one_disable_preloader) && ($parallax_one_disable_preloader != 1)):	 
@@ -51,13 +51,13 @@
     <!-- COLOR OVER IMAGE -->
 <?php
     $paralax_one_sticky_header = get_theme_mod('paralax_one_sticky_header','parallax-one');
-		if( isset($paralax_one_sticky_header) && ($paralax_one_sticky_header != 1)){
-			$fixedheader = 'sticky-navigation-open';
-		} 
+    if( isset($paralax_one_sticky_header) && ($paralax_one_sticky_header != 1)){
+      $fixedheader = 'sticky-navigation-open';
+    }
     else {
-			if(!is_front_page()){
-				$fixedheader = 'sticky-navigation-open';
-			}
+      if(!is_front_page()){
+        $fixedheader = 'sticky-navigation-open';
+      }
       else {
         $fixedheader = '';
         if ( 'posts' != get_option( 'show_on_front' ) ) {
@@ -71,16 +71,16 @@
       }
     }
 ?>
-		<div class="overlay-layer-nav <?php if(!empty($fixedheader)) {echo esc_attr($fixedheader);} ?>">
+    <div class="overlay-layer-nav <?php if(!empty($fixedheader)) {echo esc_attr($fixedheader);} ?>">
       <!-- STICKY NAVIGATION -->
       <div class="navbar navbar-inverse bs-docs-nav navbar-fixed-top sticky-navigation appear-on-scroll" role="navigation">
-				<!-- CONTAINER -->
+        <!-- CONTAINER -->
         <div class="container">
           <!-- NAVBAR HEADER -->
           <div class="navbar-header">
             <!-- LOGO (SMALL SCREENS ONLY) -->
             <div class="logo-small-screens">
-              <?php
+<?php
               $parallax_one = get_theme_mod('paralax_one_logo', parallax_get_file('/images/logo-nav.png') );
               if(!empty($parallax_one)):
                 echo '<a href="'.esc_url( home_url( '/' ) ).'" class="navbar-brand" title="'.get_bloginfo('title').'">';
@@ -102,7 +102,7 @@
                 echo "<h2 class='site-description'>".get_bloginfo( 'description' )."</h2>";
                 echo '</div>';
               endif;
-              ?>
+?>
             </div>
             <!-- /END LOGO (SMALL SCREENS ONLY) -->
             <!-- COLLAPSED MENU -->
@@ -113,15 +113,17 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <!-- MENU WIDGET (SMALL SCREENS ONLY) -->
-              <?php
-                $for_water_logo = get_theme_mod('4water_logo', parallax_get_file('/images/4Water_menu.png') );
-                $for_water_raised = 78819;
-              ?>
-              <div class="menu-widget-small-screens">
-                <img class="menu-widget-logo" src="<?php echo $for_water_logo ?>" />
-              </div>
-              <!-- /END MENU WIDGET (SMALL SCREENS ONLY) -->
+              <!-- HEADER WIDGET (SMALL SCREENS ONLY) -->
+<?php
+                if (is_active_sidebar('header-widget-small-screens')):
+?>
+                  <div class="header-widget-small-screens">
+                    <?php dynamic_sidebar('header-widget-small-screens'); ?>
+                  </div>
+<?php
+                endif;
+?>
+              <!-- /END HEADER WIDGET (SMALL SCREENS ONLY) -->
             </div>
             <!-- /END COLLAPSED MENU -->
           </div>
@@ -129,7 +131,7 @@
 
           <!-- MENU -->
           <div class="navbar-collapse collapse" id="stamp-navigation">		
-  <?php 
+<?php
             wp_nav_menu( 
               array( 
                 'theme_location'    => 'primary',
@@ -138,17 +140,20 @@
                 'fallback_cb'       => 'parallax_one_wp_page_menu' 
               ) 
             );
-  ?>
+?>
           </div>
           <!-- /END MENU -->
-          <!-- MENU WIDGET -->
-          <div class="menu-widget">
-            <img class="menu-widget-logo" src="<?php echo $for_water_logo ?>" />
-            <div class="menu-widget-text">
-              <span class="menu-widget-emphasize">£<?php echo $for_water_raised ?></span> raised till now
+          <!-- HEADER WIDGET -->
+<?php
+          if (is_active_sidebar('header-widget')):
+?>
+            <div class="header-widget">
+              <?php dynamic_sidebar('header-widget'); ?>
             </div>
-          </div>
-          <!-- /END MENU WIDGET -->
+<?php
+          endif;
+?>
+          <!-- /END HEADER WIDGET -->
         </div>
         <!-- /END CONTAINER -->
       </div>
