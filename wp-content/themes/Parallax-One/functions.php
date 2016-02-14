@@ -152,8 +152,8 @@ function parallax_one_widgets_init() {
 			'name' => esc_html__( 'Header area', 'parallax-one' ),
 			'id' => 'header-widget',
 			'description' => __( 'Header widget area next to the navigation',  'parallax-one' ),
-			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-			'after_widget' => '</aside>',
+			'before_widget' => '<div id="%1$s" class="widget %2$s">',
+			'after_widget' => '</div>',
 			'before_title' => '<h3 class="widget-title">',
 			'after_title' => '</h3>',
 		)
@@ -161,11 +161,23 @@ function parallax_one_widgets_init() {
 
 	register_sidebar(
 			array(
+					'name' => esc_html__( 'Header area medium screens', 'parallax-one' ),
+					'id' => 'header-widget-medium-screens',
+					'description' => __( 'Header widget area for medium screens',  'parallax-one' ),
+					'before_widget' => '<div id="%1$s" class="widget %2$s">',
+					'after_widget' => '</div>',
+					'before_title' => '<h3 class="widget-title">',
+					'after_title' => '</h3>',
+			)
+	);
+
+	register_sidebar(
+			array(
 					'name' => esc_html__( 'Header area small screens', 'parallax-one' ),
 					'id' => 'header-widget-small-screens',
 					'description' => __( 'Header widget area for small screens',  'parallax-one' ),
-					'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-					'after_widget' => '</aside>',
+					'before_widget' => '<div id="%1$s" class="widget %2$s">',
+					'after_widget' => '</div>',
 					'before_title' => '<h3 class="widget-title">',
 					'after_title' => '</h3>',
 			)

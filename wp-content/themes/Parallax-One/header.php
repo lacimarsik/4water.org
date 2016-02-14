@@ -143,6 +143,17 @@
 ?>
           </div>
           <!-- /END MENU -->
+          <!-- HEADER WIDGET MEDIUM SCREENS -->
+          <?php
+          if (is_active_sidebar('header-widget-medium-screens')):
+            ?>
+            <div class="header-widget-medium-screens">
+              <?php dynamic_sidebar('header-widget-medium-screens'); ?>
+            </div>
+            <?php
+          endif;
+          ?>
+          <!-- /END HEADER WIDGET MEDIUM SCREENS -->
           <!-- HEADER WIDGET -->
 <?php
           if (is_active_sidebar('header-widget')):

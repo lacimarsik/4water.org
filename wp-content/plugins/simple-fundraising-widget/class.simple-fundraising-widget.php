@@ -95,13 +95,6 @@ class simple_fundraising_widget extends WP_Widget
       .sf-widget-wrapper .sf-widget-text .sf-widget-emphasize {
         color: white;
       }
-
-      /* Fix for medium-size screens - do not show the text */
-      @media (min-width: 768px) and (max-width: 991px) {
-        .sf-widget-wrapper .sf-widget-text {
-          display: none;
-        }
-      }
     </style>
 <?php
   }
