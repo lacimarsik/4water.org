@@ -11,6 +11,5 @@ Licence: Public Domain CC0
 define( 'PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 
 require_once( PLUGIN_DIR . 'class.simple-fundraising-widget.php' );
-require_once( PLUGIN_DIR . 'class.simple-fundraising-widget-small-screens.php' );
 
 ?>

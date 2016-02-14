@@ -35,10 +35,8 @@ class simple_fundraising_widget extends WP_Widget
       }
 
       // Widget body:
-      $for_water_logo = get_theme_mod('4water_logo', parallax_get_file('/images/4Water_menu.png'));
       $for_water_raised = 78819;
 ?>
-      <img class="sf-widget-logo" src="<?php echo $for_water_logo ?>"/>
       <div class="sf-widget-text">
         <span class="sf-widget-emphasize">£<?php echo $for_water_raised ?></span> raised till now
       </div>
