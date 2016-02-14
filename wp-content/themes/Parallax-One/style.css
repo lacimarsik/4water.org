@@ -1410,6 +1410,19 @@ header .navbar-brand {
 	display: none;
 }
 
+/* Override simple-fundraising-widget styles from plugin */
+.sticky-navigation .sf-widget-wrapper h3.widget-title {
+	color: white;
+}
+
+.sf-widget-wrapper .sf-widget-text {
+	color: #00b8f1;
+}
+
+.sf-widget-wrapper .sf-widget-text .sf-widget-emphasize {
+	color: white;
+}
+
 .menu-align-center .navbar-header,
 .menu-align-center .navbar-collapse {
 	width: 100%;

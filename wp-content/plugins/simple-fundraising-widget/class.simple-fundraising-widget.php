@@ -23,22 +23,21 @@ class simple_fundraising_widget extends WP_Widget
 
   // Widget front-end
   public function widget($args, $instance) {
+    $instance = wp_parse_args((array) $instance, self::get_defaults());
 ?>
     <div class="sf-widget-wrapper">
 <?php
-      // Widget title: will be CSS-hidden for Simple fundraising widget
-      $title = apply_filters('widget_title', $instance['title']);
       // before and after widget arguments are defined by themes
       echo $args['before_widget'];
       if (!empty($title)) {
-        echo $args['before_title'] . $title . $args['after_title'];
+        echo $args['before_title'] . $instance['title'] . $args['after_title'];
       }
 
       // Widget body:
-      $for_water_raised = 78819;
+      $formatter = new NumberFormatter('en_US',  NumberFormatter::CURRENCY);
 ?>
       <div class="sf-widget-text">
-        <span class="sf-widget-emphasize">£<?php echo $for_water_raised ?></span> raised till now
+        <em class="sf-widget-emphasize"><?php echo $formatter->formatCurrency($instance['raised'], $instance['currency']) ?></em> <?php echo $instance['text'] ?>
       </div>
     </div>
 <?php
@@ -48,18 +47,29 @@ class simple_fundraising_widget extends WP_Widget
   // Widget back-end
   public function form($instance)
   {
-    if (isset($instance['title'])) {
-      $title = $instance['title'];
-    } else {
-      $title = __('Charity organisation', 'simple_fundraising_widget_domain');
-    }
+    $instance = wp_parse_args((array) $instance, self::get_defaults());
 
     // Widget admin form
     ?>
     <p>
       <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label>
       <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>"
-             name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($title); ?>"/>
+             name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($instance['title']); ?>"/>
+    </p>
+    <p>
+      <label for="<?php echo $this->get_field_id('text'); ?>"><?php _e('Text:'); ?></label>
+      <input class="widefat" id="<?php echo $this->get_field_id('text'); ?>"
+             name="<?php echo $this->get_field_name('text'); ?>" type="text" value="<?php echo esc_attr($instance['text']); ?>"/>
+    </p>
+    <p>
+      <label for="<?php echo $this->get_field_id('raised'); ?>"><?php _e('Amount raised:'); ?></label>
+      <input class="widefat" id="<?php echo $this->get_field_id('raised'); ?>"
+             name="<?php echo $this->get_field_name('raised'); ?>" type="text" value="<?php echo esc_attr($instance['raised']); ?>"/>
+    </p>
+    <p>
+      <label for="<?php echo $this->get_field_id('currency'); ?>"><?php _e('Currency:'); ?></label>
+      <input class="widefat" id="<?php echo $this->get_field_id('currency'); ?>"
+             name="<?php echo $this->get_field_name('currency'); ?>" type="text" value="<?php echo esc_attr($instance['currency']); ?>"/>
     </p>
     <?php
   }
@@ -67,33 +77,45 @@ class simple_fundraising_widget extends WP_Widget
   // Updating widget replacing old instances with new
   public function update($new_instance, $old_instance)
   {
-    $instance = array();
+    $instance = $old_instance;
+    $new_instance = wp_parse_args((array) $new_instance, self::get_defaults());
     $instance['title'] = (!empty($new_instance['title'])) ? strip_tags($new_instance['title']) : '';
+    $instance['text'] = (!empty($new_instance['text'])) ? strip_tags($new_instance['text']) : '';
+    $instance['raised'] = (!empty($new_instance['raised'])) ? strip_tags($new_instance['raised']) : '';
+    $instance['currency'] = (!empty($new_instance['currency'])) ? strip_tags($new_instance['currency']) : '';
+
     return $instance;
+  }
+
+  // Default values for widget
+  private static function get_defaults() {
+    $defaults = array(
+      'title' => 'Charity organisation',
+      'text' => 'raised till now',
+      'raised' => 1000,
+      'currency' => 'GBP'
+    );
+
+    return $defaults;
   }
 
   // Widget CSS
   function css() {
 ?>
     <style type="text/css">
-      .sf-widget-wrapper .widget-title {
-        display: none;
-      }
-
-      .sf-widget-wrapper .sf-widget-logo {
-        width: 80px;
-        line-height: 18px;
+      .sf-widget-wrapper h3.widget-title {
+        font-size: 14px;
+        margin: 0;
       }
 
       .sf-widget-wrapper .sf-widget-text {
         line-height: 18px;
         padding-left: 8px;
-        color: #00b8f1;
         font-size: 10px;
       }
 
       .sf-widget-wrapper .sf-widget-text .sf-widget-emphasize {
-        color: white;
+        font-style: normal;
       }
     </style>
 <?php
