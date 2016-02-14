@@ -1043,10 +1043,7 @@ div.how-we-teach-wrap {
     padding: 20px 0px;
     margin: 0 auto;
     text-align: center;
-    
 }
-
-
 
 @media (min-width: 992px) {
     div.how-we-teach-wrap {
@@ -1074,7 +1071,7 @@ img.how-we-teach-image {
     display: table-cell;
     margin: auto;
     vertical-align: middle;
-    height: 100%;
+    height: 200px;
 }
 
 /*---------------------------------------
