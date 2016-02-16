@@ -134,7 +134,7 @@ function parallax_one_media_uploader_custom_sizes( $sizes ) {
  * @link http://codex.wordpress.org/Function_Reference/register_sidebar
  */
 function parallax_one_widgets_init() {
-	
+
 	register_sidebar( 
 		array(
 			'name'          => esc_html__( 'Sidebar', 'parallax-one' ),
@@ -146,7 +146,43 @@ function parallax_one_widgets_init() {
 			'after_title'   => '</h2><div class="colored-line-left"></div><div class="clearfix widget-title-margin"></div>',
 		)
 	);
-	
+
+	register_sidebar(
+		array(
+			'name' => esc_html__( 'Header area', 'parallax-one' ),
+			'id' => 'header-widget',
+			'description' => __( 'Header widget area next to the navigation',  'parallax-one' ),
+			'before_widget' => '<div id="%1$s" class="widget %2$s">',
+			'after_widget' => '</div>',
+			'before_title' => '<h3 class="widget-title">',
+			'after_title' => '</h3>',
+		)
+	);
+
+	register_sidebar(
+			array(
+					'name' => esc_html__( 'Header area medium screens', 'parallax-one' ),
+					'id' => 'header-widget-medium-screens',
+					'description' => __( 'Header widget area for medium screens',  'parallax-one' ),
+					'before_widget' => '<div id="%1$s" class="widget %2$s">',
+					'after_widget' => '</div>',
+					'before_title' => '<h3 class="widget-title">',
+					'after_title' => '</h3>',
+			)
+	);
+
+	register_sidebar(
+			array(
+					'name' => esc_html__( 'Header area small screens', 'parallax-one' ),
+					'id' => 'header-widget-small-screens',
+					'description' => __( 'Header widget area for small screens',  'parallax-one' ),
+					'before_widget' => '<div id="%1$s" class="widget %2$s">',
+					'after_widget' => '</div>',
+					'before_title' => '<h3 class="widget-title">',
+					'after_title' => '</h3>',
+			)
+	);
+
 	register_sidebars( 4, 
 		array(
 			'name' => esc_html__('Footer area %d','parallax-one'),
@@ -412,6 +448,5 @@ function parallax_one_prevent_wporg_update( $r, $url ) {
  
 add_filter( 'http_request_args', 'parallax_one_prevent_wporg_update', 5, 2 );
 
-
- require 'inc/cwp-update-free.php'; 
+require 'inc/cwp-update-free.php';
 

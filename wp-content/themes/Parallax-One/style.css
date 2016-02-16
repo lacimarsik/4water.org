@@ -26,7 +26,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 	1.3 ANCHOR
 	1.4 MISC FIXES  
 
-2. COMPONENTS (ELEMNTS USED IN MANY SECTION)
+2. COMPONENTS (ELEMENTS USED IN MANY SECTION)
 	2.1 TYPOGRAPHY
 	2.2 ELEMENTS
 	2.3 ALIGNMENTS
@@ -1243,8 +1243,13 @@ h2.site-description {
 }
 
 /* STICKY NAVIGATION AND LOGO */
+.navbar > .container {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
 #stamp-navigation {
-	float: right;
+	float: left;
 }
 
 .appear-on-scroll {
@@ -1263,10 +1268,12 @@ header .navbar-brand {
 }
 
 .sticky-navigation {
-    background: #ffffff;
+    background: black;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
     min-height: 70px;
     border: none;
-    font-weight: 400;
     margin-bottom: 0 !important;
     -webkit-backface-visibility: hidden;
     -webkit-box-shadow: 0px 2px 8px 0px rgba(50, 50, 50, 0.08);
@@ -1282,9 +1289,13 @@ header .navbar-brand {
 }
 
 .sticky-navigation .main-navigation li a {
-    text-transform: uppercase;
-	line-height: 18px;
-	padding: 26px 18px;
+	line-height: 52px;
+	text-transform: uppercase;
+	padding: 10px 18px;
+}
+
+.sticky-navigation .main-navigation .sub-menu li a {
+	line-height: 26px;
 }
 
 .sticky-navigation .main-navigation li {
@@ -1296,7 +1307,7 @@ header .navbar-brand {
 	display: block;
 	text-decoration: none;
 	text-align: left;
-	color: #313131;
+	color: white;
 }
 
 .sticky-navigation .main-navigation ul {
@@ -1318,8 +1329,8 @@ header .navbar-brand {
 }
 
 .sticky-navigation .main-navigation ul a {
-	width: 200px;
-	padding: 10px
+	width: 165px;
+	padding: 10px 18px;
 }
 
 .sticky-navigation .main-navigation ul li {
@@ -1380,6 +1391,35 @@ header .navbar-brand {
 	width: auto;
 }
 
+/* MENU TWEAKS */
+.sub-menu .menu-item {
+	background-color: black;
+}
+
+/* HEADER WIDGET AREA */
+.sticky-navigation .header-widget {
+	float: right;
+	line-height: 36px;
+	padding: 10px 18px;
+}
+
+.sticky-navigation .header-widget-small-screens, .sticky-navigation .header-widget-medium-screens {
+	display: none;
+}
+
+/* Override simple-fundraising-widget styles from plugin */
+.sticky-navigation .sf-widget-wrapper h3.widget-title {
+	color: white;
+}
+
+.sf-widget-wrapper .sf-widget-text {
+	color: #00b8f1;
+}
+
+.sf-widget-wrapper .sf-widget-text .sf-widget-emphasize {
+	color: white;
+}
+
 .menu-align-center .navbar-header,
 .menu-align-center .navbar-collapse {
 	width: 100%;
@@ -1437,6 +1477,10 @@ header .navbar-brand {
 }
 
 /* ONLY LOGO */
+.logo-small-screens {
+	display: none;
+}
+
 .centered-logo {
 	text-align: center;
 	width: 100%;
@@ -5879,9 +5923,7 @@ h2.screen-reader-text {
 	}
 
 	.sticky-navigation .main-navigation > li.has_children > a {
-		line-height: 34px;
-		line-height: 18px;
-		padding: 26px 18px;
+		padding: 10px 18px;
 	}
 
 	.sticky-navigation .login-register {
@@ -5892,6 +5934,17 @@ h2.screen-reader-text {
 		max-width: 500px;
 	}
 
+	/* HEADER WIDGET AREA MEDIUM SCREENS */
+	.sticky-navigation .header-widget, .sticky-navigation .header-widget-small-screens {
+		display: none;
+	}
+
+	.sticky-navigation .header-widget-medium-screens {
+		display: block;
+		line-height: 46px;
+		float: right;
+		padding: 10px 18px;
+	}
 }
 
 /*---------------------------------------
@@ -6062,6 +6115,28 @@ h2.screen-reader-text {
 		background: #008ed6;
 	}
 
+	/* HEADER WIDGET AREA SMALL SCREENS */
+	.collapsed-menu-wrapper {
+		float: right;
+	}
+
+	.collapsed-menu-wrapper .navbar-toggle {
+		float: none;
+	}
+
+	.sticky-navigation .header-widget, .sticky-navigation .header-widget-medium-screens {
+		display: none;
+	}
+
+	.sticky-navigation .header-widget-small-screens {
+		display: block;
+	}
+
+	.sticky-navigation .header-widget-small-screens {
+		float: right;
+		line-height: 56px;
+	}
+
 	.dropdownmenu:before {
 		content "";
 		text-align: center;
@@ -6093,6 +6168,10 @@ h2.screen-reader-text {
 		float: none;
 		width: 100%;
 		margin: 0;
+	}
+	.logo-small-screens {
+		display: block;
+		float: left;
 	}
 	.menu-align-center #stamp-navigation > ul {
 		margin-left: 0;
