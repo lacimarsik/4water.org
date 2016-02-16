@@ -59,6 +59,30 @@ def confirm(prompt=None, resp=False):
         if ans == 'n' or ans == 'N':
             return False
 
+def create_dirs_if_needed(ftp, fname):
+    """creates all the parent dirs if they don't exist on server"""
+    folders = fname.split('/')[:-1]
+    orig_wd =  ftp.pwd()
+    
+    for f in folders:
+        if not dir_exists_in_current(ftp, f):
+            print("Creating dir \"{}\" inside \"{}\"...".format(f, ftp.pwd()), end="")
+            ftp.mkd(f)
+            print("OK!")
+        ftp.cwd(f)
+
+    ftp.cwd(orig_wd)
+    
+
+def dir_exists_in_current(ftp, dir):
+    """checks if the directory exists in current directory on server"""
+    filelist = []
+    ftp.retrlines('LIST', filelist.append)
+    for f in filelist:
+        if f.split()[-1] == dir and f.upper().startswith('D'):
+            return True
+    return False
+
 # ---------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------
@@ -111,6 +135,7 @@ def main():
         fname = fname.strip()
         try:
             if os.path.exists(fname):
+                create_dirs_if_needed(ftp, fname)
                 print("Uploading " + fname + " to server... ", end="")
                 fl = open(fname, 'rb')
                 ftp.storbinary('STOR ' + fname, fl)
