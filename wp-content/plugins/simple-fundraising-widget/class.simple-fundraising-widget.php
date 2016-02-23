@@ -40,9 +40,11 @@ class simple_fundraising_widget extends WP_Widget
 <?php
           echo $instance['currency'];
           echo number_format($instance['raised'], 2, '.', ',');
-          echo ' ' . $instance['text'];
 ?>
         </em>
+<?php
+        echo ' ' . $instance['text'];
+?>
       </div>
     </div>
 <?php
@@ -98,7 +100,7 @@ class simple_fundraising_widget extends WP_Widget
       'title' => 'Charity organisation',
       'text' => 'raised till now',
       'raised' => 1000,
-      'currency' => 'GBP'
+      'currency' => '£'
     );
 
     return $defaults;
