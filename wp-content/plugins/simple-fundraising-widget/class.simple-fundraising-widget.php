@@ -34,10 +34,15 @@ class simple_fundraising_widget extends WP_Widget
       }
 
       // Widget body:
-      $formatter = new NumberFormatter('en_US',  NumberFormatter::CURRENCY);
 ?>
       <div class="sf-widget-text">
-        <em class="sf-widget-emphasize"><?php echo $formatter->formatCurrency($instance['raised'], $instance['currency']) ?></em> <?php echo $instance['text'] ?>
+        <em class="sf-widget-emphasize">
+<?php
+          echo $instance['currency'];
+          echo number_format($instance['raised'], 2, '.', ',');
+          echo ' ' . $instance['text'];
+?>
+        </em>
       </div>
     </div>
 <?php
