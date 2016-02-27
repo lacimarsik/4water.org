@@ -114,3 +114,29 @@ DefPrices::$content = json_encode(
     )
   )
 );
+/********************************************************/
+/****************** CONTACT ******************************/
+/********************************************************/
+
+class DefContact {
+  public static $content;  //need to initialize later
+};
+DefContact::$content = json_encode(
+  array(
+    array(
+      'text' => esc_html__('dance4water.prague@gmail.com', 'parallax-one'),
+      'link' => esc_html__('mailto: dance4water.prague@gmail.com', 'parallax-one'),
+      'icon_value' => esc_html__('icon-basic-mail','parallax-one')
+    ),
+    array(
+      'text' => esc_html__('Křižkovského 4, 130 00 Prague', 'parallax-one'),
+      'link' => esc_html__('https://www.google.cz/maps/place/Křížkovského+2420%2F4,+Žižkov,+130+00+Praha-Praha+3/', 'parallax-one'),
+      'icon_value' => esc_html__('icon-basic-geolocalize-01','parallax-one')
+    ),
+    array(
+      'text' => esc_html__('Dance4Water Prague', 'parallax-one'),
+      'link' => esc_html__('https://www.facebook.com/dance4water.prague', 'parallax-one'),
+      'icon_value' => esc_html__('icon-social-facebook-square','parallax-one')
+    )
+  )
+);
