@@ -1,0 +1,65 @@
+@font-face{font-family:'Elsie Swash Caps';font-style:normal;font-weight:900;src:local('Elsie Swash Caps Blacks'),local('ElsieSwashCapsBlack-Regular'),url(http://themes.googleusercontent.com/static/fonts/elsieswashcaps/v1/iZnus9qif0tR5pGaDv5zdEd2CPfIv3tbBh_qUxvoikM.woff) format('woff')}#intergeo_canvas_wrapper{position:absolute;top:0;right:300px;bottom:60px;left:0;z-index:75}#intergeo_canvas{width:100%;height:100%}#intergeo_canvas_center{width:10px;height:10px;position:absolute;top:50%;left:50%;margin:-5px 0 0 -5px;border-radius:2px;background-image:url(../images/map_center.png);background-position:center center;background-repeat:no-repeat}#intergeo_footer{height:36px;padding:12px 16px;position:absolute;z-index:100;left:0;right:0;bottom:0;border-top:1px solid #dfdfdf;overflow:hidden;-webkit-box-shadow:0 -4px 4px -4px rgba(0,0,0,0.1);box-shadow:0 -4px 4px -4px rgba(0,0,0,0.1);text-align:right}#intergeo_tlbr{position:absolute;top:0;right:0;bottom:60px;width:299px;z-index:75;background:whitesmoke;border-left:1px solid #dfdfdf;overflow:auto;-webkit-overflow-scrolling:touch}#intergeo_tlbr_ttl{font-family:'Elsie Swash Caps',cursive;font-size:34px;padding:30px 20px 10px;display:block}#intergeo_tlbr_ul{border-top:1px solid #dfdfdf}.intergeo_tlbr_ul_li{margin:0}.intergeo_tlbr_ul_li.open{border-bottom:1px solid #dfdfdf}.intergeo_tlbr_ul_li_h3{border-top:1px solid white;border-bottom:1px solid #dfdfdf;position:relative;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;margin:0;padding:10px 20px;font-size:15px;font-family:Georgia,"Times New Roman","Bitstream Charter",Times,serif;font-weight:normal;text-shadow:0 1px 0 white;background:whiteSmoke;background-image:-webkit-gradient(linear,left bottom,left top,from(#EEE),to(whiteSmoke));background-image:-webkit-linear-gradient(bottom,#EEE,whiteSmoke);background-image:-moz-linear-gradient(bottom,#EEE,whiteSmoke);background-image:-o-linear-gradient(bottom,#EEE,whiteSmoke);background-image:-ms-linear-gradient(bottom,#EEE,whiteSmoke);background-image:linear-gradient(bottom,#EEE,whiteSmoke)}.intergeo_tlbr_ul_li_h3:hover,.intergeo_tlbr_ul_li.open .intergeo_tlbr_ul_li_h3{color:white;text-shadow:0 -1px 0 #333;background:gray;background-image:-webkit-gradient(linear,left bottom,left top,from(#6d6d6d),to(gray));background-image:-webkit-linear-gradient(bottom,#6d6d6d,gray);background-image:-moz-linear-gradient(bottom,#6d6d6d,gray);background-image:-o-linear-gradient(bottom,#6d6d6d,gray);background-image:-ms-linear-gradient(bottom,#6d6d6d,gray);background-image:linear-gradient(bottom,#6d6d6d,gray)}.intergeo_tlbr_ul_li_h3::after{content:'';width:0;height:0;border-color:#CCC transparent;border-style:solid;border-width:6px 6px 0;position:absolute;top:15px;right:20px;z-index:1}.intergeo_tlbr_ul_li_h3:hover::after,.intergeo_tlbr_ul_li.open .intergeo_tlbr_ul_li_h3::after{border-color:#EEE transparent}.intergeo_tlbr_ul_li:hover .intergeo_tlbr_ul_li_h3{border-top-color:gray}.intergeo_tlbr_ul_li.open .intergeo_tlbr_ul_li_h3{border-top-color:#6d6d6d}.intergeo_tlbr_ul_li.open .intergeo_tlbr_ul_li_h3::after{border-width:0 6px 6px}.intergeo_tlbr_ul_li_ul{margin:0;display:none;background-color:#fdfdfd;padding:10px 0 20px 0;overflow:hidden}.intergeo_tlbr_ul_li.open .intergeo_tlbr_ul_li_ul{display:block}.intergeo_tlbr_cntrl_ttl{display:block;font-weight:bold;line-height:22px;position:relative;cursor:pointer;padding:4px 20px;margin-bottom:5px;background-color:rgba(0,0,0,0.02);border-top:1px solid #eee;-webkit-box-shadow:0 4px 4px -4px rgba(0,0,0,0.1);box-shadow:0 4px 4px -4px rgba(0,0,0,0.1);border-bottom:1px solid #eee}.intergeo_tlbr_cntrl_ttl::after{content:'';width:0;height:0;border-color:#CCC transparent;border-style:solid;border-width:4px 4px 0;position:absolute;top:13px;right:20px;z-index:1}.intergeo_tlbr_cntrl_ttl.open::after{border-width:0 4px 4px}.intergeo_tlbr_cntrl_items{display:none;padding:5px 20px 10px 20px}.intergeo_tlbr_cntrl_more_info{text-decoration:none;color:#21759b;font-size:85%;font-weight:normal;float:right}.intergeo_tlbr_cntrl_dsc{display:none;padding:0}.intergeo_tlbr_cntrl_tbl{width:100%;margin-bottom:10px}.intergeo_tlbr_cntrl_tbl_clmn{width:50%;text-align:left;vertical-align:top;padding:0 1px}.intergeo_tlbr_cntrl_item{margin-bottom:10px}#intergeo_map_zoom_range{margin:10px 6px}.intergeo_tlbr_style_preview{display:block;width:220px;height:90px;padding:10px;background-image:url(../images/styles.jpg);background-repeat:no-repeat;background-position:top left;-webkit-box-shadow:0 0 5px rgba(0,0,0,0.5);box-shadow:0 0 5px rgba(0,0,0,0.5)}#intergeo_tlbr_style_red{background-position:0 -110px}#intergeo_tlbr_style_night{background-position:0 -220px}#intergeo_tlbr_style_blue{background-position:0 -330px}#intergeo_tlbr_style_grayscale{background-position:0 -440px}#intergeo_tlbr_style_no_roads{background-position:0 -550px}#intergeo_tlbr_style_mixed{background-position:0 -660px}#intergeo_tlbr_style_chilled{background-position:0 -770px}.intergeo_tlbr_overlay{border-bottom:1px dotted black;margin-bottom:5px;padding-bottom:5px}.intergeo_tlbr_actn{float:right;margin:4px 0 0 10px;background-repeat:no-repeat;display:block;height:16px;width:16px;background-image:url('../images/ui-icons.png')}.intergeo_tlbr_actn_delete{background-position:-176px -96px}.intergeo_tlbr_actn_edit{background-position:-64px -112px}.intergeo_tlbr_clr_prvw{float:right;margin:4px 0 0 10px;height:16px;width:16px;-webkit-box-shadow:0 0 2px #aaa;box-shadow:0 0 2px #aaa}.intergeo_tlbr_cntrl_slct{width:100%}.intergeo_tlbr_cntrl_txt{width:100%}.intergeo_tlbr_grp_dsc{padding:5px 20px 10px 20px;margin:0}.intergeo_ppp{position:absolute;top:0;right:0;left:0;bottom:0;z-index:150;background-image:url('../images/bg.png');background-repeat:repeat;display:none}.intergeo_ppp_frm{position:absolute;top:10%;left:50%;max-height:530px;-ms-overflow-y:auto;overflow-y:auto;margin-left:-222px;width:400px;border:2px solid #555;background-color:white;-webkit-box-shadow:0 0 15px #555;box-shadow:0 0 15px #555;padding:10px 20px 15px;border-radius:3px}.intergeo_ppp_ttl{font-weight:bold;font-size:115%;color:#333;border-bottom:1px solid whitesmoke;display:block;padding:5px 0;margin-bottom:10px}.intergeo_ppp_cls{float:right;background-image:url('../images/ui-icons.png');background-repeat:no-repeat;background-position:-80px -128px;display:block;width:16px;height:16px}.intergeo_ppp_tbl{width:100%}.intergeo_ppp_tbl td{padding-bottom:5px}.intergeo_ppp_txt{width:100%}#intergeo_tlbr_drctn_icon{margin-top:1px;margin-left:-5px;float:left;display:block;width:16px;height:16px;background-repeat:no-repeat;background-image:url('../images/ui-icons.png');background-position:-16px -128px}
+
+ .computer-btn{
+	color: #646464 !important;
+	border: medium none rgb(100, 100, 100) !important;
+	background: #E6E6E6 url("../images/computer.png") no-repeat scroll 7px 1px !important;
+	padding-left: 27px !important;
+	transition: all 0.3s ease 0s;
+	font-family: "Open Sans",sans-serif;
+	font-weight: 700;
+	border: 1px solid #B0B0B0 !important;
+	box-shadow: none !important;
+
+ }
+
+ .computer-btn:hover{
+	color: white !important;
+	background: #2f8cea  url("../images/computer.png") no-repeat scroll 7px -36px !important;
+	transition: all 0.3s ease 0s;
+	padding-left: 27px !important;
+	-webkit-transition: all .3s ease;
+	-moz-transition: all .3s ease;
+	-ms-transition: all .3s ease;
+	-o-transition: all .3s ease;
+	transition: all .3s ease;
+	box-shadow: 0px 1px 0px rgba(171, 171, 171, 0.5) inset, 0px 1px 0px rgba(0, 0, 0, 0.15) !important;
+	border: 1px solid #2f8cea !important;
+	box-shadow: none !important;
+
+	
+ }
+
+ .file-wrapper {
+	position: relative;
+	overflow: hidden;
+}
+
+ .form-inline {
+    display: inline-block;
+    margin-bottom: 0;
+    vertical-align: middle;
+  }
+
+#thehole {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 1px;
+	height: 1px;
+	border: 0;
+    opacity: 0;
+    -moz-opacity: 0;
+    filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+}
+
+.file {
+	font-size: 200px;
+    position: absolute;
+    top: 0;
+	right: 0;
+    opacity: 0;
+    -moz-opacity: 0;
+    filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+	 cursor: pointer;
+}
