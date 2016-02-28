@@ -1075,6 +1075,63 @@ img.how-we-teach-image {
 }
 
 /*---------------------------------------
+   MANY THINGS TO DO
+-----------------------------------------*/
+
+section#many-things {
+	padding-bottom: 30px;
+}
+
+div#many-things-wrap {
+	padding: 40px 2% 30px 2%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+div.many-things-box {
+	text-align: center;
+	padding: 0 30px;
+}
+
+img.many-things-img {
+	position: relative;
+	max-height: 160px;
+}
+
+div.many-things-box h3 {
+	left: 0;
+	position:absolute;
+	text-align:center;
+	top: 55px;
+	width: 100%;
+	font-size: 19px;
+	font-weight: bold;
+	color: white;
+}
+
+div.many-things-box p {
+	padding-top: 10px;
+	text-align: justify;
+	font-size: 14px;
+	line-height: 19px;
+	padding-bottom: 15px;
+}
+
+/* when many-things boxes are next to each other in wider viewport */
+
+@media (min-width: 992px) {
+	div.many-things-row {
+		width: 100%;
+	}
+
+	div.many-things-box {
+		margin-bottom: 0px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+}
+
+/*---------------------------------------
    PRICES
 -----------------------------------------*/
 

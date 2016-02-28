@@ -56,8 +56,8 @@ DefWhichStyle::$content = json_encode(
       'desc' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ...','parallax-one'),
     ),
     array(
-      'image_url' => parallax_get_file('/images/why-us-clock.png'),
-      'title' => esc_html__('JOIN US ANYTIME','parallax-one'),
+      'image' => parallax_get_file('/images/why-us-clock.png'),
+      'reason' => esc_html__('JOIN US ANYTIME','parallax-one'),
       'desc' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ...','parallax-one'),
     ),
     array(
@@ -79,6 +79,34 @@ class DefHowTeach {
   public static $img2 = '/images/rueda.png';
   public static $text = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ...';
 };
+
+/********************************************************/
+/****************** MANY THINGS TO DO ******************************/
+/********************************************************/
+
+class DefManyThings {
+  public static $title = 'MANY THINGS TO DO';
+  public static $content;  //need to initialize later
+};
+DefManyThings::$content = json_encode(
+  array(
+    array(
+      'image' => parallax_get_file('/images/regular_classes.png'),
+      'title' => esc_html__('REGULAR CLASSES', 'parallax-one'),
+      'desc' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ...','parallax-one'),
+    ),
+    array(
+      'image' => parallax_get_file('/images/events.png'),
+      'title' => esc_html__('EVENTS','parallax-one'),
+      'desc' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ...','parallax-one'),
+    ),
+    array(
+      'image' => parallax_get_file('/images/night_out.png'),
+      'title' => esc_html__('NIGHT OUT','parallax-one'),
+      'desc' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ...','parallax-one'),
+    )
+  )
+);
 
 /********************************************************/
 /****************** PRICES ******************************/

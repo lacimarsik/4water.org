@@ -511,7 +511,55 @@ function parallax_one_customize_register( $wp_customize ) {
     'active_callback' => 'parallax_one_show_on_front',
     'priority'    => 2
   ));
-  
+
+  /********************************************************/
+  /****************** MANY THINGS OPTIONS **********************/
+  /********************************************************/
+
+  $wp_customize->add_section('many_things_section', array(
+    'title'       => esc_html__('Many things section', 'parallax-one'),
+    'priority'    => 32,
+  ));
+
+  /* Many things title */
+  $wp_customize->add_setting('many_things_title', array(
+    'default' => esc_html__(DefManyThings::$title,'parallax-one'),
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control('many_things_title', array(
+    'label'    => esc_html__('Section title', 'parallax-one'),
+    'section'  => 'many_things_section',
+    'active_callback' => 'parallax_one_show_on_front',
+    'priority'    => 1
+  ));
+
+  /* Many things content */
+  $wp_customize->add_setting(
+    'many_things_content',
+    array(
+      'sanitize_callback' => 'parallax_one_sanitize_text',
+      'default' => DefManyThings::$content
+    )
+  );
+  $wp_customize->add_control(
+    new Parallax_One_General_Repeater(
+      $wp_customize,
+      'many_things_content',
+      array(
+        'label' => esc_html__('Add new "thing to do"','parallax-one'),
+        'section' => 'many_things_section',
+        'active_callback' => 'parallax_one_show_on_front',
+        'priority' => 3,
+        'fields' => array(
+          'image' => array('type' => 'image', 'label' => 'Image'),
+          'title' => array('type' => 'text', 'label' => 'Title', 'placeholder' => 'CLASSES'),
+          'desc' => array('type' => 'textarea', 'label' => 'Description', 'placeholder' => 'We teach regular classes every monday ...'),
+        )
+      )
+    )
+  );
+
   /********************************************************/
   /******************* PRICES OPTIONS *********************/
   /********************************************************/
