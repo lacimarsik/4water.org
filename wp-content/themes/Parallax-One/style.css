@@ -1109,11 +1109,19 @@ div.many-things-box h3 {
 	color: white;
 }
 
-div.many-things-box p {
+p.many-things-desc {
 	padding-top: 10px;
 	text-align: justify;
 	font-size: 14px;
 	line-height: 19px;
+	padding-bottom: 0px;
+}
+
+a.many-things-link {
+	display: block;
+	padding-top: 5px;
+	text-align: center;
+	font-size: 14px;
 	padding-bottom: 15px;
 }
 

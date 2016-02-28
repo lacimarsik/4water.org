@@ -555,6 +555,8 @@ function parallax_one_customize_register( $wp_customize ) {
           'image' => array('type' => 'image', 'label' => 'Image'),
           'title' => array('type' => 'text', 'label' => 'Title', 'placeholder' => 'CLASSES'),
           'desc' => array('type' => 'textarea', 'label' => 'Description', 'placeholder' => 'We teach regular classes every monday ...'),
+          'link_text' => array('type' => 'text', 'label' => 'Link Text', 'placeholder' => 'more >'),
+          'link' => array('type' => 'text', 'label' => 'Link', 'placeholder' => '#section-to-get-more-info')
         )
       )
     )

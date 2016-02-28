@@ -94,16 +94,22 @@ DefManyThings::$content = json_encode(
       'image' => parallax_get_file('/images/regular_classes.png'),
       'title' => esc_html__('REGULAR CLASSES', 'parallax-one'),
       'desc' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ...','parallax-one'),
+      'link_text' => esc_html__('more >','parallax-one'),
+      'link' => esc_html__('','parallax-one')
     ),
     array(
       'image' => parallax_get_file('/images/events.png'),
       'title' => esc_html__('EVENTS','parallax-one'),
       'desc' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ...','parallax-one'),
+      'link_text' => esc_html__('more >','parallax-one'),
+      'link' => esc_html__('','parallax-one')
     ),
     array(
       'image' => parallax_get_file('/images/night_out.png'),
       'title' => esc_html__('NIGHT OUT','parallax-one'),
       'desc' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ...','parallax-one'),
+      'link_text' => esc_html__('more >','parallax-one'),
+      'link' => esc_html__('','parallax-one')
     )
   )
 );
