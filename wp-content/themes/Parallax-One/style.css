@@ -6056,6 +6056,11 @@ h2.screen-reader-text {
 		padding: 10px 18px;
 	}
 
+	.footer {
+		background: none;
+		background-color: #e8e8e8;
+	}
+
 	footer.footer .footer-left-2 {
 		text-align: center;
 	}
@@ -6374,6 +6379,11 @@ h2.screen-reader-text {
 		clear: left;
 		margin-right: 0;
 		clear: right;
+	}
+
+	.footer {
+		background: none;
+		background-color: #e8e8e8;
 	}
 
 	footer.footer .footer-left-2 {
