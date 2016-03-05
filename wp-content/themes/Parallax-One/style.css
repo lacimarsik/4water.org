@@ -6375,6 +6375,10 @@ h2.screen-reader-text {
 		margin-right: 0;
 		clear: right;
 	}
+
+	footer.footer .footer-left-2 {
+		text-align: center;
+	}
 }
 
 @media (max-width: 680px) {
@@ -6655,7 +6659,6 @@ h2.screen-reader-text {
 	.comment-form input {
 		width: 100%;
 	}
-
 }
  
 
