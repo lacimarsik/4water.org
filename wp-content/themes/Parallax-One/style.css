@@ -4448,8 +4448,10 @@ div.bbp-forum-header, div.bbp-topic-header, div.bbp-reply-header, li.bbp-body di
    3.17 SECTION: FOOTER
 -----------------------------------------*/
 .footer {
-	padding-top: 40px;
+	padding-top: 25px;
 	padding-bottom: 40px;
+	background: url(images/footer_background.jpg) no-repeat center bottom fixed;
+	background-color: #e8e8e8;
 }
 
 .footer-links li {
@@ -4534,6 +4536,48 @@ footer.footer .colored-line-left {
 
 footer.footer .social-icons li a {
 	padding: 0 5px;
+	font-size: 20px;
+}
+
+footer.footer .footer-left-1, footer.footer .footer-left-2, footer.footer .footer-right {
+	padding-top: 15px;
+}
+
+footer.footer .footer-left-2 {
+	text-align: left;
+}
+
+footer.footer .footer-heading {
+	font-family: 'Cabin', Helvetica Neue, Sans-serif;
+	font-weight: bold;
+	text-align: left;
+	color: #888;
+	font-size: 18px;
+	margin-top: 0px;
+}
+
+footer.footer .footer-text {
+	text-align: left;
+	color: #888;
+}
+
+footer.footer .social-icons-text {
+	color: #888;
+}
+
+footer.footer .footer-image {
+	margin-top: 10px;
+	width: 120px;
+	opacity: 0.8;
+	filter: alpha(opacity=80);
+}
+
+footer.footer .footer-copyright {
+	text-align: center;
+	font-size: 14px;
+	color: #aaa;
+	clear: both;
+	padding-top: 10px;
 }
 
 /* foooter widget */
@@ -6011,6 +6055,10 @@ h2.screen-reader-text {
 		float: right;
 		padding: 10px 18px;
 	}
+
+	footer.footer .footer-left-2 {
+		text-align: center;
+	}
 }
 
 /*---------------------------------------
@@ -6327,7 +6375,6 @@ h2.screen-reader-text {
 		margin-right: 0;
 		clear: right;
 	}
-
 }
 
 @media (max-width: 680px) {

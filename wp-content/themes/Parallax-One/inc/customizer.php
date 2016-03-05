@@ -684,6 +684,132 @@ function parallax_one_customize_register( $wp_customize ) {
   ));
 
   /********************************************************/
+  /****************** FOOTER OPTIONS  *********************/
+  /********************************************************/
+
+  $wp_customize->add_section( 'parallax_one_footer_section' , array(
+    'title'       => esc_html__( 'Footer options', 'parallax-one' ),
+    'priority'    => 39,
+    'description' => esc_html__('Custom widgets can be added to the footer in: Customize -> Widgets -> Footer area. ','parallax-one'),
+  ));
+
+  /* Footer Menu */
+  $nav_menu_locations_footer = $wp_customize->get_control('nav_menu_locations[parallax_footer_menu]');
+  if(!empty($nav_menu_locations_footer)){
+    $nav_menu_locations_footer->section = 'parallax_one_footer_section';
+    $nav_menu_locations_footer->priority = 1;
+  }
+
+  /* Footer heading */
+  $wp_customize->add_setting( 'parallax_one_footer_heading', array(
+    'default' => DefFooter::$heading,
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control( 'parallax_one_footer_heading', array(
+    'label'    => esc_html__( 'Footer heading', 'parallax-one' ),
+    'section'  => 'parallax_one_footer_section',
+    'priority'    => 2
+  ));
+
+  /* Footer text */
+  $wp_customize->add_setting( 'parallax_one_footer_text', array(
+    'default' => DefFooter::$text,
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control( 'parallax_one_footer_text', array(
+    'label'    => esc_html__( 'Footer text', 'parallax-one' ),
+    'section'  => 'parallax_one_footer_section',
+    'priority'    => 2
+  ));
+
+  /* Footer image caption */
+  $wp_customize->add_setting('parallax_one_footer_image_caption', array(
+    'default' => esc_html__(DefFooter::$image_caption,'parallax-one'),
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control('parallax_one_footer_image_caption', array(
+    'label'    => esc_html__('Footer image caption', 'parallax-one'),
+    'section'  => 'parallax_one_footer_section',
+    'active_callback' => 'parallax_one_show_on_front',
+    'priority'    => 1
+  ));
+
+  /* Footer image link */
+  $wp_customize->add_setting('parallax_one_footer_image_link', array(
+    'default' => esc_html__(DefFooter::$image_link,'parallax-one'),
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control('parallax_one_footer_image_link', array(
+    'label'    => esc_html__('Footer image link', 'parallax-one'),
+    'section'  => 'parallax_one_footer_section',
+    'active_callback' => 'parallax_one_show_on_front',
+    'priority'    => 1
+  ));
+
+  /* Footer image */
+  $wp_customize->add_setting('parallax_one_footer_image', array(
+    'default' => parallax_get_file(DefFooter::$image),
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'parallax_one_footer_image', array(
+    'label'    => esc_html__('Footer image', 'parallax-one'),
+    'section'  => 'parallax_one_footer_section',
+    'active_callback' => 'parallax_one_show_on_front',
+    'priority'    => 1
+  )));
+
+  /* Copyright */
+  $wp_customize->add_setting( 'parallax_one_copyright', array(
+    'default' => DefFooter::$copyright,
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control( 'parallax_one_copyright', array(
+    'label'    => esc_html__( 'Copyright', 'parallax-one' ),
+    'section'  => 'parallax_one_footer_section',
+    'priority'    => 2
+  ));
+
+  /* Socials icons text */
+  $wp_customize->add_setting( 'parallax_one_social_icons_text', array(
+    'default' => DefSocial::$text,
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control( 'parallax_one_social_icons_text', array(
+    'label'    => esc_html__( 'Social icons text', 'parallax-one' ),
+    'section'  => 'parallax_one_footer_section',
+    'priority'    => 2
+  ));
+
+  /* Socials icons */
+  $wp_customize->add_setting( 'parallax_one_social_icons', array(
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'default' => DefSocial::$content
+
+  ));
+  $wp_customize->add_control(
+    new Parallax_One_General_Repeater(
+      $wp_customize,
+      'parallax_one_social_icons',
+      array(
+        'label' => esc_html__('Add new social icon','parallax-one'),
+        'section' => 'parallax_one_footer_section',
+        'priority' => 3,
+        'fields' => array(
+          'link' => array('type' => 'text', 'label' => 'Link', 'placeholder' => '#'),
+          'icon_value' => array('type' => 'icon', 'label' => 'Icon', 'placeholder' => 'Select icon')
+        )
+      )
+    )
+  );
+
+  /********************************************************/
   /************** ADVANCED OPTIONS  ***********************/
   /********************************************************/
 
