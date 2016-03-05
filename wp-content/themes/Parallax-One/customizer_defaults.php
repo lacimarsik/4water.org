@@ -183,8 +183,8 @@ DefContact::$content = json_encode(
 class DefFooter {
   public static $heading = 'ABOUT OUR ORGANIZATION';
   public static $text = '4WATER is a student-led project exchanging a range of skills such as dance, art and languages
-  for charitable donations, which are given to WaterAid';
-  public static $copyright = 'Dance4Water Prague';
+  for charitable donations, which are given to WaterAid.';
+  public static $copyright = 'Copyright 2016. Dance4Water Prague';
   public static $image_caption = 'WaterAid';
   public static $image_link = 'http://www.wateraid.org/';
   public static $image = '/images/wateraid.png';
