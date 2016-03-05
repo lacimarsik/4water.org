@@ -148,6 +148,7 @@ DefPrices::$content = json_encode(
     )
   )
 );
+
 /********************************************************/
 /****************** CONTACT ******************************/
 /********************************************************/
@@ -172,5 +173,41 @@ DefContact::$content = json_encode(
       'link' => esc_html__('https://www.facebook.com/dance4water.prague', 'parallax-one'),
       'icon_value' => esc_html__('icon-social-facebook-square','parallax-one')
     )
+  )
+);
+
+/********************************************************/
+/****************** FOOTER ******************************/
+/********************************************************/
+
+class DefFooter {
+  public static $heading = 'ABOUT OUR ORGANIZATION';
+  public static $text = '4WATER is a student-led project exchanging a range of skills such as dance, art and languages
+  for charitable donations, which are given to WaterAid';
+  public static $copyright = 'Dance4Water Prague';
+  public static $image_caption = 'WaterAid';
+  public static $image_link = 'http://www.wateraid.org/';
+  public static $image = '/images/wateraid.png';
+
+}
+
+class DefSocial {
+  public static $text = 'Find us on';
+  public static $content;  //need to initialize later
+};
+
+DefSocial::$content = json_encode(
+  array(
+    array(
+      'icon_value' =>'icon-social-facebook',
+      'link' => '#'
+    ),
+    array(
+      'icon_value' =>'icon-social-twitter',
+      'link' => '#'
+    ),
+    array(
+      'icon_value' =>'icon-social-googleplus',
+      'link' => '#')
   )
 );
