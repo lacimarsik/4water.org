@@ -72,6 +72,12 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 
 -----------------------------------------*/
 
+/*---------------------------------------
+   Calendar
+-----------------------------------------*/
+
+@import url("inc/calendar/calendar.css");
+
 /* --------------------------------------
 =========================================
    1. GLOBAL STYLES
@@ -83,7 +89,6 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 -----------------------------------------*/
 
 @import url(//fonts.googleapis.com/css?family=Cabin:400,600|Open+Sans:400,300,600);
-
 
 /*---------------------------------------
    1.1 GENERAL STYLES                
@@ -1185,6 +1190,12 @@ div#prices-note {
     font-size: 0.8em;
     margin-top: 20px;
 }
+
+/*---------------------------------------
+   CALENDAR
+-----------------------------------------*/
+
+//import at the top
 
 /*---------------------------------------
    3.1 SECTION: HOME / HEADER         

@@ -42,9 +42,9 @@ $authUrl = $client->createAuthUrl();
 
 `open '$authUrl'`;
 echo "\nPlease enter the auth code:\n";
-$authCode = trim(fgets(STDIN));
+$verifCode = trim(fgets(STDIN));
 
-$accessToken = $client->authenticate($authCode);
+$accessToken = $client->authenticate($verifCode);
 $file = dirname(__FILE__) . DIRECTORY_SEPARATOR . '.accessToken';
 file_put_contents($file, $accessToken);
 

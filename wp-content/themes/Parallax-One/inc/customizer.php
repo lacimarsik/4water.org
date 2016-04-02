@@ -576,7 +576,7 @@ function parallax_one_customize_register( $wp_customize ) {
   );
   
   /********************************************************/
-	/******************* CALENDAR OPTIONS *********************/
+	/******************* CALENDAR OPTIONS *******************/
 	/********************************************************/
 	
 	$wp_customize->add_section('calendar_section', array(

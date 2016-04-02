@@ -6,16 +6,29 @@
   define('CLIENT_SECRET_PATH', __DIR__ . '/client_secret.json');
   define('SCOPES', implode(' ', array(Google_Service_Calendar::CALENDAR_READONLY)));
   
-  $c = new CalendarApi();
-  $c->getThisWeekEvents();
-  exit;
-  
   class CalendarApi {
+    //----------------------------------------------
+    // Constants
+    //---------------------------------------------
+    
+    private $DAY_NAMES = [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday"
+    ];
+    
+    private $YMD_FORMAT = 'Y-m-d H:i:s';
+    
     //----------------------------------------------
     // Data
     //---------------------------------------------
     
     private $service;
+    private $colors;
     private $client;
     
     //----------------------------------------------
@@ -24,7 +37,7 @@
     
     public function __construct() {
       $this->client = $this->getClient();
-      $this->service = $this->getCalendarService();
+      $this->makeCalendarService();
     }
     
     //----------------------------------------------
@@ -56,17 +69,36 @@
       file_put_contents(CREDENTIALS_PATH, $accessToken);
       
       //try to make the service now
-      $this->service = $this->getCalendarService();
+      $this->makeCalendarService();
+    }
+    
+    public function getEventsForWeek($weeksFromNow) {
+      $now = $this->getNow();
+      
+      $weekFromNowString = date('Y-m-d 00:00:00', strtotime($now->format('Y-m-d').'+' + 7*$weeksFromNow + ' days'));
+      $weekFromNow = DateTime::createFromFormat('Y-m-d H:i:s', $weekFromNowString);
+      return $this->getWeekEvents($weekFromNow);
     }
     
     public function getThisWeekEvents() {
+      return $this->getEventsForWeek(0);
+    }
+
+    public function getNextWeekEvents() {
+      return $this->getEventsForWeek(1);
+    }
+    
+    //----------------------------------------------
+    // Implementation
+    //---------------------------------------------
+
+    private function getWeekEvents($timeInWeek) {
       if (!$this->serviceReady()) {
         return null;
       }
-
-      $now = $this->getNow();
-      $timeMin = $this->getWeekStart($now);
-      $timeMax = $this->getWeekEnd($now);
+      
+      $timeMin = $this->getWeekStart($timeInWeek);
+      $timeMax = $this->getWeekEnd($timeInWeek);
       
       $calendarId = 'primary';
       $optParams = array(
@@ -77,31 +109,135 @@
         'timeMax' => $timeMax->format(DateTime::ISO8601),
       );
       $results = $this->service->events->listEvents($calendarId, $optParams);
-      
-      foreach ($results->getItems() as $event) {
-        $start = $event->start->dateTime;
-        if (empty($start)) {
-          $start = $event->start->date;
-        }
-        printf("What: (%s)\n", $event->getSummary());
-        printf("Description: (%s)\n", $event->description);
-        printf("When: (%s)\n", $event->start->dateTime);
-        printf("Color: (%s)\n", $event->colorId);
-      }
-      
-      return $results;
+            
+      return $this->toOurCalendarFormat($results->getItems());
     }
-
-    public function getNextWeekEvents() {
-      if (!$this->serviceReady()) {
-        return null;
+    
+    /*
+     * Get hex code for given color ID from the event
+     */
+    private function colorId2HexCode($colorId) {
+      if (empty($colorId)) {
+        return '';
+      }
+      return $this->colors[$colorId]->getBackground();
+    }
+    
+    /*
+     * Makes a datetime from the retrieved calendar event start or end
+     */
+    private function getDateTimeFromBoundary($boundary) {
+      if (empty($boundary->dateTime)) {
+        $res = DateTime::createFromFormat('Y-m-d H:i:s', $boundary->date . ' 00:00:00');
+        return $res;
+      }
+      else {
+        $res = DateTime::createFromFormat('Y-m-d\TH:i:sT', $boundary->dateTime);
+        return $res;
       }
     }
     
-    //----------------------------------------------
-    // Implementation
-    //---------------------------------------------
+    private static function sortCmpTime($a, $b) {
+      if ($a['start-hour-frac'] == $b['start-hour-frac']) {
+        if ($a['end-hour-frac'] == $b['end-hour-frac']) {
+          return 0;
+        }
 
+        return ($a['end-hour-frac'] < $b['end-hour-frac']) ? -1 : 1;
+      }
+
+      return ($a['start-hour-frac'] < $b['start-hour-frac']) ? -1 : 1;
+    }
+    
+    private static function sortCmpDateTime($a, $b) {
+      if ($a['start'] == $b['start']) {
+        if ($a['end'] == $b['end']) {
+          return 0;
+        }
+
+        return ($a['end'] < $b['end']) ? -1 : 1;
+      }
+
+      return ($a['start'] < $b['start']) ? -1 : 1;
+    }
+    
+    /*
+     * 
+     */
+    private function toOurCalendarFormat($eventsIn) {
+      $dayEvents = array();
+      $all = array();
+      
+      for ($i = 0; $i < 7; $i++) {
+        $dayEvents[] = array();
+      }
+      
+      //construct events
+      foreach ($eventsIn as $eventIn) {
+        $event = array();
+        
+        $event['title'] = $eventIn->getSummary();
+        $event['desc'] = $eventIn->description;
+        $event['start'] = $this->getDateTimeFromBoundary($eventIn->start);
+        $event['end'] = $this->getDateTimeFromBoundary($eventIn->end);
+        $event['color'] = $this->colorId2HexCode($eventIn->colorId);
+        $event['location'] = $eventIn->location;
+        
+        //additional stuff for easier manipulation
+        $dayNumber = $this->getDayNumber($event['start']);
+        $endDayOffset = $this->getDayDiff($event['end'], $event['start']);
+        $startHourFrac = $this->dayTime2Sec($event['start'])/3600;
+        $endHourFrac = $this->dayTime2Sec($event['end'])/3600;
+        $startDayFrac = $dayNumber + $startHourFrac/24;
+        $endDayFrac = $dayNumber + $endDayOffset + $endHourFrac/24;
+        
+        $event['start-day'] = $dayNumber;
+        $event['end-day-offset'] = $endDayOffset;
+        $event['start-hour-frac'] = $startHourFrac;
+        $event['end-hour-frac'] = $endHourFrac;
+        $event['start-day-frac'] = $startDayFrac;
+        $event['end-day-frac'] = $endDayFrac;
+        $event['duration-hours'] = 24*($endDayFrac - $startDayFrac);
+        
+        array_push($dayEvents[$dayNumber], $event);
+        array_push($all, $event);
+      }
+      
+      //sort in each day
+      for ($i = 0; $i < 7; $i++) {
+        usort($dayEvents[$i], array('CalendarApi', 'sortCmpTime'));
+      }
+      usort($all, array('CalendarApi', 'sortCmpDateTime'));
+      
+      $result = array();
+      $result['days'] = $dayEvents;
+      $result['all'] = $all;
+      
+      return $result['all'];
+    }
+    
+    /*
+     * Returns the number of seconds since the start of the day
+     */
+    private function dayTime2Sec($dateTime) {
+      $time = $dateTime->format('H:i:s');
+      $dt = new DateTime("1970-01-01 $time", new DateTimeZone('UTC'));
+      return (int)$dt->getTimestamp();
+    }
+    
+    /*
+     * Returns the day difference between two dates. Essentially, how many times
+     * clock strike midnight between the two moments. 
+     */
+    private function getDayDiff($dateTimeA, $dateTimeB) {
+      $dateA = DateTime::createFromFormat('Y-m-d', $dateTimeA->format('Y-m-d'));
+      $dateB = DateTime::createFromFormat('Y-m-d', $dateTimeB->format('Y-m-d'));
+      return intval($dateB->diff($dateA)->format('%a'));
+    }
+    
+    /*
+     * Get current date/time for Prague
+     */
     private function getNow() {
       return new DateTime("now", new DateTimeZone('Europe/Prague'));
     }
@@ -144,7 +280,7 @@
 
       return $client;
     }
-
+    
     private function authorizeClient() {
       //load previously authorized credentials from a file.
       if (file_exists(CREDENTIALS_PATH)) {
@@ -162,7 +298,7 @@
       }
     }
 
-    private function getCalendarService() {      
+    private function makeCalendarService() {      
       try {
         $this->authorizeClient();    
       }
@@ -170,8 +306,8 @@
         return null;
       }
       
-      $service = new Google_Service_Calendar($this->client);
-      return $service;
+      $this->service = new Google_Service_Calendar($this->client);
+      $this->colors = $this->service->colors->get()->getEvent();
     }
   }
   
