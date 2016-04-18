@@ -62,7 +62,7 @@ function tagConcurrentEvents(&$events) {
     }
 
     $events[$key]['concurrent-order'] = $endFracs->count();
-    $events[$key]['concurrent-out-of'] = $endFracs->count();
+    $events[$key]['concurrent-out-of'] = $endFracs->count() + 1;
 
     foreach (clone $endFracs as $overlappingKey) {
       $events[$overlappingKey]['concurrent-out-of']++;
@@ -76,26 +76,127 @@ function constructCalendarHere($weeksFromNow) {
   $calendarApi = new CalendarApi();
 
   $events = $calendarApi->getEventsForWeek($weeksFromNow);
+//  echo '<pre>'; print_r($events); echo '</pre>';
   $procEvents = processEvents($events);
   $timePoints = getTimePoints($procEvents);
 
+//  echo '<pre>';
+//  print_r($procEvents);
+//  print_r($timePoints);
+//  echo '</pre>';
+  
   $id = 'for-water-calendar-'.$weeksFromNow;?>
 
   <div class="for-water-calendar" id="<?=$id?>"></div>
 
   <script src="<?= get_bloginfo("template_url"); ?>/inc/calendar/calendar.js"></script>
-  <script>          
-    var procEvents = <?php echo json_encode($procEvents); ?>;
-    var timePoints = <?php echo json_encode($timePoints); ?>;
+  <script>              
+    $(document).ready(function() {       
+        var procEvents = <?php echo json_encode($procEvents); ?>;
+        var timePoints = <?php echo json_encode($timePoints); ?>;
+        
+        $('#<?=$id?>').hide();
+        var calendarDiv = new CalendarDiv('#<?=$id?>', procEvents, timePoints);
+        calendarDiv.populate(true);
+        
+        var $condensedOptions = $('.condensed-switch-option');
+        $('.condensed-switch-option').on('click', function() {
+          if ($(this).hasClass('switch-selected')) {
+            return;
+          }
+          $condensedOptions.toggleClass('switch-selected');
+          calendarDiv.populate($(this).data('condensed'));
+        });
+    });
     
-    populateCalendar(<?=$id?>, procEvents, timePoints);
   </script> <?php
+} 
+
+function constructCalendars($startWeek) {
+  $weeks = [$startWeek, $startWeek + 1];
+  $id = 'for-water-calendar-'.$weeksFromNow;
+  
+  constructCalendarHere($weeks[0]);
+  constructCalendarHere($weeks[1]); ?>
+  
+  <script>              
+    $(document).ready(function() {               
+        var $weekOptions = $('.week-switch-option');
+        $('.week-switch-option').on('click', function() {
+          if ($(this).hasClass('switch-selected')) {
+            return;
+          }
+          $weekOptions.toggleClass('switch-selected');
+          
+        });
+    });
+    
+  </script>
+  
+  <?php
+}
+
+
+
+
+
+
+
+
+
+
+
+function getCalendarInfoJson($calendarApi, $weeksFromNow) {
+  $events = $calendarApi->getEventsForWeek($weeksFromNow);
+
+//  echo '<pre>'; print_r($events); echo '</pre>';
+  $procEvents = processEvents($events);
+  $timePoints = getTimePoints($procEvents);
+
+//  echo '<pre>';
+//  print_r($procEvents);
+//  print_r($timePoints);
+//  echo '</pre>';
+  
+  return json_encode(
+    array(
+      "procEvents" => json_encode($procEvents),
+      "timePoints" => json_encode($timePoints)
+    )
+  );
+}
+
+function getCalendarInfoJsons($startWeek) {
+  $calendarApi = new CalendarApi();
+  
+  $weeks = [$startWeek, $startWeek + 1];
+  
+  $result = array();
+  foreach ($weeks as $week) {
+    $calInfoJson = getCalendarInfoJson($calendarApi, $week);
+    array_push($result, $calInfoJson);
+  }
+   
+  return json_encode($result);
 } ?>
   
+
+<script src="<?= get_bloginfo("template_url"); ?>/inc/calendar/frontend/controllers/calendarController.js"></script>
+
+<script src="<?= get_bloginfo("template_url"); ?>/inc/calendar/frontend/directives/calendarDirective.js"></script>
+<script src="<?= get_bloginfo("template_url"); ?>/inc/calendar/frontend/directives/calendarModeSwitchDirective.js"></script>
+<script src="<?= get_bloginfo("template_url"); ?>/inc/calendar/frontend/directives/calendarWeekSwitchDirective.js"></script>
+
+<script src="<?= get_bloginfo("template_url"); ?>/inc/calendar/frontend/services/calendarModel.js"></script>
+
 <section id="calendar">
   <div class="section-overlay-layer">
-    <div class="container">
-      <?php constructCalendarHere($thisWeekEvents); ?>
+    <div class="container" ng-controller="calendarController as calCtrl" ng-init="init(<?= getCalendarInfoJsons(-3) ?>)">
+      <calendar-mode-switch></calendar-mode-switch>
+      <calendar-week-switch></calendar-week-switch>
+      <for-water-calendar 
+          ng-repeat="calendar in calendars" 
+          ng-show="calendar.weekIndex === $scope.weekIndex && calendar.condensed === $scope.condensed"></for-water-calendar>
     </div>
   </div>
 </section>

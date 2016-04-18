@@ -78,6 +78,12 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 
 @import url("inc/calendar/calendar.css");
 
+/*---------------------------------------
+   Options switch
+-----------------------------------------*/
+
+@import url("css/option-switch.css");
+
 /* --------------------------------------
 =========================================
    1. GLOBAL STYLES
@@ -1195,7 +1201,11 @@ div#prices-note {
    CALENDAR
 -----------------------------------------*/
 
-//import at the top
+/*import of actual calendar's CSS at the top*/
+
+section#calendar {
+    background-color: #F7F8FA;
+}
 
 /*---------------------------------------
    3.1 SECTION: HOME / HEADER         

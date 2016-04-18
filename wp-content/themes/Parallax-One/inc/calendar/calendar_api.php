@@ -75,7 +75,7 @@
     public function getEventsForWeek($weeksFromNow) {
       $now = $this->getNow();
       
-      $weekFromNowString = date('Y-m-d 00:00:00', strtotime($now->format('Y-m-d').'+' + 7*$weeksFromNow + ' days'));
+      $weekFromNowString = date('Y-m-d 00:00:00', strtotime($now->format('Y-m-d').'+'.strval(7*$weeksFromNow).' days'));
       $weekFromNow = DateTime::createFromFormat('Y-m-d H:i:s', $weekFromNowString);
       return $this->getWeekEvents($weekFromNow);
     }

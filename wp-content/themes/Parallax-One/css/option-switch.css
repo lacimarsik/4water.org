@@ -1,0 +1,45 @@
+div.options-switch {
+    margin: auto;
+    width: 40%;
+}
+
+div.switch-option {
+    width: 49%;
+    display: inline-block;
+    border: 1px #3a98cb solid;
+    border-radius: 5px;
+    color: #3a98cb;
+    margin: -1px;
+    text-align: center;
+    cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 15px;
+}
+
+div.switch-option:hover {
+    background-color: #1a78ab;
+    border: 1px #1a78ab solid;
+    color: white;
+}
+
+div.switch-selected {
+    color: white;
+    background-color: #3a98cb;
+}
+
+@media (max-width: 650px) {
+    div.switch-option {
+        width: 100%;
+        padding: 1vw;
+        font-size: 2.5vw;
+    }
+}
+
+@media (max-width: 400px) {
+    div.switch-option {
+        width: 100%;
+        padding: 1vw;
+        font-size: 4vw;
+    }
+}

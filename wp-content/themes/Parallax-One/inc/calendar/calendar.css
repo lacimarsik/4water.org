@@ -1,5 +1,44 @@
 div.for-water-calendar {
-    width: 20px;
-    height: 20px;
-    border: 1px solid black;
+    margin: auto;
+    width: 80%;
+    height: 0px;
+    /*border: 1px solid black;*/
+    position: relative;
+    display: none;
+    padding: 0px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+hr.calendar-sep {
+    position: absolute;
+    background-color: #E5E5E5;
+    height: 2px;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+div.time-legend {
+    position: absolute;
+    font-size: 20px;
+    margin-top: -12px;
+    color: #A3A3A3;
+    margin-left: 5px;
+}
+
+div.day-legend {
+    position: absolute;
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: -12px;
+    color: #A3A3A3;
+}
+
+div.calendar-event {
+    position: absolute;
+    font-size: 16px;
+    font-weight: 700;
+    background-color: white;
+    border: black solid 1px;
 }
