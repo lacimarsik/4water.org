@@ -179,8 +179,9 @@ function getCalendarInfoJsons($startWeek) {
    
   return json_encode($result);
 } ?>
+    
+<script src="<?= get_bloginfo("template_url"); ?>/inc/calendar/frontend/app.js"></script>
   
-
 <script src="<?= get_bloginfo("template_url"); ?>/inc/calendar/frontend/controllers/calendarController.js"></script>
 
 <script src="<?= get_bloginfo("template_url"); ?>/inc/calendar/frontend/directives/calendarDirective.js"></script>
@@ -191,12 +192,13 @@ function getCalendarInfoJsons($startWeek) {
 
 <section id="calendar">
   <div class="section-overlay-layer">
-    <div class="container" ng-controller="calendarController as calCtrl" ng-init="init(<?= getCalendarInfoJsons(-3) ?>)">
+    <div class="container" ng-controller="calendarController as calCtrl" ng-init='calCtrl.init(<?= getCalendarInfoJsons(-3) ?>)'>
       <calendar-mode-switch></calendar-mode-switch>
       <calendar-week-switch></calendar-week-switch>
       <for-water-calendar 
           ng-repeat="calendar in calendars" 
-          ng-show="calendar.weekIndex === $scope.weekIndex && calendar.condensed === $scope.condensed"></for-water-calendar>
+          ng-show="calendar.weekIndex === $scope.weekIndex && calendar.condensed === $scope.condensed">
+      </for-water-calendar>
     </div>
   </div>
 </section>

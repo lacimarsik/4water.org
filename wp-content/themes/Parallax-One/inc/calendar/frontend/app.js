@@ -1,4 +1,4 @@
-angular.module('4water', ['ngAnimate', '4water.controllers', 'portal.services', '4water.directives']);
-angular.module('portal.controllers', []);
-angular.module('portal.services', []);
-angular.module('portal.directives', []);
+angular.module('4water.services', []);
+angular.module('4water.controllers', []);
+angular.module('4water.directives', ['4water.services']);
+angular.module('4water', ['4water.controllers', '4water.services', '4water.directives']);

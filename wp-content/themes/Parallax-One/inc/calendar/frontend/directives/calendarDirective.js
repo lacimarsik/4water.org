@@ -4,7 +4,8 @@
     app.directive('forWaterCalendar', function () {
         return {
             restrict: 'E',
-            templateUrl: '/inc/calendar/frontend/templates/calendarTemplate.html'
+            replace: true,
+            templateUrl: '/4water/wp-content/themes/Parallax-One/inc/calendar/frontend/templates/calendarTemplate.html'
         };
     });
 })();

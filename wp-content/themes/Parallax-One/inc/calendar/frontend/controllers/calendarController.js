@@ -4,11 +4,13 @@
     module.controller('calendarController', ['$scope', 'Calendar4Water', function ($scope, Calendar4Water) {
         var self = this;
         
-        this.init = function(calendarInfos) {            
+        this.init = function(calendarInfos) {
+            console.log(calendarInfos);
             $scope.calendars = [];
             for (var i = 0; i < calendarInfos.length; i++) {
-                var procEvents = calendarInfos[i].procEvents;
-                var timePoints = calendarInfos[i].timePoints;
+                var calInfo = JSON.parse(calendarInfos[i]);
+                var procEvents = calInfo.procEvents;
+                var timePoints = calInfo.timePoints;
                 
                 var calendarNormal = new Calendar4Water(procEvents, timePoints);
                 calendarNormal.build(false);

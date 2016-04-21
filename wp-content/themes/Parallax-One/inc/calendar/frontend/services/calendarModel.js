@@ -20,7 +20,7 @@
             this._timePoints = timePoints;
         }
         
-        Calendar4Water.prototype.build = function(condensed) {    
+        Calendar4Water.prototype.build = function(condensed) {
             this._hasOvernight = this._hasOvernightEvent();
 
             this._minHour = this._timePoints[0];
