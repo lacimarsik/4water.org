@@ -10,13 +10,13 @@
     <div class="content-wrap">
 <?php
       $sections_array = apply_filters("parallax_one_pro_sections_filter", array(
-//        'sections/parallax_one_introduction_section',
-//        'sections/parallax_one_which_style_section',
-//        'sections/parallax_one_why_us_section',
-//        'sections/parallax_one_how_we_teach_section',
-//        'sections/parallax_one_prices_section',
+        'sections/parallax_one_introduction_section',
+        'sections/parallax_one_which_style_section',
+        'sections/parallax_one_why_us_section',
+        'sections/parallax_one_how_we_teach_section',
+        'sections/parallax_one_prices_section',
         'sections/parallax_one_calendar_section',
-//        'sections/parallax_one_map_section'
+        'sections/parallax_one_map_section'
       ));
 
       if(!empty($sections_array)){

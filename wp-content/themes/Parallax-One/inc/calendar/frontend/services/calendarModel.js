@@ -148,11 +148,11 @@
                 var asguText = prepTimeLegendText('ASGU*', this._minHour);
                 makeTimeLegend(asguText, height, -this._edgeUnitHeight);
 
-                var thftText = prepTimeLegendText(this._maxHour, 'THFR*');
-                var thfrTop = this.condensed 
+                var tfhrText = prepTimeLegendText(this._maxHour, 'TFHR*');
+                var tfhrTop = this.condensed 
                     ? (this._timePoints.length - 1)*this._unitHeight 
                     : (this._maxHour - this._minHour)*this._unitHeight;
-                makeTimeLegend(thftText, height, thfrTop);
+                makeTimeLegend(tfhrText, height, tfhrTop);
             }
 
             for (var i = 0; i < this._timePoints.length - 1; i++) {
@@ -276,6 +276,7 @@
                 location: event.location,
                 locationLink: 'https://www.google.co.uk/maps/search/' + $filter('escape')(event.location),
                 url: event.url,
+                outOf: event['concurrent-out-of'],
                 
                 leftPerc: TIME_COL_PERC + left, 
                 topPx: this.topOffset + top + LINE_WIDTH,

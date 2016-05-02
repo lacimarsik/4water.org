@@ -35,5 +35,10 @@
                 $scope.calendars.push(calendarCondensed);
             }
         };
+        
+        $scope.eventHover = function(calendarId, index, hover) {
+            var overflow = hover ? 'visible' : 'hidden';
+            $('#' + calendarId + '-' + index + '-inner').css('overflow', overflow);
+        };
     }]);
 })();
