@@ -4,10 +4,7 @@
     app.directive('calendarWeekSwitch', function () {
         return {
             restrict: 'E',
-            templateUrl: '/4water/wp-content/themes/Parallax-One/inc/calendar/frontend/templates/calendarTemplate.html',
-            link: function($scope) {
-                $scope.weekIndex = 0;
-            }
+            templateUrl: '/4water/wp-content/themes/Parallax-One/inc/calendar/frontend/templates/calendarWeekSwitchTemplate.html'
         };
     });
 })();

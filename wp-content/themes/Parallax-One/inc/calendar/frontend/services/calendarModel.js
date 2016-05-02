@@ -5,7 +5,6 @@
         var NON_CONDENSED_CALENDAR_HEIGHT = 500;
         var MAX_UNIT_HEIGHT = 100;
         var MIN_UNIT_HEIGHT = 30;
-        var EDGE_UNIT_HEIGHT_RATIO = 1;
         var CONDENSED_UNIT_HEIGHT = 80;
         var DAY_LEGEND_HEIGHT = 70;
         var DAY_COL_PERC = 12.1;
@@ -16,8 +15,8 @@
         var START_OF_DAY = -99;
         
         function Calendar4Water(procEvents, timePoints) {
-            this._procEvents = procEvents;
-            this._timePoints = timePoints;
+            this._procEvents = JSON.parse(procEvents);
+            this._timePoints = JSON.parse(timePoints);
         }
         
         Calendar4Water.prototype.build = function(condensed) {
@@ -30,12 +29,14 @@
             this._unitHeight = condensed 
                 ? CONDENSED_UNIT_HEIGHT
                 : this._getNonCondensedUnitHeight();
-            this._edgeUnitHeight = Math.max(this._unitHeight*EDGE_UNIT_HEIGHT_RATIO, MIN_UNIT_HEIGHT);
+            this._edgeUnitHeight = this._unitHeight;
             
+            this.colWidthPerc = DAY_COL_PERC;
             this.calendarHeightPx = this._getCalendarHeight();
             this.timeLines = this._makeTimeLines();
             this.timeLegends = this._makeTimeLegends();
             this.dayLegends = this._makeDayLegends();
+            this.dayLines = this._makeDayLines();
             this.events = this._makeEvents();
         };
 
@@ -85,7 +86,7 @@
 
             var makeTimeLine = function(top) {
                 var timeLine = { 
-                    topPx: top 
+                    topPx: self.topOffset + top 
                 };
                 timeLines.push(timeLine);
             };
@@ -130,7 +131,8 @@
                 var timeLegend = {
                     text: timeLegendText,
                     topPx: self.topOffset + top + height/2,
-                    heightPx: height
+                    heightPx: height,
+                    widthPerc: TIME_COL_PERC
                 };
                 timeLegends.push(timeLegend);
             };
@@ -177,13 +179,31 @@
             for (var i = 0; i < 7; i++) {
                 var dayLegend = {
                     text: weekday[i],
+                    short: weekday[i].slice(0, 3).toUpperCase(),
                     leftPerc: TIME_COL_PERC + i*DAY_COL_PERC,
-                    topPx: DAY_LEGEND_HEIGHT/2
+                    topPx: DAY_LEGEND_HEIGHT/2,
+                    widthPerc: DAY_COL_PERC,
                 };
                 dayLegends.push(dayLegend);
             }
             
             return dayLegends;
+        };
+        
+        Calendar4Water.prototype._makeDayLines = function() {
+            var self = this;
+            var dayLines = [];            
+            
+            for (var i = 0; i < 7; i++) {
+                var dayLine = {
+                    leftPerc: TIME_COL_PERC + i*DAY_COL_PERC,
+                    topPx: 0,
+                    bottomPx: self.calendarHeightPx
+                };
+                dayLines.push(dayLine);
+            }
+            
+            return dayLines;
         };
 
         Calendar4Water.prototype._makeEvent = function(event) {
@@ -206,11 +226,15 @@
                 if (hourFrac === END_OF_DAY) return (self._timePoints.length - 1)*self._unitHeight + self._edgeUnitHeight;
 
                 var tlIndex = getTimePointIndex(hourFrac);
-                var condensedTop = tlIndex*self._unitHeight;
-
-                if (hourFrac - self._timePoints[tlIndex] > 0.084) { //more than 5 minutes
-                    //todo
+                var fraction = hourFrac - self._timePoints[tlIndex];
+                if (tlIndex === 0 || tlIndex === self._timePoints.length - 1) {
+                    fraction /= 2;
                 }
+                else {
+                    var otherTlIndex = fraction < 0 ? tlIndex - 1 : tlIndex + 1;
+                    fraction /= Math.abs(self._timePoints[tlIndex] - self._timePoints[otherTlIndex]);
+                }
+                var condensedTop = (tlIndex + fraction)*self._unitHeight;
 
                 return condensedTop;
             };
@@ -228,12 +252,16 @@
 
             var top = this.condensed ? getCondensedTop(event['start-hour-frac']) : getNormalTop(event['start-hour-frac']);
 
-            var left = (event['start-day'] + event['concurrent-order']/event['concurrent-out-of'])*DAY_COL_PERC;
+            var left = (event['start-day'] + (event['concurrent-order'] - 1)/event['concurrent-out-of'])*DAY_COL_PERC;
 
-            var width = DAY_COL_PERC/event['concurrent-out-of'];
+            var width = event['concurrent-width']*(DAY_COL_PERC/event['concurrent-out-of']);
 
             return {
                 title: event.title,
+                color: event.color,
+                desc: event.desc,
+                location: event.location,
+                
                 leftPerc: TIME_COL_PERC + left, 
                 topPx: this.topOffset + top + LINE_WIDTH,
                 widthPerc: width,

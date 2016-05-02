@@ -4,10 +4,7 @@
     app.directive('calendarModeSwitch', function () {
         return {
             restrict: 'E',
-            templateUrl: '/4water/wp-content/themes/Parallax-One/inc/calendar/frontend/templates/calendarTemplate.html',
-            link: function($scope) {
-                $scope.condensed = true;
-            }
+            templateUrl: '/4water/wp-content/themes/Parallax-One/inc/calendar/frontend/templates/calendarModeSwitchTemplate.html'
         };
     });
 })();

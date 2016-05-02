@@ -1,3 +1,82 @@
-<div class="for-water-calendar" style="height: {{ calendar.calendarHeightPx }}px">
+<div class="for-water-calendar" style="height: {{::calendar.calendarHeightPx}}px">
     
+    <!--TIME LINES **********************************************************-->
+    <hr class="time-line" 
+        ng-repeat="timeLine in calendar.timeLines" 
+        style="
+            top: {{::timeLine.topPx}}px;
+        "
+    />
+    
+    
+    <!--TIME LEGENDS ******************************************************* -->
+    <div class="time-legend"
+         ng-repeat="timeLegend in calendar.timeLegends" 
+         style="
+            top: {{::timeLegend.topPx}}px; 
+            height: {{::timeLegend.heightPx}}px;
+            font-size: {{smallView ? 14 : 18}}px;
+            width: {{::timeLegend.widthPerc}}%;
+         "
+    >
+        <span ng-show="!extraSmallView"> {{::timeLegend.text}} </span>
+        <div ng-show="extraSmallView" style="margin-top: -9px;">
+            {{::timeLegend.text.split(' - ')[0]}}<br/>
+            - {{::timeLegend.text.split(' - ')[1]}}
+        </div>
+    </div>
+    
+    
+    <!--DAY LEGENDS ******************************************************** -->
+    <div class="day-legend" 
+         ng-repeat="dayLegend in calendar.dayLegends" 
+         style="
+            top: {{::dayLegend.topPx}}px; 
+            left: {{::dayLegend.leftPerc}}%; 
+            width: {{::dayLegend.widthPerc}}%;
+        "
+    >
+        {{smallView ? dayLegend.short : dayLegend.text}}
+    </div>
+    
+    <!--DAY LINES ********************************************************** -->
+    <div class="day-line" 
+         ng-repeat="dayLine in calendar.dayLines" 
+         style="
+            top: {{::dayLine.topPx}}px; 
+            left: {{::dayLine.leftPerc}}%; 
+            height: {{::calendar.calendarHeightPx}}px;
+        "
+    >
+    </div>
+    
+    <!--EVENTS ************************************************************* -->
+    <div class="calendar-event" 
+         ng-init="eventWidthPerc = calEvent.widthPerc"
+         ng-repeat="calEvent in calendar.events" 
+         ng-mouseenter="eventWidthPerc = calendar.colWidthPerc"
+         ng-mouseleave="eventWidthPerc = calEvent.widthPerc"
+         style="
+            top: {{::calEvent.topPx}}px; 
+            left: {{::calEvent.leftPerc}}%; 
+            width: {{eventWidthPerc}}%; 
+            height: {{::calEvent.heightPx}}px;
+            border-left: 4px solid {{::calEvent.color ? calEvent.color : 'black'}};
+         "
+    >
+        <script>
+            $(function() {
+                
+            });
+        </script>
+        <div class="event-title">
+            {{::calEvent.title}}
+        </div>
+        <div class="event-location" ng-if="calEvent.location">
+            <a href="https://www.google.co.uk/maps/search/{{::calEvent.location | escape}}" target="_blank">Where?</a>
+        </div>
+        <div class="event-desc" ng-if="calEvent.desc">
+            {{::calEvent.desc}}
+        </div>
+    </div>    
 </div>

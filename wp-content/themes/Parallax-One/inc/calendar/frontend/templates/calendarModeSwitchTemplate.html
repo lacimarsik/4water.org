@@ -1,12 +1,14 @@
 <div id="condensed-switch" class="options-switch">
     <div 
-        class="condensed-switch-option switch-option" 
-        ng-class="{ 'switch-selected': !$scope.condensed }">
+        class="switch-option condensed-switch-option" 
+        ng-class="{ 'switch-selected': !condensed }"
+        ng-click='condensed = false'>
         Normal
     </div>
     <div 
-        class="condensed-switch-option switch-option"
-        ng-class="{ 'switch-selected': $scope.condensed }">
+        class="switch-option condensed-switch-option"
+        ng-class="{ 'switch-selected': condensed }"
+        ng-click='condensed = true'>
         Condensed
     </div>
 </div>

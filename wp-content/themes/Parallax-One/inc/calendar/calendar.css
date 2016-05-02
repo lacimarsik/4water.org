@@ -1,16 +1,13 @@
 div.for-water-calendar {
     margin: auto;
-    width: 80%;
     height: 0px;
-    /*border: 1px solid black;*/
     position: relative;
-    display: none;
     padding: 0px;
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
-hr.calendar-sep {
+hr.time-line {
     position: absolute;
     background-color: #E5E5E5;
     height: 2px;
@@ -19,11 +16,19 @@ hr.calendar-sep {
     margin: 0;
 }
 
+div.day-line {
+    position: absolute;
+    background-color: #E5E5E5;
+    width: 1px;
+    padding: 0;
+    margin: 0;
+}
+
 div.time-legend {
     position: absolute;
-    font-size: 20px;
-    margin-top: -12px;
+    margin-top: -5px;
     color: #A3A3A3;
+    line-height: 110%;
     margin-left: 5px;
 }
 
@@ -32,13 +37,46 @@ div.day-legend {
     font-size: 16px;
     font-weight: 700;
     margin-top: -12px;
+    text-align: center;
     color: #A3A3A3;
 }
 
 div.calendar-event {
-    position: absolute;
-    font-size: 16px;
+    position: absolute;   
+    background-color: #F7F8FA;
+    padding: 5px;
+    font-size: 13px;
+    line-height: 120%;
+    overflow: hidden;
+}
+
+div.calendar-event:hover {
+    overflow: visible;
+    cursor: pointer;
+    background-color: #E7E8EA;
+}
+
+div.event-title {
+    overflow: visible;
     font-weight: 700;
-    background-color: white;
-    border: black solid 1px;
+}
+
+div.event-desc {
+    margin-top: 5px;
+    font-size: 12px;
+}
+
+div.event-location {
+    margin-top: 5px;
+}
+
+div#cal-switches {
+}
+
+div.week-switch-option {
+    padding: 5px;
+}
+
+div.condensed-switch-option {
+    padding: 5px;
 }
