@@ -1,7 +1,7 @@
 (function () {
     var module = angular.module('4water.services');
 
-    module.factory('Calendar4Water', function () { 
+    module.factory('Calendar4Water', function ($filter) { 
         var NON_CONDENSED_CALENDAR_HEIGHT = 500;
         var MAX_UNIT_HEIGHT = 100;
         var MIN_UNIT_HEIGHT = 30;
@@ -19,13 +19,15 @@
             this._timePoints = JSON.parse(timePoints);
         }
         
-        Calendar4Water.prototype.build = function(condensed) {
+        Calendar4Water.prototype.build = function(condensed, weekIndex) {
+            this.condensed = condensed;
+            this.weekIndex = weekIndex;
+            
             this._hasOvernight = this._hasOvernightEvent();
 
             this._minHour = this._timePoints[0];
             this._maxHour = this._timePoints[this._timePoints.length - 1];
             
-            this.condensed = condensed;
             this._unitHeight = condensed 
                 ? CONDENSED_UNIT_HEIGHT
                 : this._getNonCondensedUnitHeight();
@@ -38,6 +40,7 @@
             this.dayLegends = this._makeDayLegends();
             this.dayLines = this._makeDayLines();
             this.events = this._makeEvents();
+            this.id = (this.condensed ? 'c' : 'n') + this.weekIndex;
         };
 
         Calendar4Water.prototype._getNonCondensedUnitHeight = function() {
@@ -65,7 +68,9 @@
         };
         
         Calendar4Water.prototype._getCalendarHeight = function() {
-            this.topOffset = DAY_LEGEND_HEIGHT;
+            if (this._procEvents.length === 0) return DAY_LEGEND_HEIGHT;
+            
+            this.topOffset = DAY_LEGEND_HEIGHT;           
             this.bottomOffset = 0;
             if (this._hasOvernight) {
                 this.topOffset += this._edgeUnitHeight;
@@ -256,11 +261,21 @@
 
             var width = event['concurrent-width']*(DAY_COL_PERC/event['concurrent-out-of']);
 
+            var startDt = new Date(event.start.date);
+            var endDt = new Date(event.end.date);
+            var dtFormat = startDt.toDateString() !== endDt.toDateString() ? 'EEE h:mma' : 'h:mma';
+
             return {
                 title: event.title,
+                startDt: startDt,
+                endDt: endDt,
+                dtFormat: dtFormat,
+                tz: event.start.timezone,
                 color: event.color,
                 desc: event.desc,
                 location: event.location,
+                locationLink: 'https://www.google.co.uk/maps/search/' + $filter('escape')(event.location),
+                url: event.url,
                 
                 leftPerc: TIME_COL_PERC + left, 
                 topPx: this.topOffset + top + LINE_WIDTH,

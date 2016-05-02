@@ -27,13 +27,11 @@
                 var timePoints = calInfo.timePoints;
                 
                 var calendarNormal = new Calendar4Water(procEvents, timePoints);
-                calendarNormal.build(false);
-                calendarNormal.weekIndex = i;
+                calendarNormal.build(false, i);
                 $scope.calendars.push(calendarNormal);
                 
                 var calendarCondensed = new Calendar4Water(procEvents, timePoints);
-                calendarCondensed.build(true);
-                calendarCondensed.weekIndex = i;
+                calendarCondensed.build(true, i);
                 $scope.calendars.push(calendarCondensed);
             }
         };

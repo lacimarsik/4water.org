@@ -198,6 +198,7 @@
         $event['start-day-frac'] = $startDayFrac;
         $event['end-day-frac'] = $endDayFrac;
         $event['duration-hours'] = 24*($endDayFrac - $startDayFrac);
+        $event['url'] = $eventIn->htmlLink;
         
         array_push($dayEvents[$dayNumber], $event);
         array_push($all, $event);

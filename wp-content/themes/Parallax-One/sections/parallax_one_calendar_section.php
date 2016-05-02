@@ -177,7 +177,7 @@ function getCalendarInfoJsons($startWeek) {
 
 <section id="calendar">
   <div class="section-overlay-layer">
-    <div class="container" ng-controller="calendarController as calCtrl" ng-init='calCtrl.init(<?= getCalendarInfoJsons(-6) ?>)'>
+    <div class="container" ng-controller="calendarController as calCtrl" ng-init='calCtrl.init(<?= getCalendarInfoJsons(-5) ?>)'>
       <for-water-calendar 
           ng-repeat="calendar in calendars" 
           ng-show="calendar.weekIndex === weekIndex && calendar.condensed === condensed">

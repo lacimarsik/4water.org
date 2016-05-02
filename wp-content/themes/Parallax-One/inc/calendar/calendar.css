@@ -51,14 +51,20 @@ div.calendar-event {
 }
 
 div.calendar-event:hover {
-    overflow: visible;
     cursor: pointer;
     background-color: #E7E8EA;
+    z-index: 999;
+    overflow: auto;
 }
 
 div.event-title {
     overflow: visible;
     font-weight: 700;
+    margin-bottom: 5px;
+}
+
+div.event-title:hover {
+    text-decoration: underline;
 }
 
 div.event-desc {
@@ -79,4 +85,28 @@ div.week-switch-option {
 
 div.condensed-switch-option {
     padding: 5px;
+}
+
+/* MODAL */
+
+span.modal-row-header {
+    font-weight: 700;
+}
+
+div.modal-desc {
+    margin-top: 5px;
+}
+
+h4.modal-title {
+    display: inline-block;
+}
+
+a.modal-calendar-link {
+    display: inline-block;
+    float: right;
+}
+
+button.modal-close-button {
+    background-color: #F7F8FA;
+    font-weight: 700;
 }
