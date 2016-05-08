@@ -87,14 +87,15 @@ def dir_exists_in_current(ftp, dir):
 def run_composer():
     """runs Composer and returns all files from vendor directory"""
     cwd = os.getcwd()
-    os.chdir('wp-content/themes/Parallax-One/composer');
+    composer_path = 'wp-content/themes/Parallax-One/composer'
+    os.chdir(composer_path);
     command = 'php composer.phar composer.json'
     output, _ = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE).communicate()
 
     vendor_files = []
     for root, dirnames, filenames in os.walk('vendor'):
         for f in filenames:
-            vendor_files.append(os.path.join(cwd, root, f))
+            vendor_files.append(os.path.join(composer_path, root, f))
 
     os.chdir(cwd);
 
