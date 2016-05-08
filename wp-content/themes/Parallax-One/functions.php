@@ -1,4 +1,7 @@
 <?php
+
+require_once __DIR__ . '/inc/calendar/calendar4water_api.php';
+
 /**
  * parallax-one functions and definitions
  *
@@ -117,23 +120,16 @@ endif; // parallax_one_setup
 add_action( 'after_setup_theme', 'parallax_one_setup' );
 
 
-function my_awesome_func() {
-	return 'dfdsfsd';
+function getCalendarData() {
+	return Calendar4WaterApi::getCalendarInfoJsons(0);
 }
 
 
 add_action('rest_api_init', function () {
 	register_rest_route( 'calendar/4water', '/api', array(
 		'methods' => 'GET',
-		'callback' => 'my_awesome_func',
-//		'args' => array(
-//			'weekStart' => array(
-//				'validate_callback' => function($param, $request, $key) {
-//					return is_numeric( $param );
-//				}
-//			),
-//		),
-	) );
+		'callback' => 'getCalendarData',
+	));
 });
 
 add_filter( 'image_size_names_choose', 'parallax_one_media_uploader_custom_sizes' );

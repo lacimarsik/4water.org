@@ -6,7 +6,10 @@
   define('CLIENT_SECRET_PATH', __DIR__ . '/client_secret.json');
   define('SCOPES', implode(' ', array(Google_Service_Calendar::CALENDAR_READONLY)));
   
-  class CalendarApi {
+  /*
+   * This class provides a wrapper API to access Google calendar data
+   */
+  class GoogleCalendarApi {
     //----------------------------------------------
     // Constants
     //---------------------------------------------
@@ -206,9 +209,9 @@
       
       //sort in each day
       for ($i = 0; $i < 7; $i++) {
-        usort($dayEvents[$i], array('CalendarApi', 'sortCmpTime'));
+        usort($dayEvents[$i], array('GoogleCalendarApi', 'sortCmpTime'));
       }
-      usort($all, array('CalendarApi', 'sortCmpDateTime'));
+      usort($all, array('GoogleCalendarApi', 'sortCmpDateTime'));
       
       $result = array();
       $result['days'] = $dayEvents;

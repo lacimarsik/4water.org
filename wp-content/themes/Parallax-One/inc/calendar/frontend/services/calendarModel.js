@@ -15,8 +15,8 @@
         var START_OF_DAY = -99;
         
         function Calendar4Water(procEvents, timePoints) {
-            this._procEvents = JSON.parse(procEvents);
-            this._timePoints = JSON.parse(timePoints);
+            this._procEvents = procEvents;
+            this._timePoints = timePoints;
         }
         
         Calendar4Water.prototype.build = function(condensed, weekIndex) {
