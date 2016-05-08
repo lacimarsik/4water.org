@@ -28,7 +28,7 @@
             
             $scope.calendars = [];
             for (var i = 0; i < calendarInfos.length; i++) {
-                var calInfo = JSON.parse(calendarInfos[i]);
+                var calInfo = calendarInfos[i];
                 
                 var procEvents = calInfo.procEvents;
                 var timePoints = calInfo.timePoints;
@@ -51,13 +51,14 @@
         //Trying to get calendar through API call
         
         this.initBetter = function(startWeek) {
+            var self = this;
             Calendar4WaterApi.getCalendarData(startWeek, function(err, results) {
                 if (err) {
                     $scope.loadError = true;
                     $('#calendar-error').append('ERROR');
                 }
                 else {
-                    init(results);
+                    self.init(results);
                 }
                 $scope.loaded = true;
             });

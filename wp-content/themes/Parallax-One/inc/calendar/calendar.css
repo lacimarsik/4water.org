@@ -7,6 +7,12 @@ div.for-water-calendar {
     margin-bottom: 20px;
 }
 
+div.ajax-wheel-div {
+    margin: auto;
+    width: 100%;
+    padding-bottom: 30px;
+}
+
 hr.time-line {
     position: absolute;
     background-color: #E5E5E5;

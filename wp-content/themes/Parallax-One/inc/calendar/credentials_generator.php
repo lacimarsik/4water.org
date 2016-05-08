@@ -41,7 +41,7 @@
 
   include_once 'calendar_api.php';
 
-  $calendarApi = new CalendarApi();
+  $calendarApi = new GoogleCalendarApi();
   
   $authUrl = $calendarApi->getAuthUrl();
   printf("Open the following link in your browser:\n%s\n", $authUrl);
