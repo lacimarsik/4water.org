@@ -14,9 +14,11 @@
         'sections/parallax_one_which_style_section',
         'sections/parallax_one_why_us_section',
         'sections/parallax_one_how_we_teach_section',
+        'sections/parallax_one_many_things_section',
         'sections/parallax_one_prices_section',
-        'sections/parallax_one_calendar_section',
-        'sections/parallax_one_map_section'
+        'sections/parallax_one_map_section',
+        'sections/parallax_one_contact_section',
+        'sections/parallax_one_calendar_section'
       ));
 
       if(!empty($sections_array)){

@@ -1086,6 +1086,72 @@ img.how-we-teach-image {
 }
 
 /*---------------------------------------
+   MANY THINGS TO DO
+-----------------------------------------*/
+
+section#many-things {
+	padding-bottom: 30px;
+}
+
+div#many-things-wrap {
+	padding: 40px 2% 30px 2%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+div.many-things-box {
+	text-align: center;
+	padding: 0 30px;
+}
+
+img.many-things-img {
+	position: relative;
+	max-height: 160px;
+}
+
+div.many-things-box h3 {
+	left: 0;
+	position:absolute;
+	text-align:center;
+	top: 55px;
+	width: 100%;
+	font-size: 19px;
+	font-weight: bold;
+	color: white;
+}
+
+p.many-things-desc {
+	padding-top: 10px;
+	text-align: justify;
+	font-size: 14px;
+	line-height: 19px;
+	padding-bottom: 0px;
+	margin-bottom: 8px;
+}
+
+a.many-things-link {
+	display: block;
+	text-align: center;
+	font-size: 14px;
+	line-height: 19px;
+	margin-bottom: 30px;
+}
+
+/* when many-things boxes are next to each other in wider viewport */
+
+@media (min-width: 992px) {
+	div.many-things-row {
+		width: 100%;
+	}
+
+	div.many-things-box {
+		margin-bottom: 0px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+}
+
+/*---------------------------------------
    PRICES
 -----------------------------------------*/
 
@@ -1312,7 +1378,7 @@ header .navbar-brand {
 .sticky-navigation .main-navigation li a {
 	line-height: 52px;
 	text-transform: uppercase;
-	padding: 10px 18px;
+	padding: 10px 17px;
 }
 
 .sticky-navigation .main-navigation .sub-menu li a {
@@ -4403,8 +4469,10 @@ div.bbp-forum-header, div.bbp-topic-header, div.bbp-reply-header, li.bbp-body di
    3.17 SECTION: FOOTER
 -----------------------------------------*/
 .footer {
-	padding-top: 40px;
+	padding-top: 25px;
 	padding-bottom: 40px;
+	background: url(images/footer_background.jpg) no-repeat center bottom fixed;
+	background-color: #e8e8e8;
 }
 
 .footer-links li {
@@ -4489,6 +4557,48 @@ footer.footer .colored-line-left {
 
 footer.footer .social-icons li a {
 	padding: 0 5px;
+	font-size: 20px;
+}
+
+footer.footer .footer-left-1, footer.footer .footer-left-2, footer.footer .footer-right {
+	padding-top: 15px;
+}
+
+footer.footer .footer-left-2 {
+	text-align: left;
+}
+
+footer.footer .footer-heading {
+	font-family: 'Cabin', Helvetica Neue, Sans-serif;
+	font-weight: bold;
+	text-align: left;
+	color: #888;
+	font-size: 18px;
+	margin-top: 0px;
+}
+
+footer.footer .footer-text {
+	text-align: left;
+	color: #888;
+}
+
+footer.footer .social-icons-text {
+	color: #888;
+}
+
+footer.footer .footer-image {
+	margin-top: 10px;
+	width: 120px;
+	opacity: 0.8;
+	filter: alpha(opacity=80);
+}
+
+footer.footer .footer-copyright {
+	text-align: center;
+	font-size: 14px;
+	color: #aaa;
+	clear: both;
+	padding-top: 10px;
 }
 
 /* foooter widget */
@@ -5966,6 +6076,15 @@ h2.screen-reader-text {
 		float: right;
 		padding: 10px 18px;
 	}
+
+	.footer {
+		background: none;
+		background-color: #e8e8e8;
+	}
+
+	footer.footer .footer-left-2 {
+		text-align: center;
+	}
 }
 
 /*---------------------------------------
@@ -6283,6 +6402,14 @@ h2.screen-reader-text {
 		clear: right;
 	}
 
+	.footer {
+		background: none;
+		background-color: #e8e8e8;
+	}
+
+	footer.footer .footer-left-2 {
+		text-align: center;
+	}
 }
 
 @media (max-width: 680px) {
@@ -6563,7 +6690,6 @@ h2.screen-reader-text {
 	.comment-form input {
 		width: 100%;
 	}
-
 }
  
 

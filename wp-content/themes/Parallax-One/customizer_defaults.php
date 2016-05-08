@@ -56,8 +56,8 @@ DefWhichStyle::$content = json_encode(
       'desc' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ...','parallax-one'),
     ),
     array(
-      'image_url' => parallax_get_file('/images/why-us-clock.png'),
-      'title' => esc_html__('JOIN US ANYTIME','parallax-one'),
+      'image' => parallax_get_file('/images/why-us-clock.png'),
+      'reason' => esc_html__('JOIN US ANYTIME','parallax-one'),
       'desc' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ...','parallax-one'),
     ),
     array(
@@ -79,6 +79,40 @@ class DefHowTeach {
   public static $img2 = '/images/rueda.png';
   public static $text = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ...';
 };
+
+/********************************************************/
+/****************** MANY THINGS TO DO ******************************/
+/********************************************************/
+
+class DefManyThings {
+  public static $title = 'MANY THINGS TO DO';
+  public static $content;  //need to initialize later
+};
+DefManyThings::$content = json_encode(
+  array(
+    array(
+      'image' => parallax_get_file('/images/regular_classes.jpg'),
+      'title' => esc_html__('REGULAR CLASSES', 'parallax-one'),
+      'desc' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ...','parallax-one'),
+      'link_text' => esc_html__('more >','parallax-one'),
+      'link' => esc_html__('','parallax-one')
+    ),
+    array(
+      'image' => parallax_get_file('/images/events.jpg'),
+      'title' => esc_html__('EVENTS','parallax-one'),
+      'desc' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ...','parallax-one'),
+      'link_text' => esc_html__('more >','parallax-one'),
+      'link' => esc_html__('','parallax-one')
+    ),
+    array(
+      'image' => parallax_get_file('/images/night_out.jpg'),
+      'title' => esc_html__('NIGHT OUT','parallax-one'),
+      'desc' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ...','parallax-one'),
+      'link_text' => esc_html__('more >','parallax-one'),
+      'link' => esc_html__('','parallax-one')
+    )
+  )
+);
 
 /********************************************************/
 /****************** PRICES ******************************/
@@ -112,6 +146,69 @@ DefPrices::$content = json_encode(
       'student_price' => esc_html__('500 CZK','parallax-one'),
       'non_student_price' => esc_html__('750 CZK','parallax-one'),
     )
+  )
+);
+
+/********************************************************/
+/****************** CONTACT ******************************/
+/********************************************************/
+
+class DefContact {
+  public static $content;  //need to initialize later
+};
+DefContact::$content = json_encode(
+  array(
+    array(
+      'text' => esc_html__('dance4water.prague@gmail.com', 'parallax-one'),
+      'link' => esc_html__('mailto: dance4water.prague@gmail.com', 'parallax-one'),
+      'icon_value' => esc_html__('icon-basic-mail','parallax-one')
+    ),
+    array(
+      'text' => esc_html__('Křižkovského 4, 130 00 Prague', 'parallax-one'),
+      'link' => esc_html__('https://www.google.cz/maps/place/Křížkovského+2420%2F4,+Žižkov,+130+00+Praha-Praha+3/', 'parallax-one'),
+      'icon_value' => esc_html__('icon-basic-geolocalize-01','parallax-one')
+    ),
+    array(
+      'text' => esc_html__('Dance4Water Prague', 'parallax-one'),
+      'link' => esc_html__('https://www.facebook.com/dance4water.prague', 'parallax-one'),
+      'icon_value' => esc_html__('icon-social-facebook-square','parallax-one')
+    )
+  )
+);
+
+/********************************************************/
+/****************** FOOTER ******************************/
+/********************************************************/
+
+class DefFooter {
+  public static $heading = 'ABOUT OUR ORGANIZATION';
+  public static $text = '4WATER is a student-led project exchanging a range of skills such as dance, art and languages
+  for charitable donations, which are given to WaterAid.';
+  public static $copyright = 'Copyright 2016. Dance4Water Prague';
+  public static $image_caption = 'WaterAid';
+  public static $image_link = 'http://www.wateraid.org/';
+  public static $image = '/images/wateraid.png';
+
+}
+
+class DefSocial {
+  public static $text = 'Find us on';
+  public static $content;  //need to initialize later
+};
+
+DefSocial::$content = json_encode(
+  array(
+    array(
+      'icon_value' =>'icon-social-facebook',
+      'link' => '#'
+    ),
+    array(
+      'icon_value' =>'icon-social-twitter',
+      'link' => '#'
+    ),
+    array(
+      'icon_value' =>'icon-social-googleplus',
+      'link' => '#')
   )
 );
 

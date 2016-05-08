@@ -1,0 +1,1016 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Intergeo 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-02-01 21:40+0300\n"
+"PO-Revision-Date: 2013-02-01 21:40+0300\n"
+"Last-Translator: Eugene Manuilov <eugene@manuilov.org>\n"
+"Language-Team: Intergeo <eugene@manuilov.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Basepath: ./../../\n"
+"X-Poedit-KeywordsList: __;_e;esc_html_e;esc_html__;esc_attr_e;esc_attr__\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-Country: UNITED STATES\n"
+"X-Poedit-SearchPath-0: intergeo\n"
+
+#: intergeo/index.php:31
+#: intergeo/templates/library/list.php:3
+#: intergeo/templates/iframe/form.php:7
+msgid "Maps"
+msgstr "Maps"
+
+#: intergeo/index.php:32
+msgid "Settings"
+msgstr "Settings"
+
+#: intergeo/index.php:81
+#, php-format
+msgid "All Maps API applications should load the Maps API using an API key (however it is still possible to use maps without API key). Using an API key enables you to monitor your application's Maps API usage, and ensures that Google can contact you about your application if necessary. If your application's Maps API usage exceeds the %sUsage Limits%s, you must load the Maps API using an API key in order to purchase additional quota. To create your API key:"
+msgstr "All Maps API applications should load the Maps API using an API key (however it is still possible to use maps without API key). Using an API key enables you to monitor your application's Maps API usage, and ensures that Google can contact you about your application if necessary. If your application's Maps API usage exceeds the %sUsage Limits%s, you must load the Maps API using an API key in order to purchase additional quota. To create your API key:"
+
+#: intergeo/index.php:84
+#, php-format
+msgid "Visit the APIs Console at %shttps://code.google.com/apis/console%s and log in with your Google Account."
+msgstr "Visit the APIs Console at %shttps://code.google.com/apis/console%s and log in with your Google Account."
+
+#: intergeo/index.php:85
+#, php-format
+msgid "Click the %sServices%s link from the left-hand menu."
+msgstr "Click the %sServices%s link from the left-hand menu."
+
+#: intergeo/index.php:86
+#, php-format
+msgid "Activate the %sGoogle Maps API v3%s service."
+msgstr "Activate the %sGoogle Maps API v3%s service."
+
+#: intergeo/index.php:87
+msgid "Click the %1$sAPI Access%2$s link from the left-hand menu. Your API key is available from the %1$sAPI Access%2$s page, in the %1$Simple API Access%2$s section. Maps API applications use the %1$sKey for browser apps%2$s."
+msgstr "Click the %1$sAPI Access%2$s link from the left-hand menu. Your API key is available from the %1$sAPI Access%2$s page, in the %1$Simple API Access%2$s section. Maps API applications use the %1$sKey for browser apps%2$s."
+
+#: intergeo/index.php:94
+#, php-format
+msgid "Adding display ads to your map requires that you have an AdSense account enabled for AdSense for Content. If you don't yet have an AdSense account, %1$ssign up%3$s for one. Once you have done so (or if you already have an account) make sure you've also enabled the account with %2$sAdSense for Content%3$s."
+msgstr "Adding display ads to your map requires that you have an AdSense account enabled for AdSense for Content. If you don't yet have an AdSense account, %1$ssign up%3$s for one. Once you have done so (or if you already have an account) make sure you've also enabled the account with %2$sAdSense for Content%3$s."
+
+#: intergeo/index.php:96
+msgid "Once you have an Adsense for Content account, you will have received an AdSense for Content (AFC) publisher ID. This publisher ID is used to link any advertising shown to your AdSense account, allowing you to share in advertising revenue when a user clicks on one of the ads shown on your maps."
+msgstr "Once you have an Adsense for Content account, you will have received an AdSense for Content (AFC) publisher ID. This publisher ID is used to link any advertising shown to your AdSense account, allowing you to share in advertising revenue when a user clicks on one of the ads shown on your maps."
+
+#: intergeo/index.php:180
+msgid "Intergeo Maps"
+msgstr "Intergeo Maps"
+
+#: intergeo/index.php:217
+#: intergeo/templates/iframe/overlays.php:26
+#: intergeo/templates/iframe/overlays.php:49
+msgid "marker"
+msgstr "marker"
+
+#: intergeo/index.php:219
+msgid "Styles are broken. Please, fix it and try again."
+msgstr "Styles are broken. Please, fix it and try again."
+
+#: intergeo/index.php:220
+msgid "Direction was not found."
+msgstr "Maps"
+
+#: intergeo/index.php:235
+msgid "Insert into post"
+msgstr "Insert into post"
+
+#: intergeo/index.php:238
+msgid "Create the map"
+msgstr "Create the map"
+
+#: intergeo/index.php:253
+msgid "Update the map"
+msgstr "Update the map"
+
+#: intergeo/index.php:621
+msgid "The map has been updated successfully."
+msgstr "The map has been updated successfully."
+
+#: intergeo/index.php:622
+msgid "The map has been created successfully."
+msgstr "The map has been created successfully."
+
+#: intergeo/index.php:630
+msgid "The map updating failed."
+msgstr "The map updating failed."
+
+#: intergeo/index.php:631
+msgid "The map creation failed."
+msgstr "The map creation failed."
+
+#: intergeo/index.php:768
+msgid "Overview"
+msgstr "Overview"
+
+#: intergeo/index.php:771
+msgid "The library is a list to view all maps you have created in your system. The library is showing you 3x3 grid of maps' previews. You will see the same maps embedded into your posts at front end, as you see here. The library is paginated and if you have more than 9 maps, you will see pagination links under maps grid."
+msgstr "The library is a list to view all maps you have created in your system. The library is showing you 3x3 grid of maps' previews. You will see the same maps embedded into your posts at front end, as you see here. The library is paginated and if you have more than 9 maps, you will see pagination links under maps grid."
+
+#: intergeo/index.php:772
+msgid "To create a new map, click on \"Add New\" button next to the page title and map editor popup will appear. In case you want to edit a map, you can click on pencil icon in the right bottom corner of map preview box and edit popup window will appear."
+msgstr "To create a new map, click on \"Add New\" button next to the page title and map editor popup will appear. In case you want to edit a map, you can click on pencil icon in the right bottom corner of map preview box and edit popup window will appear."
+
+#: intergeo/index.php:773
+msgid "If you want to delete a map, click on the trash icon in the right bottom corner of a map and confirm your action. Pay attention that whole information about the map will be removed from the system, but all shortcodes will be left where you embed it. However these deprecated shortcodes won't be rendered anymore, so you don't have to worry about it while the plugin is enabled."
+msgstr "If you want to delete a map, click on the trash icon in the right bottom corner of a map and confirm your action. Pay attention that whole information about the map will be removed from the system, but all shortcodes will be left where you embed it. However these deprecated shortcodes won't be rendered anymore, so you don't have to worry about it while the plugin is enabled."
+
+#: intergeo/index.php:778
+msgid "Shortcodes"
+msgstr "Shortcodes"
+
+#: intergeo/index.php:781
+msgid "You can easily embed a map into your posts, pages, categories or tags descriptions and text widgets by copying shortcode which you can find in the input field of a map preview box."
+msgstr "You can easily embed a map into your posts, pages, categories or tags descriptions and text widgets by copying shortcode which you can find in the input field of a map preview box."
+
+#: intergeo/index.php:782
+msgid "To specify a certain address just type it inside a shortcode, and a map will be automatically centered at this place. Also each shortcode could be extended with custom attributes like width, height, style, zoom and hook. Use standard CSS values for such attributes as width, height and style. Type an integer between 0 and 19 for zoom attribute. You can use hook attribute to set up a filter hook which you can use in your custom plugin or theme to configure all options of a map."
+msgstr "To specify a certain address just type it inside a shortcode, and a map will be automatically centered at this place. Also each shortcode could be extended with custom attributes like width, height, style, zoom and hook. Use standard CSS values for such attributes as width, height and style. Type an integer between 0 and 19 for zoom attribute. You can use hook attribute to set up a filter hook which you can use in your custom plugin or theme to configure all options of a map."
+
+#: intergeo/index.php:841
+msgid "The map was deleted successfully."
+msgstr "The map was deleted successfully."
+
+#: intergeo/templates/library/list.php:4
+msgid "Add New"
+msgstr "Add New"
+
+#: intergeo/templates/library/list.php:45
+msgid "Edit"
+msgstr "Edit"
+
+#: intergeo/templates/library/list.php:46
+msgid "Copy"
+msgstr "Copy"
+
+#: intergeo/templates/library/list.php:47
+msgid "Delete"
+msgstr "Delete"
+
+#: intergeo/templates/library/list.php:81
+msgid "You do not have created maps. Start adding it by clicking \"Add New\" button."
+msgstr "You do not have created maps. Start adding it by clicking \"Add New\" button."
+
+#: intergeo/templates/iframe/layers.php:1
+msgid "Layers"
+msgstr "Layers"
+
+#: intergeo/templates/iframe/layers.php:4
+msgid "Traffic layer"
+msgstr "Traffic layer"
+
+#: intergeo/templates/iframe/layers.php:11
+#: intergeo/templates/iframe/layers.php:27
+#: intergeo/templates/iframe/layers.php:103
+#: intergeo/templates/iframe/controls.php:12
+#: intergeo/templates/iframe/controls.php:86
+#: intergeo/templates/iframe/controls.php:148
+#: intergeo/templates/iframe/controls.php:210
+#: intergeo/templates/iframe/controls.php:311
+#: intergeo/templates/iframe/controls.php:373
+#: intergeo/templates/iframe/controls.php:435
+msgid "Enabled"
+msgstr "Enabled"
+
+#: intergeo/templates/iframe/layers.php:15
+#, php-format
+msgid "Allows you to add real-time traffic information (where supported) to your map. Traffic information is provided for the time at which the request is made. Consult %s this spreadsheet %s to determine traffic coverage support."
+msgstr "Allows you to add real-time traffic information (where supported) to your map. Traffic information is provided for the time at which the request is made. Consult %s this spreadsheet %s to determine traffic coverage support."
+
+#: intergeo/templates/iframe/layers.php:20
+msgid "Bicycling layer"
+msgstr "Bicycling layer"
+
+#: intergeo/templates/iframe/layers.php:31
+msgid "Allows you to add bicycle information to your map. It renders a layer of bike paths, suggested bike routes and other overlays specific to bicycling usage on top of the given map. Additionally, the layer alters the style of the base map itself to emphasize streets supporting bicycle routes and de-emphasize streets inappropriate for bicycles."
+msgstr "Allows you to add bicycle information to your map. It renders a layer of bike paths, suggested bike routes and other overlays specific to bicycling usage on top of the given map. Additionally, the layer alters the style of the base map itself to emphasize streets supporting bicycle routes and de-emphasize streets inappropriate for bicycles."
+
+#: intergeo/templates/iframe/layers.php:36
+msgid "Weather & Cloud layers"
+msgstr "Weather & Cloud layers"
+
+#: intergeo/templates/iframe/layers.php:43
+msgid "Enabled cloud"
+msgstr "Enabled cloud"
+
+#: intergeo/templates/iframe/layers.php:47
+msgid "Allows you to add the display of cloud imagery on your map. Enabling the cloud layer will add cloud coverage imagery to your map, visible at low zoom levels."
+msgstr "Allows you to add the display of cloud imagery on your map. Enabling the cloud layer will add cloud coverage imagery to your map, visible at low zoom levels."
+
+#: intergeo/templates/iframe/layers.php:54
+msgid "Enabled weather"
+msgstr "Enabled weather"
+
+#: intergeo/templates/iframe/layers.php:58
+msgid "Allows you to add the display of weather data on your map. Enabling the weather layer will show current weather conditions from weather.com on your map, including icons that denote sun, clouds, rain and so on."
+msgstr "Allows you to add the display of weather data on your map. Enabling the weather layer will show current weather conditions from weather.com on your map, including icons that denote sun, clouds, rain and so on."
+
+#: intergeo/templates/iframe/layers.php:65
+msgid "temperature units"
+msgstr "temperature units"
+
+#: intergeo/templates/iframe/layers.php:68
+msgid "Celsius"
+msgstr "Celsius"
+
+#: intergeo/templates/iframe/layers.php:71
+msgid "Fahrenheit"
+msgstr "Fahrenheit"
+
+#: intergeo/templates/iframe/layers.php:78
+msgid "wind speed units"
+msgstr "wind speed units"
+
+#: intergeo/templates/iframe/layers.php:81
+msgid "kilometers per hour"
+msgstr "kilometers per hour"
+
+#: intergeo/templates/iframe/layers.php:84
+msgid "meters per second"
+msgstr "meters per second"
+
+#: intergeo/templates/iframe/layers.php:87
+msgid "miles per hour"
+msgstr "miles per hour"
+
+#: intergeo/templates/iframe/layers.php:96
+msgid "Panoramio layer"
+msgstr "Panoramio layer"
+
+#: intergeo/templates/iframe/layers.php:107
+msgid "Allows you to add photos from Panoramio as a layer to your map. It renders a layer of geotagged photo icons from Panoramio on the map as a series of large and small photo icons."
+msgstr "Allows you to add photos from Panoramio as a layer to your map. It renders a layer of geotagged photo icons from Panoramio on the map as a series of large and small photo icons."
+
+#: intergeo/templates/iframe/layers.php:111
+msgid "Restricting photos by tag"
+msgstr "Restricting photos by tag"
+
+#: intergeo/templates/iframe/layers.php:115
+msgid "Allows you to restrict the set of photos to display on the map to those matching a certain textual tag."
+msgstr "Allows you to restrict the set of photos to display on the map to those matching a certain textual tag."
+
+#: intergeo/templates/iframe/layers.php:119
+msgid "Restricting photos by user id"
+msgstr "Restricting photos by user id"
+
+#: intergeo/templates/iframe/layers.php:123
+msgid "Allows you to restrict the set of photos to display on the map to those matching a particular user."
+msgstr "Allows you to restrict the set of photos to display on the map to those matching a particular user."
+
+#: intergeo/templates/iframe/form.php:34
+msgid "The center of the map"
+msgstr "The center of the map"
+
+#: intergeo/templates/iframe/form.php:37
+msgid "Go to addrses"
+msgstr "Go to addrses"
+
+#: intergeo/templates/iframe/overlays.php:1
+msgid "Overlays"
+msgstr "Overlays"
+
+#: intergeo/templates/iframe/overlays.php:5
+msgid "Drawing tools allows you to add overlays over the map. You can add markers, polylines, polygons, circles and rectangles. To enable drawing tools just put a tick in the checkbox below."
+msgstr "Drawing tools allows you to add overlays over the map. You can add markers, polylines, polygons, circles and rectangles. To enable drawing tools just put a tick in the checkbox below."
+
+#: intergeo/templates/iframe/overlays.php:8
+msgid "To delete a marker, just double click on it and an item will be removed."
+msgstr "To delete a marker, just double click on it and an item will be removed."
+
+#: intergeo/templates/iframe/overlays.php:16
+msgid "Enable drawing tools"
+msgstr "Enable drawing tools"
+
+#: intergeo/templates/iframe/overlays.php:34
+#: intergeo/templates/iframe/overlays.php:60
+msgid "Delete marker"
+msgstr "Delete marker"
+
+#: intergeo/templates/iframe/overlays.php:35
+#: intergeo/templates/iframe/overlays.php:61
+msgid "Edit marker"
+msgstr "Edit marker"
+
+#: intergeo/templates/iframe/overlays.php:41
+msgid "Markers"
+msgstr "Markers"
+
+#: intergeo/templates/iframe/overlays.php:74
+#: intergeo/templates/iframe/overlays.php:102
+msgid "polyline"
+msgstr "polyline"
+
+#: intergeo/templates/iframe/overlays.php:82
+#: intergeo/templates/iframe/overlays.php:110
+msgid "Delete polyline"
+msgstr "Delete polyline"
+
+#: intergeo/templates/iframe/overlays.php:83
+#: intergeo/templates/iframe/overlays.php:111
+msgid "Edit polyline"
+msgstr "Edit polyline"
+
+#: intergeo/templates/iframe/overlays.php:90
+msgid "Polylines"
+msgstr "Polylines"
+
+#: intergeo/templates/iframe/overlays.php:126
+#: intergeo/templates/iframe/overlays.php:171
+msgid "rectangle"
+msgstr "Maps"
+
+#: intergeo/templates/iframe/overlays.php:137
+#: intergeo/templates/iframe/overlays.php:182
+#: intergeo/templates/iframe/overlays.php:210
+msgid "Delete rectangle"
+msgstr "Delete rectangle"
+
+#: intergeo/templates/iframe/overlays.php:138
+#: intergeo/templates/iframe/overlays.php:183
+#: intergeo/templates/iframe/overlays.php:211
+msgid "Edit rectangle"
+msgstr "Edit rectangle"
+
+#: intergeo/templates/iframe/overlays.php:146
+msgid "Rectangles"
+msgstr "Rectangles"
+
+#: intergeo/templates/iframe/overlays.php:199
+#: intergeo/templates/iframe/overlays.php:244
+msgid "circle"
+msgstr "circle"
+
+#: intergeo/templates/iframe/overlays.php:219
+msgid "Circles"
+msgstr "Circles"
+
+#: intergeo/templates/iframe/overlays.php:255
+msgid "Delete circle"
+msgstr "Delete circle"
+
+#: intergeo/templates/iframe/overlays.php:256
+msgid "Edit circle"
+msgstr "Edit circle"
+
+#: intergeo/templates/iframe/overlays.php:272
+#: intergeo/templates/iframe/overlays.php:317
+msgid "polygon"
+msgstr "polygon"
+
+#: intergeo/templates/iframe/overlays.php:283
+#: intergeo/templates/iframe/overlays.php:328
+msgid "Delete polygon"
+msgstr "Delete polygon"
+
+#: intergeo/templates/iframe/overlays.php:284
+#: intergeo/templates/iframe/overlays.php:329
+msgid "Edit polygon"
+msgstr "Edit polygon"
+
+#: intergeo/templates/iframe/overlays.php:292
+msgid "Polygons"
+msgstr "Polygons"
+
+#: intergeo/templates/iframe/positioning.php:1
+msgid "Positioning & Zooming"
+msgstr "Positioning & Zooming"
+
+#: intergeo/templates/iframe/positioning.php:5
+msgid "If you want to set specific map position and certain level of zooming, just set it up on preview map and these settings will be remembered at published map."
+msgstr "If you want to set specific map position and certain level of zooming, just set it up on preview map and these settings will be remembered at published map."
+
+#: intergeo/templates/iframe/positioning.php:9
+msgid "Positioning"
+msgstr "Positioning"
+
+#: intergeo/templates/iframe/positioning.php:12
+msgid "The initial map type"
+msgstr "The initial map type"
+
+#: intergeo/templates/iframe/positioning.php:15
+#: intergeo/templates/iframe/controls.php:280
+msgid "Road map"
+msgstr "Road map"
+
+#: intergeo/templates/iframe/positioning.php:18
+#: intergeo/templates/iframe/controls.php:286
+msgid "Terrain"
+msgstr "Terrain"
+
+#: intergeo/templates/iframe/positioning.php:21
+#: intergeo/templates/iframe/controls.php:292
+msgid "Satellite"
+msgstr "Satellite"
+
+#: intergeo/templates/iframe/positioning.php:24
+#: intergeo/templates/iframe/controls.php:298
+msgid "Hybrid"
+msgstr "Hybrid"
+
+#: intergeo/templates/iframe/positioning.php:33
+msgid "Draggable map"
+msgstr "Draggable map"
+
+#: intergeo/templates/iframe/positioning.php:37
+msgid "If unchecked prevents the map from being dragged. Dragging is enabled by default."
+msgstr "If unchecked prevents the map from being dragged. Dragging is enabled by default."
+
+#: intergeo/templates/iframe/positioning.php:42
+msgid "Zooming"
+msgstr "Zooming"
+
+#: intergeo/templates/iframe/positioning.php:46
+msgid "Zoom range values"
+msgstr "Zoom range values"
+
+#: intergeo/templates/iframe/positioning.php:59
+msgid "The maximum (19) and minimum (0) zoom levels which could be displayed on the map."
+msgstr "The maximum (19) and minimum (0) zoom levels which could be displayed on the map."
+
+#: intergeo/templates/iframe/positioning.php:66
+msgid "Scrollwheel zooming"
+msgstr "Scrollwheel zooming"
+
+#: intergeo/templates/iframe/positioning.php:70
+msgid "Determines if scrollwheel zooming is enabled on the map."
+msgstr "Determines if scrollwheel zooming is enabled on the map."
+
+#: intergeo/templates/iframe/positioning.php:75
+msgid "Preview settings"
+msgstr "Preview settings"
+
+#: intergeo/templates/iframe/positioning.php:81
+msgid "Lock preview"
+msgstr "Lock preview"
+
+#: intergeo/templates/iframe/positioning.php:85
+msgid "Lock preview map to preserve changing of the viewport bounds and zoom level. Locking affects only on preview map and won't lock embedded map."
+msgstr "Lock preview map to preserve changing of the viewport bounds and zoom level. Locking affects only on preview map and won't lock embedded map."
+
+#: intergeo/templates/iframe/positioning.php:91
+msgid "Show map center"
+msgstr "Show map center"
+
+#: intergeo/templates/iframe/positioning.php:95
+msgid "Show small red circle at the center of the map. It helps you to centralize the map bounds. Note that this option won't be displayed at frontend."
+msgstr "Show small red circle at the center of the map. It helps you to centralize the map bounds. Note that this option won't be displayed at frontend."
+
+#: intergeo/templates/iframe/styles.php:1
+#: intergeo/templates/iframe/adsense.php:128
+msgid "Styles"
+msgstr "Styles"
+
+#: intergeo/templates/iframe/styles.php:4
+msgid "Container's Styles"
+msgstr "Container's Styles"
+
+#: intergeo/templates/iframe/styles.php:7
+msgid "Width"
+msgstr "Width"
+
+#: intergeo/templates/iframe/styles.php:11
+msgid "Height"
+msgstr "Height"
+
+#: intergeo/templates/iframe/styles.php:15
+msgid "Extra Styles"
+msgstr "Extra Styles"
+
+#: intergeo/templates/iframe/styles.php:21
+msgid "Predefined Map Styles"
+msgstr "Predefined Map Styles"
+
+#: intergeo/templates/iframe/styles.php:66
+msgid "Custom Map Styles"
+msgstr "Custom Map Styles"
+
+#: intergeo/templates/iframe/styles.php:72
+msgid "Use custom styles"
+msgstr "Use custom styles"
+
+#: intergeo/templates/iframe/styles.php:79
+#, php-format
+msgid "Creating styles by hand and testing your code to see how they look is potentially time-consuming. Instead, you can use the %sStyled Map Wizard%s to set up the JSON for your map's styles."
+msgstr "Creating styles by hand and testing your code to see how they look is potentially time-consuming. Instead, you can use the %sStyled Map Wizard%s to set up the JSON for your map's styles."
+
+#: intergeo/templates/iframe/controls.php:2
+msgid "Controls"
+msgstr "Controls"
+
+#: intergeo/templates/iframe/controls.php:5
+msgid "Zoom control"
+msgstr "Zoom control"
+
+#: intergeo/templates/iframe/controls.php:16
+msgid "The Zoom control displays a slider (for large maps) or small \"+/-\" buttons (for small maps) to control the zoom level of the map. This control appears by default in the top left corner of the map on non-touch devices or in the bottom left corner on touch devices."
+msgstr "The Zoom control displays a slider (for large maps) or small \"+/-\" buttons (for small maps) to control the zoom level of the map. This control appears by default in the top left corner of the map on non-touch devices or in the bottom left corner on touch devices."
+
+#: intergeo/templates/iframe/controls.php:22
+#: intergeo/templates/iframe/controls.php:96
+#: intergeo/templates/iframe/controls.php:158
+#: intergeo/templates/iframe/controls.php:220
+#: intergeo/templates/iframe/controls.php:321
+#: intergeo/templates/iframe/controls.php:383
+#: intergeo/templates/iframe/adsense.php:84
+msgid "default position"
+msgstr "default position"
+
+#: intergeo/templates/iframe/controls.php:24
+#: intergeo/templates/iframe/controls.php:98
+#: intergeo/templates/iframe/controls.php:160
+#: intergeo/templates/iframe/controls.php:222
+#: intergeo/templates/iframe/controls.php:323
+#: intergeo/templates/iframe/controls.php:385
+#: intergeo/templates/iframe/adsense.php:86
+msgid "Top Left"
+msgstr "Top Left"
+
+#: intergeo/templates/iframe/controls.php:27
+#: intergeo/templates/iframe/controls.php:101
+#: intergeo/templates/iframe/controls.php:163
+#: intergeo/templates/iframe/controls.php:225
+#: intergeo/templates/iframe/controls.php:326
+#: intergeo/templates/iframe/controls.php:388
+#: intergeo/templates/iframe/adsense.php:89
+msgid "Top Center"
+msgstr "Top Center"
+
+#: intergeo/templates/iframe/controls.php:30
+#: intergeo/templates/iframe/controls.php:104
+#: intergeo/templates/iframe/controls.php:166
+#: intergeo/templates/iframe/controls.php:228
+#: intergeo/templates/iframe/controls.php:329
+#: intergeo/templates/iframe/controls.php:391
+#: intergeo/templates/iframe/adsense.php:92
+msgid "Top Right"
+msgstr "Top Right"
+
+#: intergeo/templates/iframe/controls.php:33
+#: intergeo/templates/iframe/controls.php:107
+#: intergeo/templates/iframe/controls.php:169
+#: intergeo/templates/iframe/controls.php:231
+#: intergeo/templates/iframe/controls.php:332
+#: intergeo/templates/iframe/controls.php:394
+#: intergeo/templates/iframe/adsense.php:95
+msgid "Right Top"
+msgstr "Right Top"
+
+#: intergeo/templates/iframe/controls.php:36
+#: intergeo/templates/iframe/controls.php:110
+#: intergeo/templates/iframe/controls.php:172
+#: intergeo/templates/iframe/controls.php:234
+#: intergeo/templates/iframe/controls.php:335
+#: intergeo/templates/iframe/controls.php:397
+#: intergeo/templates/iframe/adsense.php:98
+msgid "Right Center"
+msgstr "Right Center"
+
+#: intergeo/templates/iframe/controls.php:39
+#: intergeo/templates/iframe/controls.php:113
+#: intergeo/templates/iframe/controls.php:175
+#: intergeo/templates/iframe/controls.php:237
+#: intergeo/templates/iframe/controls.php:338
+#: intergeo/templates/iframe/controls.php:400
+#: intergeo/templates/iframe/adsense.php:101
+msgid "Right Bottom"
+msgstr "Right Bottom"
+
+#: intergeo/templates/iframe/controls.php:42
+#: intergeo/templates/iframe/controls.php:116
+#: intergeo/templates/iframe/controls.php:178
+#: intergeo/templates/iframe/controls.php:240
+#: intergeo/templates/iframe/controls.php:341
+#: intergeo/templates/iframe/controls.php:403
+#: intergeo/templates/iframe/adsense.php:104
+msgid "Bottom Right"
+msgstr "Bottom Right"
+
+#: intergeo/templates/iframe/controls.php:45
+#: intergeo/templates/iframe/controls.php:119
+#: intergeo/templates/iframe/controls.php:181
+#: intergeo/templates/iframe/controls.php:243
+#: intergeo/templates/iframe/controls.php:344
+#: intergeo/templates/iframe/controls.php:406
+#: intergeo/templates/iframe/adsense.php:107
+msgid "Bottom Center"
+msgstr "Bottom Center"
+
+#: intergeo/templates/iframe/controls.php:48
+#: intergeo/templates/iframe/controls.php:122
+#: intergeo/templates/iframe/controls.php:184
+#: intergeo/templates/iframe/controls.php:246
+#: intergeo/templates/iframe/controls.php:347
+#: intergeo/templates/iframe/controls.php:409
+#: intergeo/templates/iframe/adsense.php:110
+msgid "Bottom Left"
+msgstr "Bottom Left"
+
+#: intergeo/templates/iframe/controls.php:51
+#: intergeo/templates/iframe/controls.php:125
+#: intergeo/templates/iframe/controls.php:187
+#: intergeo/templates/iframe/controls.php:249
+#: intergeo/templates/iframe/controls.php:350
+#: intergeo/templates/iframe/controls.php:412
+#: intergeo/templates/iframe/adsense.php:113
+msgid "Left Bottom"
+msgstr "Left Bottom"
+
+#: intergeo/templates/iframe/controls.php:54
+#: intergeo/templates/iframe/controls.php:128
+#: intergeo/templates/iframe/controls.php:190
+#: intergeo/templates/iframe/controls.php:252
+#: intergeo/templates/iframe/controls.php:353
+#: intergeo/templates/iframe/controls.php:415
+#: intergeo/templates/iframe/adsense.php:116
+msgid "Left Center"
+msgstr "Left Center"
+
+#: intergeo/templates/iframe/controls.php:57
+#: intergeo/templates/iframe/controls.php:131
+#: intergeo/templates/iframe/controls.php:193
+#: intergeo/templates/iframe/controls.php:255
+#: intergeo/templates/iframe/controls.php:356
+#: intergeo/templates/iframe/controls.php:418
+#: intergeo/templates/iframe/adsense.php:119
+msgid "Left Top"
+msgstr "Left Top"
+
+#: intergeo/templates/iframe/controls.php:64
+#: intergeo/templates/iframe/controls.php:262
+msgid "default style"
+msgstr "default style"
+
+#: intergeo/templates/iframe/controls.php:67
+msgid "small"
+msgstr "small"
+
+#: intergeo/templates/iframe/controls.php:70
+msgid "large"
+msgstr "large"
+
+#: intergeo/templates/iframe/controls.php:79
+msgid "Pan control"
+msgstr "Pan control"
+
+#: intergeo/templates/iframe/controls.php:90
+msgid "The Pan control displays buttons for panning the map. This control appears by default in the top left corner of the map on non-touch devices. The Pan control also allows you to rotate 45° imagery, if available."
+msgstr "The Pan control displays buttons for panning the map. This control appears by default in the top left corner of the map on non-touch devices. The Pan control also allows you to rotate 45° imagery, if available."
+
+#: intergeo/templates/iframe/controls.php:141
+msgid "Scale control"
+msgstr "Scale control"
+
+#: intergeo/templates/iframe/controls.php:152
+msgid "The Scale control displays a map scale element. This control is not enabled by default."
+msgstr "The Scale control displays a map scale element. This control is not enabled by default."
+
+#: intergeo/templates/iframe/controls.php:203
+msgid "MapType control"
+msgstr "MapType control"
+
+#: intergeo/templates/iframe/controls.php:214
+msgid "The MapType control lets the user toggle between map types (such as roadmap and satellite). This control appears by default in the top right corner of the map."
+msgstr "The MapType control lets the user toggle between map types (such as roadmap and satellite). This control appears by default in the top right corner of the map."
+
+#: intergeo/templates/iframe/controls.php:265
+msgid "dropdown menu"
+msgstr "dropdown menu"
+
+#: intergeo/templates/iframe/controls.php:268
+msgid "horizontal bar"
+msgstr "horizontal bar"
+
+#: intergeo/templates/iframe/controls.php:275
+msgid "Map types:"
+msgstr "Map types:"
+
+#: intergeo/templates/iframe/controls.php:278
+msgid "This map type displays a normal street map."
+msgstr "This map type displays a normal street map."
+
+#: intergeo/templates/iframe/controls.php:284
+msgid "This map type displays maps with physical features such as terrain and vegetation."
+msgstr "This map type displays maps with physical features such as terrain and vegetation."
+
+#: intergeo/templates/iframe/controls.php:290
+msgid "This map type displays satellite images."
+msgstr "This map type displays satellite images."
+
+#: intergeo/templates/iframe/controls.php:296
+msgid "This map type displays a transparent layer of major streets on satellite images."
+msgstr "This map type displays a transparent layer of major streets on satellite images."
+
+#: intergeo/templates/iframe/controls.php:304
+msgid "Street View control"
+msgstr "Street View control"
+
+#: intergeo/templates/iframe/controls.php:315
+msgid "The Street View control contains a Pegman icon which can be dragged onto the map to enable Street View. This control appears by default in the top left corner of the map."
+msgstr "The Street View control contains a Pegman icon which can be dragged onto the map to enable Street View. This control appears by default in the top left corner of the map."
+
+#: intergeo/templates/iframe/controls.php:366
+msgid "Rotate control"
+msgstr "Rotate control"
+
+#: intergeo/templates/iframe/controls.php:377
+msgid "The Rotate control contains a small circular icon which allows you to rotate maps containing oblique imagery. This control appears by default in the top left corner of the map."
+msgstr "The Rotate control contains a small circular icon which allows you to rotate maps containing oblique imagery. This control appears by default in the top left corner of the map."
+
+#: intergeo/templates/iframe/controls.php:428
+msgid "Overview Map control"
+msgstr "Overview Map control"
+
+#: intergeo/templates/iframe/controls.php:439
+msgid "The Overview Map control displays a thumbnail overview map reflecting the current map viewport within a wider area. This control appears by default in the bottom right corner of the map, and is by default shown in its collapsed state."
+msgstr "The Overview Map control displays a thumbnail overview map reflecting the current map viewport within a wider area. This control appears by default in the bottom right corner of the map, and is by default shown in its collapsed state."
+
+#: intergeo/templates/iframe/controls.php:445
+msgid "Opened"
+msgstr "Opened"
+
+#: intergeo/templates/iframe/popups.php:5
+msgid "Go To Address"
+msgstr "Go To Address"
+
+#: intergeo/templates/iframe/popups.php:10
+msgid "Type an address you want to go to"
+msgstr "Type an address you want to go to"
+
+#: intergeo/templates/iframe/popups.php:13
+msgid "Go"
+msgstr "Go"
+
+#: intergeo/templates/iframe/popups.php:24
+msgid "Marker Options"
+msgstr "Marker Options"
+
+#: intergeo/templates/iframe/popups.php:31
+#: intergeo/templates/iframe/popups.php:32
+msgid "Enter title"
+msgstr "Enter title"
+
+#: intergeo/templates/iframe/popups.php:39
+#: intergeo/templates/iframe/popups.php:40
+msgid "Enter icon URL"
+msgstr "Enter icon URL"
+
+#: intergeo/templates/iframe/popups.php:47
+#: intergeo/templates/iframe/popups.php:48
+msgid "Enter html for info window"
+msgstr "Enter html for info window"
+
+#: intergeo/templates/iframe/popups.php:54
+#: intergeo/templates/iframe/popups.php:89
+#: intergeo/templates/iframe/popups.php:157
+msgid "Update"
+msgstr "Update"
+
+#: intergeo/templates/iframe/popups.php:65
+msgid "Polyline Options"
+msgstr "Polyline Options"
+
+#: intergeo/templates/iframe/popups.php:72
+#: intergeo/templates/iframe/popups.php:73
+#: intergeo/templates/iframe/popups.php:112
+#: intergeo/templates/iframe/popups.php:113
+msgid "Stroke weight in pixel"
+msgstr "Stroke weight in pixel"
+
+#: intergeo/templates/iframe/popups.php:78
+#: intergeo/templates/iframe/popups.php:79
+#: intergeo/templates/iframe/popups.php:118
+#: intergeo/templates/iframe/popups.php:119
+msgid "Stroke opacity from 0.0 to 1.0"
+msgstr "Stroke opacity from 0.0 to 1.0"
+
+#: intergeo/templates/iframe/popups.php:100
+msgid "Polygon Options"
+msgstr "Polygon Options"
+
+#: intergeo/templates/iframe/popups.php:105
+msgid "Stroke options"
+msgstr "Stroke options"
+
+#: intergeo/templates/iframe/popups.php:125
+msgid "stroke position"
+msgstr "stroke position"
+
+#: intergeo/templates/iframe/popups.php:126
+msgid "center"
+msgstr "center"
+
+#: intergeo/templates/iframe/popups.php:127
+msgid "inside the object"
+msgstr "inside the object"
+
+#: intergeo/templates/iframe/popups.php:128
+msgid "outside the object"
+msgstr "outside the object"
+
+#: intergeo/templates/iframe/popups.php:139
+msgid "Fill options"
+msgstr "Fill options"
+
+#: intergeo/templates/iframe/popups.php:146
+#: intergeo/templates/iframe/popups.php:147
+msgid "Fill opacity from 0.0 to 1.0"
+msgstr "Fill opacity from 0.0 to 1.0"
+
+#: intergeo/templates/iframe/popups.php:168
+msgid "Direction Options"
+msgstr "Direction Options"
+
+#: intergeo/templates/iframe/popups.php:175
+#: intergeo/templates/iframe/popups.php:176
+msgid "The start location from which to calculate directions"
+msgstr "The start location from which to calculate directions"
+
+#: intergeo/templates/iframe/popups.php:183
+#: intergeo/templates/iframe/popups.php:184
+msgid "The end location to which to calculate directions"
+msgstr "The end location to which to calculate directions"
+
+#: intergeo/templates/iframe/popups.php:190
+#: intergeo/templates/iframe/directions.php:60
+msgid "via standard driving directions"
+msgstr "via standard driving directions"
+
+#: intergeo/templates/iframe/popups.php:191
+#: intergeo/templates/iframe/directions.php:50
+msgid "via bicycle paths & preferred streets"
+msgstr "via bicycle paths & preferred streets"
+
+#: intergeo/templates/iframe/popups.php:192
+#: intergeo/templates/iframe/directions.php:53
+msgid "via public transit routes"
+msgstr "via public transit routes"
+
+#: intergeo/templates/iframe/popups.php:193
+#: intergeo/templates/iframe/directions.php:56
+msgid "via pedestrian paths & sidewalks"
+msgstr "via pedestrian paths & sidewalks"
+
+#: intergeo/templates/iframe/popups.php:199
+msgid "Save"
+msgstr "Save"
+
+#: intergeo/templates/iframe/adsense.php:1
+msgid "AdSense Integration"
+msgstr "AdSense Integration"
+
+#: intergeo/templates/iframe/adsense.php:6
+#, php-format
+msgid "To make AdSense working on your maps, you have to setup your publisher ID. You can do it at the %ssettings page%s."
+msgstr "To make AdSense working on your maps, you have to setup your publisher ID. You can do it at the %ssettings page%s."
+
+#: intergeo/templates/iframe/adsense.php:24
+msgid "default format"
+msgstr "default format"
+
+#: intergeo/templates/iframe/adsense.php:27
+msgid "Leaderboard"
+msgstr "Leaderboard"
+
+#: intergeo/templates/iframe/adsense.php:30
+msgid "Banner"
+msgstr "Banner"
+
+#: intergeo/templates/iframe/adsense.php:33
+msgid "Half Banner"
+msgstr "Half Banner"
+
+#: intergeo/templates/iframe/adsense.php:36
+msgid "Skyscraper"
+msgstr "Skyscraper"
+
+#: intergeo/templates/iframe/adsense.php:39
+msgid "Wide Skyscraper"
+msgstr "Wide Skyscraper"
+
+#: intergeo/templates/iframe/adsense.php:42
+msgid "Vertical Banner"
+msgstr "Vertical Banner"
+
+#: intergeo/templates/iframe/adsense.php:45
+msgid "Button"
+msgstr "Button"
+
+#: intergeo/templates/iframe/adsense.php:48
+msgid "Small Square"
+msgstr "Small Square"
+
+#: intergeo/templates/iframe/adsense.php:51
+msgid "Square"
+msgstr "Square"
+
+#: intergeo/templates/iframe/adsense.php:54
+msgid "Small Rectangle"
+msgstr "Small Rectangle"
+
+#: intergeo/templates/iframe/adsense.php:57
+msgid "Medium Rectangle"
+msgstr "Medium Rectangle"
+
+#: intergeo/templates/iframe/adsense.php:60
+msgid "Large Rectangle"
+msgstr "Large Rectangle"
+
+#: intergeo/templates/iframe/adsense.php:63
+msgid "Small Vertical Link Unit"
+msgstr "Small Vertical Link Unit"
+
+#: intergeo/templates/iframe/adsense.php:66
+msgid "Medium Vertical Link Unit"
+msgstr "Medium Vertical Link Unit"
+
+#: intergeo/templates/iframe/adsense.php:69
+msgid "Large Vertical Link Unit"
+msgstr "Large Vertical Link Unit"
+
+#: intergeo/templates/iframe/adsense.php:72
+msgid "Extra Large Vertical Link Unit"
+msgstr "Extra Large Vertical Link Unit"
+
+#: intergeo/templates/iframe/adsense.php:75
+msgid "Small Horizontal Link Unit"
+msgstr "Small Horizontal Link Unit"
+
+#: intergeo/templates/iframe/adsense.php:78
+msgid "Large Horizontal Link Unit"
+msgstr "Large Horizontal Link Unit"
+
+#: intergeo/templates/iframe/adsense.php:131
+msgid "Background color"
+msgstr "Background color"
+
+#: intergeo/templates/iframe/adsense.php:134
+#: intergeo/templates/iframe/adsense.php:140
+#: intergeo/templates/iframe/adsense.php:146
+#: intergeo/templates/iframe/adsense.php:152
+#: intergeo/templates/iframe/adsense.php:158
+msgid "Hex Value"
+msgstr "Hex Value"
+
+#: intergeo/templates/iframe/adsense.php:137
+msgid "Border color"
+msgstr "Border color"
+
+#: intergeo/templates/iframe/adsense.php:143
+msgid "Title color"
+msgstr "Title color"
+
+#: intergeo/templates/iframe/adsense.php:149
+msgid "Text color"
+msgstr "Text color"
+
+#: intergeo/templates/iframe/adsense.php:155
+msgid "URL color"
+msgstr "URL color"
+
+#: intergeo/templates/iframe/directions.php:1
+msgid "Directions"
+msgstr "Directions"
+
+#: intergeo/templates/iframe/directions.php:5
+msgid "To add a new direction just click the button below:"
+msgstr "To add a new direction just click the button below:"
+
+#: intergeo/templates/iframe/directions.php:10
+msgid "Add Direction"
+msgstr "Add Direction"
+
+#: intergeo/templates/iframe/directions.php:16
+#: intergeo/templates/iframe/directions.php:22
+#: intergeo/templates/iframe/directions.php:43
+msgid "from"
+msgstr "from"
+
+#: intergeo/templates/iframe/directions.php:16
+#: intergeo/templates/iframe/directions.php:22
+#: intergeo/templates/iframe/directions.php:45
+msgid "to"
+msgstr "to"
+
+#: intergeo/templates/iframe/directions.php:29
+#: intergeo/templates/iframe/directions.php:70
+msgid "Delete direction"
+msgstr "Delete direction"
+
+#: intergeo/templates/iframe/directions.php:30
+#: intergeo/templates/iframe/directions.php:71
+msgid "Edit direction"
+msgstr "Edit direction"
+
+#: intergeo/templates/iframe/directions.php:35
+msgid "Created directions"
+msgstr "Created directions"
+
+#~ msgid "Direction calculation process failed."
+#~ msgstr "Direction calculation process failed."
