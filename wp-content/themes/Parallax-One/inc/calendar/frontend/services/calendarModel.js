@@ -68,7 +68,7 @@
         };
         
         Calendar4Water.prototype._getCalendarHeight = function() {
-            if (this._procEvents.length === 0) return DAY_LEGEND_HEIGHT;
+            if (this._timePoints.length === 0) return DAY_LEGEND_HEIGHT;
             
             this.topOffset = DAY_LEGEND_HEIGHT;           
             this.bottomOffset = 0;

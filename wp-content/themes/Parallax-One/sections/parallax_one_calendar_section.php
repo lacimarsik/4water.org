@@ -32,7 +32,7 @@ $calendar_title = get_theme_mod('calendar_title', DefCalendar::$title);
       <!-- CALENDAR -->
       <div 
           ng-controller="calendarController as calCtrl" 
-          ng-init='calCtrl.initBetter(0)'>
+          ng-init='calCtrl.init(-2)'> <!-- TODO - change this to 0 once on real calendar -->
         
         <!-- loading wheel -->
         <div class="ajax-wheel-div" ng-show="!loaded">
@@ -41,7 +41,7 @@ $calendar_title = get_theme_mod('calendar_title', DefCalendar::$title);
         
         <!-- loading error -->
         <div id='calendar-error' ng-show="loadError">
-          There was an error loading the calendar: 
+          There was an error loading the calendar. 
         </div>
        
         <!-- calendar data -->

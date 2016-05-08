@@ -21,7 +21,7 @@
             $scope.extraSmallView = window.innerWidth < 680;
         };
             
-        this.init = function(calendarInfos) {
+        this.buildCalendars = function(calendarInfos) {
             this._updateSmallView();
             $scope.condensed = true;
             $scope.weekIndex = 0;
@@ -47,18 +47,15 @@
             var overflow = hover ? 'visible' : 'hidden';
             $('#' + calendarId + '-' + index + '-inner').css('overflow', overflow);
         };
-        
-        //Trying to get calendar through API call
-        
-        this.initBetter = function(startWeek) {
+               
+        this.init = function(startWeek) {
             var self = this;
             Calendar4WaterApi.getCalendarData(startWeek, function(err, results) {
                 if (err) {
                     $scope.loadError = true;
-                    $('#calendar-error').append('ERROR');
                 }
                 else {
-                    self.init(results);
+                    self.buildCalendars(results);
                 }
                 $scope.loaded = true;
             });

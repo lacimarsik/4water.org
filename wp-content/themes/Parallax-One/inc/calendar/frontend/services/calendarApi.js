@@ -3,7 +3,7 @@
 
     module.service('Calendar4WaterApi', ['$http', function ($http) {
         function getCalendarData(weekStart, done) {
-            $http.get('wp-json/calendar/4water/api') //todo week start
+            $http.get('wp-json/calendar/4water/api/' + weekStart)
                 .success(function(results) {
                     done(null, results)
                 })

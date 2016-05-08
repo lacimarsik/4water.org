@@ -120,13 +120,14 @@ endif; // parallax_one_setup
 add_action( 'after_setup_theme', 'parallax_one_setup' );
 
 
-function getCalendarData() {
-	return Calendar4WaterApi::getCalendarInfoJsons(0);
+function getCalendarData($request) {
+  $params = $request->get_params();
+	return Calendar4WaterApi::getCalendarInfoJsons($params['weekStart']);
 }
 
 
 add_action('rest_api_init', function () {
-	register_rest_route( 'calendar/4water', '/api', array(
+	register_rest_route( 'calendar/4water', '/api/(?P<weekStart>(-?\d+))', array(
 		'methods' => 'GET',
 		'callback' => 'getCalendarData',
 	));
