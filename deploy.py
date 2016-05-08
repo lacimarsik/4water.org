@@ -83,6 +83,23 @@ def dir_exists_in_current(ftp, dir):
             return True
     return False
 
+
+def run_composer():
+    """runs Composer and returns all files from vendor directory"""
+    cwd = os.getcwd()
+    os.chdir('wp-content/themes/Parallax-One/composer');
+    command = 'php composer.phar composer.json'
+    output, _ = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE).communicate()
+
+    vendor_files = []
+    for root, dirnames, filenames in os.walk('vendor'):
+        for f in filenames:
+            vendor_files.append(os.path.join(cwd, root, f))
+
+    os.chdir(cwd);
+
+    return vendor_files
+
 # ---------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------
@@ -116,6 +133,13 @@ def main():
         elif opt in ("-f", "--filelist"):
             f = open(arg, 'r')
             filelist = f.readlines()
+
+    # run composer if dependencies have been modified
+    if any('composer.json' in f for f in filelist):
+        if confirm("Composer dependencies seem to have been modified (composer.json file), do you " + 
+                "want to run composer and include generated files in the deploy?", True):
+            vendor_files = run_composer()
+            filelist.extend(vendor_files)
 
     # show what's gonna be deployed
     print("Going to deploy following files:")
