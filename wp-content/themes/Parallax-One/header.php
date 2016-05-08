@@ -21,9 +21,10 @@
         document.write('<script src="<?= get_bloginfo("template_url"); ?>/js/jquery-1.11.3.js"><\/script>'); 
       }
     </script>
+    <script src="<?= get_bloginfo("template_url"); ?>/js/angular.min.js"></script>
     <?php wp_head(); ?>
   </head>
-  <body <?php body_class(); ?>>
+  <body <?php body_class(); ?> ng-app="4water">
       
     <!-- =============================
        PRE LOADER       

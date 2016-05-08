@@ -1,0 +1,145 @@
+div.for-water-calendar {
+    margin: auto;
+    height: 0px;
+    position: relative;
+    padding: 0px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+div.ajax-wheel-div {
+    margin: auto;
+    width: 100%;
+    padding-bottom: 30px;
+}
+
+hr.time-line {
+    position: absolute;
+    background-color: #E5E5E5;
+    height: 2px;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+div.day-line {
+    position: absolute;
+    background-color: #E5E5E5;
+    width: 1px;
+    padding: 0;
+    margin: 0;
+}
+
+div.time-legend {
+    position: absolute;
+    margin-top: -5px;
+    color: #A3A3A3;
+    line-height: 110%;
+    margin-left: 5px;
+}
+
+div.day-legend {
+    position: absolute;
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: -12px;
+    text-align: center;
+    color: #A3A3A3;
+}
+
+div.calendar-event {
+    position: absolute;   
+    padding: 0px;
+    font-size: 13px;
+    line-height: 120%;
+    overflow: hidden;
+    -webkit-transition-duration: 0.5s; /* Safari */
+    transition-duration: 0.5s;
+}
+
+div.inner-event-div {
+    padding: 5px;
+    margin: 0;
+    word-wrap: break-word;
+    overflow: hidden;
+}
+
+div.calendar-event:hover {
+    cursor: pointer;
+    background-color: #E7E8EA;
+    z-index: 999;
+    overflow-y: auto;
+    -webkit-transition-duration: 0.5s; /* Safari */
+    transition-duration: 0.5s;
+}
+
+div.event-title {
+    padding: 0px;
+    overflow: visible;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+div.event-title:hover {
+    text-decoration: underline;
+}
+
+div.event-desc {
+    margin-top: 5px;
+    font-size: 12px;
+}
+
+div.event-time {
+    margin-top: 7px;
+}
+
+div.event-location {
+    margin-top: 5px;
+}
+
+div#cal-switches {
+}
+
+div.week-switch-option {
+    padding: 5px;
+}
+
+div.condensed-switch-option {
+    padding: 5px;
+}
+
+/* MODAL ------------------------------------------------ */
+
+span.modal-row-header {
+    font-weight: 700;
+}
+
+div.modal-desc {
+    margin-top: 5px;
+    white-space: pre;
+}
+
+h4.modal-title {
+    display: inline-block;
+    font-weight: 700;
+}
+
+a.modal-calendar-link {
+    display: inline-block;
+    float: right;
+}
+
+button.modal-close-button {
+    background-color: #F7F8FA;
+    font-weight: 700;
+}
+
+/* LEGEND ------------------------------------------------ */
+
+div.calendar-legend {
+    color: #A3A3A3;
+}
+
+span.legend-bold {
+    font-weight: 700;  
+}

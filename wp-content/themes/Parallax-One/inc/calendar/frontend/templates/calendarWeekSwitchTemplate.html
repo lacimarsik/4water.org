@@ -1,0 +1,14 @@
+<div id="week-switch" class="options-switch">
+    <div 
+        class="week-switch-option switch-option" 
+        ng-class="{ 'switch-selected': !weekIndex }"
+        ng-click='weekIndex = 0'>
+        This week
+    </div>
+    <div 
+        class="week-switch-option switch-option" 
+        ng-class="{ 'switch-selected': weekIndex === 1 }"
+        ng-click='weekIndex = 1'>
+        Next week
+    </div>
+</div>
