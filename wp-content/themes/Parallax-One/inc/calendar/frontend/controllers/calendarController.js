@@ -1,8 +1,15 @@
 (function () {
     var module = angular.module('4water.controllers');
 
-    module.controller('calendarController', ['$scope', 'Calendar4Water', function ($scope, Calendar4Water) {
+    module.controller('calendarController', 
+            ['$scope', 'Calendar4Water', 'Calendar4WaterApi', 
+            function ($scope, Calendar4Water, Calendar4WaterApi) {
+
         var self = this;
+        
+        $scope.loaded = false;
+        $scope.loadError = false;
+                
         $(window).resize(function(){
             $scope.$apply(function(){
                 self._updateSmallView();
@@ -39,6 +46,21 @@
         $scope.eventHover = function(calendarId, index, hover) {
             var overflow = hover ? 'visible' : 'hidden';
             $('#' + calendarId + '-' + index + '-inner').css('overflow', overflow);
+        };
+        
+        //Trying to get calendar through API call
+        
+        this.initBetter = function(startWeek) {
+            Calendar4WaterApi.getCalendarData(startWeek, function(err, results) {
+                if (err) {
+                    $scope.loadError = true;
+                    $('#calendar-error').append('ERROR');
+                }
+                else {
+                    init(results);
+                }
+                $scope.loaded = true;
+            });
         };
     }]);
 })();

@@ -161,8 +161,17 @@ function getCalendarInfoJsons($startWeek) {
   }
    
   return json_encode($result);
-} ?>
-    
+} 
+
+function zzz(WP_REST_Request $request) {
+	$param = $request->get_param('weekStart');
+  return getCalendarInfoJsons($param);
+}
+
+
+
+?>
+
 <script src="<?= get_bloginfo("template_url"); ?>/inc/calendar/frontend/app.js"></script>
   
 <script src="<?= get_bloginfo("template_url"); ?>/inc/calendar/frontend/controllers/calendarController.js"></script>
@@ -174,6 +183,7 @@ function getCalendarInfoJsons($startWeek) {
 <script src="<?= get_bloginfo("template_url"); ?>/inc/calendar/frontend/filters/escapeFilter.js"></script>
 
 <script src="<?= get_bloginfo("template_url"); ?>/inc/calendar/frontend/services/calendarModel.js"></script>
+<script src="<?= get_bloginfo("template_url"); ?>/inc/calendar/frontend/services/calendarApi.js"></script>
 
 <section id="calendar">    
   <div class="section-overlay-layer">
@@ -185,15 +195,33 @@ function getCalendarInfoJsons($startWeek) {
       </div>
       
       <!-- CALENDAR -->
-      <div ng-controller="calendarController as calCtrl" ng-init='calCtrl.init(<?= getCalendarInfoJsons(0) ?>)'>
-        <for-water-calendar 
-            ng-repeat="calendar in calendars" 
-            ng-show="calendar.weekIndex === weekIndex && calendar.condensed === condensed">
-        </for-water-calendar>
-        <div id="cal-switches">
-          <calendar-mode-switch></calendar-mode-switch>
-          <calendar-week-switch></calendar-week-switch>
+      <div 
+          ng-controller="calendarController as calCtrl" 
+          ng-init='calCtrl.initBetter(0)'>
+        
+        <!-- loading wheel -->
+        <img 
+            src="<?= get_bloginfo("template_url"); ?>/images/ajax-loader.gif"
+            class='center-block'
+            ng-show="!loaded" />
+        
+        <!-- loading error -->
+        <div id='calendar-error' ng-show="loadError">
+          There was an error loading the calendar: 
         </div>
+       
+        <!-- calendar data -->
+        <div ng-show="loaded && !loadError">
+          <for-water-calendar 
+              ng-repeat="calendar in calendars" 
+              ng-show="calendar.weekIndex === weekIndex && calendar.condensed === condensed">
+          </for-water-calendar>
+          <div id="cal-switches">
+            <calendar-mode-switch></calendar-mode-switch>
+            <calendar-week-switch></calendar-week-switch>
+          </div>
+        </div>
+        
       </div>
     </div>
   </div>

@@ -68,7 +68,7 @@ div.calendar-event:hover {
 }
 
 div.event-title {
-    padding: 5px;
+    padding: 0px;
     overflow: visible;
     font-weight: 700;
     margin-bottom: 5px;
@@ -115,6 +115,7 @@ div.modal-desc {
 
 h4.modal-title {
     display: inline-block;
+    font-weight: 700;
 }
 
 a.modal-calendar-link {
