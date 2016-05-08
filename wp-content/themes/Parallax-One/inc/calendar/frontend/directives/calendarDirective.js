@@ -5,7 +5,7 @@
         return {
             restrict: 'E',
             replace: true,
-            templateUrl: '/4water/wp-content/themes/Parallax-One/inc/calendar/frontend/templates/calendarTemplate.html'
+            templateUrl: 'wp-content/themes/Parallax-One/inc/calendar/frontend/templates/calendarTemplate.html'
         };
     });
 })();
