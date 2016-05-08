@@ -18,6 +18,7 @@ nbproject
 wp-content/themes/zerif-lite/
 wp-content/themes/skt-white/
 wp-content/themes/parallax/
+wp-content/themes/Parallax-One/composer/vendor/
 dev/
 php.ini
 *.sql
