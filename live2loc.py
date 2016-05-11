@@ -144,8 +144,8 @@ def import_wp_db(rem_sql_fname):
         lines = rem_sql_file.readlines()
     with open(REMOTE_DB_SQL, 'w') as rem_sql_file:
         for line in lines:
-            if st.CUSTOMIZER_KEY in line: 
-                rem_sql_file.write(process_customizer_line(line))
+            if any(key in line for key in ['\'theme_mods_', '\'widget_']):
+                rem_sql_file.write(replace_links_preserving_format(line))
             else:
                 rem_sql_file.write(line.replace(st.REMOTE_URL, st.LOCAL_URL))
             
@@ -187,10 +187,10 @@ def import_wp_db(rem_sql_fname):
     print("Finito! If something does not work, you still have a backup of the previous local DB at " + 
         os.path.abspath(LOCAL_DB_BCK_SQL))
 
-def process_customizer_line(line):
-    """Replaces links in the customizer database row, preserving the its format.
+def replace_links_preserving_format(line):
+    """Replaces links in the certain database rows, preserving the special format.
 
-    Returns a new customizer row
+    Returns a new row
     """
 
     diff = len(st.LOCAL_URL) - len(st.REMOTE_URL)
