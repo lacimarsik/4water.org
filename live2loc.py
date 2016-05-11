@@ -97,9 +97,17 @@ def download_uploads():
             file_list = [f for f in ftp.nlst() if f not in ['.', '..']]
         except ftplib.error_perm:
             # it's probably not a dir - try to download and return
-            print("\tDownloading {}".format(os.path.join(root, path)))
+            remote_path = os.path.join(root, path)
+            if os.path.exists(path):
+                local_size = os.path.getsize(path)
+                ftp.voidcmd('TYPE I')
+                remote_size = ftp.size(remote_path)
+                if local_size == remote_size:
+                    print("\tAlready have locally: {}".format(remote_path))
+                    return
+            print("\tDownloading {}".format(remote_path))
             loc_file = open(path,"wb")
-            ftp.retrbinary("RETR "+ os.path.join(root, path), loc_file.write)
+            ftp.retrbinary("RETR " + remote_path, loc_file.write)
             return
 
         # make a new dir locally if it does not exist
