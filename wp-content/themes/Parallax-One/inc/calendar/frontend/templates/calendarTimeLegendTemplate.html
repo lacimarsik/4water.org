@@ -1,0 +1,15 @@
+<div 
+    class="time-legend"
+    style="
+       top: {{::timeLegend.topPx}}px; 
+       height: {{::timeLegend.heightPx}}px;
+       font-size: {{smallView ? 14 : 18}}px;
+       width: {{::timeLegend.widthPerc}}%;
+    "
+>
+    <span ng-show="!extraSmallView"> {{::timeLegend.text}} </span>
+    <div ng-show="extraSmallView" style="margin-top: -9px;">
+        {{::timeLegend.text.split(' - ')[0]}}<br/>
+        - {{::timeLegend.text.split(' - ')[1]}}
+    </div>
+</div>

@@ -1,0 +1,43 @@
+<div 
+    class="calendar-modal modal fade" 
+    id="{{::calendar.id}}-{{::$index}}-modal"
+    tabindex="-1" 
+    role="dialog"
+    aria-labelledby="myModalLabel"
+>
+    <div class="modal-dialog" role="document">
+        <div 
+            class="modal-content"
+            style="border: thick solid {{::calEvent.color ? calEvent.color : 'black'}};"
+        >
+            <div class="modal-header">
+                <h4 
+                    class="modal-title" 
+                    id="myModalLabel"
+                    style="color: {{::calEvent.color ? calEvent.color : 'black'}};"
+                >
+                    {{::calEvent.title}}
+                </h4>
+                <a class="modal-calendar-link" href="{{::calEvent.url}}" target="_blank">in Google calendar</a>
+            </div>
+            <div class="modal-body">
+                <div class="modal-date-time">
+                    <span class="modal-row-header">Starts</span>: 
+                        {{::calEvent.startDt | date : 'h:mma, EEEE (d MMM yyyy)'}} <br>
+                    <span class="modal-row-header">Ends</span>: 
+                        {{::calEvent.endDt | date : 'h:mma, EEEE (d MMM yyyy)'}}
+                </div>
+                <div class="modal-location">
+                    <span class="modal-row-header">Location</span>: 
+                        <a href="{{::calEvent.locationLink}}" target="_blank" ng-show="calEvent.location">{{::calEvent.location}}</a>
+                        <span ng-if="!calEvent.location">unspecified</span>
+                </div>
+                <hr ng-if="calEvent.desc"/>
+                <div class="modal-desc" ng-if="calEvent.desc">{{::calEvent.desc.trim()}}</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="modal-close-button btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
