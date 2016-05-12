@@ -10,7 +10,7 @@
         var DAY_COL_PERC = 12.1;
         var TIME_COL_PERC = 15.3;
         var LINE_WIDTH = 2;
-        var LONG_TERM_UNIT_HEIGHT_MULTIPLIER = 1/2;
+        var LONG_TERM_UNIT_HEIGHT_MULTIPLIER = 0.75;
 
         var END_OF_DAY = 99;
         var START_OF_DAY = -99;
@@ -286,7 +286,9 @@
             var height = this.condensed ? condensedHeight : normalHeight;
             var width = event['concurrent-width']*(DAY_COL_PERC/event['concurrent-out-of']);
 
-            return this._makeEvent(event, top, left, height, width);
+            var madeEvent = this._makeEvent(event, top, left, height, width);
+            madeEvent.outOf = event['concurrent-out-of'];
+            return madeEvent;
         };
 
         Calendar4Water.prototype._makeShortTermEvents = function() {
@@ -335,7 +337,6 @@
                 location: event.location,
                 locationLink: 'https://www.google.co.uk/maps/search/' + $filter('escape')(event.location),
                 url: event.url,
-                outOf: event['concurrent-out-of'],
                 
                 leftPerc: TIME_COL_PERC + left, 
                 topPx: this.topOffset + top + LINE_WIDTH,
@@ -350,7 +351,9 @@
             var left = event['day']*DAY_COL_PERC;
             var width = DAY_COL_PERC;
 
-            return this._makeEvent(event, top, left, height, width);
+            var madeEvent = this._makeEvent(event, top, left, height, width);
+            madeEvent.outOf = 1;
+            return madeEvent;
         };
         
         Calendar4Water.prototype._makeLongTermEvents = function() {  
