@@ -10,6 +10,7 @@
         var DAY_COL_PERC = 12.1;
         var TIME_COL_PERC = 15.3;
         var LINE_WIDTH = 2;
+        var LONG_TERM_UNIT_HEIGHT_MULTIPLIER = 1/2;
 
         var END_OF_DAY = 99;
         var START_OF_DAY = -99;
@@ -32,6 +33,7 @@
                 ? CONDENSED_UNIT_HEIGHT
                 : this._getNonCondensedUnitHeight();
             this._edgeUnitHeight = this._unitHeight;
+            this._longTermHeight = this._getLongTermHeight();
             
             this.colWidthPerc = DAY_COL_PERC;
             this.calendarHeightPx = this._getCalendarHeight();
@@ -39,8 +41,23 @@
             this.timeLegends = this._makeTimeLegends();
             this.dayLegends = this._makeDayLegends();
             this.dayLines = this._makeDayLines();
-            this.events = this._makeEvents();
+            this.shortTermEvents = this._makeShortTermEvents();
+            this.longTermEvents = this._makeLongTermEvents();
+            this.events = this.shortTermEvents.concat(this.longTermEvents);
             this.id = (this.condensed ? 'c' : 'n') + this.weekIndex;
+        };
+
+        Calendar4Water.prototype._getLongTermHeight = function() {
+            var maximum = 0;
+            for (var i = 0; i < this._procEvents.length; i++) {
+                if (this._procEvents[i]['short-term']) continue;
+                
+                maximum = this._procEvents[i]['concurrent-out-of'] > maximum ? 
+                    this._procEvents[i]['concurrent-out-of'] :
+                    maximum;
+            }
+            
+            return maximum*this._unitHeight*LONG_TERM_UNIT_HEIGHT_MULTIPLIER;
         };
 
         Calendar4Water.prototype._getNonCondensedUnitHeight = function() {
@@ -69,8 +86,8 @@
         
         Calendar4Water.prototype._getCalendarHeight = function() {
             if (this._timePoints.length === 0) return DAY_LEGEND_HEIGHT;
-            
-            this.topOffset = DAY_LEGEND_HEIGHT;           
+                      
+            this.topOffset = DAY_LEGEND_HEIGHT + this._longTermHeight;
             this.bottomOffset = 0;
             if (this._hasOvernight) {
                 this.topOffset += this._edgeUnitHeight;
@@ -99,6 +116,9 @@
             if (this._hasOvernight) {
                 makeTimeLine(-this._edgeUnitHeight);
             }
+            if (this._longTermHeight > 0) {
+                makeTimeLine(-this._edgeUnitHeight - this._longTermHeight);
+            }
 
             for (var i = 0; i < this._timePoints.length; i++) {
                 var top = this.condensed 
@@ -122,12 +142,14 @@
                 else {
                     timeLegendText += from;
                 }
-                timeLegendText += ' - ';
-                if (typeof(till) === 'number') {
-                    timeLegendText += till <= 12 ? till + 'AM' : (till - 12) + 'PM';
-                }
-                else {
-                    timeLegendText += till;
+                if (till) {
+                    timeLegendText += ' - ';
+                    if (typeof(till) === 'number') {
+                        timeLegendText += till <= 12 ? till + 'AM' : (till - 12) + 'PM';
+                    }
+                    else {
+                        timeLegendText += till;
+                    }
                 }
                 return timeLegendText;
             };
@@ -141,6 +163,11 @@
                 };
                 timeLegends.push(timeLegend);
             };
+
+            if (this._longTermHeight > 0) {
+                var longTermText = prepTimeLegendText('Whole day');
+                makeTimeLegend(longTermText, this._longTermHeight, -this._edgeUnitHeight - this._longTermHeight);
+            }
 
             if (this._hasOvernight) {
                 var height = this._edgeUnitHeight;
@@ -211,7 +238,7 @@
             return dayLines;
         };
 
-        Calendar4Water.prototype._makeEvent = function(event) {
+        Calendar4Water.prototype._makeShortTermEvent = function(event) {
             var self = this;
 
             var getTimePointIndex = function(hourFrac) {
@@ -253,14 +280,46 @@
 
             var condensedHeight = getCondensedTop(event['end-hour-frac']) - getCondensedTop(event['start-hour-frac']);
             var normalHeight = getNormalTop(event['end-hour-frac']) - getNormalTop(event['start-hour-frac']);
-            var height = this.condensed ? condensedHeight : normalHeight;
-
+            
             var top = this.condensed ? getCondensedTop(event['start-hour-frac']) : getNormalTop(event['start-hour-frac']);
-
             var left = (event['start-day'] + (event['concurrent-order'] - 1)/event['concurrent-out-of'])*DAY_COL_PERC;
-
+            var height = this.condensed ? condensedHeight : normalHeight;
             var width = event['concurrent-width']*(DAY_COL_PERC/event['concurrent-out-of']);
 
+            return this._makeEvent(event, top, left, height, width);
+        };
+
+        Calendar4Water.prototype._makeShortTermEvents = function() {
+            var events = [];
+
+            for (var i = 0; i < this._procEvents.length; i++) {
+                var event = this._procEvents[i];
+                if (!event['short-term']) continue;
+
+                if (event['start-hour-frac'] > event['end-hour-frac']) {
+                    //overnight event - split into two
+
+                    var endHourFrac = event['end-hour-frac'];
+                    var startHourFrac = event['start-hour-frac'];
+
+                    event['end-hour-frac'] = END_OF_DAY;
+                    events.push(this._makeShortTermEvent(event));
+                    event['start-hour-frac'] = START_OF_DAY;
+                    event['end-hour-frac'] = endHourFrac;
+                    event['start-day']++;
+                    events.push(this._makeShortTermEvent(event));
+                    event['start-hour-frac'] = startHourFrac;
+                    event['start-day']--;
+                }
+                else {
+                    events.push(this._makeShortTermEvent(event));
+                }
+            }
+
+            return events;
+        };
+        
+        Calendar4Water.prototype._makeEvent = function(event, top, left, height, width) {
             var startDt = new Date(event.start.date);
             var endDt = new Date(event.end.date);
             var dtFormat = startDt.toDateString() !== endDt.toDateString() ? 'EEE h:mma' : 'h:mma';
@@ -284,33 +343,25 @@
                 heightPx: height - LINE_WIDTH
             };
         };
+        
+        Calendar4Water.prototype._makeLongTermEvent = function(event) {
+            var height = this._longTermHeight/event['concurrent-out-of'];
+            var top = -this._edgeUnitHeight - this._longTermHeight + event['concurrent-order']*height;
+            var left = event['day']*DAY_COL_PERC;
+            var width = DAY_COL_PERC;
 
-        Calendar4Water.prototype._makeEvents = function() {  
+            return this._makeEvent(event, top, left, height, width);
+        };
+        
+        Calendar4Water.prototype._makeLongTermEvents = function() {  
             var events = [];
-            
+
             for (var i = 0; i < this._procEvents.length; i++) {
                 var event = this._procEvents[i];
-                if (!event['display']) continue;
-
-                //overnight event - split into two
-                if (event['start-hour-frac'] > event['end-hour-frac']) {
-                    var endHourFrac = event['end-hour-frac'];
-                    var startHourFrac = event['start-hour-frac'];
-
-                    event['end-hour-frac'] = END_OF_DAY;
-                    events.push(this._makeEvent(event));
-                    event['start-hour-frac'] = START_OF_DAY;
-                    event['end-hour-frac'] = endHourFrac;
-                    event['start-day']++;
-                    events.push(this._makeEvent(event));
-                    event['start-hour-frac'] = startHourFrac;
-                    event['start-day']--;
-                }
-                else {
-                    events.push(this._makeEvent(event));
-                }
+                if (event['short-term']) continue;
+                events.push(this._makeLongTermEvent(event));
             }
-            
+
             return events;
         };
         

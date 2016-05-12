@@ -1,0 +1,32 @@
+<div 
+    class="calendar-event"
+    ng-mouseenter="eventHover(calendar.id, $index, true)"
+    ng-mouseleave="eventHover(calendar.id, $index, false)"
+    style="
+        top: {{::calEvent.topPx}}px; 
+        left: {{::calEvent.leftPerc}}%; 
+        width: {{calendar.colWidthPerc}}%; 
+        height: {{::calEvent.heightPx}}px;
+        border-left: 4px solid {{::calEvent.color ? calEvent.color : 'black'}};
+    "
+>
+    <div 
+        id="{{::calendar.id}}-{{::$index}}-inner" 
+        class="inner-event-div" 
+        style="width: {{::100/calEvent.outOf}}%"
+    >
+        <div style="width: {{::calEvent.outOf * 100}}%">
+            <div class="event-title" data-toggle="modal" data-target="#{{::calendar.id}}-{{::$index}}-modal">
+                {{::calEvent.title}} {{calEvent['short-term']}}
+            </div>
+            <div class="event-desc" ng-if="calEvent.desc">{{::calEvent.desc}}</div>
+            <div class="event-time">
+                {{::calEvent.startDt | date : calEvent.dtFormat}} - <br>
+                {{::calEvent.endDt | date : calEvent.dtFormat}}
+            </div>
+            <div class="event-location" ng-if="calEvent.location">
+                <a href="{{::calEvent.locationLink}}" target="_blank">Where?</a>
+            </div>
+        </div>
+    </div>
+</div>
