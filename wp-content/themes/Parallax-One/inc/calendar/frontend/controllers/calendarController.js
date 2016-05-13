@@ -60,12 +60,12 @@
             var self = this;
             Calendar4WaterApi.getCalendarData(startWeek, function(err, results) {
                 if (err) {
-                    $scope.loadError = true;
+                    $('#calendar-error').show();
                 }
                 else {
                     self.buildCalendars(results);
+                    $scope.loaded = true;
                 }
-                $scope.loaded = true;
             });
         };
         
