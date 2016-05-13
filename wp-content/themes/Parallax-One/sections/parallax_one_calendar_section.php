@@ -47,7 +47,7 @@ $calendar_title = get_theme_mod('calendar_title', DefCalendar::$title);
         </div>
         
         <!-- loading error -->
-        <div id='calendar-error' ng-show="loadError">
+        <div id='calendar-error' style="display: none;">
           There was an error loading the calendar. 
         </div>
        
