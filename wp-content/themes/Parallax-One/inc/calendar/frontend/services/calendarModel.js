@@ -10,7 +10,7 @@
         var DAY_COL_PERC = 12.1;
         var TIME_COL_PERC = 15.3;
         var LINE_WIDTH = 2;
-        var LONG_TERM_UNIT_HEIGHT_MULTIPLIER = 0.75;
+        var LONG_TERM_UNIT_HEIGHT = 50;
 
         var END_OF_DAY = 99;
         var START_OF_DAY = -99;
@@ -57,7 +57,7 @@
                     maximum;
             }
             
-            return maximum*this._unitHeight*LONG_TERM_UNIT_HEIGHT_MULTIPLIER;
+            return maximum*LONG_TERM_UNIT_HEIGHT;
         };
 
         Calendar4Water.prototype._getNonCondensedUnitHeight = function() {
@@ -106,25 +106,26 @@
             var self = this;
             var timeLines = [];
 
-            var makeTimeLine = function(top) {
+            var makeTimeLine = function(top, intensive) {
                 var timeLine = { 
-                    topPx: self.topOffset + top 
+                    topPx: self.topOffset + top,
+                    intensive: intensive ? true : false
                 };
                 timeLines.push(timeLine);
             };
 
             if (this._hasOvernight) {
-                makeTimeLine(-this._edgeUnitHeight);
+                makeTimeLine(-this._edgeUnitHeight, true);
             }
             if (this._longTermHeight > 0) {
-                makeTimeLine(-this._edgeUnitHeight - this._longTermHeight);
+                makeTimeLine(-this._edgeUnitHeight - this._longTermHeight, true);
             }
 
             for (var i = 0; i < this._timePoints.length; i++) {
                 var top = this.condensed 
                     ? i*this._unitHeight
                     : (this._timePoints[i] - this._minHour)*this._unitHeight;
-                makeTimeLine(top);
+                makeTimeLine(top, i === 0 && !this._hasOvernight);
             }
             
             return timeLines;
@@ -134,29 +135,29 @@
             var self = this;
             var timeLegends = [];
 
-            var prepTimeLegendText = function(from, till) {
-                var timeLegendText = '';
-                if (typeof(from) === 'number') {
-                    timeLegendText += from <= 12 ? from + 'AM' : (from - 12) + 'PM';
-                }
-                else {
-                    timeLegendText += from;
-                }
-                if (till) {
-                    timeLegendText += ' - ';
-                    if (typeof(till) === 'number') {
-                        timeLegendText += till <= 12 ? till + 'AM' : (till - 12) + 'PM';
-                    }
-                    else {
-                        timeLegendText += till;
-                    }
-                }
-                return timeLegendText;
+            var addAmPm = function(entry) {
+                return entry <= 12 ? entry + 'AM' : (entry - 12) + 'PM';
             };
 
-            var makeTimeLegend = function(timeLegendText, height, top) {
+            var prepTimeLegendText = function(entryA, entryB) {
+                if (typeof(entryA) === 'number') {
+                    entryA = addAmPm(entryA);
+                }
+                
+                if (typeof(entryB) === 'number') {
+                    entryB = addAmPm(entryB);
+                }
+                
+                var text = entryA;
+                if (entryB) {
+                    text += ' - ' + entryB;
+                }
+                return text;
+            };
+
+            var makeTimeLegend = function(text, height, top) {
                 var timeLegend = {
-                    text: timeLegendText,
+                    text: text,
                     topPx: self.topOffset + top + height/2,
                     heightPx: height,
                     widthPerc: TIME_COL_PERC
@@ -165,7 +166,7 @@
             };
 
             if (this._longTermHeight > 0) {
-                var longTermText = prepTimeLegendText('Whole day');
+                var longTermText = prepTimeLegendText('ALL DAY');
                 makeTimeLegend(longTermText, this._longTermHeight, -this._edgeUnitHeight - this._longTermHeight);
             }
 
@@ -286,9 +287,7 @@
             var height = this.condensed ? condensedHeight : normalHeight;
             var width = event['concurrent-width']*(DAY_COL_PERC/event['concurrent-out-of']);
 
-            var madeEvent = this._makeEvent(event, top, left, height, width);
-            madeEvent.outOf = event['concurrent-out-of'];
-            return madeEvent;
+            return this._makeEvent(event, top, left, height, width);
         };
 
         Calendar4Water.prototype._makeShortTermEvents = function() {
@@ -337,6 +336,10 @@
                 location: event.location,
                 locationLink: 'https://www.google.co.uk/maps/search/' + $filter('escape')(event.location),
                 url: event.url,
+                outOf: event['concurrent-out-of'],
+                order: event['concurrent-order'],
+                colWidth: event['concurrent-width'],
+                short: event['short-term'] ? true : false,
                 
                 leftPerc: TIME_COL_PERC + left, 
                 topPx: this.topOffset + top + LINE_WIDTH,
@@ -351,9 +354,7 @@
             var left = event['day']*DAY_COL_PERC;
             var width = DAY_COL_PERC;
 
-            var madeEvent = this._makeEvent(event, top, left, height, width);
-            madeEvent.outOf = 1;
-            return madeEvent;
+            return this._makeEvent(event, top, left, height, width);
         };
         
         Calendar4Water.prototype._makeLongTermEvents = function() {  

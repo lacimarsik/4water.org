@@ -11,7 +11,7 @@
         <calendar-day-legend ng-repeat="dayLegend in calendar.dayLegends"></calendar-day-legend>
 
         <!--DAY LINES ********************************************************** -->
-        <calendar-day-line ng-repeat="dayLine in calendar.dayLines"></calendar-day-line>
+        <calendar-day-line ng-repeat="dayLine in calendar.dayLines track by $index"></calendar-day-line>
 
         <!--EVENTS ************************************************************* -->
         <calendar-event ng-repeat="calEvent in calendar.events track by $index"></calendar-event>
