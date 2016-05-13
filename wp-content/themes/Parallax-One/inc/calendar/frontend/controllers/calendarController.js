@@ -45,7 +45,15 @@
         
         $scope.eventHover = function(calendarId, index, hover) {
             var overflow = hover ? 'visible' : 'hidden';
-            $('#' + calendarId + '-' + index + '-inner').css('overflow', overflow);
+            $('#' + this.outerEventId(calendarId, index)).css('overflow', overflow);
+            
+            var eventCss = {
+                cursor: hover ? 'pointer' : 'initial',
+                backgroundColor: hover ? '#E7E8EA' : 'initial',
+                zIndex: hover ? 999 : 'initial',
+                overflowY: hover ? 'auto' : 'hidden'
+            };
+            $('#' + this.eventId(calendarId, index)).css(eventCss);
         };
                
         this.init = function(startWeek) {
@@ -59,6 +67,39 @@
                 }
                 $scope.loaded = true;
             });
+        };
+        
+        $scope.borderBottomStyle = function(calEvent) {           
+            if (!calEvent.short) {
+                return '1px solid ' + calEvent.color;
+            }
+            return 'initial';
+        };
+        
+        $scope.innerDivWidthStyle = function(calEvent) {
+            if (calEvent.short) {
+                return calEvent.outOf*100/calEvent.colWidth + '%';
+            }
+            return '100%';
+        };
+        
+        $scope.narrowDivWidthStyle = function(calEvent) {
+            if (calEvent.short) {
+                return 100*calEvent.colWidth/calEvent.outOf + '%';
+            }
+            return '100%';
+        };
+        
+        $scope.modalEventId = function(calId, index) {
+            return this.eventId(calId, index) + '-modal';
+        };
+        
+        $scope.outerEventId = function(calId, index) {
+            return this.eventId(calId, index) + '-outer';
+        };
+        
+        $scope.eventId = function(calId, index) {
+            return calId + '-' + index;
         };
     }]);
 })();

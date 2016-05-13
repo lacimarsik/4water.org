@@ -1,5 +1,5 @@
 <div 
-    class="day-line" 
+    class="day-line {{::$index === 0 ? 'intensive-day-line' : ''}}" 
     style="
         top: {{::dayLine.topPx}}px; 
         left: {{::dayLine.leftPerc}}%; 

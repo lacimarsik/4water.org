@@ -9,7 +9,8 @@
 >
     <span ng-show="!extraSmallView"> {{::timeLegend.text}} </span>
     <div ng-show="extraSmallView" style="margin-top: -9px;">
-        {{::timeLegend.text.split(' - ')[0]}}<br/>
-        - {{::timeLegend.text.split(' - ')[1]}}
+        {{::timeLegend.text.split(' - ')[0]}}
+        <br>
+        {{::timeLegend.text.indexOf(' - ') !== -1 ? ' - ' + timeLegend.text.split(' - ')[1] : ''}}
     </div>
 </div>

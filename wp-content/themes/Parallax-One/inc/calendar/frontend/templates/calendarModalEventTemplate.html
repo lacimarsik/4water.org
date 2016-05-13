@@ -1,6 +1,6 @@
 <div 
     class="calendar-modal modal fade" 
-    id="{{::calendar.id}}-{{::$index}}-modal"
+    id="{{::modalEventId(calendar.id,$index)}}"
     tabindex="-1" 
     role="dialog"
     aria-labelledby="myModalLabel"
@@ -27,10 +27,9 @@
                     <span class="modal-row-header">Ends</span>: 
                         {{::calEvent.endDt | date : 'h:mma, EEEE (d MMM yyyy)'}}
                 </div>
-                <div class="modal-location">
+                <div class="modal-location" ng-show="calEvent.location">
                     <span class="modal-row-header">Location</span>: 
-                        <a href="{{::calEvent.locationLink}}" target="_blank" ng-show="calEvent.location">{{::calEvent.location}}</a>
-                        <span ng-if="!calEvent.location">unspecified</span>
+                    <a href="{{::calEvent.locationLink}}" target="_blank">{{::calEvent.location}}</a>
                 </div>
                 <hr ng-if="calEvent.desc"/>
                 <div class="modal-desc" ng-if="calEvent.desc">{{::calEvent.desc.trim()}}</div>

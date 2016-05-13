@@ -22,12 +22,21 @@ hr.time-line {
     margin: 0;
 }
 
+hr.intensive-time-line {
+    background-color: #C5C5C5;
+}
+
 div.day-line {
     position: absolute;
     background-color: #E5E5E5;
     width: 1px;
     padding: 0;
     margin: 0;
+}
+
+div.intensive-day-line {
+    background-color: #C5C5C5;
+    width: 2px;
 }
 
 div.time-legend {
@@ -57,20 +66,20 @@ div.calendar-event {
     transition-duration: 0.5s;
 }
 
-div.inner-event-div {
-    padding: 5px;
+div.narrow-event-div { 
+    height: 100%;
+    padding: 0;
+}
+
+div.outer-event-div {
+    padding: 0px;
     margin: 0;
     word-wrap: break-word;
     overflow: hidden;
 }
 
-div.calendar-event:hover {
-    cursor: pointer;
-    background-color: #E7E8EA;
-    z-index: 999;
-    overflow-y: auto;
-    -webkit-transition-duration: 0.5s; /* Safari */
-    transition-duration: 0.5s;
+div.inner-event-div {
+    padding: 5px;
 }
 
 div.event-title {
