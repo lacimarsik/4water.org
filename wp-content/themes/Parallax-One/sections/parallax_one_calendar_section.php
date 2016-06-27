@@ -39,7 +39,7 @@ $calendar_title = get_theme_mod('calendar_title', DefCalendar::$title);
       <!-- CALENDAR -->
       <div 
           ng-controller="calendarController as calCtrl" 
-          ng-init='calCtrl.init(-7)'> <!-- TODO - change this to 0 once on real calendar -->
+          ng-init='calCtrl.init(0)'>
         
         <!-- loading wheel -->
         <div class="ajax-wheel-div" ng-show="!loaded">
