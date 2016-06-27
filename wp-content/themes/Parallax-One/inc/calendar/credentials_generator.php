@@ -39,7 +39,7 @@
    * php credentials_generator.php
    */
 
-  include_once 'calendar_api.php';
+  include_once 'google_calendar_api.php';
 
   $calendarApi = new GoogleCalendarApi();
   
