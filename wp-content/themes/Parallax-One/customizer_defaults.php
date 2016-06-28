@@ -217,5 +217,6 @@ DefSocial::$content = json_encode(
 /********************************************************/
 
 class DefCalendar {
-  public static $title = "WHEN and WHERE?";
+  public static $title = 'WHEN and WHERE?';
+  public static $mode = 'condensed';
 };

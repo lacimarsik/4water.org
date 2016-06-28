@@ -2,8 +2,8 @@
     var module = angular.module('4water.controllers');
 
     module.controller('calendarController', 
-            ['$scope', 'Calendar4Water', 'Calendar4WaterApi', 
-            function ($scope, Calendar4Water, Calendar4WaterApi) {
+    ['$scope', 'Calendar4Water', 'Calendar4WaterApi', 
+    function ($scope, Calendar4Water, Calendar4WaterApi) {
 
         var self = this;
         
@@ -21,9 +21,8 @@
             $scope.extraSmallView = window.innerWidth < 680;
         };
             
-        this.buildCalendars = function(calendarInfos) {
+        this.buildCalendars = function(calendarInfos, condensed) {
             this._updateSmallView();
-            $scope.condensed = true;
             $scope.weekIndex = 0;
             
             $scope.calendars = [];
@@ -33,13 +32,9 @@
                 var procEvents = calInfo.procEvents;
                 var timePoints = calInfo.timePoints;
                 
-                var calendarNormal = new Calendar4Water(procEvents, timePoints);
-                calendarNormal.build(false, i);
-                $scope.calendars.push(calendarNormal);
-                
-                var calendarCondensed = new Calendar4Water(procEvents, timePoints);
-                calendarCondensed.build(true, i);
-                $scope.calendars.push(calendarCondensed);
+                var calendar = new Calendar4Water(procEvents, timePoints);
+                calendar.build(condensed, i);
+                $scope.calendars.push(calendar);
             }
         };
         
@@ -56,14 +51,14 @@
             $('#' + this.eventId(calendarId, index)).css(eventCss);
         };
                
-        this.init = function(startWeek) {
+        this.init = function(startWeek, condensed) {
             var self = this;
             Calendar4WaterApi.getCalendarData(startWeek, function(err, results) {
                 if (err) {
                     $('#calendar-error').show();
                 }
                 else {
-                    self.buildCalendars(results);
+                    self.buildCalendars(results, condensed === true);
                     $scope.loaded = true;
                 }
             });

@@ -693,8 +693,8 @@ big {
    2.6 SECTION HEADERS       
 -----------------------------------------*/
 .section-header {
-	margin-top: 90px;
-	margin-bottom: 60px;
+	margin-top: 40px;
+	margin-bottom: 30px;
 	text-align: center;
 }
 
@@ -1271,6 +1271,7 @@ div#prices-note {
 
 section#calendar {
     background-color: #F7F8FA;
+    padding-bottom: 20px;
 }
 
 /*---------------------------------------
