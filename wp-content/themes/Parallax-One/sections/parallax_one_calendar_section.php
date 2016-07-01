@@ -4,6 +4,7 @@
 <?php
 
 $calendar_title = get_theme_mod('calendar_title', DefCalendar::$title);
+$calendar_mode = get_theme_mod('calendar_mode', DefCalendar::$mode);
 
 ?>
 
@@ -19,7 +20,6 @@ $calendar_title = get_theme_mod('calendar_title', DefCalendar::$title);
 <script src="<?= get_bloginfo("template_url"); ?>/inc/calendar/frontend/directives/calendarTimeLegendDirective.js"></script>
 <script src="<?= get_bloginfo("template_url"); ?>/inc/calendar/frontend/directives/calendarTimeLineDirective.js"></script>
 
-<script src="<?= get_bloginfo("template_url"); ?>/inc/calendar/frontend/directives/calendarModeSwitchDirective.js"></script>
 <script src="<?= get_bloginfo("template_url"); ?>/inc/calendar/frontend/directives/calendarWeekSwitchDirective.js"></script>
 
 <script src="<?= get_bloginfo("template_url"); ?>/inc/calendar/frontend/filters/escapeFilter.js"></script>
@@ -39,7 +39,7 @@ $calendar_title = get_theme_mod('calendar_title', DefCalendar::$title);
       <!-- CALENDAR -->
       <div 
           ng-controller="calendarController as calCtrl" 
-          ng-init='calCtrl.init(0)'>
+          ng-init='calCtrl.init(0, "<?=$calendar_mode?>" === "condensed")'>
         
         <!-- loading wheel -->
         <div class="ajax-wheel-div" ng-show="!loaded">
@@ -55,10 +55,9 @@ $calendar_title = get_theme_mod('calendar_title', DefCalendar::$title);
         <div ng-show="loaded && !loadError">
           <for-water-calendar 
               ng-repeat="calendar in calendars" 
-              ng-show="calendar.weekIndex === weekIndex && calendar.condensed === condensed">
+              ng-show="calendar.weekIndex === weekIndex">
           </for-water-calendar>
           <div id="cal-switches">
-            <calendar-mode-switch></calendar-mode-switch>
             <calendar-week-switch></calendar-week-switch>
           </div>
         </div>

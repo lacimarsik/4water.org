@@ -830,6 +830,21 @@ function parallax_one_customize_register( $wp_customize ) {
 		'active_callback' => 'parallax_one_show_on_front',
 		'priority'    => 1
 	));
+        
+        /* calendar mode */
+	$wp_customize->add_setting('calendar_mode', array(
+		'default' => DefCalendar::$mode,
+		'sanitize_callback' => 'parallax_one_sanitize_text',
+		'transport' => 'postMessage'
+	));
+	$wp_customize->add_control('calendar_mode', array(
+		'label'    => esc_html__('Calendar mode', 'parallax-one'),
+		'section'  => 'calendar_section',
+                'choices' => array('condensed' => 'Condensed', 'expanded' => 'Expanded'),
+                'type' => 'radio',
+		'active_callback' => 'parallax_one_show_on_front',
+		'priority'    => 1
+	));
 
   /********************************************************/
   /************** ADVANCED OPTIONS  ***********************/
