@@ -32,7 +32,7 @@
             this._unitHeight = condensed 
                 ? CONDENSED_UNIT_HEIGHT
                 : this._getNonCondensedUnitHeight();
-            this._edgeUnitHeight = this._unitHeight;
+            this._edgeUnitHeight = this._hasOvernight ? this._unitHeight : 0;
             this._longTermHeight = this._getLongTermHeight();
             
             this.colWidthPerc = DAY_COL_PERC;
