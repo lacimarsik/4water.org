@@ -9,6 +9,7 @@ If you want to contribute to the development, this is our setup and workflow.
 ### 1) Passwords and invites
 
 Contact tech team to:
+
 * get an invite to Slack
 * get an invite to this repository
 * get a password to the wordpress on "production" http://www.4water.org/wp-admin
@@ -42,8 +43,7 @@ nbproject
 /license.txt
 ...
 ```
-* you can also export the "production database" and import it locally, to get the live content. Do it by copy `live2loc_settings.sample.py`,
-entering the correct data in it and creating
+* you can also export the "production database" and import it locally, to get the live content. Do it by:
 ```
 $ cp live2loc_settings.sample.py live2loc_settings.py
 (modify live2loc_settings.py so that it has correct login data)
@@ -57,7 +57,7 @@ The idea is to separate development of the website and filling it with content. 
 
 We have a:
 
-* local repo (git)
+* local app installation
 * online repo (this repository)
 * production server (www.4water.org)
 
@@ -73,7 +73,7 @@ where xy are you intials (fh, lm...)
 
 ### Do changes
 
-Also do local commits. See how the page looks like, test it (we have no formal testing at the moment)
+Do some commits locally. See how the page looks like, test it (we have no formal testing at the moment)
 
 ### Push
 
