@@ -21,6 +21,7 @@ Contact tech team to:
 * create a local MySQL database
 * change the wp-config file, providing the access data to your database (you can do it by running a 3-step wordpress
 installation which fires up when you open the site locally)
+* Install dependencies using `composer` (run `php composer.phar composer.json` in project subdirectories that contain `composer.json`)
 * modify .gitignore to suit your needs. E.g. I have there all of the below plus some of my own things
 
 ```
