@@ -28,88 +28,6 @@ function parallax_one_customize_register( $wp_customize ) {
   $wp_customize->get_section('background_image')->panel='panel_2';
   $wp_customize->get_section('colors')->panel='panel_2';
 
-
-  /********************************************************/
-  /********************* APPEARANCE  **********************/
-  /********************************************************/
-  $wp_customize->add_panel( 'panel_2', array(
-    'priority' => 30,
-    'capability' => 'edit_theme_options',
-    'theme_supports' => '',
-    'title' => esc_html__( 'Appearance', 'parallax-one' )
-  ) );
-
-  $wp_customize->add_setting( 'parallax_one_text_color', array(
-    'default' => '#313131',
-    'sanitize_callback' => 'parallax_one_sanitize_text'
-  ));
-
-  $wp_customize->add_control(
-    new WP_Customize_Color_Control(
-      $wp_customize,
-      'parallax_one_text_color',
-      array(
-        'label'      => esc_html__( 'Text color', 'parallax-one' ),
-        'section'    => 'colors',
-        'priority'   => 5
-      )
-    )
-  );
-
-
-  $wp_customize->add_setting( 'parallax_one_title_color', array(
-    'default' => '#454545',
-    'sanitize_callback' => 'parallax_one_sanitize_text'
-  ));
-
-  $wp_customize->add_control(
-    new WP_Customize_Color_Control(
-      $wp_customize,
-      'parallax_one_title_color',
-      array(
-        'label'      => esc_html__( 'Title color', 'parallax-one' ),
-        'section'    => 'colors',
-        'priority'   => 6
-      )
-    )
-  );
-
-  $wp_customize->add_section( 'parallax_one_appearance_general' , array(
-    'title'       => esc_html__( 'General options', 'parallax-one' ),
-        'priority'    => 3,
-        'description' => esc_html__('Paralax One theme general appearance options','parallax-one'),
-    'panel'		  => 'panel_2'
-  ));
-
-    /* Logo */
-  $wp_customize->add_setting( 'paralax_one_logo', array(
-    'default' => parallax_get_file('/images/logo-nav.png'),
-    'sanitize_callback' => 'esc_url',
-    'transport' => 'postMessage'
-  ));
-
-  $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'paralax_one_logo', array(
-          'label'    => esc_html__( 'Logo', 'parallax-one' ),
-          'section'  => 'parallax_one_appearance_general',
-      'priority'    => 1,
-  )));
-
-  /* Sticky header */
-  $wp_customize->add_setting( 'paralax_one_sticky_header', array(
-    'sanitize_callback' => 'parallax_one_sanitize_text',
-  ));
-  $wp_customize->add_control(
-      'paralax_one_sticky_header',
-      array(
-        'type' => 'checkbox',
-        'label' => esc_html__('Header visibility','parallax-one'),
-        'description' => esc_html__('If this box is checked, the header will toggle on frontpage.','parallax-one'),
-        'section' => 'parallax_one_appearance_general',
-        'priority'    => 2,
-      )
-  );
-
-
   /********************************************************/
   /************* HEADER OPTIONS ***************************/
   /********************************************************/
@@ -195,33 +113,7 @@ function parallax_one_customize_register( $wp_customize ) {
     'priority'    => 5
   ));
 
-
-  /* LOGOS SETTINGS */
-
-  $wp_customize->add_section( 'parallax_one_logos_settings_section' , array(
-      'title'       => esc_html__( 'Logos Bar', 'parallax-one' ),
-      'priority'    => 2,
-      'panel' => 'panel_1'
-  ));
-
-    
     require_once ( 'class/parallax-one-general-control.php');
-
-  $wp_customize->add_setting( 'parallax_one_logos_content', array(
-    'sanitize_callback' => 'parallax_one_sanitize_text',
-    'default' => json_encode(array( array("image_url" => parallax_get_file('/images/companies/1.png') ,"link" => "#" ),array("image_url" => parallax_get_file('/images/companies/2.png') ,"link" => "#" ),array("image_url" => parallax_get_file('/images/companies/3.png') ,"link" => "#" ),array("image_url" => parallax_get_file('/images/companies/4.png') ,"link" => "#" ),array("image_url" => parallax_get_file('/images/companies/5.png') ,"link" => "#" ) ))
-
-  ));
-  $wp_customize->add_control( new Parallax_One_General_Repeater( $wp_customize, 'parallax_one_logos_content', array(
-    'label'   => esc_html__('Add new social icon','parallax-one'),
-    'section' => 'parallax_one_logos_settings_section',
-    'active_callback' => 'parallax_one_show_on_front',
-    'priority' => 1,
-        'parallax_image_control' => true,
-        'parallax_icon_control' => false,
-        'parallax_text_control' => false,
-        'parallax_link_control' => true
-  ) ) );
 
   $wp_customize->get_section('header_image')->panel='panel_1';
   $wp_customize->get_section('header_image')->title=esc_html__( 'Background', 'parallax-one' );

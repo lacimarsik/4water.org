@@ -82,8 +82,8 @@ function parallax_one_setup() {
 	
 	add_theme_support( 'custom-header',apply_filters( 'parallax_one_custom_header_args', array(
 		'default-image' => parallax_get_file('/images/background-images/background_rueda.jpg'),
-		'width'         => 1000,
-		'height'        => 680,
+		'width'         => 1500,
+		'height'        => 717,
 		'flex-height'   => true,
 		'flex-width'    => true,
 	)));
