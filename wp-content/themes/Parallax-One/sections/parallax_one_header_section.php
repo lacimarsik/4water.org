@@ -1,10 +1,10 @@
 <!-- CONTAINER -->
 <?php
-	$paralax_one_header_logo = get_theme_mod('paralax_one_header_logo', parallax_get_file('/images/logo-2.png'));
-	$parallax_one_header_title = get_theme_mod('parallax_one_header_title','Simple, Reliable and Awesome.');
-	$parallax_one_header_subtitle = get_theme_mod('parallax_one_header_subtitle','Lorem ipsum dolor sit amet, consectetur adipiscing elit.');
-	$parallax_one_header_button_text = get_theme_mod('parallax_one_header_button_text','GET STARTED');
-	$parallax_one_header_button_link = get_theme_mod('parallax_one_header_button_link','#');
+	$paralax_one_header_logo = get_theme_mod('paralax_one_header_logo', parallax_get_file(DefHeader::$header_logo));
+	$parallax_one_header_title = get_theme_mod('parallax_one_header_title', DefHeader::$header_title);
+	$parallax_one_header_subtitle = get_theme_mod('parallax_one_header_subtitle', DefHeader::$header_subtitle);
+	$parallax_one_header_button_text = get_theme_mod('parallax_one_header_button_text', DefHeader::$header_button_text);
+	$parallax_one_header_button_link = get_theme_mod('parallax_one_header_button_link', DefHeader::$header_button_link);
 	$parallax_one_enable_move = get_theme_mod('paralax_one_enable_move');
 	$parallax_one_first_layer = get_theme_mod('paralax_one_first_layer', parallax_get_file('/images/background1.png'));
 	$parallax_one_second_layer = get_theme_mod('paralax_one_second_layer',parallax_get_file('/images/background2.png'));

@@ -81,7 +81,7 @@ function parallax_one_customize_register( $wp_customize ) {
     'panel'		  => 'panel_2'
   ));
 
-    /* Logo	*/
+    /* Logo */
   $wp_customize->add_setting( 'paralax_one_logo', array(
     'default' => parallax_get_file('/images/logo-nav.png'),
     'sanitize_callback' => 'esc_url',
@@ -129,9 +129,9 @@ function parallax_one_customize_register( $wp_customize ) {
       'panel' => 'panel_1'
   ));
 
-  /* Header Logo	*/
+  /* Header Logo */
   $wp_customize->add_setting( 'paralax_one_header_logo', array(
-    'default' => parallax_get_file('/images/logo-2.png'),
+    'default' => parallax_get_file(DefHeader::$header_logo),
     'sanitize_callback' => 'esc_url',
     'transport' => 'postMessage'
   ));
@@ -144,7 +144,7 @@ function parallax_one_customize_register( $wp_customize ) {
 
   /* Header title */
   $wp_customize->add_setting( 'parallax_one_header_title', array(
-    'default' => esc_html__('Simple, Reliable and Awesome.','parallax-one'),
+    'default' => esc_html__(DefHeader::$header_title,'parallax-one'),
     'sanitize_callback' => 'parallax_one_sanitize_text',
     'transport' => 'postMessage'
   ));
@@ -157,7 +157,7 @@ function parallax_one_customize_register( $wp_customize ) {
 
   /* Header subtitle */
   $wp_customize->add_setting( 'parallax_one_header_subtitle', array(
-    'default' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit.','parallax-one'),
+    'default' => esc_html__(DefHeader::$header_subtitle, 'parallax-one'),
     'sanitize_callback' => 'parallax_one_sanitize_text',
     'transport' => 'postMessage'
   ));
@@ -169,9 +169,9 @@ function parallax_one_customize_register( $wp_customize ) {
   ));
 
 
-  /*Header Button text*/
+  /* Header Button text */
   $wp_customize->add_setting( 'parallax_one_header_button_text', array(
-    'default' => esc_html__('GET STARTED','parallax-one'),
+    'default' => esc_html__(DefHeader::$header_button_text, 'parallax-one'),
     'sanitize_callback' => 'parallax_one_sanitize_text',
     'transport' => 'postMessage'
   ));
@@ -184,7 +184,7 @@ function parallax_one_customize_register( $wp_customize ) {
 
 
   $wp_customize->add_setting( 'parallax_one_header_button_link', array(
-    'default' => esc_html__('#','parallax-one'),
+    'default' => esc_html__(DefHeader::$header_button_link, 'parallax-one'),
     'sanitize_callback' => 'esc_url',
     'transport' => 'postMessage'
   ));
@@ -226,7 +226,7 @@ function parallax_one_customize_register( $wp_customize ) {
   $wp_customize->get_section('header_image')->panel='panel_1';
   $wp_customize->get_section('header_image')->title=esc_html__( 'Background', 'parallax-one' );
 
-  /* Enable parallax effect*/
+  /* Enable parallax effect */
   $wp_customize->add_setting( 'paralax_one_enable_move', array(
     'sanitize_callback' => 'parallax_one_sanitize_text',
   ));

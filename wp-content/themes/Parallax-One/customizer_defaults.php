@@ -1,6 +1,18 @@
 <?php
 
 /********************************************************/
+/********************* HEADER ***************************/
+/********************************************************/
+
+class DefHeader {
+  public static $header_logo = '';
+  public static $header_title = 'Dance, Friends & Compassion';
+  public static $header_subtitle = 'Experience unusual combination of our latino dance classes, strong and living community and help to get water for those in need by donating.';
+  public static $header_button_text = '';
+  public static $header_button_link = '';
+};
+
+/********************************************************/
 /****************** INTRODUCTION ************************/
 /********************************************************/
 
@@ -48,7 +60,7 @@ class DefWhyUs {
   public static $title = 'WHY DANCE WITH US?';
   public static $content;  //need to initialize later
 };
-DefWhichStyle::$content = json_encode(
+DefWhyUs::$content = json_encode(
   array(
     array(
       'image' => parallax_get_file('/images/why-us-shoe.png'),
