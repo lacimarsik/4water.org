@@ -167,8 +167,8 @@ function parallax_one_customize_register( $wp_customize ) {
     'title'       => esc_html__('Introduction section', 'parallax-one'),
     'priority'    => 32,
   ));
-  
-    /* Introduction video link */
+
+  /* Introduction video link */
   $wp_customize->add_setting('intro_video_link', array(
     'default' => esc_html__(DefIntro::$video_link, 'parallax-one'),
     'sanitize_callback' => 'parallax_one_sanitize_text',
@@ -219,6 +219,17 @@ function parallax_one_customize_register( $wp_customize ) {
     'section' => 'intro_section',
     'active_callback' => 'parallax_one_show_on_front',
     'priority'    => 2,
+  ));
+
+  /* Introduction show/hide */
+
+  $wp_customize->add_setting('parallax_one_intro_show', array('sanitize_callback' => 'parallax_one_sanitize_text'));
+  $wp_customize->add_control(
+    'parallax_one_intro_show', array(
+    'type' => 'checkbox',
+    'label' => __('Hide introduction section?', 'parallax-one'),
+    'section' => 'intro_section',
+    'priority' => 3,
   ));
   
   /********************************************************/
@@ -280,8 +291,19 @@ function parallax_one_customize_register( $wp_customize ) {
         )
       ) 
     ) 
-  );  
-  
+  );
+
+  /* Which style show/hide */
+
+  $wp_customize->add_setting('parallax_one_which_style_show', array('sanitize_callback' => 'parallax_one_sanitize_text'));
+  $wp_customize->add_control(
+    'parallax_one_which_style_show', array(
+    'type' => 'checkbox',
+    'label' => __('Hide which style section?', 'parallax-one'),
+    'section' => 'which_style_section',
+    'priority' => 4,
+  ));
+
   /********************************************************/
   /****************** WHY US OPTIONS **********************/
   /********************************************************/
@@ -328,8 +350,19 @@ function parallax_one_customize_register( $wp_customize ) {
         )
       ) 
     ) 
-  ); 
-        
+  );
+
+  /* Why us show/hide */
+
+  $wp_customize->add_setting('parallax_one_why_us_show', array('sanitize_callback' => 'parallax_one_sanitize_text'));
+  $wp_customize->add_control(
+    'parallax_one_why_us_show', array(
+    'type' => 'checkbox',
+    'label' => __('Hide why us section?', 'parallax-one'),
+    'section' => 'why_us_section',
+    'priority' => 4,
+  ));
+
   /********************************************************/
   /****************** HOW WE TEACH OPTIONS ****************/
   /********************************************************/
@@ -404,6 +437,17 @@ function parallax_one_customize_register( $wp_customize ) {
     'priority'    => 2
   ));
 
+  /* How we teach show/hide */
+
+  $wp_customize->add_setting('parallax_one_how_we_teach_show', array('sanitize_callback' => 'parallax_one_sanitize_text'));
+  $wp_customize->add_control(
+    'parallax_one_how_we_teach_show', array(
+    'type' => 'checkbox',
+    'label' => __('Hide how we teach section?', 'parallax-one'),
+    'section' => 'how_we_teach_section',
+    'priority' => 3,
+  ));
+
   /********************************************************/
   /****************** MANY THINGS OPTIONS **********************/
   /********************************************************/
@@ -453,6 +497,17 @@ function parallax_one_customize_register( $wp_customize ) {
       )
     )
   );
+
+  /* Many things show/hide */
+
+  $wp_customize->add_setting('parallax_one_many_things_show', array('sanitize_callback' => 'parallax_one_sanitize_text'));
+  $wp_customize->add_control(
+    'parallax_one_many_things_show', array(
+    'type' => 'checkbox',
+    'label' => __('Hide many things section?', 'parallax-one'),
+    'section' => 'many_things_section',
+    'priority' => 4,
+  ));
 
   /********************************************************/
   /******************* PRICES OPTIONS *********************/
@@ -517,9 +572,44 @@ function parallax_one_customize_register( $wp_customize ) {
     ) 
   );
 
+  /* Prices show/hide */
+
+  $wp_customize->add_setting('parallax_one_prices_show', array('sanitize_callback' => 'parallax_one_sanitize_text'));
+  $wp_customize->add_control(
+    'parallax_one_prices_show', array(
+    'type' => 'checkbox',
+    'label' => __('Hide prices section?', 'parallax-one'),
+    'section' => 'prices_section',
+    'priority' => 4,
+  ));
+
   /********************************************************/
-  /*************** CONTACT OPTIONS  ******************/
+  /****************** CONTACT OPTIONS  ********************/
   /********************************************************/
+
+  /* Map ShortCode  */
+  $wp_customize->add_setting( 'parallax_one_contact_map_shortcode', array(
+    'default' => '',
+    'sanitize_callback' => 'parallax_one_sanitize_text'
+  ));
+  $wp_customize->add_control( 'parallax_one_contact_map_shortcode', array(
+    'label'    => esc_html__( 'Map shortcode', 'parallax-one' ),
+    'description' => __('To use this section please install <a href="https://wordpress.org/plugins/intergeo-maps/">Intergeo Maps</a> plugin then use it to create a map and paste here the shortcode generated','parallax-one'),
+    'section'  => 'contact_section',
+    'active_callback' => 'parallax_one_show_on_front',
+    'priority'    => 1
+  ));
+
+  /* Map show/hide */
+
+  $wp_customize->add_setting('parallax_one_map_show', array('sanitize_callback' => 'parallax_one_sanitize_text'));
+  $wp_customize->add_control(
+    'parallax_one_map_show', array(
+    'type' => 'checkbox',
+    'label' => __('Hide map section?', 'parallax-one'),
+    'section' => 'contact_section',
+    'priority' => 2,
+  ));
 
   $wp_customize->add_section( 'contact_section' , array(
     'title' => esc_html__( 'Contact section', 'parallax-one' ),
@@ -539,7 +629,7 @@ function parallax_one_customize_register( $wp_customize ) {
         'label'   => esc_html__('Add new contact field','parallax-one'),
         'section' => 'contact_section',
         'active_callback' => 'parallax_one_show_on_front',
-        'priority' => 1,
+        'priority' => 3,
         'fields' => array(
           'text' => array('type' => 'text', 'label' => 'Text', 'placeholder' => 'Contact info'),
           'link' => array('type' => 'text', 'label' => 'Link', 'placeholder' => '#'),
@@ -559,20 +649,18 @@ function parallax_one_customize_register( $wp_customize ) {
     'description' => __('Create a form, copy the shortcode generated and paste it here. We recommend <a href="https://wordpress.org/plugins/contact-form-7/">Contact Form 7</a> but you can use any plugin you like.','parallax-one'),
     'section'  => 'contact_section',
     'active_callback' => 'parallax_one_show_on_front',
-    'priority'    => 1
+    'priority'    => 3
   ));
 
-  /* Map ShortCode  */
-  $wp_customize->add_setting( 'parallax_one_contact_map_shortcode', array(
-    'default' => '',
-    'sanitize_callback' => 'parallax_one_sanitize_text'
-  ));
-  $wp_customize->add_control( 'parallax_one_contact_map_shortcode', array(
-    'label'    => esc_html__( 'Map shortcode', 'parallax-one' ),
-    'description' => __('To use this section please install <a href="https://wordpress.org/plugins/intergeo-maps/">Intergeo Maps</a> plugin then use it to create a map and paste here the shortcode generated','parallax-one'),
-    'section'  => 'contact_section',
-    'active_callback' => 'parallax_one_show_on_front',
-    'priority'    => 2
+  /* Contact show/hide */
+
+  $wp_customize->add_setting('parallax_one_contact_show', array('sanitize_callback' => 'parallax_one_sanitize_text'));
+  $wp_customize->add_control(
+    'parallax_one_contact_show', array(
+    'type' => 'checkbox',
+    'label' => __('Hide contact information?', 'parallax-one'),
+    'section' => 'contact_section',
+    'priority' => 4,
   ));
 
   /********************************************************/
@@ -737,6 +825,17 @@ function parallax_one_customize_register( $wp_customize ) {
 		'active_callback' => 'parallax_one_show_on_front',
 		'priority'    => 1
 	));
+
+  /* Calendar show/hide */
+
+  $wp_customize->add_setting('parallax_one_calendar_show', array('sanitize_callback' => 'parallax_one_sanitize_text'));
+  $wp_customize->add_control(
+    'parallax_one_calendar_show', array(
+    'type' => 'checkbox',
+    'label' => __('Hide calendar section?', 'parallax-one'),
+    'section' => 'calendar_section',
+    'priority' => 4,
+  ));
 
   /********************************************************/
   /************** ADVANCED OPTIONS  ***********************/

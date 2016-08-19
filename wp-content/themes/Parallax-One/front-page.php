@@ -1,25 +1,62 @@
 <?php
   if ( 'posts' == get_option( 'show_on_front' ) ) {
-    get_header(); 
+    get_header();
     get_template_part('/sections/parallax_one_header_section');
-?>
-      </div>
-      <!-- /END COLOR OVER IMAGE -->
+    ?>
+    </div>
+    <!-- /END COLOR OVER IMAGE -->
     </header>
     <!-- /END HOME / HEADER  -->
     <div class="content-wrap">
-<?php
-      $sections_array = apply_filters("parallax_one_pro_sections_filter", array(
-        'sections/parallax_one_introduction_section',
-        'sections/parallax_one_which_style_section',
-        'sections/parallax_one_why_us_section',
-        'sections/parallax_one_how_we_teach_section',
-        'sections/parallax_one_many_things_section',
-        'sections/parallax_one_prices_section',
-        'sections/parallax_one_calendar_section',
-        'sections/parallax_one_map_section',
-        'sections/parallax_one_contact_section',
-      ));
+    <?php
+      $not_hidden_sections = array();
+
+      $parallax_one_intro_show = get_theme_mod('parallax_one_intro_show');
+      if (isset($parallax_one_intro_show) && $parallax_one_intro_show != 1):
+        array_push($not_hidden_sections, 'sections/parallax_one_introduction_section');
+      endif;
+
+      $parallax_one_which_style_show = get_theme_mod('parallax_one_which_style_show');
+      if (isset($parallax_one_which_style_show) && $parallax_one_which_style_show != 1):
+        array_push($not_hidden_sections, 'sections/parallax_one_which_style_section');
+      endif;
+
+      $parallax_one_why_us_show = get_theme_mod('parallax_one_why_us_show');
+      if (isset($parallax_one_why_us_show) && $parallax_one_why_us_show != 1):
+        array_push($not_hidden_sections, 'sections/parallax_one_why_us_section');
+      endif;
+
+      $parallax_one_how_we_teach_show = get_theme_mod('parallax_one_how_we_teach_show');
+      if (isset($parallax_one_how_we_teach_show) && $parallax_one_how_we_teach_show != 1):
+        array_push($not_hidden_sections, 'sections/parallax_one_how_we_teach_section');
+      endif;
+
+      $parallax_one_many_things_show = get_theme_mod('parallax_one_many_things_show');
+      if (isset($parallax_one_many_things_show) && $parallax_one_many_things_show != 1):
+        array_push($not_hidden_sections, 'sections/parallax_one_many_things_section');
+      endif;
+
+      $parallax_one_prices_show = get_theme_mod('parallax_one_prices_show');
+      if (isset($parallax_one_prices_show) && $parallax_one_prices_show != 1):
+        array_push($not_hidden_sections, 'sections/parallax_one_prices_section');
+      endif;
+
+      $parallax_one_calendar_show = get_theme_mod('parallax_one_calendar_show');
+      if (isset($parallax_one_calendar_show) && $parallax_one_calendar_show != 1):
+        array_push($not_hidden_sections, 'sections/parallax_one_calendar_section');
+      endif;
+
+      $parallax_one_map_show = get_theme_mod('parallax_one_map_show');
+      if (isset($parallax_one_map_show) && $parallax_one_map_show != 1):
+        array_push($not_hidden_sections, 'sections/parallax_one_map_section');
+      endif;
+
+      $parallax_one_contact_show = get_theme_mod('parallax_one_contact_show');
+      if (isset($parallax_one_contact_show) && $parallax_one_contact_show != 1):
+        array_push($not_hidden_sections, 'sections/parallax_one_contact_section');
+      endif;
+
+      $sections_array = apply_filters("parallax_one_pro_sections_filter", $not_hidden_sections);
 
       if(!empty($sections_array)){
         foreach($sections_array as $section){
