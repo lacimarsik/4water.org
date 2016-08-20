@@ -82,7 +82,7 @@
             <!-- LOGO (SMALL SCREENS ONLY) -->
             <div class="logo-small-screens">
 <?php
-              $parallax_one = get_theme_mod('paralax_one_logo', parallax_get_file('/images/logo-nav.png') );
+              $parallax_one = get_theme_mod('paralax_one_logo', parallax_get_file(DefHeader::$logo) );
               if(!empty($parallax_one)):
                 echo '<a href="'.esc_url( home_url( '/' ) ).'" class="navbar-brand" title="'.get_bloginfo('title').'">';
                 echo '<img src="'.esc_url($parallax_one).'" alt="'.get_bloginfo('title').'">';

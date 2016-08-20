@@ -49,7 +49,7 @@ function parallax_one_customize_register( $wp_customize ) {
 
   /* Logo (we are showing this logo only on mobile screens but might be important for search engines */
   $wp_customize->add_setting( 'paralax_one_logo', array(
-    'default' => parallax_get_file('/images/4water_menu.png'),
+    'default' => parallax_get_file(DefHeader::$logo),
     'sanitize_callback' => 'esc_url',
     'transport' => 'postMessage'
   ));

@@ -5,6 +5,7 @@
 /********************************************************/
 
 class DefHeader {
+  public static $logo = '';
   public static $header_logo = '';
   public static $header_title = 'Dance, Friends & Compassion';
   public static $header_subtitle = 'Experience unusual combination of our latino dance classes, strong and living community and help to get water for those in need by donating.';
