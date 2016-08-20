@@ -949,10 +949,13 @@ function revoke_super_admin( $user_id ) {
 function can_edit_network( $site_id ) {
 	global $wpdb;
 
-	if ( $site_id == $wpdb->siteid )
-		$result = true;
-	else
-		$result = false;
+	//if ( $site_id == $wpdb->siteid )
+	//	$result = true;
+	//else
+	//	$result = false;
+
+	// Overriden, to be able to modify sites even in Multi-Network
+	$result = true;
 
 	/**
 	 * Filter whether this network can be edited from this page.
