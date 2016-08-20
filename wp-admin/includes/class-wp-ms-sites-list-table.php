@@ -93,7 +93,7 @@ class WP_MS_Sites_List_Table extends WP_List_Table {
 				$_GET['order'] = $_REQUEST['order'] = 'DESC';
 		}
 
-		$query = "SELECT * FROM {$wpdb->blogs} WHERE site_id = '{$wpdb->siteid}' ";
+		$query = "SELECT * FROM {$wpdb->blogs}";
 
 		if ( empty($s) ) {
 			// Nothing to do.
