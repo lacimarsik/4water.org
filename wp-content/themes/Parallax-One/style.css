@@ -1508,6 +1508,26 @@ header .navbar-brand {
 	color: white;
 }
 
+/* Override mlp_widget (MultilingualPress language switcher) styles from plugin */
+.sticky-navigation .mlp_widget {
+	float: right;
+}
+
+.sticky-navigation .mlp_widget ul {
+	margin: 0;
+	padding-left: 0;
+}
+
+.sticky-navigation .mlp_widget img {
+	width: 30px;
+}
+
+/* Override widget_sp_image (Image widget) styles from plugin */
+
+.sticky-navigation .widget_sp_image {
+	float: left;
+}
+
 .menu-align-center .navbar-header,
 .menu-align-center .navbar-collapse {
 	width: 100%;
