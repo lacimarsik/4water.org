@@ -484,8 +484,7 @@ LIMIT 2";
 		$query = "
 SELECT blog_id, domain, path
 FROM {$this->wpdb->blogs}
-WHERE deleted = 0
-	AND site_id = '{$this->wpdb->siteid}'";
+WHERE deleted = 0";
 
 		return $this->wpdb->get_results( $query, ARRAY_A );
 	}
