@@ -47,6 +47,19 @@ function parallax_one_customize_register( $wp_customize ) {
       'panel' => 'panel_1'
   ));
 
+  /* Logo (we are showing this logo only on mobile screens but might be important for search engines */
+  $wp_customize->add_setting( 'paralax_one_logo', array(
+    'default' => parallax_get_file('/images/4water_menu.png'),
+    'sanitize_callback' => 'esc_url',
+    'transport' => 'postMessage'
+  ));
+
+  $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'paralax_one_logo', array(
+    'label'    => esc_html__( 'Menu Logo', 'parallax-one' ),
+    'section'  => 'parallax_one_header_content',
+    'priority'    => 1,
+  )));
+
   /* Header Logo */
   $wp_customize->add_setting( 'paralax_one_header_logo', array(
     'default' => parallax_get_file(DefHeader::$header_logo),
@@ -57,7 +70,7 @@ function parallax_one_customize_register( $wp_customize ) {
           'label'    => esc_html__( 'Header Logo', 'parallax-one' ),
           'section'  => 'parallax_one_header_content',
       'active_callback' => 'parallax_one_show_on_front',
-      'priority'    => 1
+      'priority'    => 2
   )));
 
   /* Header title */
@@ -70,7 +83,7 @@ function parallax_one_customize_register( $wp_customize ) {
     'label'    => esc_html__( 'Main title', 'parallax-one' ),
     'section'  => 'parallax_one_header_content',
     'active_callback' => 'parallax_one_show_on_front',
-    'priority'    => 2
+    'priority'    => 3
   ));
 
   /* Header subtitle */
@@ -83,7 +96,7 @@ function parallax_one_customize_register( $wp_customize ) {
     'label'    => esc_html__( 'Subtitle', 'parallax-one' ),
     'section'  => 'parallax_one_header_content',
     'active_callback' => 'parallax_one_show_on_front',
-    'priority'    => 3
+    'priority'    => 4
   ));
 
 
