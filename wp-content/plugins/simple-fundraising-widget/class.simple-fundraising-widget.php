@@ -98,7 +98,7 @@ class simple_fundraising_widget extends WP_Widget
   private static function get_defaults() {
     $defaults = array(
       'title' => 'Charity organisation',
-      'text' => 'raised till now',
+      'text' => 'raised to date',
       'raised' => 1000,
       'currency' => '£'
     );
