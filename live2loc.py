@@ -31,8 +31,9 @@ import live2loc_settings as st
 
 # file names for temporary or backup SQL files
 SQL_FILES_PREFIX = 'db-'
-LOCAL_DB_BCK_SQL = SQL_FILES_PREFIX + 'local-bck.sql'
-REMOTE_DB_SQL = SQL_FILES_PREFIX + 'remote-export.sql'
+OLD_LOCAL_DB_BCK_SQL = SQL_FILES_PREFIX + 'old-local-bck.sql'
+NEW_LOCAL_DB_SQL = SQL_FILES_PREFIX + 'new-local.sql'
+REMOTE_DB_SQL_COPY = SQL_FILES_PREFIX + 'remote-export-copy.sql'
 
 # ---------------------------------------------------------------
 # Methods
@@ -50,6 +51,7 @@ def print_help():
         Options:
         -h, --help:                shows this help
         -n, --nodl:                does not download the uploaded media
+        -s, --savesql:             keeps the all the SQL files after running
         """)
 
 def confirm(prompt=None, resp=False):
@@ -120,7 +122,7 @@ def download_uploads():
 
     download_dir_tree('wp-content/uploads')
 
-def import_wp_db(rem_sql_fname):
+def import_wp_db(rem_sql_fname, save_sql):
     """Imports the remote wordpress SQL database from the provided filename to localhost"""
 
     print("\n\n" + '*'*100 + "\n")
@@ -133,7 +135,7 @@ def import_wp_db(rem_sql_fname):
 
     #remove old backup of a local database
     print("Removing old backup of local database... ")
-    subprocess.call("rm " + LOCAL_DB_BCK_SQL, shell=True)
+    subprocess.call("rm " + OLD_LOCAL_DB_BCK_SQL, shell=True)
     print("OK")
 
     #backup local database
@@ -142,7 +144,7 @@ def import_wp_db(rem_sql_fname):
         st.LOCAL_USER_NAME, 
         local_pw,
         st.LOCAL_DB_NAME,
-        LOCAL_DB_BCK_SQL)
+        OLD_LOCAL_DB_BCK_SQL)
     output, _ = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE).communicate()
     print("OK")
 
@@ -150,19 +152,22 @@ def import_wp_db(rem_sql_fname):
     print("Modifying a few things in SQL file")
     with open(rem_sql_fname, 'r') as rem_sql_file:
         lines = rem_sql_file.readlines()
-    with open(REMOTE_DB_SQL, 'w') as rem_sql_file:
+    with open(NEW_LOCAL_DB_SQL, 'w') as rem_sql_file:
         for line in lines:
             if any(key in line for key in ['\'theme_mods_', '\'widget_']):
                 rem_sql_file.write(replace_links_preserving_format(line))
             else:
-                rem_sql_file.write(line.replace(st.REMOTE_URL, st.LOCAL_URL))
+                for url_subst in st.URL_SUBSTITUTIONS:
+                    line = line.replace(url_subst[0], url_subst[1])
+                rem_sql_file.write(line)
             
     print("OK")
 
     try:
         #find out which tables are gonna be imported from SQL file
         print("Finding out which tables are being imported from the SQL file...")
-        with open(REMOTE_DB_SQL, 'r') as rem_sql_file:
+        with open(NEW_LOCAL_DB_SQL
+        , 'r') as rem_sql_file:
             content = rem_sql_file.read()
             tables = re.findall(r'CREATE TABLE IF NOT EXISTS `(wp_.+)` \(', content)
 
@@ -183,17 +188,25 @@ def import_wp_db(rem_sql_fname):
             st.LOCAL_USER_NAME, 
             local_pw,
             st.LOCAL_DB_NAME,
-            REMOTE_DB_SQL)
+            NEW_LOCAL_DB_SQL
+        )
         output, _ = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE).communicate()
         print("OK")
     finally:
         #remove the modified export of remote DB
-        print("Removing the modified export of remote DB... ")
-        subprocess.call("rm " + REMOTE_DB_SQL, shell=True)
-        print("OK")
+        if not save_sql:
+            print("Removing the modified export of remote DB... ")
+            subprocess.call("rm " + NEW_LOCAL_DB_SQL
+            , shell=True)
+            print("OK")
+
+        if save_sql:
+            print("Copying the remote DB export... ")
+            subprocess.call("cp " + rem_sql_fname + " " + REMOTE_DB_SQL_COPY, shell=True)
+            print("OK")
 
     print("Finito! If something does not work, you still have a backup of the previous local DB at " + 
-        os.path.abspath(LOCAL_DB_BCK_SQL))
+        os.path.abspath(OLD_LOCAL_DB_BCK_SQL))
 
 def replace_links_preserving_format(line):
     """Replaces links in the certain database rows, preserving the special format.
@@ -201,19 +214,25 @@ def replace_links_preserving_format(line):
     Returns a new row
     """
 
-    diff = len(st.LOCAL_URL) - len(st.REMOTE_URL)
+    def _replace(_line, remote_url, local_url):
+        diff = len(local_url) - len(remote_url)
 
-    items = re.split(r'(s:\d+:)', line[:-1])
-    new_line = items[0]
-    for i in range(len(items) // 2):
-        length = int(re.search(r'(\d+)', items[2*i + 1]).group(0))
-        text = items[2*i + 2]
-        occ = text.count(st.REMOTE_URL)
-        text = text.replace(st.REMOTE_URL, st.LOCAL_URL)
-        entry = 's:{}:{}'.format(length + occ*diff, text)
-        new_line += entry
+        items = re.split(r'(s:\d+:)', _line[:-1])
+        new_line = items[0]
+        for i in range(len(items) // 2):
+            length = int(re.search(r'(\d+)', items[2*i + 1]).group(0))
+            text = items[2*i + 2]
+            occ = text.count(remote_url)
+            text = text.replace(remote_url, local_url)
+            entry = 's:{}:{}'.format(length + occ*diff, text)
+            new_line += entry
 
-    return new_line
+        return new_line + line[-1]
+ 
+    for url_subst in st.URL_SUBSTITUTIONS:
+        line = _replace(line, url_subst[0], url_subst[1])
+
+    return line
 
 # ---------------------------------------------------------------
 # Main
@@ -224,18 +243,21 @@ def main():
     argv = sys.argv[1:]
 
     try:
-        opts, args = getopt.getopt(argv, "hn",["help", "nodl"])
+        opts, args = getopt.getopt(argv, "hns",["help", "nodl", "savesql"])
     except getopt.GetoptError:
         print_help()
         sys.exit()
        
     dl = True
+    save_sql = False
     for opt, arg in opts:
         if opt in ('-h', "--help"):
             print_help()
             sys.exit()
         elif opt in ('-n', "--nodl"):
             dl = False
+        elif opt in ('-s', "--savesql"):
+            save_sql = True
         else:
             print("Unknown option")
             print_help()
@@ -248,7 +270,8 @@ def main():
     # import WP from given sql file
     if len(args) <= 0:
         return
-    import_wp_db(args[0])
+    import_wp_db(args[0], save_sql
+)
 
 
 if __name__ == '__main__':

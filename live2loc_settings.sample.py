@@ -1,8 +1,10 @@
 # Copy this file to live2loc_settings.py, set your settings and put the file to .gitignore
 
 # URLs
-LOCAL_URL = 'http://localhost/4water'
-REMOTE_URL = 'http://salsa.forma.sk'
+URL_SUBSTITUTIONS = [
+	('http://www.4water.org', 'http://localhost/html/4water'),
+	('4water.org', 'localhost/html/4water')
+]
 
 # DB names
 LOCAL_DB_NAME = 'weare4water'
