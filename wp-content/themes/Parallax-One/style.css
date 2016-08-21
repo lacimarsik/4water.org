@@ -4818,7 +4818,7 @@ footer.footer .team-member-box .team-member {
 
 /* THE OVERLAY COLORS WHICH WILL SHOW IN FRONT OF BACKGROUND IMAGES*/
 .overlay-layer-wrap {
-	background: rgba(0, 5, 8, 0.6);
+	background: rgba(0, 5, 8, 0.35);
 }
 
 .overlay-layer-2 {
