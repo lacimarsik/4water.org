@@ -1496,6 +1496,10 @@ header .navbar-brand {
 }
 
 /* Override simple-fundraising-widget styles from plugin */
+.sticky-navigation .sf-widget-wrapper {
+	clear: both;
+}
+
 .sticky-navigation .sf-widget-wrapper h3.widget-title {
 	color: white;
 }
