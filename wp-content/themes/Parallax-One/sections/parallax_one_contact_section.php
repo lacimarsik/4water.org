@@ -3,13 +3,7 @@
 ============================== -->
 <?php
   $parallax_one_contact_info_item = get_theme_mod('parallax_one_contact_info_content',
-    json_encode(
-      array(
-        array("icon_value" => "icon-basic-mail" ,"text" => "contact@site.com", "link" => "#" ),
-        array("icon_value" => "icon-basic-geolocalize-01" ,"text" => "Company address", "link" => "#" ),
-        array("icon_value" => "icon-basic-tablet" ,"text" => "0 332 548 954", "link" => "#" )
-      )
-    )
+    DefContact::$content
   );
 
   if( !empty($parallax_one_contact_info_item) ){
