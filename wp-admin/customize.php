@@ -134,6 +134,7 @@ do_action( 'customize_controls_print_scripts' );
 					<span class="preview-notice"><?php
 						echo sprintf( __( 'You are customizing %s' ), '<strong class="panel-title site-title">' . get_bloginfo( 'name' ) . '</strong>' );
 					?></span>
+					<div style="margin-top: 7px;">Show <a href="<?php $_SERVER['HTTP_HOST'] ?>/sample" target="_blank">Sample page</a></div>
 					<button class="customize-help-toggle dashicons dashicons-editor-help" aria-expanded="false"><span class="screen-reader-text"><?php _e( 'Help' ); ?></span></button>
 				</div>
 				<div class="customize-panel-description"><?php

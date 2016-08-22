@@ -952,7 +952,7 @@ function parallax_one_customizer_script() {
 
   ) );
 }
-add_action( 'customize_controls_enqueue_scripts', 'parallax_one_customizer_script' );
+//add_action( 'customize_controls_enqueue_scripts', 'parallax_one_customizer_script' );
 
 function parallax_one_is_contact_page() {
     return is_page_template('template-contact.php');
