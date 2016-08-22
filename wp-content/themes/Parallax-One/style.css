@@ -1405,7 +1405,7 @@ header .navbar-brand {
 	top: 100%;
 	left: -999em;
 	z-index: 99999;
-	background: #FFf;
+	background: #000;
 	list-style: none;
 	padding-left: 0;
 	margin-left: 0;
