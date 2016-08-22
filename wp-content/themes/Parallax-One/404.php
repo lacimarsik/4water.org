@@ -26,9 +26,9 @@
 					</header><!-- .page-header -->
 
 					<div class="page-content">
-						<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'parallax-one' ); ?></p>
+						<p><?php esc_html_e( 'It looks like nothing was found at this location.', 'parallax-one' ); ?></p>
 
-						<?php get_search_form(); ?>
+						<?php /* get_search_form(); */ ?>
 
 					</div><!-- .page-content -->
 				</section><!-- .error-404 -->
@@ -36,7 +36,7 @@
 			</main><!-- #main -->
 		</div><!-- #primary -->
 
-		<?php get_sidebar(); ?>
+		<?php /* get_sidebar(); */ ?>
 
 	</div>
 </div><!-- .content-wrap -->
