@@ -103,7 +103,7 @@
       $timeMin = $this->getWeekStart($timeInWeek);
       $timeMax = $this->getWeekEnd($timeInWeek);
       
-      $calendarId = 'primary';
+      $calendarId = '6vuhl5mspdfs9tht3tlgadenn8@group.calendar.google.com';
       $optParams = array(
         'maxResults' => 50,
         'orderBy' => 'startTime',
