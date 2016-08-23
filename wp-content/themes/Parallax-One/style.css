@@ -95,6 +95,8 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
    1.0 GOOGLE FONTS
 -----------------------------------------*/
 
+@import url(//fonts.googleapis.com/css?family=Cabin:400,600|Open+Sans:400,300,600);
+
 /*---------------------------------------
    1.1 CUSTOM FONTS
 -----------------------------------------*/
@@ -104,14 +106,12 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 	font-family: 'Avenir';
 	src: url(fonts/Avenir.ttc);
 	src: url(fonts/Avenir-Book.ttf) format('truetype');
-	src: url(fonts/Avenir-Book.woff) format('woff');
 }
 
 @font-face {
 	font-family: 'Avenir Next Condensed';
 	src: url(fonts/Avenir_Next_Condensed.ttc);
 	src: url(fonts/AvenirNextCondensed-Bold.ttf) format('truetype');
-	src: url(fonts/AvenirNextCondensed-Bold.woff) format('woff');
 }
 
 /*---------------------------------------
@@ -247,12 +247,12 @@ a:hover {
 -----------------------------------------*/
 /* HEADINGS */
 h1 {
-	font-family: 'Avenir Next Condensed', Helvetica Neue, Sans-serif;
+	font-family: 'Avenir Next Condensed', 'Cabin', Helvetica Neue, Sans-serif;
 	font-weight: 400;
 }
 
 h2 {
-	font-family: 'Avenir', Helvetica Neue, Sans-serif;
+	font-family: 'Avenir', 'Cabin', Helvetica Neue, Sans-serif;
 	font-weight: bolder;
 }
 
@@ -2418,7 +2418,7 @@ header {
 .timeline-box-wrap .info h1 a {
 	font-size: 22px;
 	line-height: 26px;
-    font-family: 'Avenir', Helvetica Neue, Sans-serif;
+    font-family: 'Cabin', Helvetica Neue, Sans-serif;
     font-weight: 400;	
 	color: #454545;
 }
@@ -4638,7 +4638,7 @@ footer.footer .footer-left-2 {
 }
 
 footer.footer .footer-heading {
-	font-family: 'Avenir Next Condensed', Helvetica Neue, Sans-serif;
+	font-family: 'Avenir Next Condensed', 'Cabin', Helvetica Neue, Sans-serif;
 	font-weight: bold;
 	text-align: left;
 	color: #888;
