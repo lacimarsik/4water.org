@@ -8,7 +8,7 @@ class DefHeader {
   public static $logo = '';
   public static $header_logo = '';
   public static $header_title = 'DANCE, COMMUNITY & CONTRIBUTION';
-  public static $header_subtitle = 'Experience the excitement of the 4Water community. Make friends, get fit, have fun and help us change the world through dance';
+  public static $header_subtitle = 'Experience the excitement of the 4Water community. Make friends, get fit, have fun and help us change the world through dance.';
   public static $header_button_text = '';
   public static $header_button_link = '';
 };
