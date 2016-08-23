@@ -1418,7 +1418,7 @@ header .navbar-brand {
 }
 
 header {
-	height: 500px;
+	max-height: 500px;
 }
 
 .navbar-brand > img {
