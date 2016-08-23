@@ -247,12 +247,12 @@ a:hover {
 -----------------------------------------*/
 /* HEADINGS */
 h1 {
-	font-family: 'Avenir Next Condensed', 'Cabin', Helvetica Neue, Sans-serif;
+	font-family: 'Avenir Next Condensed', Helvetica Neue, Sans-serif;
 	font-weight: 400;
 }
 
 h2 {
-	font-family: 'Avenir', 'Cabin', Helvetica Neue, Sans-serif;
+	font-family: 'Avenir', Helvetica Neue, Sans-serif;
 	font-weight: bolder;
 }
 
@@ -4638,7 +4638,7 @@ footer.footer .footer-left-2 {
 }
 
 footer.footer .footer-heading {
-	font-family: 'Avenir Next Condensed', 'Cabin', Helvetica Neue, Sans-serif;
+	font-family: 'Avenir Next Condensed', Helvetica Neue, Sans-serif;
 	font-weight: bold;
 	text-align: left;
 	color: #888;
