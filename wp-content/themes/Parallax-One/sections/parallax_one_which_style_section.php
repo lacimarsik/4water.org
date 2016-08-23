@@ -59,7 +59,7 @@
                   
                   //title
                   if(!empty($which_style->style)) {
-                    echo '<h3 class="which-style-box-title">'.esc_attr($which_style->style).'</h3>';
+                    echo '<h3 class="which-style-box-title dark-text">'.esc_attr($which_style->style).'</h3>';
                   }
                   
                   //video
