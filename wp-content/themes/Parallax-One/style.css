@@ -1379,7 +1379,7 @@ header .navbar-brand {
 .sticky-navigation .main-navigation li a {
 	line-height: 52px;
 	text-transform: uppercase;
-	padding: 10px 15px;
+	padding: 10px 14px;
 }
 
 .sticky-navigation .main-navigation .sub-menu li a {
@@ -6079,7 +6079,7 @@ h2.screen-reader-text {
 	}
 
 	.sticky-navigation .main-navigation > li.has_children > a {
-		padding: 10px 18px;
+		padding: 10px 14px;
 	}
 
 	.sticky-navigation .login-register {
