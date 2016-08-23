@@ -105,12 +105,14 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 @font-face {
 	font-family: 'Avenir';
 	src: url(fonts/Avenir.ttc);
+	src: url(fonts/Avenir-Book.woff) format('woff');
 	src: url(fonts/Avenir-Book.ttf) format('truetype');
 }
 
 @font-face {
 	font-family: 'Avenir Next Condensed';
 	src: url(fonts/Avenir_Next_Condensed.ttc);
+	src: url(fonts/AvenirNextCondensed-Bold.woff) format('woff');
 	src: url(fonts/AvenirNextCondensed-Bold.ttf) format('truetype');
 }
 
