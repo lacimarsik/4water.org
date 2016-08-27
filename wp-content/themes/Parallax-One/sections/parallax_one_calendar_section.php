@@ -27,7 +27,7 @@ $calendar_mode = get_theme_mod('calendar_mode', DefCalendar::$mode);
 <script src="<?= get_bloginfo("template_url"); ?>/inc/calendar/frontend/services/calendarModel.js"></script>
 <script src="<?= get_bloginfo("template_url"); ?>/inc/calendar/frontend/services/calendarApi.js"></script>
 
-<section id="calendar">    
+<section id="calendar" ng-app="4water">    
   <div class="section-overlay-layer">
     <div class="container">
       

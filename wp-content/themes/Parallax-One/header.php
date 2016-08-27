@@ -24,7 +24,7 @@
     <script src="<?= get_bloginfo("template_url"); ?>/js/angular.min.js"></script>
     <?php wp_head(); ?>
   </head>
-  <body <?php body_class(); ?> ng-app="4water">
+  <body <?php body_class(); ?>>
       
     <!-- =============================
        PRE LOADER       
