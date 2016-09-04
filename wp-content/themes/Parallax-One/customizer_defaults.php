@@ -134,7 +134,8 @@ DefManyThings::$content = json_encode(
 class DefPrices {
   public static $title = 'PRICES';
   public static $content;  //need to initialize later
-  public static $note = 'You\'ll pay at the entrance before each class. We are...'; 
+  public static $note = 'You\'ll pay at the entrance before each class. We are...';
+  public static $student_switch = true;
 };
 DefPrices::$content = json_encode(
   array(

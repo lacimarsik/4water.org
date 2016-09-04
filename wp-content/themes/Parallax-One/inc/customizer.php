@@ -543,7 +543,7 @@ function parallax_one_customize_register( $wp_customize ) {
     'active_callback' => 'parallax_one_show_on_front',
     'priority'    => 1
   ));
-  
+
   /* prices - note at the bottom */
   $wp_customize->add_setting('prices_note', array(
     'default' => esc_html__(DefPrices::$note,'parallax-one'),
@@ -556,7 +556,21 @@ function parallax_one_customize_register( $wp_customize ) {
     'active_callback' => 'parallax_one_show_on_front',
     'priority'    => 1
   ));
-  
+
+  /* prices - student switch */
+  $wp_customize->add_setting('prices_student_switch', array(
+    'default' => esc_html__(DefPrices::$student_switch,'parallax-one'),
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control('prices_student_switch', array(
+    'label'    => esc_html__('Student / Non-Student switch', 'parallax-one'),
+    'type' => 'checkbox',
+    'section'  => 'prices_section',
+    'active_callback' => 'parallax_one_show_on_front',
+    'priority'    => 1
+  ));
+
   /* prices */
   $wp_customize->add_setting( 
     'prices_content', 
@@ -578,7 +592,7 @@ function parallax_one_customize_register( $wp_customize ) {
           'type' => array('type' => 'text', 'label' => 'Type', 'placeholder' => 'ONE TIME ENTRY'),
           'desc' => array('type' => 'textarea', 'label' => 'Description', 'placeholder' => 'Come and taste...'),
           'length' => array('type' => 'text', 'label' => 'Length', 'placeholder' => '1 day (2 lessons...)'),
-          'student_price' => array('type' => 'text', 'label' => 'Student price', 'placeholder' => '70CZK'),
+          'student_price' => array('type' => 'text', 'label' => 'Student (default) price', 'placeholder' => '70CZK'),
           'non_student_price' => array('type' => 'text', 'label' => 'Non-student price', 'placeholder' => '100CZK'),
         )
       ) 
