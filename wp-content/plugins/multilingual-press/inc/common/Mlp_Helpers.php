@@ -456,7 +456,7 @@ class Mlp_Helpers {
 				$output .= '<li><a class="current-language-item" href="">' . $img . esc_html( $text ) . '</a></li>';
 			} else {
 				$output .= sprintf(
-					'<li><a rel="alternate" hreflang="%1$s" href="%2$s">%3$s%4$s</a></li>',
+					'<li><a rel="alternate" hreflang="%1$s" href="%2$s" title="Switch language to %1$s">%3$s%4$s</a></li>',
 					esc_attr( $item['http'] ),
 					esc_url( $item[ 'url' ] ),
 					$img,
