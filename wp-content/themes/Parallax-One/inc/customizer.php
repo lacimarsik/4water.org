@@ -614,18 +614,31 @@ function parallax_one_customize_register( $wp_customize ) {
   /****************** CONTACT OPTIONS  ********************/
   /********************************************************/
 
-  /* Map ShortCode  */
-  $wp_customize->add_setting( 'parallax_one_contact_map_shortcode', array(
-    'default' => '',
-    'sanitize_callback' => 'parallax_one_sanitize_text'
-  ));
-  $wp_customize->add_control( 'parallax_one_contact_map_shortcode', array(
-    'label'    => esc_html__( 'Map shortcode', 'parallax-one' ),
-    'description' => __('To use this section please install <a href="https://wordpress.org/plugins/intergeo-maps/">Intergeo Maps</a> plugin then use it to create a map and paste here the shortcode generated','parallax-one'),
-    'section'  => 'contact_section',
-    'active_callback' => 'parallax_one_show_on_front',
-    'priority'    => 1
-  ));
+  /* Maps */
+  $wp_customize->add_setting(
+    'maps_content',
+    array(
+      'sanitize_callback' => 'parallax_one_sanitize_text',
+      'default' => DefContact::$maps_content
+    )
+  );
+  $wp_customize->add_control(
+    new Parallax_One_General_Repeater(
+      $wp_customize,
+      'maps_content',
+      array(
+        'label' => esc_html__('Maps','parallax-one'),
+        'section' => 'contact_section',
+        'active_callback' => 'parallax_one_show_on_front',
+        'priority' => 1,
+        'fields' => array(
+          'shortcode' => array('type' => 'text', 'label' => 'Shortcode'),
+          'label' => array('type' => 'text', 'label' => 'Label', 'placeholder' => 'Salsa classes'),
+          'link' => array('type' => 'text', 'label' => 'Optional Link')
+        )
+      )
+    )
+  );
 
   /* Map show/hide */
 
