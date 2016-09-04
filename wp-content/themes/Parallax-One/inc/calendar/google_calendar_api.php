@@ -10,6 +10,23 @@
    * This class provides a wrapper API to access Google calendar data
    */
   class GoogleCalendarApi {
+    private $calendar_urls = array(
+      "/copenhagen/dance/" => "6vuhl5mspdfs9tht3tlgadenn8@group.calendar.google.com",
+      "/copenhagen/dance/dk/" => "6vuhl5mspdfs9tht3tlgadenn8@group.calendar.google.com",
+      "/glasgow/dance/" => "1h4evtbec0dgc92n3vh81e773s@group.calendar.google.com",
+      "/glasgow/language/" => "6vuhl5mspdfs9tht3tlgadenn8@group.calendar.google.com",
+      "/kuwait/dance/" => "6vuhl5mspdfs9tht3tlgadenn8@group.calendar.google.com",
+      "/linkoping/dance/" => "60ko8e3sv2movvuf5ll6bgnc6s@group.calendar.google.com",
+      "/linkoping/dance/se/" => "60ko8e3sv2movvuf5ll6bgnc6s@group.calendar.google.com",
+      "/lyon/dance/" => "6vuhl5mspdfs9tht3tlgadenn8@group.calendar.google.com",
+      "/lyon/dance/fr/" => "6vuhl5mspdfs9tht3tlgadenn8@group.calendar.google.com",
+      "/lyon/climbing/" => "6vuhl5mspdfs9tht3tlgadenn8@group.calendar.google.com",
+      "/lyon/climbing/fr/" => "6vuhl5mspdfs9tht3tlgadenn8@group.calendar.google.com",
+      "/manchester/yoga/" => "6vuhl5mspdfs9tht3tlgadenn8@group.calendar.google.com",
+      "/prague/dance/" => "p3insueeqtr06h7l658qj1aqi0@group.calendar.google.com",
+      "/prague/dance/cz/" => "19risi6pjr73kgg4dja1j18c2o@group.calendar.google.com"
+    );
+
     //----------------------------------------------
     // Constants
     //---------------------------------------------
@@ -102,8 +119,9 @@
       
       $timeMin = $this->getWeekStart($timeInWeek);
       $timeMax = $this->getWeekEnd($timeInWeek);
-      
-      $calendarId = '6vuhl5mspdfs9tht3tlgadenn8@group.calendar.google.com';
+
+      $current_site_path = parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH );
+      $calendarId = $this->calendar_urls[$current_site_path];
       $optParams = array(
         'maxResults' => 50,
         'orderBy' => 'startTime',
