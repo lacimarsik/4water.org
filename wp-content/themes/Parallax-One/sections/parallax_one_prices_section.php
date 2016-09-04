@@ -5,7 +5,8 @@
   $prices_title = get_theme_mod('prices_title', DefPrices::$title);
   $prices_content = get_theme_mod('prices_content', DefPrices::$content);
   $prices_note = get_theme_mod('prices_note', DefPrices::$note);
-  
+  $prices_student_switch = get_theme_mod('prices_student_switch', DefPrices::$student_switch);
+
   if(!empty($prices_title) || !empty($prices_content)) { ?>
     <section id="prices">
       <div class="section-overlay-layer">
@@ -20,7 +21,7 @@
               echo '<div class="colored-line paralax_one_only_customizer"></div>';
             } ?>
           </div>
-          
+
           <!-- PRICES -->
           <script>
             $(document).ready(function() {
@@ -35,14 +36,18 @@
               });
             });
           </script>
-          
-          <div id="student-switch-wrap">
-            <div id="student-switch">
+<?php
+          if ($prices_student_switch) {
+?>
+            <div id="student-switch-wrap">
+              <div id="student-switch">
                 <div class="student-switch-option student-switch-selected">Student</div>
                 <div class="student-switch-option">Non-Student</div>
+              </div>
             </div>
-          </div> <?php
-          
+<?php
+          }
+
           if(!empty($prices_content)) {
             $prices_decoded = json_decode($prices_content);
             echo '<div id="prices-wrap">';

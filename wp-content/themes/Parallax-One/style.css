@@ -1242,9 +1242,13 @@ section#prices {
 }
 
 div#prices-wrap {
-    padding: 40px 2% 30px 2%;
+    padding: 0px 2%;
     margin: 0 auto;
     text-align: center;
+}
+
+div#student-switch-wrap {
+	padding: 10px 0;
 }
 
 div.prices-box {
@@ -1317,7 +1321,7 @@ p.prices-value {
     
     div.prices-box {
         margin-bottom: 0px;
-        padding-top: 10px;
+        padding-top: 5px;
         padding-bottom: 10px;
     }
 }
