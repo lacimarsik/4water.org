@@ -11,8 +11,8 @@
    */
   class GoogleCalendarApi {
     private $calendar_urls = array(
-      "/copenhagen/dance/" => "6vuhl5mspdfs9tht3tlgadenn8@group.calendar.google.com",
-      "/copenhagen/dance/dk/" => "6vuhl5mspdfs9tht3tlgadenn8@group.calendar.google.com",
+      "/copenhagen/dance/" => "1jrcaffjahp7adu2nd1vdu6j0%40group.calendar.google.com",
+      "/copenhagen/dance/dk/" => "1jrcaffjahp7adu2nd1vdu6j0%40group.calendar.google.com",
       "/glasgow/dance/" => "1h4evtbec0dgc92n3vh81e773s@group.calendar.google.com",
       "/glasgow/language/" => "6vuhl5mspdfs9tht3tlgadenn8@group.calendar.google.com",
       "/kuwait/dance/" => "6vuhl5mspdfs9tht3tlgadenn8@group.calendar.google.com",
