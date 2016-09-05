@@ -136,6 +136,8 @@ class DefPrices {
   public static $content;  //need to initialize later
   public static $note = 'You\'ll pay at the entrance before each class. We are...';
   public static $student_switch = true;
+  public static $option_one = 'Student';
+  public static $option_two = 'Non-Student';
 };
 DefPrices::$content = json_encode(
   array(

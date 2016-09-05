@@ -6,6 +6,8 @@
   $prices_content = get_theme_mod('prices_content', DefPrices::$content);
   $prices_note = get_theme_mod('prices_note', DefPrices::$note);
   $prices_student_switch = get_theme_mod('prices_student_switch', DefPrices::$student_switch);
+  $prices_option_one = get_theme_mod('prices_option_one', DefPrices::$option_one);
+  $prices_option_two = get_theme_mod('prices_option_two', DefPrices::$option_two);
 
   if(!empty($prices_title) || !empty($prices_content)) { ?>
     <section id="prices">
@@ -41,8 +43,8 @@
 ?>
             <div id="student-switch-wrap">
               <div id="student-switch">
-                <div class="student-switch-option student-switch-selected">Student</div>
-                <div class="student-switch-option">Non-Student</div>
+                <div class="student-switch-option student-switch-selected"><?php echo $prices_option_one ?></div>
+                <div class="student-switch-option"><?php echo $prices_option_two ?></div>
               </div>
             </div>
 <?php
