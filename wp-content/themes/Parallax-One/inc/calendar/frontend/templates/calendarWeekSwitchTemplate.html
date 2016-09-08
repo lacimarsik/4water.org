@@ -2,13 +2,13 @@
     <div 
         class="week-switch-option switch-option" 
         ng-class="{ 'switch-selected': !weekIndex }"
-        ng-click='weekIndex = 0'
-        ng-include="getButtonTranslation('calendar-this-week')">
+        ng-click='weekIndex = 0'>
+        {{getButtonTranslation('calendar-this-week')}}
     </div>
     <div 
         class="week-switch-option switch-option" 
         ng-class="{ 'switch-selected': weekIndex === 1 }"
-        ng-click='weekIndex = 1'
-        ng-include="getButtonTranslation('calendar-next-week')">
+        ng-click='weekIndex = 1'>
+        {{getButtonTranslation('calendar-next-week')}}
     </div>
 </div>
