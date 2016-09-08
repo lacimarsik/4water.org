@@ -235,4 +235,6 @@ DefSocial::$content = json_encode(
 class DefCalendar {
   public static $title = 'WHEN and WHERE?';
   public static $mode = 'condensed';
+  public static $this_week = 'This week';
+  public static $next_week = 'Next week';
 };
