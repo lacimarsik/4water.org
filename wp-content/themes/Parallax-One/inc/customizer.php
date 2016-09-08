@@ -571,6 +571,32 @@ function parallax_one_customize_register( $wp_customize ) {
     'priority'    => 1
   ));
 
+  /* prices - option one */
+  $wp_customize->add_setting('prices_option_one', array(
+    'default' => esc_html__(DefPrices::$option_one,'parallax-one'),
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control('prices_option_one', array(
+    'label'    => esc_html__('Option 1', 'parallax-one'),
+    'section'  => 'prices_section',
+    'active_callback' => 'parallax_one_show_on_front',
+    'priority'    => 1
+  ));
+
+  /* prices - option two */
+  $wp_customize->add_setting('prices_option_two', array(
+    'default' => esc_html__(DefPrices::$option_two,'parallax-one'),
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control('prices_option_two', array(
+    'label'    => esc_html__('Option 2', 'parallax-one'),
+    'section'  => 'prices_section',
+    'active_callback' => 'parallax_one_show_on_front',
+    'priority'    => 1
+  ));
+
   /* prices */
   $wp_customize->add_setting( 
     'prices_content', 
@@ -838,7 +864,7 @@ function parallax_one_customize_register( $wp_customize ) {
 		'priority'    => 1
 	));
         
-        /* calendar mode */
+  /* calendar mode */
 	$wp_customize->add_setting('calendar_mode', array(
 		'default' => DefCalendar::$mode,
 		'sanitize_callback' => 'parallax_one_sanitize_text',
@@ -852,6 +878,32 @@ function parallax_one_customize_register( $wp_customize ) {
 		'active_callback' => 'parallax_one_show_on_front',
 		'priority'    => 1
 	));
+  
+  /* calendar - this week */
+  $wp_customize->add_setting('calendar_this_week', array(
+    'default' => DefCalendar::$this_week,
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control('calendar_this_week', array(
+    'label'    => esc_html__('This week', 'parallax-one'),
+    'section'  => 'calendar_section',
+    'active_callback' => 'parallax_one_show_on_front',
+    'priority'    => 1
+  ));
+  
+  /* calendar - next week */
+  $wp_customize->add_setting('calendar_next_week', array(
+    'default' => DefCalendar::$next_week,
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control('calendar_next_week', array(
+    'label'    => esc_html__('Next week', 'parallax-one'),
+    'section'  => 'calendar_section',
+    'active_callback' => 'parallax_one_show_on_front',
+    'priority'    => 1
+  ));
 
   /* Calendar show/hide */
 

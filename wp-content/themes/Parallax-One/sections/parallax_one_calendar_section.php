@@ -5,6 +5,8 @@
 
 $calendar_title = get_theme_mod('calendar_title', DefCalendar::$title);
 $calendar_mode = get_theme_mod('calendar_mode', DefCalendar::$mode);
+$calendar_this_week = get_theme_mod('calendar_this_week', DefCalendar::$this_week);
+$calendar_next_week = get_theme_mod('calendar_next_week', DefCalendar::$next_week);
 
 ?>
 
@@ -60,6 +62,8 @@ $calendar_mode = get_theme_mod('calendar_mode', DefCalendar::$mode);
           <div id="cal-switches">
             <calendar-week-switch></calendar-week-switch>
           </div>
+          <div id="calendar-this-week" style="display: none;"><?php echo $calendar_this_week ?></div>
+          <div id="calendar-next-week" style="display: none;"><?php echo $calendar_next_week ?></div>
         </div>
         
       </div>
