@@ -4,6 +4,7 @@
 <?php
   $which_style_title = get_theme_mod('which_style_title',  DefWhichStyle::$title);
   $which_style_subtitle = get_theme_mod('which_style_subtitle',  DefWhichStyle::$subtitle);
+  $which_style_use_videos = get_theme_mod('which_style_use_videos',  DefWhichStyle::$use_videos);
   $which_style_dances = get_theme_mod('which_style_content', DefWhichStyle::$content);
           
   if(!empty($which_style_title) || 
@@ -61,23 +62,34 @@
                   if(!empty($which_style->style)) {
                     echo '<h3 class="which-style-box-title dark-text">'.esc_attr($which_style->style).'</h3>';
                   }
-                  
-                  //video
-                  if( !empty($which_style->url)) { ?>
-                    <div class="which-style-video-container">
-                      <iframe 
-                          class="iframe-which-style-video" 
-                          id="frame<?=$counter?>" 
-                          src="<?=esc_url($which_style->url)?>" 
-                          frameborder="0" 
+
+                  if ($which_style_use_videos) {
+  
+                    //video
+                    if (!empty($which_style->url)) { ?>
+                      <div class="which-style-video-container">
+                        <iframe
+                          class="iframe-which-style-video"
+                          id="frame<?= $counter ?>"
+                          src="<?= esc_url($which_style->url) ?>"
+                          frameborder="0"
                           allowfullscreen>
-                      </iframe>
-                      <script type="text/javascript">
-                        //this is to refresh when changes are made
-                        document.getElementById("frame<?=$counter?>").src=
-                          document.getElementById("frame<?=$counter?>").src;
-                      </script>
-                    </div> <?php
+                        </iframe>
+                        <script type="text/javascript">
+                          //this is to refresh when changes are made
+                          document.getElementById("frame<?=$counter?>").src =
+                            document.getElementById("frame<?=$counter?>").src;
+                        </script>
+                      </div> <?php
+                    }
+                  } else {
+
+                    //image
+                    if (!empty($which_style->image)) { ?>
+                      <div class="which-style-image-container">
+                        <?php echo '<img class="which-style-image" src="'.$which_style->image.'" title="'.$which_style->style.'" alt="'.$which_style->style.'">'; ?>
+                      </div> <?php
+                    }
                   }
 
                   //text

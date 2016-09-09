@@ -180,6 +180,20 @@ function parallax_one_customize_register( $wp_customize ) {
     'title'       => esc_html__('Introduction section', 'parallax-one'),
     'priority'    => 32,
   ));
+  
+  /* Introduction - Use video */
+  
+  $wp_customize->add_setting('intro_use_video', array(
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'default' => DefIntro::$use_video
+  ));
+  $wp_customize->add_control(
+    'intro_use_video', array(
+    'type' => 'checkbox',
+    'label' => __('Use video instead of image?', 'parallax-one'),
+    'section' => 'intro_section',
+    'priority' => 1,
+  ));
 
   /* Introduction video link */
   $wp_customize->add_setting('intro_video_link', array(
@@ -202,6 +216,32 @@ function parallax_one_customize_register( $wp_customize ) {
   ));
   $wp_customize->add_control('intro_video_caption', array(
     'label'    => esc_html__('Video caption', 'parallax-one' ),
+    'section'  => 'intro_section',
+    'active_callback' => 'parallax_one_show_on_front',
+    'priority'    => 1
+  ));
+  
+  /* Introduction image */
+  $wp_customize->add_setting('intro_image', array(
+    'default' => parallax_get_file(DefIntro::$image),
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'intro_image', array(
+    'label'    => esc_html__('Introduction image', 'parallax-one'),
+    'section'  => 'intro_section',
+    'active_callback' => 'parallax_one_show_on_front',
+    'priority'    => 1
+  )));
+  
+  /* Introduction image caption */
+  $wp_customize->add_setting('intro_image_caption', array(
+    'default' => esc_html__(DefIntro::$image_caption,'parallax-one'),
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control('intro_image_caption', array(
+    'label'    => esc_html__('Introduction image caption', 'parallax-one'),
     'section'  => 'intro_section',
     'active_callback' => 'parallax_one_show_on_front',
     'priority'    => 1
@@ -279,6 +319,20 @@ function parallax_one_customize_register( $wp_customize ) {
     'active_callback' => 'parallax_one_show_on_front',
     'priority'    => 2
   ));
+  
+  /* Which style - Use videos */
+  
+  $wp_customize->add_setting('which_style_use_videos', array(
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'default' => DefWhichStyle::$use_videos
+  ));
+  $wp_customize->add_control(
+    'which_style_use_videos', array(
+    'type' => 'checkbox',
+    'label' => __('Use videos instead of images?', 'parallax-one'),
+    'section' => 'which_style_section',
+    'priority' => 1,
+  ));
     
   /* Which style content */
   $wp_customize->add_setting(
@@ -300,6 +354,7 @@ function parallax_one_customize_register( $wp_customize ) {
         'fields' => array(
           'style' => array('type' => 'text', 'label' => 'Style', 'placeholder' => 'CUBAN SALSA'),
           'url' => array('type' => 'text', 'label' => 'Video embed URL', 'placeholder' => 'https://www.youtube.com/embed/bs8SU24k8P4'),
+          'image' => array('type' => 'image', 'label' => 'Image'),
           'desc' => array('type' => 'textarea', 'label' => 'Description', 'placeholder' => 'Fun, exciting...'),
         )
       ) 
