@@ -452,7 +452,10 @@ function parallax_one_customize_register( $wp_customize ) {
 
   /* call to action show/hide */
 
-  $wp_customize->add_setting('parallax_one_call_to_action_show', array('sanitize_callback' => 'parallax_one_sanitize_text'));
+  $wp_customize->add_setting('parallax_one_call_to_action_show', array(
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'default' => DefCallToAction::$show
+  ));
   $wp_customize->add_control(
     'parallax_one_call_to_action_show', array(
     'type' => 'checkbox',
