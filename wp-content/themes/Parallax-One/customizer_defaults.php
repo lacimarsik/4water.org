@@ -18,8 +18,11 @@ class DefHeader {
 /********************************************************/
 
 class DefIntro {
+  public static $use_video = true;
   public static $video_link = 'https://www.youtube.com/embed/bs8SU24k8P4';
   public static $video_caption = 'Don\'t believe us? Check the video';
+  public static $image = '/images/4water_menu.png';
+  public static $image_caption = '4Water';
   public static $title = 'Heeey, welcome on SALSA4WATER GLASGOW!';
   public static $text = 'Lorem ipsum dolor sit amet...';
 };

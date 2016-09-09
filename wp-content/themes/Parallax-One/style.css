@@ -947,6 +947,11 @@ div#intro-video-container {
     }    
 }
 
+div#intro-image-container {
+	position: relative;
+	text-align: center;
+}
+
 /* The rest */
 
 p#intro-video-text {
@@ -1835,6 +1840,10 @@ header {
     font-family: 'Avenir Next Condensed', 'Open Sans';
 	text-shadow: 1px 1px 5px rgba(20, 20, 20, 0.8);
     max-width: 750px;
+}
+
+.intro-image {
+	width: 320px;
 }
 
 .intro-section h1 {
