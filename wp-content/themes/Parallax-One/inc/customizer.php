@@ -450,6 +450,20 @@ function parallax_one_customize_register( $wp_customize ) {
     )
   );
 
+  /* call to action big buttons */
+  
+  $wp_customize->add_setting('call_to_action_big_buttons', array(
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'default' => DefCallToAction::$big_buttons
+  ));
+  $wp_customize->add_control(
+    'call_to_action_big_buttons', array(
+    'type' => 'checkbox',
+    'label' => __('Use big buttons', 'parallax-one'),
+    'section' => 'call_to_action_section',
+    'priority' => 4,
+  ));
+
   /* call to action show/hide */
 
   $wp_customize->add_setting('parallax_one_call_to_action_show', array(
@@ -461,7 +475,7 @@ function parallax_one_customize_register( $wp_customize ) {
     'type' => 'checkbox',
     'label' => __('Hide call to action section?', 'parallax-one'),
     'section' => 'call_to_action_section',
-    'priority' => 4,
+    'priority' => 5,
   ));
 
   /********************************************************/

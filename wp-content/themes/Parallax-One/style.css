@@ -1102,18 +1102,26 @@ div#call-to-action-wrap {
 	text-align: center;
 }
 
-div.call-to-action-row .call-to-action-box:nth-child(even) a.call-to-action-button {
+div.call-to-action-row .call-to-action-box:nth-child(even) a.call-to-action-button, div.call-to-action-row .call-to-action-box:nth-child(even) a.call-to-action-button-big {
 	background-color: #d0041b;
 	border-color: #f31630;
 }
 
-div.call-to-action-row .call-to-action-box:nth-child(even) a.call-to-action-button:hover {
+div.call-to-action-row .call-to-action-box:nth-child(even) a.call-to-action-button:hover, div.call-to-action-row .call-to-action-box:nth-child(even) a.call-to-action-button-big:hover {
 	background-color: #f31630;
+}
+
+a.call-to-action-button a.call-to-action-button-big {
+	background-color: #3a98cb;
 }
 
 a.call-to-action-button {
 	padding: 6px 24px;
-	background-color: #3a98cb;
+}
+
+a.call-to-action-button-big {
+	padding: 9px 36px;
+	font-size: 1.2em;
 }
 
 div.call-to-action-box {

@@ -6,6 +6,7 @@
   $call_to_action_text = get_theme_mod('call_to_action_text', DefCallToAction::$text);
   $call_to_action_content = get_theme_mod('call_to_action_content', DefCallToAction::$content);
   $call_to_action_note = get_theme_mod('call_to_action_note', DefCallToAction::$note);
+  $call_to_action_big_buttons = get_theme_mod('call_to_action_big_buttons', DefCallToAction::$big_buttons);
 
   if(!empty($call_to_action_title) ||
      !empty($call_to_action_title) ||
@@ -43,11 +44,15 @@
                       echo '</div>';
                     }
                     echo '<div class="call-to-action-row">';
-                  }
-                  
-                  echo '<div class="call-to-action-box">';
-                  echo '<a class="call-to-action-button btn btn-info" href="'.esc_attr($call_to_action_item->link).'">'.esc_attr($call_to_action_item->text).'</a>';
-                  echo '</div>';
+                  } ?>
+                  <div class="call-to-action-box">
+                    <a
+                        class="<?php if ($call_to_action_big_buttons) { echo 'call-to-action-button-big'; } else { echo 'call-to-action-button'; } ?> btn btn-info"
+                        href="<?php echo esc_attr($call_to_action_item->link) ?>">
+                      <?php echo esc_attr($call_to_action_item->text) ?>
+                    </a>
+                  </div>
+                  <?php
                   $counter++;
                 }
               }
