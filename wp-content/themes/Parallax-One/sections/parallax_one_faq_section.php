@@ -38,7 +38,7 @@
                       <?php echo $faq_item->question; ?>
                     </div>
                     <div class="faq-answer">
-                      <?php echo $faq_item->answer; ?>
+                      <?php echo nl2br($faq_item->answer); ?>
                     </div>
                   </div>
                   <?php
