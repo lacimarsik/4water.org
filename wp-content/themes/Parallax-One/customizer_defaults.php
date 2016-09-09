@@ -263,3 +263,29 @@ DefCallToAction::$content = json_encode(
     )
   )
 );
+
+/********************************************************/
+/************************ FAQ ***************************/
+/********************************************************/
+
+class DefFaq {
+  public static $title = 'F.A.Q.';
+  public static $content; //need to initialize later
+  public static $hide = true;
+};
+DefFaq::$content = json_encode(
+  array(
+    array(
+      'question' => esc_html__('Why join Language4water?', 'parallax-one'),
+      'answer' => esc_html__('We offer language classes at affordable prices, and by attending a 10-week block of language classes, you will provide two people in need with the access to clean water, sanitation and hygiene education.', 'parallax-one')
+    ),
+    array(
+      'question' => esc_html__('When do the classes start?', 'parallax-one'),
+      'answer' => esc_html__('Our 10-week course is starting the week of the 26th of September 2016 running until the one of the 28th of November. We offer classes for 15 different languages from across the world.', 'parallax-one')
+    ),
+    array(
+      'question' => esc_html__('Where are the classes?', 'parallax-one'),
+      'answer' => esc_html__('The classes take place in the Queen Margaret Union (22 University Gardens, Glasgow), in the Committee Room 4. Check the map at the bottom of the page.', 'parallax-one')
+    )
+  )
+);

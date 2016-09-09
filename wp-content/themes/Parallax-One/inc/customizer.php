@@ -376,7 +376,6 @@ function parallax_one_customize_register( $wp_customize ) {
     'priority' => 4,
   ));
 
-
   /********************************************************/
   /*************** CALL TO ACTION OPTIONS *****************/
   /********************************************************/
@@ -561,6 +560,67 @@ function parallax_one_customize_register( $wp_customize ) {
     'label' => __('Hide how we teach section?', 'parallax-one'),
     'section' => 'how_we_teach_section',
     'priority' => 3,
+  ));
+
+  /********************************************************/
+  /********************* FAQ OPTIONS **********************/
+  /********************************************************/
+
+  $wp_customize->add_section('faq_section', array(
+    'title'       => esc_html__('F.A.Q. section', 'parallax-one'),
+    'priority'    => 32,
+  ));
+
+  /* FAQ - title */
+  $wp_customize->add_setting('faq_title', array(
+    'default' => DefFaq::$title,
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control('faq_title', array(
+    'label'    => esc_html__('Title', 'parallax-one'),
+    'section'  => 'faq_section',
+    'active_callback' => 'parallax_one_show_on_front',
+    'priority'    => 1
+  ));
+
+  /* FAQ content */
+  $wp_customize->add_setting(
+    'faq_content',
+    array(
+      'sanitize_callback' => 'parallax_one_sanitize_text',
+      'default' => DefFaq::$content
+    )
+  );
+  $wp_customize->add_control(
+    new Parallax_One_General_Repeater(
+      $wp_customize,
+      'faq_content',
+      array(
+        'label' => esc_html__('Add F.A.Q.','parallax-one'),
+        'section' => 'faq_section',
+        'active_callback' => 'parallax_one_show_on_front',
+        'priority' => 3,
+        'fields' => array(
+          'question' => array('type' => 'text', 'label' => 'Question', 'placeholder' => 'Why join 4Water?'),
+          'answer' => array('type' => 'text', 'label' => 'Answer', 'placeholder' => "It's just awesome!"),
+        )
+      )
+    )
+  );
+
+  /* FAQ show/hide */
+
+  $wp_customize->add_setting('parallax_one_faq_show', array(
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'default' => DefFaq::$hide
+  ));
+  $wp_customize->add_control(
+    'parallax_one_faq_show', array(
+    'type' => 'checkbox',
+    'label' => __('Hide F.A.Q. section?', 'parallax-one'),
+    'section' => 'faq_section',
+    'priority' => 5,
   ));
 
   /********************************************************/
