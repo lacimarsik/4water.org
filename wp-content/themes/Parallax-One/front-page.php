@@ -26,6 +26,11 @@
         array_push($not_hidden_sections, 'sections/parallax_one_why_us_section');
       endif;
 
+      $parallax_one_call_to_action_show = get_theme_mod('parallax_one_call_to_action_show');
+      if (isset($parallax_one_call_to_action_show) && $parallax_one_call_to_action_show != 1):
+        array_push($not_hidden_sections, 'sections/parallax_one_call_to_action_section');
+      endif;
+
       $parallax_one_how_we_teach_show = get_theme_mod('parallax_one_how_we_teach_show');
       if (isset($parallax_one_how_we_teach_show) && $parallax_one_how_we_teach_show != 1):
         array_push($not_hidden_sections, 'sections/parallax_one_how_we_teach_section');

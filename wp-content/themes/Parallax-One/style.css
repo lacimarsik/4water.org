@@ -1076,6 +1076,67 @@ img.why-us-img {
 }
 
 /*---------------------------------------
+   CALL TO ACTION
+-----------------------------------------*/
+
+section#call-to-action {
+	padding-bottom: 30px;
+}
+
+div.call-to-action-text {
+	text-align: center;
+	width: 65%;
+	margin: 0 auto;
+}
+
+div.call-to-action-note {
+	text-align: center;
+	width: 65%;
+	margin: 0 auto;
+	font-size: 0.8em;
+}
+
+div#call-to-action-wrap {
+	padding: 20px 2% 30px 2%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+div.call-to-action-row .call-to-action-box:nth-child(even) a.call-to-action-button {
+	background-color: #d0041b;
+	border-color: #f31630;
+}
+
+div.call-to-action-row .call-to-action-box:nth-child(even) a.call-to-action-button:hover {
+	background-color: #f31630;
+}
+
+a.call-to-action-button {
+	padding: 6px 24px;
+	background-color: #3a98cb;
+}
+
+div.call-to-action-box {
+	text-align: center;
+	padding: 0 15px;
+	display: inline;
+}
+
+/* when why-us boxes are next to each other in wider viewport */
+
+@media (min-width: 992px) {
+	div.call-to-action-row {
+		width: 100%;
+	}
+
+	div.call-to-action-box {
+		margin-bottom: 0px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+}
+
+/*---------------------------------------
    HOW WE TEACH
 -----------------------------------------*/
 
