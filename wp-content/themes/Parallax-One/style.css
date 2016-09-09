@@ -1131,7 +1131,7 @@ div.call-to-action-box {
 	display: inline;
 }
 
-/* when why-us boxes are next to each other in wider viewport */
+/* when call-to-action boxes are next to each other in wider viewport */
 
 @media (min-width: 992px) {
 	div.call-to-action-row {
@@ -1187,6 +1187,51 @@ img.how-we-teach-image {
     margin: auto;
     vertical-align: middle;
     height: 200px;
+}
+
+/*---------------------------------------
+   F.A.Q.
+-----------------------------------------*/
+
+section#faq {
+	padding-bottom: 30px;
+	background-color: #3a98cb;
+	color: white;
+}
+
+#faq .section-header h2 {
+	color: white;
+}
+
+div#faq-wrap {
+	padding: 5px 2% 30px 2%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+div.faq-box {
+	text-align: left;
+	padding: 0 15px;
+	display: inline;
+}
+
+div.faq-question {
+	font-weight: bold;
+	padding-bottom: 15px;
+}
+
+/* when faq boxes are next to each other in wider viewport */
+
+@media (min-width: 992px) {
+	div.faq-row {
+		width: 100%;
+	}
+
+	div.faq-box {
+		margin-bottom: 0px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
 }
 
 /*---------------------------------------
