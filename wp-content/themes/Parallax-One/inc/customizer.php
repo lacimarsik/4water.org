@@ -376,6 +376,91 @@ function parallax_one_customize_register( $wp_customize ) {
     'priority' => 4,
   ));
 
+
+  /********************************************************/
+  /*************** CALL TO ACTION OPTIONS *****************/
+  /********************************************************/
+
+  $wp_customize->add_section('call_to_action_section', array(
+    'title'       => esc_html__('Call to action section', 'parallax-one'),
+    'priority'    => 32,
+  ));
+
+  /* call to action - title */
+  $wp_customize->add_setting('call_to_action_title', array(
+    'default' => DefCallToAction::$title,
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control('call_to_action_title', array(
+    'label'    => esc_html__('Title', 'parallax-one'),
+    'section'  => 'call_to_action_section',
+    'active_callback' => 'parallax_one_show_on_front',
+    'priority'    => 1
+  ));
+
+  /* call to action - text */
+  $wp_customize->add_setting('call_to_action_text', array(
+    'default' => DefCallToAction::$text,
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control('call_to_action_text', array(
+    'label'    => esc_html__('Text', 'parallax-one'),
+    'section'  => 'call_to_action_section',
+    'active_callback' => 'parallax_one_show_on_front',
+    'priority'    => 1
+  ));
+
+  /* call to action - note */
+  $wp_customize->add_setting('call_to_action_note', array(
+    'default' => DefCallToAction::$note,
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control('call_to_action_note', array(
+    'label'    => esc_html__('Note', 'parallax-one'),
+    'section'  => 'call_to_action_section',
+    'active_callback' => 'parallax_one_show_on_front',
+    'priority'    => 1
+  ));
+
+  /* Call to action content */
+  $wp_customize->add_setting(
+    'call_to_action_content',
+    array(
+      'sanitize_callback' => 'parallax_one_sanitize_text',
+      'default' => DefCallToAction::$content
+    )
+  );
+  $wp_customize->add_control(
+    new Parallax_One_General_Repeater(
+      $wp_customize,
+      'call_to_action_content',
+      array(
+        'label' => esc_html__('Add new call to action button','parallax-one'),
+        'section' => 'call_to_action_section',
+        'active_callback' => 'parallax_one_show_on_front',
+        'priority' => 3,
+        'fields' => array(
+          'text' => array('type' => 'text', 'label' => 'Button text'),
+          'link' => array('type' => 'text', 'label' => 'Link to open after clicking', 'placeholder' => 'http://4water.org'),
+        )
+      )
+    )
+  );
+
+  /* call to action show/hide */
+
+  $wp_customize->add_setting('parallax_one_call_to_action_show', array('sanitize_callback' => 'parallax_one_sanitize_text'));
+  $wp_customize->add_control(
+    'parallax_one_call_to_action_show', array(
+    'type' => 'checkbox',
+    'label' => __('Hide call to action section?', 'parallax-one'),
+    'section' => 'calendar_section',
+    'priority' => 4,
+  ));
+
   /********************************************************/
   /****************** HOW WE TEACH OPTIONS ****************/
   /********************************************************/
@@ -912,85 +997,6 @@ function parallax_one_customize_register( $wp_customize ) {
     'parallax_one_calendar_show', array(
     'type' => 'checkbox',
     'label' => __('Hide calendar section?', 'parallax-one'),
-    'section' => 'calendar_section',
-    'priority' => 4,
-  ));
-
-  /********************************************************/
-  /*************** CALL TO ACTION OPTIONS *****************/
-  /********************************************************/
-
-  /* call to action - title */
-  $wp_customize->add_setting('call_to_action_title', array(
-    'default' => DefCallToAction::$title,
-    'sanitize_callback' => 'parallax_one_sanitize_text',
-    'transport' => 'postMessage'
-  ));
-  $wp_customize->add_control('call_to_action_title', array(
-    'label'    => esc_html__('Title', 'parallax-one'),
-    'section'  => 'calendar_section',
-    'active_callback' => 'parallax_one_show_on_front',
-    'priority'    => 1
-  ));
-
-  /* call to action - text */
-  $wp_customize->add_setting('call_to_action_text', array(
-    'default' => DefCallToAction::$text,
-    'sanitize_callback' => 'parallax_one_sanitize_text',
-    'transport' => 'postMessage'
-  ));
-  $wp_customize->add_control('call_to_action_text', array(
-    'label'    => esc_html__('Text', 'parallax-one'),
-    'section'  => 'calendar_section',
-    'active_callback' => 'parallax_one_show_on_front',
-    'priority'    => 1
-  ));
-
-  /* call to action - note */
-  $wp_customize->add_setting('call_to_action_note', array(
-    'default' => DefCallToAction::$note,
-    'sanitize_callback' => 'parallax_one_sanitize_text',
-    'transport' => 'postMessage'
-  ));
-  $wp_customize->add_control('call_to_action_note', array(
-    'label'    => esc_html__('Note', 'parallax-one'),
-    'section'  => 'calendar_section',
-    'active_callback' => 'parallax_one_show_on_front',
-    'priority'    => 1
-  ));
-
-  /* Call to action content */
-  $wp_customize->add_setting(
-    'why_us_content',
-    array(
-      'sanitize_callback' => 'parallax_one_sanitize_text',
-      'default' => DefCallToAction::$content
-    )
-  );
-  $wp_customize->add_control(
-    new Parallax_One_General_Repeater(
-      $wp_customize,
-      'call_to_action_content',
-      array(
-        'label' => esc_html__('Add new call to action button','parallax-one'),
-        'section' => 'call_to_action_section',
-        'active_callback' => 'parallax_one_show_on_front',
-        'priority' => 3,
-        'fields' => array(
-          'text' => array('type' => 'text', 'label' => 'Button text'),
-          'link' => array('type' => 'text', 'label' => 'Link to open after clicking', 'placeholder' => 'http://4water.org'),
-        )
-      )
-    )
-  );
-
-  /* call to action show/hide */
-
-  $wp_customize->add_setting('parallax_one_call_to_action_show', array('sanitize_callback' => 'parallax_one_sanitize_text'));
-  $wp_customize->add_control(
-    'parallax_one_call_to_action_show', array(
-    'type' => 'checkbox',
-    'label' => __('Hide call to action section?', 'parallax-one'),
     'section' => 'calendar_section',
     'priority' => 4,
   ));
