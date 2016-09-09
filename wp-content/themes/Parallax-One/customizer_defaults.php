@@ -34,6 +34,7 @@ class DefIntro {
 class DefWhichStyle {
   public static $title = 'DANCE4WATER STYLES';
   public static $subtitle = 'Introductory text';
+  public static $use_videos = true;
   public static $content;  //need to initialize later
 };
 DefWhichStyle::$content = json_encode(
@@ -42,16 +43,19 @@ DefWhichStyle::$content = json_encode(
       'style' => esc_html__('CUBAN SALSA','parallax-one'),
       'desc' => esc_html__('Description of the dance and blabla','parallax-one'),
       'url' => esc_html__('https://www.youtube.com/embed/bs8SU24k8P4', 'parallax-one'),
+      'image' => parallax_get_file('/images/regular_classes.jpg')
     ),
     array(
       'style' => esc_html__('BACHATA','parallax-one'),
       'desc' => esc_html__('Description of bachata and blabla','parallax-one'),
       'url' => esc_html__('https://www.youtube.com/embed/iCVQmEeBfbU', 'parallax-one'),
+      'image' => parallax_get_file('/images/events.jpg')
     ),
     array(
       'style' => esc_html__('ZOUK','parallax-one'),
       'desc' => esc_html__('Description of zouk and blabla','parallax-one'),
       'url' => esc_html__('https://www.youtube.com/embed/_QkP168_Ltc', 'parallax-one'),
+      'image' => parallax_get_file('/images/night_out.jpg')
     )
   )
 );

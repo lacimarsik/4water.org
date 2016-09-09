@@ -991,6 +991,11 @@ div.which-style-box .which-style-box-text {
 	padding: 10px;
 }
 
+img.which-style-image {
+	position: relative;
+	max-height: 160px;
+}
+
 /* when which-style boxes are next to each other in wider viewport */
 
 @media (min-width: 992x) {

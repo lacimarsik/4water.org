@@ -319,6 +319,20 @@ function parallax_one_customize_register( $wp_customize ) {
     'active_callback' => 'parallax_one_show_on_front',
     'priority'    => 2
   ));
+  
+  /* Which style - Use videos */
+  
+  $wp_customize->add_setting('which_style_use_videos', array(
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'default' => DefWhichStyle::$use_videos
+  ));
+  $wp_customize->add_control(
+    'which_style_use_videos', array(
+    'type' => 'checkbox',
+    'label' => __('Use videos instead of images?', 'parallax-one'),
+    'section' => 'which_style_section',
+    'priority' => 1,
+  ));
     
   /* Which style content */
   $wp_customize->add_setting(
@@ -340,6 +354,7 @@ function parallax_one_customize_register( $wp_customize ) {
         'fields' => array(
           'style' => array('type' => 'text', 'label' => 'Style', 'placeholder' => 'CUBAN SALSA'),
           'url' => array('type' => 'text', 'label' => 'Video embed URL', 'placeholder' => 'https://www.youtube.com/embed/bs8SU24k8P4'),
+          'image' => array('type' => 'image', 'label' => 'Image'),
           'desc' => array('type' => 'textarea', 'label' => 'Description', 'placeholder' => 'Fun, exciting...'),
         )
       ) 

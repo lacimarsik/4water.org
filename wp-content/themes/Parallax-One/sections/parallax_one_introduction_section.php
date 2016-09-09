@@ -26,7 +26,7 @@
             </div>
 <?php
             if ($intro_use_video) {
-              ?>
+?>
               <!-- VIDEO -->
               <div class="col-md-5 col-md-pull-7">
                 <div id="intro-video-container"> <?php
