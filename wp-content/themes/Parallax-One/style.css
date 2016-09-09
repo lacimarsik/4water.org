@@ -1111,7 +1111,7 @@ div.call-to-action-row .call-to-action-box:nth-child(even) a.call-to-action-butt
 	background-color: #f31630;
 }
 
-a.call-to-action-button a.call-to-action-button-big {
+a.call-to-action-button, a.call-to-action-button-big {
 	background-color: #3a98cb;
 }
 
