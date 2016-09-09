@@ -42,11 +42,11 @@
                     if ($counter > 0) {
                       echo '</div>';
                     }
-                    echo '<div class="call-to-action-row col-md-12">';
+                    echo '<div class="call-to-action-row">';
                   }
                   
-                  echo '<div class="col-md-4 call-to-action-box">';
-                  echo '<a class="call-to-action-button" href="'.esc_attr($call_to_action_item->link).'">'.esc_attr($call_to_action_item->text).'</a>';
+                  echo '<div class="call-to-action-box">';
+                  echo '<a class="call-to-action-button btn btn-info" href="'.esc_attr($call_to_action_item->link).'">'.esc_attr($call_to_action_item->text).'</a>';
                   echo '</div>';
                   $counter++;
                 }
@@ -58,7 +58,7 @@
           <!-- NOTE -->
           <?php
           if(!empty($call_to_action_note)) {
-            echo '<div>'. $call_to_action_note . '</div>';
+            echo '<div class="call-to-action-note">'. $call_to_action_note . '</div>';
           } ?>
         </div>  
       </div>
