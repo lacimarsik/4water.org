@@ -454,13 +454,13 @@ function parallax_one_customize_register( $wp_customize ) {
 
   $wp_customize->add_setting('parallax_one_call_to_action_show', array(
     'sanitize_callback' => 'parallax_one_sanitize_text',
-    'default' => DefCallToAction::$show
+    'default' => DefCallToAction::$hide
   ));
   $wp_customize->add_control(
     'parallax_one_call_to_action_show', array(
     'type' => 'checkbox',
     'label' => __('Hide call to action section?', 'parallax-one'),
-    'section' => 'calendar_section',
+    'section' => 'call_to_action_section',
     'priority' => 4,
   ));
 

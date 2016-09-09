@@ -248,7 +248,7 @@ class DefCallToAction {
   public static $text = 'Dirty water spreads diarrhoeal diseases, killing 900 children every day. We donate 100% of our profits to WaterAid projects in Ethiopia, helping people gain access to clean water, sanitation and hygiene education.';
   public static $content; //need to initialize later
   public static $note = 'No money to donate? There are plenty of other ways to get involved';
-  public static $show = false;
+  public static $hide = true;
 };
 DefCallToAction::$content = json_encode(
   array(
