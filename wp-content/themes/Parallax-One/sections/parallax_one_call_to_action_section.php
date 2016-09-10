@@ -64,10 +64,14 @@
             echo '</div>'; //row
             echo '</div>'; //call-to-action-wrap
           } ?>
-          <!-- SCRIPT TO OPEN UP PAYMENTS SECTION -->
+          <!-- SCRIPT TO SHOW/HIDE UP PAYMENTS SECTION -->
           <script>
             function openPaymentSection() {
               document.getElementById("call-to-action-payments-wrap").style.display = 'block';
+            }
+
+            function closePaymentSection() {
+              document.getElementById("call-to-action-payments-wrap").style.display = 'none';
             }
           </script>
 
@@ -138,6 +142,13 @@
                 $counter++;
               }
             }
+?>
+            <a
+              class="<?php if ($call_to_action_big_buttons) { echo 'call-to-action-button-big'; } else { echo 'call-to-action-button'; } ?> btn btn-info"
+              onClick="closePaymentSection();">
+              Hide
+            </a>
+<?php
           }
 ?>
         </div>
