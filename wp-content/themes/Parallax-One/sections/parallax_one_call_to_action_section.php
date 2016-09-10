@@ -49,10 +49,11 @@
                   <div class="call-to-action-box">
                     <a
                         class="<?php if ($call_to_action_big_buttons) { echo 'call-to-action-button-big'; } else { echo 'call-to-action-button'; } ?> btn btn-info"
-                        href="<?php echo esc_attr($call_to_action_item->link) ?>"
                         <?php if ($call_to_action_item->is_payment == "yes") {
                           echo 'onClick="openPaymentSection();"';
-                        } ?>>
+                        } else {
+                          echo 'href="' . esc_attr($call_to_action_item->link) . '"';
+                        }?>>
                       <?php echo esc_attr($call_to_action_item->text) ?>
                     </a>
                   </div>
