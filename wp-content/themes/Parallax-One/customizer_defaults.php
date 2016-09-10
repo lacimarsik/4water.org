@@ -296,3 +296,20 @@ DefFaq::$content = json_encode(
     )
   )
 );
+
+/********************************************************/
+/******************* IMAGE SECTION **********************/
+/********************************************************/
+
+class DefImage {
+  public static $use_static_image = false;
+  public static $title_above = '';
+  public static $subtitle_above = '';
+  public static $title_inside = 'A GLOBAL PHENOMENON';
+  public static $text_inside = 'People around the world are using their passion to affect change';
+  public static $button_text = '';
+  public static $button_link = '';
+  public static $ribbon_background = '/images/ribbon_background.jpg';
+  public static $static_image = '';
+  public static $hide = true;
+};

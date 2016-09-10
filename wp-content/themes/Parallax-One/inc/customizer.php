@@ -679,6 +679,153 @@ function parallax_one_customize_register( $wp_customize ) {
   ));
 
   /********************************************************/
+  /**************** IMAGE SECTION OPTIONS *****************/
+  /********************************************************/
+
+  $wp_customize->add_section('image_section', array(
+    'title'       => esc_html__('Image section', 'parallax-one'),
+    'priority'    => 33,
+  ));
+  
+  /* Image section - use static image */
+
+  $wp_customize->add_setting('image_section_use_static_image', array(
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'default' => DefImage::$use_static_image
+  ));
+  $wp_customize->add_control(
+    'image_section_use_static_image', array(
+    'type' => 'checkbox',
+    'label' => __('Use static image?', 'parallax-one'),
+    'section' => 'image_section',
+    'priority' => 1,
+  ));
+
+  /* Ribbon Background */
+  $wp_customize->add_setting('paralax_one_ribbon_background', array(
+    'default' => parallax_get_file(DefImage::$ribbon_background),
+    'sanitize_callback' => 'esc_url',
+    'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control(new WP_Customize_Image_Control( $wp_customize, 'paralax_one_ribbon_background', array(
+    'label'    => esc_html__('Ribbon Background', 'parallax-one' ),
+    'section'  => 'image_section',
+    'active_callback' => 'parallax_one_show_on_front',
+    'priority'    => 1
+  )));
+
+  /* Image section - static image */
+  $wp_customize->add_setting('image_section_static_image', array(
+    'default' => parallax_get_file(DefImage::$static_image),
+    'sanitize_callback' => 'esc_url',
+    'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control(new WP_Customize_Image_Control( $wp_customize, 'image_section_static_image', array(
+    'label'    => esc_html__('Static image', 'parallax-one' ),
+    'section'  => 'image_section',
+    'active_callback' => 'parallax_one_show_on_front',
+    'priority'    => 1
+  )));
+
+  /* Image section - title above */
+
+  $wp_customize->add_setting('image_section_title_above', array(
+    'default' => esc_html__(DefImage::$title_above, 'parallax-one'),
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control('image_section_title_above', array(
+    'label'    => esc_html__('Title above', 'parallax-one'),
+    'section'  => 'image_section',
+    'active_callback' => 'parallax_one_show_on_front',
+    'priority'    => 2
+  ));
+
+  /* Image section - subtitle above */
+
+  $wp_customize->add_setting('image_section_subtitle_above', array(
+    'default' => esc_html__(DefImage::$subtitle_above, 'parallax-one'),
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control('image_section_subtitle_above', array(
+    'label'    => esc_html__('Subtitle above', 'parallax-one'),
+    'section'  => 'image_section',
+    'active_callback' => 'parallax_one_show_on_front',
+    'priority'    => 2
+  ));
+
+  /* Image section - title inside */
+
+  $wp_customize->add_setting('image_section_title_inside', array(
+    'default' => esc_html__(DefImage::$title_inside, 'parallax-one'),
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control('image_section_title_inside', array(
+    'label'    => esc_html__('Title inside', 'parallax-one'),
+    'section'  => 'image_section',
+    'active_callback' => 'parallax_one_show_on_front',
+    'priority'    => 2
+  ));
+
+  /* Image section - text inside */
+
+  $wp_customize->add_setting('image_section_text_inside', array(
+    'default' => esc_html__(DefImage::$text_inside, 'parallax-one'),
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control('image_section_text_inside', array(
+    'label'    => esc_html__('Text inside', 'parallax-one'),
+    'section'  => 'image_section',
+    'active_callback' => 'parallax_one_show_on_front',
+    'priority'    => 3
+  ));
+
+  /* Image section - button text */
+
+  $wp_customize->add_setting('image_section_button_text', array(
+    'default' => esc_html__(DefImage::$button_text, 'parallax-one'),
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control('image_section_button_text', array(
+    'label'    => esc_html__('Button label', 'parallax-one'),
+    'section'  => 'image_section',
+    'active_callback' => 'parallax_one_show_on_front',
+    'priority'    => 3
+  ));
+
+  /* Image section - button link */
+
+  $wp_customize->add_setting('image_section_button_link', array(
+    'default' => esc_html__(DefImage::$button_link, 'parallax-one'),
+    'sanitize_callback' => 'esc_url',
+    'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control('image_section_button_link', array(
+    'label'    => esc_html__('Button link', 'parallax-one'),
+    'section'  => 'image_section',
+    'active_callback' => 'parallax_one_show_on_front',
+    'priority'    => 4
+  ));
+
+  /* Image section show/hide */
+
+  $wp_customize->add_setting('parallax_one_image_section_show', array(
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'default' => DefImage::$hide
+  ));
+  $wp_customize->add_control(
+    'parallax_one_image_section_show', array(
+    'type' => 'checkbox',
+    'label' => __('Hide Image section?', 'parallax-one'),
+    'section' => 'image_section',
+    'priority' => 5
+  ));
+
+  /********************************************************/
   /****************** MANY THINGS OPTIONS **********************/
   /********************************************************/
 
@@ -745,7 +892,7 @@ function parallax_one_customize_register( $wp_customize ) {
 
   $wp_customize->add_section('prices_section', array(
       'title'       => esc_html__('Prices section', 'parallax-one'),
-      'priority'    => 32,
+      'priority'    => 34,
   ));
   
   /* prices section title */
@@ -1065,7 +1212,7 @@ function parallax_one_customize_register( $wp_customize ) {
 
 	$wp_customize->add_section('calendar_section', array(
 			'title'       => esc_html__('Calendar section', 'parallax-one'),
-			'priority'    => 32,
+			'priority'    => 34,
 	));
 
 	/* calendar section title */

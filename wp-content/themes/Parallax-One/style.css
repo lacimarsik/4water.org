@@ -1090,7 +1090,6 @@ img.why-us-img {
 -----------------------------------------*/
 
 section#call-to-action {
-
 	padding-bottom: 30px;
 }
 
@@ -1306,6 +1305,34 @@ a.many-things-link {
 		padding-top: 10px;
 		padding-bottom: 10px;
 	}
+}
+
+/*---------------------------------------
+   IMAGE SECTION
+-----------------------------------------*/
+
+section#image-section {
+	text-align: center;
+	background-color: #F7F8FA;
+}
+
+#image-section h2.title-above {
+	padding-top: 20px;
+	padding-bottom: 10px;
+}
+
+#image-section div.subtitle-above {
+	padding-bottom: 20px;
+	font-size: 1.0em;
+}
+
+.image-section-static-image {
+	padding-bottom: 15px;
+	border-bottom: 1px solid #eaebec;
+}
+
+.image-section-static-image img.static-image {
+	width: 100%;
 }
 
 /*---------------------------------------
@@ -2966,9 +2993,9 @@ a.control_next.fade-btn {
 }
 
 /*---------------------------------------
-   3.12 SECTION: CALL TO ACTION
+   3.12 SECTION: IMAGE - RIBBON
 -----------------------------------------*/
-.call-to-action {
+.image-section-ribbon {
 	background-position: 50% 50%;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
@@ -2976,17 +3003,34 @@ a.control_next.fade-btn {
 	border-bottom: 1px solid #eaebec;
 }
 
-.call-to-action .section-overlay-layer {
-	padding-top: 100px;
-	padding-bottom: 100px;
-	background: rgba(0, 5, 8, 0.80);
+.image-section-ribbon .section-overlay-layer {
+	padding-top: 30px;
+	padding-bottom: 170px;
+	background: rgba(0, 5, 8, 0.3);
 }
 
-.call-to-action h2 {
+.image-section-ribbon a.image-section-button {
 	margin-top: 20px;
-	margin-bottom: 50px;
-	font-size: 2.4rem;
+	padding: 9px 36px;
+	font-size: 1.2em;
+	background-color: #3a98cb;
+	border: 1px #3a98cb solid;
+}
+
+.image-section-ribbon a.image-section-button:hover {
+	background-color: #1a78ab;
+	border: 1px #1a78ab solid;
+}
+
+.image-section-ribbon h2 {
+	margin-top: 20px;
+	margin-bottom: 10px;
+	font-size: 2.0rem;
 	line-height: 3.125rem;	
+}
+
+.image-section-ribbon .text-inside {
+	font-size: 1.1em;
 }
 
 .modal-content {
@@ -2998,7 +3042,7 @@ a.control_next.fade-btn {
 }
 
 .ribbon-wrap {
-	text-align: center;
+	text-align: left;
 }
 
 /*---------------------------------------
