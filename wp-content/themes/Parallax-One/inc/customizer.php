@@ -1060,6 +1060,34 @@ function parallax_one_customize_register( $wp_customize ) {
     )
   );
 
+  /* Map - title above */
+
+  $wp_customize->add_setting('maps_title_above', array(
+    'default' => esc_html__(DefContact::$title_above,'parallax-one'),
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control('maps_title_above', array(
+    'label'    => esc_html__('Title', 'parallax-one'),
+    'section'  => 'contact_section',
+    'active_callback' => 'parallax_one_show_on_front',
+    'priority'    => 1
+  ));
+  
+  /* Map - links instead of multiple maps */
+  
+  $wp_customize->add_setting('maps_use_links', array(
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'default' => DefContact::$use_links
+  ));
+  $wp_customize->add_control(
+    'maps_use_links', array(
+    'type' => 'checkbox',
+    'label' => __('Use links instead of multiple maps', 'parallax-one'),
+    'section' => 'contact_section',
+    'priority' => 1,
+  ));
+
   /* Map show/hide */
 
   $wp_customize->add_setting('parallax_one_map_show', array('sanitize_callback' => 'parallax_one_sanitize_text'));

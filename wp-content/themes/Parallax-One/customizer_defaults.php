@@ -179,6 +179,8 @@ DefPrices::$content = json_encode(
 class DefContact {
   public static $maps_content;  //need to initialize later
   public static $content;  //need to initialize later
+  public static $title_above = '';
+  public static $use_links = false;
 };
 DefContact::$maps_content = json_encode(
   array(

@@ -3,20 +3,91 @@ INTERGEO MAPS
 ============================== -->
 <?php
   $parallax_one_contact_map_shortcode = get_theme_mod('parallax_one_contact_map_shortcode');
-  if( !empty($parallax_one_contact_map_shortcode) ){
+  $maps_content = get_theme_mod('maps_content', DefContact::$maps_content);
+  $title_above = get_theme_mod('maps_title_above', DefContact::$title_above);
+  $use_links = get_theme_mod('maps_use_links', DefContact::$use_links);
+
+  if (!empty($maps_content)) {
 ?>
-    <!-- OVERRIDE MAP STYLING -->
+  <div id="map-section">
+    <!-- Override Google map styling -->
     <style>
       #cd-google-map .intergeo_map_canvas {
         height: 400px !important;
       }
     </style>
-    <div id="container-fluid">
-      <div class="parallax_one_map_overlay"></div>
-      <div id="cd-google-map">
-        <?php echo do_shortcode($parallax_one_contact_map_shortcode);?>
-      </div>
-    </div><!-- .container-fluid -->
-<?php   
-     }
+<?php
+    if (!empty($title_above)) {
 ?>
+      <h2 class="maps-title"><?php echo $title_above; ?></h2>
+<?php
+    }
+?>
+    <!-- jQuery for switching the maps -->
+    <script>
+      $(document).ready(function() {
+        var buttons = $('.map-selection-button');
+        var maps = $('.map-section');
+        $('.map-selection-button').on('click', function() {
+          var hrefUrl = ($(this).attr('href'));
+          // we do not switch maps if the button serves as link
+          if (!hrefUrl) {
+            buttons.removeClass('map-selection-button-selected')
+            $(this).addClass('map-selection-button-selected')
+
+            elementId = $(this).attr('id');
+            var mapId = elementId.substr(elementId.indexOf("-") + 1);
+
+            maps.removeClass('map-section-selected');
+            $('#map-' + mapId).addClass('map-section-selected');
+          }
+        });
+      });
+    </script>
+
+    <!-- Map selection -->
+<?php
+    $maps_content_decoded = json_decode($maps_content);
+    if (sizeof($maps_content_decoded) > 1) {
+      echo '<div id="map-selection-wrap">';
+      $counter = 0;
+      foreach ($maps_content_decoded as $map) {
+        ?>
+        <a class="map-selection-button <?php if (($counter == 0) && (!$use_links)) {
+          echo "map-selection-button-selected";
+        } ?>" <?php if (!empty($map->link)) {
+          echo 'href="' . $map->link . '" target="_blank"';
+        } ?> id="mapselection-<?php echo $counter; ?>">
+          <?php echo $map->label; ?>
+        </a>
+        <?php
+        $counter++;
+      }
+    }
+?>
+    </div>
+    <!-- Maps -->
+    <div id="map-section-wrap">
+<?php
+    $counter = 0;
+    foreach($maps_content_decoded as $map) {
+      if (!empty($map->shortcode)) {
+?>
+        <div class="map-section <?php if ($counter == 0) {
+          echo 'map-section-selected';
+        } ?>" id="map-<?php echo $counter; ?>">
+          <div class="map-container-fluid">
+            <div class="parallax_one_map_overlay"></div>
+            <div id="cd-google-map">
+              <?php do_shortcode($map->shortcode); ?>
+            </div>
+          </div><!-- .map-container-fluid -->
+        </div><!-- .map-section -->
+        <?php
+      }
+      $counter++;
+    }
+  }
+?>
+    </div>
+  </div>

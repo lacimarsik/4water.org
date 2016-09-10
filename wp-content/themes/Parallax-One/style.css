@@ -3216,6 +3216,47 @@ a.control_next.fade-btn {
     position: relative;
 }
 
+#map-section h2.maps-title {
+	padding-bottom: 20px;
+}
+
+#map-selection-wrap {
+	border-top: 1px #ddd solid;
+	padding: 9px 0px;
+	background-color: white;
+}
+
+#map-selection-wrap a.map-selection-button {
+	padding: 10px 20px;
+	border-left: 1px #ddd solid;
+	background-color: white;
+	color: #616161;
+	text-decoration: none;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+#map-selection-wrap a.map-selection-button:hover {
+	background-color: #eee;
+}
+
+
+#map-selection-wrap a.map-selection-button-selected {
+	background-color: #ddd;
+}
+
+#map-selection-wrap a.map-selection-button:last-child {
+	border-right: 1px #ddd solid;
+}
+
+#map-section-wrap div.map-section {
+	display: none;
+}
+
+#map-section-wrap div.map-section-selected {
+	display: block;
+}
+
 /*---------------------------------------
    3.15 TEMPLATE: CONTACT PAGE
 -----------------------------------------*/
