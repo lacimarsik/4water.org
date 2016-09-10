@@ -31,6 +31,27 @@
             } ?>
           </div>
 
+          <!-- SCRIPT TO SHOW/HIDE UP PAYMENTS SECTION -->
+          <script>
+            function openPaymentSection() {
+              document.getElementById("call-to-action-payments-wrap").style.display = 'block';
+              var openButtons = document.getElementsByClassName("open-button");
+              for (var i = 0; i < openButtons.length; i++) {
+                openButtons[i].style.display = "none";
+              }
+              document.getElementsByClassName("close-button")[0].style.display = "inline-block";
+            }
+
+            function closePaymentSection() {
+              document.getElementById("call-to-action-payments-wrap").style.display = 'none';
+              var openButtons = document.getElementsByClassName("open-button");
+              for (var i = 0; i < openButtons.length; i++) {
+                openButtons[i].style.display = "inline-block";
+              }
+              document.getElementsByClassName("close-button")[0].style.display = "none";
+            }
+          </script>
+
           <!-- CONTENT - BUTTONS -->
           <?php
           if(!empty($call_to_action_content)) {
@@ -48,7 +69,14 @@
                   } ?>
                   <div class="call-to-action-box">
                     <a
-                        class="<?php if ($call_to_action_big_buttons) { echo 'call-to-action-button-big'; } else { echo 'call-to-action-button'; } ?> btn btn-info"
+                        class="<?php if ($call_to_action_big_buttons) {
+                          echo 'call-to-action-button-big';
+                        } else {
+                          echo 'call-to-action-button';
+                        } ?> btn btn-info <?php if ($call_to_action_item->is_payment == "yes") {
+                          echo 'open-button';
+                        } ?>"
+
                         <?php if ($call_to_action_item->is_payment == "yes") {
                           echo 'onClick="openPaymentSection();"';
                         } else {
@@ -56,24 +84,27 @@
                         }?>>
                       <?php echo esc_attr($call_to_action_item->text) ?>
                     </a>
+                    <?php if ($call_to_action_item->is_payment == "yes") { ?>
+                      <a
+                        class="<?php if ($call_to_action_big_buttons) {
+                          echo 'call-to-action-button-big';
+                        } else {
+                          echo 'call-to-action-button';
+                        } ?> btn btn-info close-button"
+                        onClick="closePaymentSection();">
+                        <?php echo esc_attr($call_to_action_item->text) ?>
+                      </a>
+<?php
+                    }
+?>
                   </div>
-                  <?php
+<?php
                   $counter++;
                 }
               }
             echo '</div>'; //row
             echo '</div>'; //call-to-action-wrap
           } ?>
-          <!-- SCRIPT TO SHOW/HIDE UP PAYMENTS SECTION -->
-          <script>
-            function openPaymentSection() {
-              document.getElementById("call-to-action-payments-wrap").style.display = 'block';
-            }
-
-            function closePaymentSection() {
-              document.getElementById("call-to-action-payments-wrap").style.display = 'none';
-            }
-          </script>
 
           <!-- NOTE -->
           <?php

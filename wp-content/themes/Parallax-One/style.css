@@ -1135,6 +1135,10 @@ a.call-to-action-button {
 	padding: 6px 24px;
 }
 
+a.close-button {
+	display: none;
+}
+
 a.call-to-action-button-big {
 	padding: 9px 36px;
 	font-size: 1.2em;
