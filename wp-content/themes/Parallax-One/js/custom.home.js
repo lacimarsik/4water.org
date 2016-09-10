@@ -164,7 +164,7 @@ jQuery(document).ready(function(){
         jQuery('.parallax_one_map_overlay').show();
     });
     
-    jQuery('#container-fluid').click(function(event){
+    jQuery('.map-container-fluid').click(function(event){
         event.stopPropagation();
     });
     

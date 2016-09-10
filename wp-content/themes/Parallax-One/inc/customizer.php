@@ -1034,17 +1034,58 @@ function parallax_one_customize_register( $wp_customize ) {
   /****************** CONTACT OPTIONS  ********************/
   /********************************************************/
 
-  /* Map ShortCode  */
-  $wp_customize->add_setting( 'parallax_one_contact_map_shortcode', array(
-    'default' => '',
-    'sanitize_callback' => 'parallax_one_sanitize_text'
+  /* Maps */
+  $wp_customize->add_setting(
+    'maps_content',
+    array(
+      'sanitize_callback' => 'parallax_one_sanitize_text',
+      'default' => DefContact::$maps_content
+    )
+  );
+  $wp_customize->add_control(
+    new Parallax_One_General_Repeater(
+      $wp_customize,
+      'maps_content',
+      array(
+        'label' => esc_html__('Maps','parallax-one'),
+        'section' => 'contact_section',
+        'active_callback' => 'parallax_one_show_on_front',
+        'priority' => 1,
+        'fields' => array(
+          'shortcode' => array('type' => 'text', 'label' => 'Shortcode'),
+          'label' => array('type' => 'text', 'label' => 'Label', 'placeholder' => 'Salsa classes'),
+          'link' => array('type' => 'text', 'label' => 'Optional Link')
+        )
+      )
+    )
+  );
+
+  /* Map - title above */
+
+  $wp_customize->add_setting('maps_title_above', array(
+    'default' => esc_html__(DefContact::$title_above,'parallax-one'),
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'transport' => 'postMessage'
   ));
-  $wp_customize->add_control( 'parallax_one_contact_map_shortcode', array(
-    'label'    => esc_html__( 'Map shortcode', 'parallax-one' ),
-    'description' => __('To use this section please install <a href="https://wordpress.org/plugins/intergeo-maps/">Intergeo Maps</a> plugin then use it to create a map and paste here the shortcode generated','parallax-one'),
+  $wp_customize->add_control('maps_title_above', array(
+    'label'    => esc_html__('Title', 'parallax-one'),
     'section'  => 'contact_section',
     'active_callback' => 'parallax_one_show_on_front',
     'priority'    => 1
+  ));
+  
+  /* Map - links instead of multiple maps */
+  
+  $wp_customize->add_setting('maps_use_links', array(
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'default' => DefContact::$use_links
+  ));
+  $wp_customize->add_control(
+    'maps_use_links', array(
+    'type' => 'checkbox',
+    'label' => __('Use links instead of multiple maps', 'parallax-one'),
+    'section' => 'contact_section',
+    'priority' => 1,
   ));
 
   /* Map show/hide */

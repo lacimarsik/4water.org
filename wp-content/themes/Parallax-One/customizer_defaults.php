@@ -177,8 +177,20 @@ DefPrices::$content = json_encode(
 /********************************************************/
 
 class DefContact {
-  public static $content; //need to initialize later
+  public static $maps_content;  //need to initialize later
+  public static $content;  //need to initialize later
+  public static $title_above = '';
+  public static $use_links = false;
 };
+DefContact::$maps_content = json_encode(
+  array(
+    array(
+      'shortcode' => '',
+      'label' => esc_html__('Default', 'parallax-one'),
+      'link' => esc_html__('', 'parallax-one')
+    )
+  )
+);
 DefContact::$content = json_encode(
   array(
     array(
