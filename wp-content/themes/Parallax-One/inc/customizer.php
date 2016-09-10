@@ -503,6 +503,35 @@ function parallax_one_customize_register( $wp_customize ) {
       )
     )
   );
+  
+  /* Call to action payments */
+  $wp_customize->add_setting(
+    'call_to_action_payments',
+    array(
+      'sanitize_callback' => 'parallax_one_sanitize_text',
+      'default' => DefCallToAction::$payments
+    )
+  );
+  $wp_customize->add_control(
+    new Parallax_One_General_Repeater(
+      $wp_customize,
+      'call_to_action_payments',
+      array(
+        'label' => esc_html__('Add new payment','parallax-one'),
+        'section' => 'call_to_action_section',
+        'active_callback' => 'parallax_one_show_on_front',
+        'priority' => 3,
+        'fields' => array(
+          'hosted_button_id' => array('type' => 'text', 'label' => 'Hosted button ID', 'placeholder' => 'Put ID from PayPal in form: XXXXXXXXXXXX'),
+          'description' => array('type' => 'text', 'label' => 'Product description', 'placeholder' => 'Class Wednesday 19.00 Beginners'),
+          'student_charge' => array('type' => 'text', 'label' => 'Option 1 with price', 'placeholder' => 'Student £30.00 GBP'),
+          'non_student_charge' => array('type' => 'text', 'label' => 'Option 2 with price', 'placeholder' => 'Non-student £35.00 GBP'),
+          'field_description' => array('type' => 'text', 'label' => 'Required field', 'placeholder' => 'Full Name'),
+          'button_text' => array('type' => 'text', 'label' => 'Pay button label', 'placeholder' => 'Pay with')
+        )
+      )
+    )
+  );
 
   /* call to action big buttons */
   

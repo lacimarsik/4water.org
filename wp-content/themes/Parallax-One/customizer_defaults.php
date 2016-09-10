@@ -254,6 +254,7 @@ class DefCallToAction {
   public static $title = '£105,354 was raised to date';
   public static $text = 'Dirty water spreads diarrhoeal diseases, killing 900 children every day. We donate 100% of our profits to WaterAid projects in Ethiopia, helping people gain access to clean water, sanitation and hygiene education.';
   public static $content; //need to initialize later
+  public static $payments; //need to initialize later
   public static $note = 'No money to donate? There are plenty of other ways to get involved';
   public static $big_buttons = false;
   public static $hide = true;
@@ -268,6 +269,34 @@ DefCallToAction::$content = json_encode(
       'text' => esc_html__('Start a 4Water Project', 'parallax-one'),
       'link' => esc_html__('mailto: weare4water@gmail.com', 'parallax-one')
     )
+  )
+);
+DefCallToAction::$payments = json_encode(
+  array(
+    array(
+      'hosted_button_id' => esc_html__('UGZLN8MEVH5AN', 'parallax-one'),
+      'description' => esc_html__('Hungarian 1 beginners, Tuesday 9-10pm, 10 week course', 'parallax-one'),
+      'student_charge' => esc_html__('Student £30.00 GBP', 'parallax-one'),
+      'non_student_charge' => esc_html__('Non-student £35.00 GBP', 'parallax-one'),
+      'field_description' => esc_html__('Full Name (for class register)', 'parallax-one'),
+      'button_text' => esc_html__('Pay with', 'parallax-one')
+    ),
+    array(
+      'hosted_button_id' => esc_html__('LKK243PV3QFAQ', 'parallax-one'),
+      'description' => esc_html__('Arabic 1 beginners, Wednesdays 6-7pm, 10 week course', 'parallax-one'),
+      'student_charge' => esc_html__('Student £30.00 GBP', 'parallax-one'),
+      'non_student_charge' => esc_html__('Non-student £35.00 GBP', 'parallax-one'),
+      'field_description' => esc_html__('Full Name (for class register)', 'parallax-one'),
+      'button_text' => esc_html__('Pay with', 'parallax-one')
+    ),
+    array(
+      'hosted_button_id' => esc_html__('E4XSYVJPNB9VJ', 'parallax-one'),
+      'description' => esc_html__('Dutch 1 beginners, Monday 8-9pm, 10 week course', 'parallax-one'),
+      'student_charge' => esc_html__('Student £30.00 GBP', 'parallax-one'),
+      'non_student_charge' => esc_html__('Non-student £35.00 GBP', 'parallax-one'),
+      'field_description' => esc_html__('Full Name (for class register)', 'parallax-one'),
+      'button_text' => esc_html__('Pay with', 'parallax-one')
+    ),
   )
 );
 
