@@ -3213,12 +3213,17 @@ a.control_next.fade-btn {
     top: 0;
 }
 
-#container-fluid{
+.map-container-fluid {
     position: relative;
+}
+
+#map-section {
+	text-align: center;
 }
 
 #map-section h2.maps-title {
 	padding-bottom: 20px;
+	padding-top: 30px;
 	font-size: 25px;
 }
 
