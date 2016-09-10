@@ -1114,11 +1114,12 @@ div#call-to-action-wrap {
 
 div.call-to-action-row .call-to-action-box:nth-child(even) a.call-to-action-button, div.call-to-action-row .call-to-action-box:nth-child(even) a.call-to-action-button-big {
 	background-color: #d0041b;
-	border-color: #f31630;
+	border: 1px #d0041b solid;
 }
 
 div.call-to-action-row .call-to-action-box:nth-child(even) a.call-to-action-button:hover, div.call-to-action-row .call-to-action-box:nth-child(even) a.call-to-action-button-big:hover {
-	background-color: #f31630;
+	background-color: #a70a1c;
+	border: 1px #a70a1c solid;
 }
 
 a.call-to-action-button, a.call-to-action-button-big {
