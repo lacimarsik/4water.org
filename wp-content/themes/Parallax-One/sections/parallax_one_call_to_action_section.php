@@ -110,14 +110,18 @@
                       <tr>
                         <td class="payment-required-field"><input type="text" name="os1" maxlength="200"></td>
                       </tr>
+                      <tr>
+                        <td class="payment-submit">
+                          <input type="hidden" name="currency_code" value="GBP"><br/>
+                            <button type="submit" class="btn btn-info paypal-button" border="0" name="submit"
+                                   alt="PayPal – The safer, easier way to pay online!">
+                              <?php echo $payment->button_text; ?><span class="paypal-image"></span>
+                            </button><br/>
+                            <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1"
+                                 height="1">
+                        </td>
+                      </tr>
                     </table>
-                    <input type="hidden" name="currency_code" value="GBP"><br/>
-                      <button type="submit" class="btn btn-info paypal-button" border="0" name="submit"
-                             alt="PayPal – The safer, easier way to pay online!">
-                        <?php echo $payment->button_text; ?><span class="paypal-image"></span>
-                      </button><br/>
-                      <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1"
-                           height="1"><br/>
                   </form>
                 </div>
                 <?php

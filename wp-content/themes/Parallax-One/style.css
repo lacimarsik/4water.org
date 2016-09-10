@@ -1189,7 +1189,7 @@ div.call-to-action-payments-box table.payment-table td {
 }
 
 div.call-to-action-payments-box table.payment-table td.payment-description {
-	height: 100px;
+	min-height: 100px;
 	vertical-align: top;
 }
 
