@@ -499,6 +499,7 @@ function parallax_one_customize_register( $wp_customize ) {
         'fields' => array(
           'text' => array('type' => 'text', 'label' => 'Button text'),
           'link' => array('type' => 'text', 'label' => 'Link to open after clicking', 'placeholder' => 'http://4water.org'),
+          'is_payment' => array('type' => 'text', 'label' => 'Opens up payment section?', 'placeholder' => 'yes / no')
         )
       )
     )

@@ -263,11 +263,13 @@ DefCallToAction::$content = json_encode(
   array(
     array(
       'text' => esc_html__('Donate', 'parallax-one'),
-      'link' => esc_html__('http://uk.virginmoneygiving.com/fundraiser-web/fundraiser/showFundraiserProfilePage.action?userUrl=4water&isTeam=true', 'parallax-one')
+      'link' => esc_html__('http://uk.virginmoneygiving.com/fundraiser-web/fundraiser/showFundraiserProfilePage.action?userUrl=4water&isTeam=true', 'parallax-one'),
+      'is_payment' => esc_html__('no', 'parallax-one')
     ),
     array(
       'text' => esc_html__('Start a 4Water Project', 'parallax-one'),
-      'link' => esc_html__('mailto: weare4water@gmail.com', 'parallax-one')
+      'link' => esc_html__('mailto: weare4water@gmail.com', 'parallax-one'),
+      'is_payment' => esc_html__('no', 'parallax-one')
     )
   )
 );
