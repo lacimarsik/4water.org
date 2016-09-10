@@ -3227,11 +3227,13 @@ a.control_next.fade-btn {
 	padding: 8px 0px;
 	background-color: white;
 	margin: 0 auto;
+	text-align: center;
 }
 
 #map-selection-wrap a.map-selection-button {
 	padding: 10px 20px;
 	border-left: 1px #ddd solid;
+	border-top: 1px #ddd solid;
 	background-color: white;
 	color: #616161;
 	text-decoration: none;
