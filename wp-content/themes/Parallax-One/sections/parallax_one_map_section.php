@@ -79,7 +79,7 @@ INTERGEO MAPS
           <div class="map-container-fluid">
             <div class="parallax_one_map_overlay"></div>
             <div id="cd-google-map">
-              <?php do_shortcode('[intergeo id="' . $map->shortcode_id . '"][/intergeo]'); ?>
+              <?php echo do_shortcode('[intergeo id="' . $map->shortcode_id . '"][/intergeo]'); ?>
             </div>
           </div><!-- .map-container-fluid -->
         </div><!-- .map-section -->
