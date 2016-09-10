@@ -1313,10 +1313,26 @@ a.many-things-link {
 
 section#image-section {
 	text-align: center;
+	background-color: #F7F8FA;
 }
 
 #image-section h2.title-above {
+	padding-top: 20px;
+	padding-bottom: 10px;
+}
+
+#image-section div.subtitle-above {
 	padding-bottom: 20px;
+	font-size: 1.0em;
+}
+
+.image-section-static-image {
+	padding-bottom: 15px;
+	border-bottom: 1px solid #eaebec;
+}
+
+.image-section-static-image img.static-image {
+	width: 100%;
 }
 
 /*---------------------------------------

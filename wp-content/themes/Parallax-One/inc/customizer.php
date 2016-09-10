@@ -741,6 +741,20 @@ function parallax_one_customize_register( $wp_customize ) {
     'priority'    => 2
   ));
 
+  /* Image section - subtitle above */
+
+  $wp_customize->add_setting('image_section_subtitle_above', array(
+    'default' => esc_html__(DefImage::$subtitle_above, 'parallax-one'),
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control('image_section_subtitle_above', array(
+    'label'    => esc_html__('Subtitle above', 'parallax-one'),
+    'section'  => 'image_section',
+    'active_callback' => 'parallax_one_show_on_front',
+    'priority'    => 2
+  ));
+
   /* Image section - title inside */
 
   $wp_customize->add_setting('image_section_title_inside', array(
