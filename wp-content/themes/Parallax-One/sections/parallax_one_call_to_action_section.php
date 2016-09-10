@@ -54,12 +54,12 @@
 
           <!-- CONTENT - BUTTONS -->
           <?php
-          if(!empty($call_to_action_content)) {
+          if (!empty($call_to_action_content)) {
             $call_to_action_decoded = json_decode($call_to_action_content);
             echo '<div id="call-to-action-wrap">';
               $counter = 0;
               foreach($call_to_action_decoded as $call_to_action_item) {
-                if(!empty($call_to_action_item->text) || 
+                if (!empty($call_to_action_item->text) || 
                    !empty($call_to_action_item->link)) {
                   if ($counter % 3 == 0) {
                     if ($counter > 0) {
