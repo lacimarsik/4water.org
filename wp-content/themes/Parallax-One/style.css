@@ -3219,12 +3219,14 @@ a.control_next.fade-btn {
 
 #map-section h2.maps-title {
 	padding-bottom: 20px;
+	font-size: 25px;
 }
 
 #map-selection-wrap {
 	border-top: 1px #ddd solid;
 	padding: 8px 0px;
 	background-color: white;
+	margin: 0 auto;
 }
 
 #map-selection-wrap a.map-selection-button {
