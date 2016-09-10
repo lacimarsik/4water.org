@@ -2979,7 +2979,7 @@ a.control_next.fade-btn {
 .call-to-action .section-overlay-layer {
 	padding-top: 100px;
 	padding-bottom: 100px;
-	background: rgba(0, 5, 8, 0.80);
+	background: rgba(0, 5, 8, 0.4);
 }
 
 .call-to-action h2 {

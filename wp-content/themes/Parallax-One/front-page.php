@@ -16,6 +16,14 @@
         array_push($not_hidden_sections, 'sections/parallax_one_introduction_section');
       endif;
 
+      // temporary fix for Language4Water - Image section after Introduction section
+      if (parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH ) == '/glasgow/language/') {
+        $parallax_one_image_section_show = get_theme_mod('parallax_one_image_section_show');
+        if (isset($parallax_one_image_section_show) && $parallax_one_image_section_show != 1):
+          array_push($not_hidden_sections, 'sections/parallax_one_image_section');
+        endif;
+      }
+
       $parallax_one_which_style_show = get_theme_mod('parallax_one_which_style_show');
       if (isset($parallax_one_which_style_show) && $parallax_one_which_style_show != 1):
         array_push($not_hidden_sections, 'sections/parallax_one_which_style_section');
@@ -45,6 +53,14 @@
       if (isset($parallax_one_many_things_show) && $parallax_one_many_things_show != 1):
         array_push($not_hidden_sections, 'sections/parallax_one_many_things_section');
       endif;
+
+      // temporary fix for Language4Water - Image section after Introduction section
+      if (parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH ) != '/glasgow/language/') {
+        $parallax_one_image_section_show = get_theme_mod('parallax_one_image_section_show');
+        if (isset($parallax_one_image_section_show) && $parallax_one_image_section_show != 1):
+          array_push($not_hidden_sections, 'sections/parallax_one_image_section');
+        endif;
+      }
 
       $parallax_one_prices_show = get_theme_mod('parallax_one_prices_show');
       if (isset($parallax_one_prices_show) && $parallax_one_prices_show != 1):
