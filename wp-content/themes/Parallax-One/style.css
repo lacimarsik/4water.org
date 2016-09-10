@@ -1123,6 +1123,12 @@ div.call-to-action-row .call-to-action-box:nth-child(even) a.call-to-action-butt
 
 a.call-to-action-button, a.call-to-action-button-big {
 	background-color: #3a98cb;
+	border: 1px #3a98cb solid;
+}
+
+a.call-to-action-button:hover, a.call-to-action-button-big:hover {
+	background-color: #1a78ab;
+	border: 1px #1a78ab solid;
 }
 
 a.call-to-action-button {
