@@ -143,6 +143,7 @@
               }
             }
 ?>
+            <div class="clearfix"></div>
             <a
               class="<?php if ($call_to_action_big_buttons) { echo 'call-to-action-button-big'; } else { echo 'call-to-action-button'; } ?> btn btn-info"
               onClick="closePaymentSection();">
