@@ -185,7 +185,7 @@ class DefContact {
 DefContact::$maps_content = json_encode(
   array(
     array(
-      'shortcode' => '',
+      'shortcode_id' => '',
       'label' => esc_html__('Default', 'parallax-one'),
       'link' => esc_html__('', 'parallax-one')
     )

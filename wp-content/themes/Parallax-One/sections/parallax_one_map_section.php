@@ -71,7 +71,7 @@ INTERGEO MAPS
 <?php
     $counter = 0;
     foreach($maps_content_decoded as $map) {
-      if (!empty($map->shortcode)) {
+      if (!empty($map->shortcode_id)) {
 ?>
         <div class="map-section <?php if ($counter == 0) {
           echo 'map-section-selected';
@@ -79,7 +79,7 @@ INTERGEO MAPS
           <div class="map-container-fluid">
             <div class="parallax_one_map_overlay"></div>
             <div id="cd-google-map">
-              <?php do_shortcode($map->shortcode); ?>
+              <?php do_shortcode('[intergeo id="' . $map->shortcode_id . 'QO"][/intergeo]'); ?>
             </div>
           </div><!-- .map-container-fluid -->
         </div><!-- .map-section -->

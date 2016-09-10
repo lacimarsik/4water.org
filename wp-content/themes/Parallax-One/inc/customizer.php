@@ -1052,7 +1052,7 @@ function parallax_one_customize_register( $wp_customize ) {
         'active_callback' => 'parallax_one_show_on_front',
         'priority' => 1,
         'fields' => array(
-          'shortcode' => array('type' => 'text', 'label' => 'Shortcode'),
+          'shortcode_id' => array('type' => 'text', 'label' => 'Shortcode ID'),
           'label' => array('type' => 'text', 'label' => 'Label', 'placeholder' => 'Salsa classes'),
           'link' => array('type' => 'text', 'label' => 'Optional Link')
         )
