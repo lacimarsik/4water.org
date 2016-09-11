@@ -1577,6 +1577,10 @@ section#articles {
 	padding-bottom: 30px;
 }
 
+section#articles h2 {
+	font-size: 1.5em;
+}
+
 div#articles-wrap {
 	padding: 10px 2% 30px 2%;
 	margin: 0 auto;
@@ -3189,7 +3193,7 @@ a.control_next.fade-btn {
 .image-section-ribbon h2 {
 	margin-top: 20px;
 	margin-bottom: 10px;
-	font-size: 2.0rem;
+	font-size: 1.5em;
 	line-height: 3.125rem;	
 }
 
@@ -3306,7 +3310,7 @@ a.control_next.fade-btn {
 #map-section h2.maps-title {
 	padding-bottom: 20px;
 	padding-top: 30px;
-	font-size: 25px;
+	font-size: 1.5em;
 }
 
 #map-selection-wrap {
