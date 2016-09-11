@@ -11,7 +11,7 @@
     <?php
       $not_hidden_sections = array();
 
-      $sitePath = parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH )
+      $sitePath = parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH );
     
       $parallax_one_intro_show = get_theme_mod('parallax_one_intro_show');
       if (isset($parallax_one_intro_show) && $parallax_one_intro_show != 1):
