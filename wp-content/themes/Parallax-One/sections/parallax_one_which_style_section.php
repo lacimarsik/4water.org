@@ -53,9 +53,14 @@
                       echo '</div>';
                     }
                     echo '<div class="which-style-row col-md-12">';
-                  }
-?>
-                  <div class="col-md-4 which-style-wrap-box" <?php if ((sizeof($which_style_decoded) % 3) == 0 ) { echo 'style="float: left;"'; } ?>>
+                  } ?>
+                  <div class="col-md-4 which-style-wrap-box"
+<?php 
+                  // the remaining elements after full row (e.g. 4th and 5th after row of 3 columns)
+                  // should be centered
+                  if (($counter + 1) > (round(sizeof($which_style_decoded) / 3) * 3)) {
+                    echo 'style="float: none;"'; }
+                  ?>>
 <?php
                   echo '<div class="which-style-box">';
                   
