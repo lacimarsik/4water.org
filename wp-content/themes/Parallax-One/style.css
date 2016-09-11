@@ -3337,7 +3337,7 @@ a.control_next.fade-btn {
 }
 
 /* Fix for map selection buttons on small screens */
-@media (min-width: 768px) {
+@media (max-width: 768px) {
 	#map-selection-wrap a.map-selection-button {
 		line-height: 40px;
 	}
