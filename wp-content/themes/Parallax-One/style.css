@@ -1126,6 +1126,7 @@ div.call-to-action-row .call-to-action-box:nth-child(even) a.call-to-action-butt
 a.call-to-action-button, a.call-to-action-button-big {
 	background-color: #3a98cb;
 	border: 1px #3a98cb solid;
+	margin: 10px 10px 0;
 }
 
 a.call-to-action-button:hover, a.call-to-action-button-big:hover {
@@ -1148,7 +1149,7 @@ a.call-to-action-button-big {
 
 div.call-to-action-box {
 	text-align: center;
-	padding: 0 15px;
+	padding: 10px 0;
 	display: inline;
 }
 
@@ -1583,7 +1584,7 @@ div#articles-wrap {
 }
 
 div.articles-box {
-	padding: 0 30px;
+	padding: 10px 30px;
 }
 
 img.articles-img {
@@ -1593,14 +1594,12 @@ img.articles-img {
 
 div.articles-box p {
 	position:absolute;
-	left: 25px;
 	text-align:center;
-	top: 155px;
+	top: 145px;
 	width: 100%;
 	font-size: 13px;
 	color: white;
-	padding-left: 15px;
-	padding-right: 70px;
+	padding: 0 70px;
 	display: inline;
 	text-align: left;
 	line-height: 1.4em;
