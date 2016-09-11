@@ -1494,6 +1494,7 @@ div#student-switch-wrap {
 div.prices-box {
     text-align: left;
     padding: 0 30px;
+    float: none;
 }
 
 div.prices-box:nth-child(even) {
