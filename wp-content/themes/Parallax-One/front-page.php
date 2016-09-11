@@ -59,6 +59,11 @@
         array_push($not_hidden_sections, 'sections/parallax_one_many_things_section');
       endif;
 
+      $parallax_one_prices_show = get_theme_mod('parallax_one_prices_show');
+      if (isset($parallax_one_prices_show) && $parallax_one_prices_show != 1):
+        array_push($not_hidden_sections, 'sections/parallax_one_prices_section');
+      endif;
+
       // temporary fix for Language4Water and 4Water to have Image section in the right place
       if (($sitePath != '/glasgow/language/') && ($sitePath != '/')) {
         $parallax_one_image_section_show = get_theme_mod('parallax_one_image_section_show', DefImage::$hide);
@@ -66,11 +71,6 @@
           array_push($not_hidden_sections, 'sections/parallax_one_image_section');
         endif;
       }
-
-      $parallax_one_prices_show = get_theme_mod('parallax_one_prices_show');
-      if (isset($parallax_one_prices_show) && $parallax_one_prices_show != 1):
-        array_push($not_hidden_sections, 'sections/parallax_one_prices_section');
-      endif;
 
       $parallax_one_calendar_show = get_theme_mod('parallax_one_calendar_show');
       if (isset($parallax_one_calendar_show) && $parallax_one_calendar_show != 1):
