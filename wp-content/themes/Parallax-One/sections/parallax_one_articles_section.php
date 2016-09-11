@@ -40,7 +40,7 @@
 
                     if (!empty($articles_item->text) && !empty($articles_item->link) && !empty($articles_item->link_text)) {
                       echo '<p class="colored-text">'.esc_attr($articles_item->text);
-                        echo '<a class="articles-link" href="'. esc_attr($articles_item->link).'">' . esc_attr($articles_item->link_text) . '</a>';
+                        echo '<a class="articles-link" href="'. esc_attr($articles_item->link).'" target="_blank">' . esc_attr($articles_item->link_text) . '</a>';
                       echo '</p>';
                     }
                     echo '</div>';
