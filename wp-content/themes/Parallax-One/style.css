@@ -1569,6 +1569,66 @@ div#prices-note {
 }
 
 /*---------------------------------------
+   ARTICLES
+-----------------------------------------*/
+
+section#articles {
+	padding-bottom: 30px;
+}
+
+div#articles-wrap {
+	padding: 10px 2% 30px 2%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+div.articles-box {
+	padding: 0 30px;
+}
+
+img.articles-img {
+	position: relative;
+	max-height: 200px;
+}
+
+div.articles-box p {
+	position:absolute;
+	left: 25px;
+	text-align:center;
+	top: 155px;
+	width: 100%;
+	font-size: 13px;
+	color: white;
+	padding-left: 15px;
+	padding-right: 70px;
+	display: inline;
+	text-align: left;
+	line-height: 1.4em;
+}
+
+a.articles-link {
+	padding-left: 10px;
+	display: inline;
+	font-size: 13px;
+	margin-bottom: 30px;
+	color: #91d9fb;
+}
+
+/* when articles boxes are next to each other in wider viewport */
+
+@media (min-width: 992px) {
+	div.articles-row {
+		width: 100%;
+	}
+
+	div.articles-box {
+		margin-bottom: 0px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+}
+
+/*---------------------------------------
    CALENDAR
 -----------------------------------------*/
 

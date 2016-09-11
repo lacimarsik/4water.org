@@ -1031,6 +1031,68 @@ function parallax_one_customize_register( $wp_customize ) {
   ));
 
   /********************************************************/
+  /****************** ARTICLES OPTIONS ********************/
+  /********************************************************/
+
+  $wp_customize->add_section('articles_section', array(
+    'title'       => esc_html__('Articles section', 'parallax-one'),
+    'priority'    => 34,
+  ));
+
+  /* Articles title */
+  $wp_customize->add_setting('articles_title', array(
+    'default' => esc_html__(DefArticles::$title,'parallax-one'),
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control('articles_title', array(
+    'label'    => esc_html__('Section title', 'parallax-one'),
+    'section'  => 'prices_section',
+    'active_callback' => 'parallax_one_show_on_front',
+    'priority'    => 1
+  ));
+
+  /* Articles */
+  $wp_customize->add_setting(
+    'articles_content',
+    array(
+      'sanitize_callback' => 'parallax_one_sanitize_text',
+      'default' => DefArticles::$content
+    )
+  );
+  $wp_customize->add_control(
+    new Parallax_One_General_Repeater(
+      $wp_customize,
+      'articles_content',
+      array(
+        'label' => esc_html__('Articles','parallax-one'),
+        'section' => 'articles_section',
+        'active_callback' => 'parallax_one_show_on_front',
+        'priority' => 3,
+        'fields' => array(
+          'image' => array('type' => 'image', 'label' => 'Image'),
+          'text' => array('type' => 'textarea', 'label' => 'Description'),
+          'link_text' => array('type' => 'text', 'label' => 'Link text', 'placeholder' => 'Read more'),
+          'link' => array('type' => 'text', 'label' => 'Article Link', 'placeholder' => 'http://www.wateraid.org')
+        )
+      )
+    )
+  );
+
+  /* Articles show/hide */
+
+  $wp_customize->add_setting('parallax_one_articles_show', array(
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'default' => DefArticles::$hide));
+  $wp_customize->add_control(
+    'parallax_one_articles_show', array(
+    'type' => 'checkbox',
+    'label' => __('Hide articles section?', 'parallax-one'),
+    'section' => 'articles_section',
+    'priority' => 4,
+  ));
+
+  /********************************************************/
   /****************** CONTACT OPTIONS  ********************/
   /********************************************************/
 
