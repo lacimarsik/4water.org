@@ -32,14 +32,17 @@ INTERGEO MAPS
           var hrefUrl = ($(this).attr('href'));
           // we do not switch maps if the button serves as link
           if (!hrefUrl) {
-            buttons.removeClass('map-selection-button-selected')
-            $(this).addClass('map-selection-button-selected')
+            buttons.removeClass('map-selection-button-selected');
+            $(this).addClass('map-selection-button-selected');
 
             elementId = $(this).attr('id');
             var mapId = elementId.substr(elementId.indexOf("-") + 1);
 
             maps.removeClass('map-section-selected');
             $('#map-' + mapId).addClass('map-section-selected');
+            // changing class only has some issues with Google Maps - they don't display well
+            maps.css('display','none');
+            $('#map-' + mapId).css('display','block');
           }
         });
       });
