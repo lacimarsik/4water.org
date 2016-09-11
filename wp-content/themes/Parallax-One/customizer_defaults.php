@@ -173,6 +173,32 @@ DefPrices::$content = json_encode(
 );
 
 /********************************************************/
+/****************** ARTICLES ****************************/
+/********************************************************/
+
+class DefArticles {
+  public static $title = 'INTERESTING FACTS';
+  public static $content; //need to initialize later
+  public static $hide = true;
+};
+DefArticles::$content = json_encode(
+  array(
+    array(
+      'image' => parallax_get_file('/images/ethiopia.jpg'),
+      'text' => esc_html__('Over 40% of the population have no choice but to collect dirty water from unsafe sources', 'parallax-one'),
+      'link_text' => esc_html__('Read more','parallax-one'),
+      'link' => esc_html__('http://www.wateraid.org/where-we-work/page/ethiopia','parallax-one')
+    ),
+    array(
+      'image' => parallax_get_file('/images/caught_short.jpg'),
+      'text' => esc_html__('How a lack of access to clean water and decent toilets plays a major role in child stunting', 'parallax-one'),
+      'link_text' => esc_html__('Read more','parallax-one'),
+      'link' => esc_html__('http://www.wateraid.org/news/news/caught-short-how-a-lack-of-clean-water-and-decent-toilets-plays-a-major-role-in-child-stunting','parallax-one')
+    )
+  )
+);
+
+/********************************************************/
 /****************** CONTACT ******************************/
 /********************************************************/
 
