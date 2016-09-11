@@ -3259,10 +3259,6 @@ a.control_next.fade-btn {
 }
 
 #map-section-wrap div.map-section {
-	display: none;
-}
-
-#map-section-wrap div.map-section-selected {
 	display: block;
 }
 

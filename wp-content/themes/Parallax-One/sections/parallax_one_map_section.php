@@ -28,6 +28,11 @@ INTERGEO MAPS
       $(document).ready(function() {
         var buttons = $('.map-selection-button');
         var maps = $('.map-section');
+
+        // XXX: Map loading issue - they need to be visible on the first load, and then we hide with JS, and show only the selected one
+        maps.css('display','none');
+        $('#map-0').css('display','block');
+
         $('.map-selection-button').on('click', function() {
           var hrefUrl = ($(this).attr('href'));
           // we do not switch maps if the button serves as link
@@ -40,7 +45,7 @@ INTERGEO MAPS
 
             maps.removeClass('map-section-selected');
             $('#map-' + mapId).addClass('map-section-selected');
-            // changing class only has some issues with Google Maps - they don't display well
+            // XXX: Map loading issue - changing class only has some issues with Google Maps - they don't display well
             maps.css('display','none');
             $('#map-' + mapId).css('display','block');
           }
