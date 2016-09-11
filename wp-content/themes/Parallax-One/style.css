@@ -1584,7 +1584,7 @@ div#articles-wrap {
 }
 
 div.articles-box {
-	padding: 10px 30px;
+	padding: 10px 30px !important;
 }
 
 img.articles-img {
@@ -1595,12 +1595,12 @@ img.articles-img {
 div.articles-box p {
 	position:absolute;
 	left: 0;
-	bottom: 0px;
+	bottom: 10px;
 	text-align:center;
 	width: 100%;
 	font-size: 13px;
 	color: white;
-	padding: 0 70px;
+	padding: 0 50px;
 	display: inline;
 	text-align: left;
 	line-height: 1.4em;
@@ -1614,17 +1614,38 @@ a.articles-link {
 	color: #91d9fb;
 }
 
-/* when articles boxes are next to each other in wider viewport */
+/* fixes for small viewport */
 
-@media (min-width: 992px) {
-	div.articles-row {
-		width: 100%;
+@media (max-width: 992px) {
+	div.articles-box p {
+		padding: 0 120px !important;
+		font-size: 10px;
 	}
 
-	div.articles-box {
-		margin-bottom: 0px;
-		padding-top: 10px;
-		padding-bottom: 10px;
+	a.articles-link {
+		font-size: 10px;
+	}
+}
+
+@media (max-width: 992px) {
+	div.articles-box p {
+		padding: 0 120px !important;
+		font-size: 10px;
+	}
+
+	a.articles-link {
+		font-size: 10px;
+	}
+}
+
+@media (max-width: 767px) {
+	div.articles-box p {
+		padding: 0 50px !important;
+		font-size: 8px;
+	}
+
+	a.articles-link {
+		font-size: 8px;
 	}
 }
 
