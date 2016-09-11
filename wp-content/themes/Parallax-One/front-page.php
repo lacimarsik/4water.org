@@ -59,14 +59,6 @@
         array_push($not_hidden_sections, 'sections/parallax_one_many_things_section');
       endif;
 
-      // temporary fix for 4Water to have Why us section in the right place
-      if ($sitePath == '/') {
-        $parallax_one_why_us_show = get_theme_mod('parallax_one_why_us_show');
-        if (isset($parallax_one_why_us_show) && $parallax_one_why_us_show != 1):
-          array_push($not_hidden_sections, 'sections/parallax_one_why_us_section');
-        endif;
-      }
-
       // temporary fix for Language4Water and 4Water to have Image section in the right place
       if (($sitePath != '/glasgow/language/') && ($sitePath != '/')) {
         $parallax_one_image_section_show = get_theme_mod('parallax_one_image_section_show', DefImage::$hide);
@@ -98,8 +90,13 @@
         array_push($not_hidden_sections, 'sections/parallax_one_map_section');
       endif;
 
-      // temporary fix for 4Water - Image and Articles sections after Map section
+      // temporary fix for 4Water - Why us, Image and Articles sections after Map section
       if ($sitePath == '/') {
+        $parallax_one_why_us_show = get_theme_mod('parallax_one_why_us_show');
+        if (isset($parallax_one_why_us_show) && $parallax_one_why_us_show != 1):
+          array_push($not_hidden_sections, 'sections/parallax_one_why_us_section');
+        endif;
+
         $parallax_one_image_section_show = get_theme_mod('parallax_one_image_section_show', DefImage::$hide);
         if (isset($parallax_one_image_section_show) && $parallax_one_image_section_show != 1):
           array_push($not_hidden_sections, 'sections/parallax_one_image_section');
