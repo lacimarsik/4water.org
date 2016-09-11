@@ -99,7 +99,6 @@ function parallax_one_customize_register( $wp_customize ) {
     'priority'    => 4
   ));
 
-
   /* Header Button text */
   $wp_customize->add_setting( 'parallax_one_header_button_text', array(
     'default' => esc_html__(DefHeader::$header_button_text, 'parallax-one'),
@@ -112,8 +111,8 @@ function parallax_one_customize_register( $wp_customize ) {
     'active_callback' => 'parallax_one_show_on_front',
     'priority'    => 4
   ));
-
-
+  
+  /* Header Button link */
   $wp_customize->add_setting( 'parallax_one_header_button_link', array(
     'default' => esc_html__(DefHeader::$header_button_link, 'parallax-one'),
     'sanitize_callback' => 'esc_url',
@@ -123,10 +122,36 @@ function parallax_one_customize_register( $wp_customize ) {
     'label'    => esc_html__( 'Button link', 'parallax-one' ),
     'section'  => 'parallax_one_header_content',
     'active_callback' => 'parallax_one_show_on_front',
-    'priority'    => 5
+    'priority'    => 4
+  ));
+  
+  /* Header Award image */
+  $wp_customize->add_setting('parallax_one_header_award_image', array(
+    'default' => parallax_get_file(DefHeader::$header_award_image),
+    'sanitize_callback' => 'esc_url',
+    'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'parallax_one_header_award_image', array(
+    'label'    => esc_html__( 'Award image', 'parallax-one' ),
+    'section'  => 'parallax_one_header_content',
+    'active_callback' => 'parallax_one_show_on_front',
+    'priority'    => 4
+  )));
+  
+  /* Header Award text */
+  $wp_customize->add_setting('parallax_one_header_award_text', array(
+    'default' => esc_html__(DefHeader::$header_award_text, 'parallax-one'),
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control('parallax_one_header_award_text', array(
+    'label'    => esc_html__('Award text', 'parallax-one'),
+    'section'  => 'parallax_one_header_content',
+    'active_callback' => 'parallax_one_show_on_front',
+    'priority'    => 4
   ));
 
-    require_once ( 'class/parallax-one-general-control.php');
+  require_once ( 'class/parallax-one-general-control.php');
 
   $wp_customize->get_section('header_image')->panel='panel_1';
   $wp_customize->get_section('header_image')->title=esc_html__( 'Background', 'parallax-one' );
