@@ -74,16 +74,29 @@
         array_push($not_hidden_sections, 'sections/parallax_one_calendar_section');
       endif;
 
+      // temporary fix for 4Water to have Articles section in the right place
+      if ($sitePath != '/') {
+        $parallax_one_articles_section_show = get_theme_mod('parallax_one_articles_show', DefArticles::$hide);
+        if (isset($parallax_one_articles_section_show) && $parallax_one_articles_section_show != 1):
+          array_push($not_hidden_sections, 'sections/parallax_one_articles_section');
+        endif;
+      }
+
       $parallax_one_map_show = get_theme_mod('parallax_one_map_show');
       if (isset($parallax_one_map_show) && $parallax_one_map_show != 1):
         array_push($not_hidden_sections, 'sections/parallax_one_map_section');
       endif;
 
-      // temporary fix for 4Water - Image section after Map section
+      // temporary fix for 4Water - Image and Articles sections after Map section
       if ($sitePath == '/') {
         $parallax_one_image_section_show = get_theme_mod('parallax_one_image_section_show', DefImage::$hide);
         if (isset($parallax_one_image_section_show) && $parallax_one_image_section_show != 1):
           array_push($not_hidden_sections, 'sections/parallax_one_image_section');
+        endif;
+
+        $parallax_one_articles_section_show = get_theme_mod('parallax_one_articles_show', DefArticles::$hide);
+        if (isset($parallax_one_articles_section_show) && $parallax_one_articles_section_show != 1):
+          array_push($not_hidden_sections, 'sections/parallax_one_articles_section');
         endif;
       }
 
