@@ -8,6 +8,8 @@
 	$parallax_one_enable_move = get_theme_mod('paralax_one_enable_move');
 	$parallax_one_first_layer = get_theme_mod('paralax_one_first_layer', parallax_get_file('/images/background1.png'));
 	$parallax_one_second_layer = get_theme_mod('paralax_one_second_layer',parallax_get_file('/images/background2.png'));
+	$parallax_one_header_award_image = get_theme_mod('parallax_one_header_award_image', DefHeader::$header_award_image);
+	$parallax_one_header_award_text = get_theme_mod('parallax_one_header_award_text', DefHeader::$header_award_text);
 	if(!empty($paralax_one_header_logo) || !empty($parallax_one_header_title) || !empty($parallax_one_header_subtitle) || !empty($parallax_one_header_button_text)) {
 ?>
 
@@ -57,9 +59,19 @@
 								}
 
 								if( !empty($parallax_one_header_subtitle) ){
-									echo '<h5 id="intro_section_text_2" class="white-text">'.esc_attr($parallax_one_header_subtitle).'</h5>';
-								} elseif ( isset( $wp_customize )   ) {
-									echo '<h5 id="intro_section_text_2" class="white-text paralax_one_only_customizer"></h5>';
+?>
+									<h5 id="intro_section_text_2" class="white-text"
+										<?php if (!empty($parallax_one_header_button_text) || !empty($parallax_one_header_button_link)) {
+											// Button is present - make more space for it
+											echo 'style="margin-top: 60px;"';
+										} else if (!empty($parallax_one_header_award_text) && !empty($parallax_one_header_award_image)) {
+											// Award is present - make more space for it
+											echo 'style="margin-top: 0px;"';
+										} ?>
+											>
+										<?php echo esc_attr($parallax_one_header_subtitle); ?>
+									</h5>
+<?php
 								}
                 
                 //BUTTON
@@ -73,7 +85,26 @@
 									echo '<div id="intro_section_text_3" class="button"><a href="" class="btn btn-info header-button paralax_one_only_customizer"></a></div>';
 								}
 ?>
-              </div> <!-- /END BUTTON -->
+                </div> <!-- /END BUTTON -->
+                <div class="header-award">
+<?php
+								//AWARD
+								if(!empty($parallax_one_header_award_text) && !empty($parallax_one_header_award_image)) {
+?>
+									<table class="header-award">
+										<tr>
+											<td class="header-award-image-column">
+												<img class="header-award-image" src="<?php echo $parallax_one_header_award_image; ?>" title="<?php echo $parallax_one_header_award_text; ?>" />
+											</td>
+											<td class="header-award-text-column">
+												<?php echo $parallax_one_header_award_text; ?>
+											</td>
+										</tr>
+									</table>
+<?php
+								}
+?>
+                </div> <!-- /END AWARD -->
 <?php
             } //END HEADING AND BUTTONS
 ?>

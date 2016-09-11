@@ -2079,11 +2079,13 @@ header {
 }
 
 a.header-button {
-	margin-top: 5px;
+	padding: 9px 26px;
+	margin-top: 8px;
 	font-family: 'Avenir', 'Open Sans';
 	font-weight: bold;
 	background-color: #3a98cb;
 	border: 1px #3a98cb solid;
+	text-shadow: none;
 }
 
 a.header-button:hover {
@@ -2091,6 +2093,38 @@ a.header-button:hover {
 	border: 1px #1a78ab solid;
 }
 
+div.header-award {
+	text-align: center;
+	margin: 0 auto;
+}
+
+table.header-award {
+	width: 220px;
+	display: inline-block;
+	margin-top: 50px;
+	border: 0;
+}
+
+table.header-award td {
+	height: 50px
+	color: white;
+	border: 0;
+}
+
+td.header-award-image-column {
+	width: 50px;
+}
+
+td.header-award-text-column {
+	width: 180px;
+	color: white;
+	font-weight: bold;
+	text-shadow: 1px 1px 5px rgba(20, 20, 20, 0.8);
+}
+
+img.header-award-image {
+	width: 70px;
+}
 
 #intro-under-construction {
 	font-weight: bold;

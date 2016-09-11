@@ -11,6 +11,8 @@ class DefHeader {
   public static $header_subtitle = 'Have fun, make friends and help us change the world through dance';
   public static $header_button_text = '';
   public static $header_button_link = '';
+  public static $header_award_text = '';
+  public static $header_award_image = '';
 };
 
 /********************************************************/
