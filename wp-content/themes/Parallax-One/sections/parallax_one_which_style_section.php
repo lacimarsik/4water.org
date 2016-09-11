@@ -54,8 +54,9 @@
                     }
                     echo '<div class="which-style-row col-md-12">';
                   }
-                  
-                  echo '<div class="col-md-4 which-style-wrap-box">';
+?>
+                  <div class="col-md-4 which-style-wrap-box" <?php if ((sizeof($which_style_decoded) % 3) == 0 ) { echo 'style="float: left;"'; } ?>>
+<?php
                   echo '<div class="which-style-box">';
                   
                   //title
