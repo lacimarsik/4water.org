@@ -1595,8 +1595,8 @@ img.articles-img {
 div.articles-box p {
 	position:absolute;
 	left: 0;
+	bottom: 0px;
 	text-align:center;
-	top: 145px;
 	width: 100%;
 	font-size: 13px;
 	color: white;
