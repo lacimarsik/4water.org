@@ -25,6 +25,9 @@ class DefIntro {
   public static $image_caption = '4Water';
   public static $title = 'Heeey, welcome on SALSA4WATER GLASGOW!';
   public static $text = 'Lorem ipsum dolor sit amet...';
+  public static $under_construction_text = '';
+  public static $under_construction_link = '';
+  public static $under_construction_link_text = '';
 };
 
 /********************************************************/

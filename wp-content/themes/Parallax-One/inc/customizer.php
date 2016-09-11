@@ -273,6 +273,45 @@ function parallax_one_customize_register( $wp_customize ) {
     'active_callback' => 'parallax_one_show_on_front',
     'priority'    => 2,
   ));
+  
+  /* Introduction - under construction text */
+  $wp_customize->add_setting('intro_under_construction_text', array(
+    'default' => esc_html__(DefIntro::$under_construction_text, 'parallax-one'),
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control('intro_under_construction_text', array(
+    'label'    => esc_html__('Under construction text', 'parallax-one' ),
+    'section'  => 'intro_section',
+    'active_callback' => 'parallax_one_show_on_front',
+    'priority'    => 1
+  ));
+  
+  /* Introduction - under construction link */
+  $wp_customize->add_setting('intro_under_construction_link', array(
+    'default' => esc_html__(DefIntro::$under_construction_link, 'parallax-one'),
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control('intro_under_construction_link', array(
+    'label'    => esc_html__('Under construction link', 'parallax-one' ),
+    'section'  => 'intro_section',
+    'active_callback' => 'parallax_one_show_on_front',
+    'priority'    => 1
+  ));
+  
+  /* Introduction - under construction link text */
+  $wp_customize->add_setting('intro_under_construction_link_text', array(
+    'default' => esc_html__(DefIntro::$under_construction_link_text, 'parallax-one'),
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control('intro_under_construction_link_text', array(
+    'label'    => esc_html__('Under construction link text', 'parallax-one' ),
+    'section'  => 'intro_section',
+    'active_callback' => 'parallax_one_show_on_front',
+    'priority'    => 1
+  ));
 
   /* Introduction show/hide */
 

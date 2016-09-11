@@ -2091,6 +2091,12 @@ a.header-button:hover {
 	border: 1px #1a78ab solid;
 }
 
+
+#intro-under-construction {
+	font-weight: bold;
+	color: #0A246A;
+}
+
 .imac-image img {
     width: 85%;
     margin-top: 70px;

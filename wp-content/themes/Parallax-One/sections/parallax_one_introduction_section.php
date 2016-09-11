@@ -9,12 +9,18 @@
   $intro_image_caption = get_theme_mod('intro_image_caption', DefIntro::$image_caption);
   $intro_title = get_theme_mod('intro_title', DefIntro::$title);
   $intro_text = get_theme_mod('intro_text', DefIntro::$text);
+  $intro_under_construction_text = get_theme_mod('intro_under_construction_text', DefIntro::$under_construction_text);
+  $intro_under_construction_link = get_theme_mod('intro_under_construction_link', DefIntro::$under_construction_link);
+  $intro_under_construction_link_text = get_theme_mod('intro_under_construction_link_text', DefIntro::$under_construction_link_text);
 
   if(!empty($intro_video_link) || 
      !empty($intro_video_caption) ||
      !empty($intro_video_caption) ||
      !empty($intro_image) ||
-     !empty($intro_text)) { ?>
+     !empty($intro_text) ||
+     !empty($intro_under_construction_text) ||
+     !empty($intro_under_construction_link) ||
+     !empty($intro_under_construction_link_text)) { ?>
     <section class="introduction" id="introduction">
       <div class="section-overlay-layer">
         <div class="container">
@@ -23,6 +29,16 @@
             <div id="intro-text" class="col-md-7 col-md-push-5">
               <h3 class="dark-text" id="intro-title"><?php echo esc_attr($intro_title) ?></h3>
               <?php echo $intro_text ?>
+              <?php if (!empty($intro_under_construction_text) ||
+                !empty($intro_under_construction_link) ||
+                !empty($intro_under_construction_link_text)) { ?>
+                <div id="intro-under-construction">
+                  <?php echo $intro_under_construction_text; ?> <a
+                    href="<?php echo $intro_under_construction_link; ?>"><?php echo $intro_under_construction_link_text; ?></a>
+                </div>
+                <?php
+              }
+              ?>
             </div>
 <?php
             if ($intro_use_video) {
