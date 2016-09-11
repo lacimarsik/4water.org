@@ -1047,7 +1047,7 @@ function parallax_one_customize_register( $wp_customize ) {
   ));
   $wp_customize->add_control('articles_title', array(
     'label'    => esc_html__('Section title', 'parallax-one'),
-    'section'  => 'prices_section',
+    'section'  => 'articles_section',
     'active_callback' => 'parallax_one_show_on_front',
     'priority'    => 1
   ));
