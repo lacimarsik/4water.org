@@ -1093,6 +1093,9 @@ section#call-to-action {
 	padding-bottom: 30px;
 }
 
+section#call-to-action h2.call-to-action-header {
+	font-size: 1.5em;
+
 div.call-to-action-text {
 	text-align: center;
 	width: 65%;

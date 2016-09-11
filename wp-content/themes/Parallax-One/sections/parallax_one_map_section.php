@@ -19,7 +19,7 @@ INTERGEO MAPS
 <?php
     if (!empty($title_above)) {
 ?>
-      <h2 class="maps-title"><?php echo $title_above; ?></h2>
+      <h2 class="maps-title dark-text"><?php echo $title_above; ?></h2>
 <?php
     }
 ?>
