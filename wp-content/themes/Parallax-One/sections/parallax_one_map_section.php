@@ -30,8 +30,10 @@ INTERGEO MAPS
         var maps = $('.map-section');
 
         // XXX: Map loading issue - they need to be visible on the first load, and then we hide with JS, and show only the selected one
-        maps.css('display','none');
-        $('#map-0').css('display','block');
+        setTimeout(function(){
+          maps.css('display','none');
+          $('#map-0').css('display','block');
+        }, 2000);
 
         $('.map-selection-button').on('click', function() {
           var hrefUrl = ($(this).attr('href'));
