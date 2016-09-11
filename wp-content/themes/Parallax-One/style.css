@@ -2062,8 +2062,21 @@ header {
     text-align: center;
 	font-size: 18px;
 	line-height: 28px;
-	font-family: 'Avenir', 'Open Sans';;
+	font-family: 'Avenir', 'Open Sans';
 	font-weight: bold;
+}
+
+a.header-button {
+	margin-top: 5px;
+	font-family: 'Avenir', 'Open Sans';
+	font-weight: bold;
+	background-color: #3a98cb;
+	border: 1px #3a98cb solid;
+}
+
+a.header-button:hover {
+	background-color: #1a78ab;
+	border: 1px #1a78ab solid;
 }
 
 .imac-image img {
