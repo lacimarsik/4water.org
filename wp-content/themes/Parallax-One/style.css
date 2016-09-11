@@ -3328,11 +3328,19 @@ a.control_next.fade-btn {
 	padding: 10px 20px;
 	border-left: 1px #ddd solid;
 	border-top: 1px #ddd solid;
+	border-bottom: 1px #ddd solid;
 	background-color: white;
 	color: #616161;
 	text-decoration: none;
 	cursor: pointer;
 	font-weight: bold;
+}
+
+/* Fix for map selection buttons on small screens */
+@media (min-width: 768px) {
+	#map-selection-wrap a.map-selection-button {
+		line-height: 40px;
+	}
 }
 
 #map-selection-wrap a.map-selection-button:hover {
