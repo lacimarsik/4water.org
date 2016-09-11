@@ -973,6 +973,11 @@ h3#intro-title {
    WHICH STYLE
 -----------------------------------------*/
 
+div.which-style-row {
+	text-align: center;
+	margin: 0 auto;
+}
+
 /* which style box */
 
 div.which-style-box {
@@ -984,6 +989,8 @@ div.which-style-box {
     text-align: center;
     margin-bottom: 30px;
     vertical-align: top;
+	float: none;
+	display: inline-block;
 }
 
 div.which-style-box .which-style-box-text {
