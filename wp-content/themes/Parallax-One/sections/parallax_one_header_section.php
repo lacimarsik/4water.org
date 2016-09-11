@@ -65,12 +65,12 @@
                 //BUTTON
 								if( !empty($parallax_one_header_button_text) ){
 									if( empty($parallax_one_header_button_link) ){
-										echo '<div id="intro_section_text_3" class="button"><div id="inpage_scroll_btn"><a href="" class="btn btn-primary standard-button inpage-scroll">'.esc_attr($parallax_one_header_button_text).'</a></div></div>';
+										echo '<div id="intro_section_text_3" class="button"><div id="inpage_scroll_btn"><a href="" class="btn btn-info">'.esc_attr($parallax_one_header_button_text).'</a></div></div>';
 									} else {
-										echo '<div id="intro_section_text_3" class="button"><div id="inpage_scroll_btn"><a href="'.esc_url($parallax_one_header_button_link).'" class="btn btn-primary standard-button inpage-scroll">'.$parallax_one_header_button_text.'</a></div></div>';
+										echo '<div id="intro_section_text_3" class="button"><div id="inpage_scroll_btn"><a href="'.esc_url($parallax_one_header_button_link).'" class="btn btn-primary">'.$parallax_one_header_button_text.'</a></div></div>';
 									}
 								} elseif ( isset( $wp_customize )   ) {
-									echo '<div id="intro_section_text_3" class="button"><div id="inpage_scroll_btn"><a href="" class="btn btn-primary standard-button inpage-scroll paralax_one_only_customizer"></a></div></div>';
+									echo '<div id="intro_section_text_3" class="button"><div id="inpage_scroll_btn"><a href="" class="btn btn-info paralax_one_only_customizer"></a></div></div>';
 								}
 ?>
               </div> <!-- /END BUTTON -->
