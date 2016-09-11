@@ -1594,6 +1594,7 @@ img.articles-img {
 
 div.articles-box p {
 	position:absolute;
+	left: 0;
 	text-align:center;
 	top: 145px;
 	width: 100%;
