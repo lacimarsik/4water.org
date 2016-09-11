@@ -11,13 +11,15 @@
     <?php
       $not_hidden_sections = array();
 
+      $sitePath = parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH )
+    
       $parallax_one_intro_show = get_theme_mod('parallax_one_intro_show');
       if (isset($parallax_one_intro_show) && $parallax_one_intro_show != 1):
         array_push($not_hidden_sections, 'sections/parallax_one_introduction_section');
       endif;
 
       // temporary fix for Language4Water - Image section after Introduction section
-      if (parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH ) == '/glasgow/language/') {
+      if ($sitePath == '/glasgow/language/') {
         $parallax_one_image_section_show = get_theme_mod('parallax_one_image_section_show', DefImage::$hide);
         if (isset($parallax_one_image_section_show) && $parallax_one_image_section_show != 1):
           array_push($not_hidden_sections, 'sections/parallax_one_image_section');
@@ -54,8 +56,8 @@
         array_push($not_hidden_sections, 'sections/parallax_one_many_things_section');
       endif;
 
-      // temporary fix for Language4Water - Image section after Introduction section
-      if (parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH ) != '/glasgow/language/') {
+      // temporary fix for Language4Water and 4Water to have Image section in the right place
+      if (($sitePath != '/glasgow/language/') && ($sitePath != '/')) {
         $parallax_one_image_section_show = get_theme_mod('parallax_one_image_section_show', DefImage::$hide);
         if (isset($parallax_one_image_section_show) && $parallax_one_image_section_show != 1):
           array_push($not_hidden_sections, 'sections/parallax_one_image_section');
@@ -76,6 +78,14 @@
       if (isset($parallax_one_map_show) && $parallax_one_map_show != 1):
         array_push($not_hidden_sections, 'sections/parallax_one_map_section');
       endif;
+
+      // temporary fix for 4Water - Image section after Map section
+      if ($sitePath == '/') {
+        $parallax_one_image_section_show = get_theme_mod('parallax_one_image_section_show', DefImage::$hide);
+        if (isset($parallax_one_image_section_show) && $parallax_one_image_section_show != 1):
+          array_push($not_hidden_sections, 'sections/parallax_one_image_section');
+        endif;
+      }
 
       $parallax_one_contact_show = get_theme_mod('parallax_one_contact_show');
       if (isset($parallax_one_contact_show) && $parallax_one_contact_show != 1):
