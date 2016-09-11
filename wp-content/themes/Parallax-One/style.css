@@ -2095,6 +2095,7 @@ a.header-button:hover {
 #intro-under-construction {
 	font-weight: bold;
 	color: #0A246A;
+	padding-top: 20px;
 }
 
 .imac-image img {
