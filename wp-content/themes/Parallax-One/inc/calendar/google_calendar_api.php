@@ -11,8 +11,6 @@
    */
   class GoogleCalendarApi {
     private $calendar_urls = array(
-      "/copenhagen/dance-work/" => "l1jrcaffjahp7adu2nd1vdu6j0@group.calendar.google.com", // remove when CPH is live
-      "/copenhagen/dance-work/dk/" => "l1jrcaffjahp7adu2nd1vdu6j0@group.calendar.google.com", // remove when CPH is live
       "/copenhagen/dance/" => "l1jrcaffjahp7adu2nd1vdu6j0@group.calendar.google.com",
       "/copenhagen/dance/dk/" => "l1jrcaffjahp7adu2nd1vdu6j0@group.calendar.google.com",
       "/glasgow/dance/" => "1h4evtbec0dgc92n3vh81e773s@group.calendar.google.com",
