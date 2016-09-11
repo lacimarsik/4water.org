@@ -18,9 +18,9 @@
         <div class="container">
 
           <!-- HEADER -->
-          <div class="section-header call-to-action-header"> <?php
+          <div class="section-header"> <?php
             if(!empty($call_to_action_title)) {
-              echo '<h2 class="dark-text">'.esc_attr($call_to_action_title).'</h2>';
+              echo '<h2 class="dark-text  call-to-action-header">'.esc_attr($call_to_action_title).'</h2>';
             } ?>
           </div>
 
