@@ -126,12 +126,12 @@ function parallax_one_customize_register( $wp_customize ) {
   ));
   
   /* Use header button to open payment buttons */
-  $wp_customize->add_setting( 'paralax_one_header_button_opens_payments', array(
+  $wp_customize->add_setting( 'parallax_one_header_button_opens_payments', array(
     'sanitize_callback' => 'parallax_one_sanitize_text',
     'default' => DefHeader::$header_button_opens_payments
   ));
   $wp_customize->add_control(
-    'paralax_one_header_button_opens_payments',
+    'parallax_one_header_button_opens_payments',
     array(
       'type' => 'checkbox',
       'label' => esc_html__('Opens payment buttons','parallax-one'),
