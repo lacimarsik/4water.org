@@ -65,10 +65,17 @@
                       echo '</div>';
                     }
                     echo '<div class="prices-row col-md-12">';
+                  } ?>
+                  <div class="col-md-4 prices-box"
+<?php 
+                  // the remaining elements after full row (e.g. 4th and 5th after row of 3 columns)
+                  // should be centered
+                  if (($counter + 1) > (round(sizeof($prices_decoded) / 3) * 3)) {
+                    echo 'style="float: none;"';
                   }
-                  
-                  echo '<div class="col-md-4 prices-box">';
-                  
+?>
+                  >
+<?php
                   if(!empty($price->type)) {
                     echo '<h3 class="prices-type">'.esc_attr($price->type).'</h3>';
                   }

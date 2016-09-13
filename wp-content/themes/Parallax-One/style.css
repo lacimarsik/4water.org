@@ -1504,7 +1504,6 @@ div.prices-box {
     text-align: left;
     padding: 0 30px;
     display: inline-block;
-    float: none;
 }
 
 div.prices-box:nth-child(even) {
