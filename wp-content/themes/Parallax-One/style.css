@@ -2116,7 +2116,7 @@ table.header-award td {
 }
 
 td.header-award-image-column {
-	width: 40px;
+	width: 50px;
 }
 
 td.header-award-text-column {
@@ -2127,7 +2127,7 @@ td.header-award-text-column {
 }
 
 img.header-award-image {
-	width: 70px;
+	width: 40px;
 }
 
 #intro-under-construction {
