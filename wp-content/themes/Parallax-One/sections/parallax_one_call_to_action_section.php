@@ -26,11 +26,15 @@
           </div>
 
           <!-- TEXT -->
+<?php
+          if(!empty($call_to_action_text)) {
+?>
           <div class="call-to-action-text"> <?php
-            if(!empty($call_to_action_text)) {
-              echo '<p>'.esc_attr($call_to_action_text).'</p>';
-            } ?>
+              echo '<p>'.esc_attr($call_to_action_text).'</p>'; ?>
           </div>
+<?php
+          }
+?>
 
           <!-- SCRIPT TO SHOW/HIDE UP PAYMENTS SECTION -->
           <script>
