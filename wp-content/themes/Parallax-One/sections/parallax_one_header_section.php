@@ -97,7 +97,7 @@
 											<?php if ($parallax_one_header_button_opens_payments) {
 												echo 'onClick="openPaymentSectionFromHeader();"';
 											} ?>
-											href="<?php echo esc_url($parallax_one_header_button_link); ?>" class="btn btn-info header-button">'.$parallax_one_header_button_text.'</a></div>
+											href="<?php echo esc_url($parallax_one_header_button_link); ?>" class="btn btn-info header-button"><?php echo $parallax_one_header_button_text; ?></a></div>
 <?php
 									}
 								} elseif ( isset( $wp_customize )   ) {
