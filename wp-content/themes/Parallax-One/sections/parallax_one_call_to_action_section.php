@@ -5,6 +5,7 @@
   $call_to_action_title = get_theme_mod('call_to_action_title', DefCallToAction::$title);
   $call_to_action_text = get_theme_mod('call_to_action_text', DefCallToAction::$text);
   $call_to_action_content = get_theme_mod('call_to_action_content', DefCallToAction::$content);
+  $call_to_action_payments_heading = get_theme_mod('call_to_action_payments_heading', DefCallToAction::$payments_heading);
   $call_to_action_payments = get_theme_mod('call_to_action_payments', DefCallToAction::$payments);
   $call_to_action_note = get_theme_mod('call_to_action_note', DefCallToAction::$note);
   $call_to_action_big_buttons = get_theme_mod('call_to_action_big_buttons', DefCallToAction::$big_buttons);
@@ -34,7 +35,7 @@
           <!-- SCRIPT TO SHOW/HIDE UP PAYMENTS SECTION -->
           <script>
             function openPaymentSection() {
-              document.getElementById("call-to-action-payments-wrap").style.display = 'block';
+              document.getElementById("call-to-action-payments").style.display = 'block';
               var openButtons = document.getElementsByClassName("open-button");
               for (var i = 0; i < openButtons.length; i++) {
                 openButtons[i].style.display = "none";
@@ -43,7 +44,7 @@
             }
 
             function closePaymentSection() {
-              document.getElementById("call-to-action-payments-wrap").style.display = 'none';
+              document.getElementById("call-to-action-payments").style.display = 'none';
               var openButtons = document.getElementsByClassName("open-button");
               for (var i = 0; i < openButtons.length; i++) {
                 openButtons[i].style.display = "inline-block";
@@ -115,6 +116,9 @@
           if (!empty($call_to_action_payments)) {
             $call_to_action_payments_decoded = json_decode($call_to_action_payments);
             echo '<div id="call-to-action-payments">';
+            if (!empty($call_to_action_payments_heading)) {
+              echo '<h2>' . $call_to_action_payments_heading . '</h2>';
+            }
             echo '<div id="call-to-action-payments-wrap">';
             $counter = 0;
             foreach ($call_to_action_payments_decoded as $payment) {

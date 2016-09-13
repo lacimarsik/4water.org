@@ -1166,8 +1166,14 @@ div.call-to-action-box {
 	display: inline;
 }
 
-#call-to-action-payments-wrap {
+#call-to-action-payments {
 	display: none;
+	text-align: center;
+}
+
+#call-to-action-payments h2 {
+	font-size: 25px;
+	margin: 30px auto 0;
 }
 
 div#call-to-action-payments-wrap {

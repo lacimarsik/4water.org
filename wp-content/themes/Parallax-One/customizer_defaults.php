@@ -298,6 +298,7 @@ class DefCallToAction {
   public static $title = '£105,354 was raised to date';
   public static $text = 'Dirty water spreads diarrhoeal diseases, killing 900 children every day. We donate 100% of our profits to WaterAid projects in Ethiopia, helping people gain access to clean water, sanitation and hygiene education.';
   public static $content; //need to initialize later
+  public static $payments_heading = 'CHOOSE YOUR CLASS AND LEVEL';
   public static $payments; //need to initialize later
   public static $note = 'No money to donate? There are plenty of other ways to get involved';
   public static $big_buttons = false;

@@ -585,6 +585,19 @@ function parallax_one_customize_register( $wp_customize ) {
     )
   );
   
+  /* Call to action payments heading */
+  $wp_customize->add_setting('call_to_action_payments_heading', array(
+    'default' => esc_html__(DefCallToAction::$payments_heading, 'parallax-one'),
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control('call_to_action_payments_heading', array(
+    'label' => esc_html__('Payments heading', 'parallax-one' ),
+    'section'  => 'call_to_action_section',
+    'active_callback' => 'parallax_one_show_on_front',
+    'priority' => 3
+  ));
+  
   /* Call to action payments */
   $wp_customize->add_setting(
     'call_to_action_payments',
