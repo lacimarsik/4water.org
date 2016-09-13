@@ -83,7 +83,8 @@
 											for (var i = 0; i < openButtons.length; i++) {
 												openButtons[i].style.display = "none";
 											}
-										document.getElementsByClassName("close-button")[0].style.display = "inline-block";
+											document.getElementsByClassName("close-button")[0].style.display = "inline-block";
+										}
 									</script>
 <?php
 								}
