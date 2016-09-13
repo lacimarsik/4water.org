@@ -135,7 +135,7 @@ function parallax_one_customize_register( $wp_customize ) {
     array(
       'type' => 'checkbox',
       'label' => esc_html__('Opens payment buttons','parallax-one'),
-      'description' => esc_html__('If this box is checked, payments in Call-to-action section will be opened upon click (use #call-to-action-payments-wrap as the Button link)','parallax-one'),
+      'description' => esc_html__('If this box is checked, payments in Call-to-action section will be opened upon click (use #call-to-action as the Button link)','parallax-one'),
       'section' => 'parallax_one_header_content',
       'priority'    => 4,
     )
