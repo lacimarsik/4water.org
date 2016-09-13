@@ -78,7 +78,7 @@
 								if ($parallax_one_header_button_opens_payments) { ?>
 									<script>
 										function openPaymentSectionFromHeader() {
-											document.getElementById("call-to-action-payments").style.display = 'block';
+											document.getElementById("call-to-action-payments-wrap").style.display = 'block';
 											var openButtons = document.getElementsByClassName("open-button");
 											for (var i = 0; i < openButtons.length; i++) {
 												openButtons[i].style.display = "none";

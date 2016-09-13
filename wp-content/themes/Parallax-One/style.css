@@ -1166,17 +1166,17 @@ div.call-to-action-box {
 	display: inline;
 }
 
-#call-to-action-payments {
+#call-to-action-payments-wrap {
 	display: none;
 	text-align: center;
 }
 
-#call-to-action-payments h2 {
+#call-to-action-payments-wrap h2 {
 	font-size: 25px;
 	margin: 30px auto 0;
 }
 
-div#call-to-action-payments-wrap {
+div#call-to-action-payments {
 	padding: 5px 2% 30px 2%;
 	margin: 0 auto;
 	text-align: center;

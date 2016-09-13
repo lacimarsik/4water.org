@@ -35,7 +35,7 @@
           <!-- SCRIPT TO SHOW/HIDE UP PAYMENTS SECTION -->
           <script>
             function openPaymentSection() {
-              document.getElementById("call-to-action-payments").style.display = 'block';
+              document.getElementById("call-to-action-payments-wrap").style.display = 'block';
               var openButtons = document.getElementsByClassName("open-button");
               for (var i = 0; i < openButtons.length; i++) {
                 openButtons[i].style.display = "none";
@@ -44,7 +44,7 @@
             }
 
             function closePaymentSection() {
-              document.getElementById("call-to-action-payments").style.display = 'none';
+              document.getElementById("call-to-action-payments-wrap").style.display = 'none';
               var openButtons = document.getElementsByClassName("open-button");
               for (var i = 0; i < openButtons.length; i++) {
                 openButtons[i].style.display = "inline-block";
@@ -115,11 +115,11 @@
 <?php
           if (!empty($call_to_action_payments)) {
             $call_to_action_payments_decoded = json_decode($call_to_action_payments);
-            echo '<div id="call-to-action-payments">';
+            echo '<div id="call-to-action-payments-wrap">';
             if (!empty($call_to_action_payments_heading)) {
               echo '<h2>' . $call_to_action_payments_heading . '</h2>';
             }
-            echo '<div id="call-to-action-payments-wrap">';
+            echo '<div id="call-to-action-payments">';
             $counter = 0;
             foreach ($call_to_action_payments_decoded as $payment) {
               if(!empty($payment->hosted_button_id) ||
