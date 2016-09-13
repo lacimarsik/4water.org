@@ -10,6 +10,7 @@
 	$parallax_one_second_layer = get_theme_mod('paralax_one_second_layer',parallax_get_file('/images/background2.png'));
 	$parallax_one_header_award_image = get_theme_mod('parallax_one_header_award_image', DefHeader::$header_award_image);
 	$parallax_one_header_award_text = get_theme_mod('parallax_one_header_award_text', DefHeader::$header_award_text);
+	$parallax_one_header_button_opens_payments = get_theme_mod('parallax_one_header_button_opens_payments', DefHeader::$header_button_opens_payments);
 	if(!empty($paralax_one_header_logo) || !empty($parallax_one_header_title) || !empty($parallax_one_header_subtitle) || !empty($parallax_one_header_button_text)) {
 ?>
 
@@ -73,13 +74,31 @@
 									</h5>
 <?php
 								}
-                
-                //BUTTON
+
+								if ($parallax_one_header_button_opens_payments) { ?>
+									<script>
+										function openPaymentSectionFromHeader() {
+											document.getElementById("call-to-action-payments-wrap").style.display = 'block';
+											var openButtons = document.getElementsByClassName("open-button");
+											for (var i = 0; i < openButtons.length; i++) {
+												openButtons[i].style.display = "none";
+											}
+										document.getElementsByClassName("close-button")[0].style.display = "inline-block";
+									</script>
+<?php
+								}
+
+								//BUTTON
 								if( !empty($parallax_one_header_button_text) ){
 									if( empty($parallax_one_header_button_link) ){
 										echo '<div id="intro_section_text_3" class="button"><a href="" class="btn btn-info header-button">'.esc_attr($parallax_one_header_button_text).'</a></div>';
-									} else {
-										echo '<div id="intro_section_text_3" class="button"><a href="'.esc_url($parallax_one_header_button_link).'" class="btn btn-info header-button">'.$parallax_one_header_button_text.'</a></div>';
+									} else { ?>
+										<div id="intro_section_text_3" class="button"><a 
+											<?php if ($parallax_one_header_button_opens_payments) {
+												echo 'onClick="openPaymentSectionFromHeader();"';
+											} ?>
+											href="<?php echo esc_url($parallax_one_header_button_link); ?>" class="btn btn-info header-button">'.$parallax_one_header_button_text.'</a></div>
+<?php
 									}
 								} elseif ( isset( $wp_customize )   ) {
 									echo '<div id="intro_section_text_3" class="button"><a href="" class="btn btn-info header-button paralax_one_only_customizer"></a></div>';

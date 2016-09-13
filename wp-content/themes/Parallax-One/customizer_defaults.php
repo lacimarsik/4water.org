@@ -13,6 +13,7 @@ class DefHeader {
   public static $header_button_link = '';
   public static $header_award_text = '';
   public static $header_award_image = '';
+  public static $header_button_opens_payments = false;
 };
 
 /********************************************************/
