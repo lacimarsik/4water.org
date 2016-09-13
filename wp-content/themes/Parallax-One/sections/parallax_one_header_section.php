@@ -64,7 +64,7 @@
 									<h5 id="intro_section_text_2" class="white-text"
 										<?php if (!empty($parallax_one_header_button_text) || !empty($parallax_one_header_button_link)) {
 											// Button is present - make more space for it
-											echo 'style="margin-top: 60px;"';
+											echo 'style="margin-top: 45px;"';
 										} else if (!empty($parallax_one_header_award_text) && !empty($parallax_one_header_award_image)) {
 											// Award is present - make more space for it
 											echo 'style="margin-top: 0px;"';
