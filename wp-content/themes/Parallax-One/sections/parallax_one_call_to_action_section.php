@@ -114,6 +114,7 @@
 <?php
           if (!empty($call_to_action_payments)) {
             $call_to_action_payments_decoded = json_decode($call_to_action_payments);
+            echo '<div id="call-to-action-payments">';
             echo '<div id="call-to-action-payments-wrap">';
             $counter = 0;
             foreach ($call_to_action_payments_decoded as $payment) {
@@ -183,6 +184,7 @@
 <?php
           }
 ?>
+          </div>
         </div>
       </div>
     </section> <?php
