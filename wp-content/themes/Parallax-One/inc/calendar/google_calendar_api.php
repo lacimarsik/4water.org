@@ -22,7 +22,7 @@
       "/lyon/dance/fr/" => "6vuhl5mspdfs9tht3tlgadenn8@group.calendar.google.com",
       "/lyon/climbing/" => "6vuhl5mspdfs9tht3tlgadenn8@group.calendar.google.com",
       "/lyon/climbing/fr/" => "6vuhl5mspdfs9tht3tlgadenn8@group.calendar.google.com",
-      "/manchester/yoga/" => "6vuhl5mspdfs9tht3tlgadenn8@group.calendar.google.com",
+      "/manchester/yoga/" => "i7bmccp5jqbcuvshjqr45pl4hc@group.calendar.google.com",
       "/prague/dance/" => "p3insueeqtr06h7l658qj1aqi0@group.calendar.google.com",
       "/prague/dance/cz/" => "19risi6pjr73kgg4dja1j18c2o@group.calendar.google.com",
       "/sample/" => "6vuhl5mspdfs9tht3tlgadenn8@group.calendar.google.com"
