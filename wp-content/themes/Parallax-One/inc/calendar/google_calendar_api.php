@@ -13,7 +13,7 @@
     private $calendar_urls = array(
       "/copenhagen/dance/" => "l1jrcaffjahp7adu2nd1vdu6j0@group.calendar.google.com",
       "/copenhagen/dance/dk/" => "l1jrcaffjahp7adu2nd1vdu6j0@group.calendar.google.com",
-      "/glasgow/dance/" => "1h4evtbec0dgc92n3vh81e773s@group.calendar.google.com",
+      "/glasgow/dance/" => "ba6a63k1ctd20v0amckvo7pp60@group.calendar.google.com",
       "/glasgow/language/" => "gvse6taa5s4sav26epmlcskv4g@group.calendar.google.com",
       "/kuwait/dance/" => "6vuhl5mspdfs9tht3tlgadenn8@group.calendar.google.com",
       "/linkoping/dance/" => "60ko8e3sv2movvuf5ll6bgnc6s@group.calendar.google.com",
