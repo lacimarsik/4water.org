@@ -6,6 +6,8 @@
   $call_to_action_text = get_theme_mod('call_to_action_text', DefCallToAction::$text);
   $call_to_action_content = get_theme_mod('call_to_action_content', DefCallToAction::$content);
   $call_to_action_payments_heading = get_theme_mod('call_to_action_payments_heading', DefCallToAction::$payments_heading);
+  $call_to_action_payments_note = get_theme_mod('call_to_action_payments_note', DefCallToAction::$payments_note);
+  $call_to_action_payments_image = get_theme_mod('call_to_action_payments_image', parallax_get_file(DefCallToAction::$payments_image));
   $call_to_action_payments = get_theme_mod('call_to_action_payments', DefCallToAction::$payments);
   $call_to_action_note = get_theme_mod('call_to_action_note', DefCallToAction::$note);
   $call_to_action_big_buttons = get_theme_mod('call_to_action_big_buttons', DefCallToAction::$big_buttons);
@@ -122,6 +124,12 @@
             echo '<div id="call-to-action-payments-wrap">';
             if (!empty($call_to_action_payments_heading)) {
               echo '<h2>' . $call_to_action_payments_heading . '</h2>';
+            }
+            if (!empty($call_to_action_payments_note)) {
+              echo '<div class="call-to-action-payments-note">' . $call_to_action_payments_note . '</div>';
+            }
+            if (!empty($call_to_action_payments_image) && !empty($call_to_action_payments_note)) {
+              echo '<img class="call-to-action-payments-image" title="' . $call_to_action_payments_note . '" src="' . $call_to_action_payments_image . '" />';
             }
             echo '<div id="call-to-action-payments">';
             $counter = 0;

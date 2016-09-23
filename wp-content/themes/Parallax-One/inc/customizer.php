@@ -597,6 +597,32 @@ function parallax_one_customize_register( $wp_customize ) {
     'active_callback' => 'parallax_one_show_on_front',
     'priority' => 3
   ));
+
+  /* Call to action payments note */
+  $wp_customize->add_setting('call_to_action_payments_note', array(
+    'default' => esc_html__(DefCallToAction::$payments_note, 'parallax-one'),
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control('call_to_action_payments_note', array(
+    'label' => esc_html__('Payments note', 'parallax-one' ),
+    'section'  => 'call_to_action_section',
+    'active_callback' => 'parallax_one_show_on_front',
+    'priority' => 3
+  ));
+
+  /* Call to action payments image */
+  $wp_customize->add_setting('call_to_action_payments_image', array(
+    'default' => parallax_get_file(DefCallToAction::$payments_image),
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'call_to_action_payments_image', array(
+    'label'    => esc_html__('Payments image', 'parallax-one'),
+    'section'  => 'call_to_action_section',
+    'active_callback' => 'parallax_one_show_on_front',
+    'priority'    => 3
+  )));
   
   /* Call to action payments */
   $wp_customize->add_setting(
