@@ -25,7 +25,8 @@
       "/manchester/yoga/" => "i7bmccp5jqbcuvshjqr45pl4hc@group.calendar.google.com",
       "/prague/dance/" => "p3insueeqtr06h7l658qj1aqi0@group.calendar.google.com",
       "/prague/dance/cz/" => "19risi6pjr73kgg4dja1j18c2o@group.calendar.google.com",
-      "/berlin/" => "eb2loeck1dsfjlmc2q1000rb2o@group.calendar.google.com",
+      "/berlin/" => "bakucjkss4lslq3djtfu4fi5pg@group.calendar.google.com",
+      "/berlin-volunteers/" => "eb2loeck1dsfjlmc2q1000rb2o@group.calendar.google.com",
       "/sample/" => "ba6a63k1ctd20v0amckvo7pp60@group.calendar.google.com"
     );
 
