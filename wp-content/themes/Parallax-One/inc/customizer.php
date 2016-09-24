@@ -647,7 +647,8 @@ function parallax_one_customize_register( $wp_customize ) {
           'student_charge' => array('type' => 'text', 'label' => 'Option 1 with price', 'placeholder' => 'Student £30.00 GBP'),
           'non_student_charge' => array('type' => 'text', 'label' => 'Option 2 with price', 'placeholder' => 'Non-student £35.00 GBP'),
           'field_description' => array('type' => 'text', 'label' => 'Required field', 'placeholder' => 'Full Name'),
-          'button_text' => array('type' => 'text', 'label' => 'Pay button label', 'placeholder' => 'Pay with')
+          'button_text' => array('type' => 'text', 'label' => 'Pay button label', 'placeholder' => 'Pay with'),
+          'product_available' => array('type' => 'text', 'label' => 'Option available (yes/no)', 'placeholder' => 'yes')
         )
       )
     )

@@ -1238,6 +1238,10 @@ div.call-to-action-payments-box table.payment-table td.payment-description {
 	vertical-align: top;
 }
 
+div.call-to-action-payments-box table.payment-table td.payment-not-available {
+	color: red;
+}
+
 /* when call-to-action payments are next to each other in wider viewport */
 
 @media (min-width: 992px) {

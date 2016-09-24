@@ -164,25 +164,38 @@
                             <br/>
                           </select></td>
                       </tr>
-                      <tr>
-                        <td class="payment-field-description"><input type="hidden" name="on1"
-                                   value="<?php echo $payment->field_description; ?>"><?php echo $payment->field_description; ?>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="payment-required-field"><input type="text" name="os1" maxlength="200"></td>
-                      </tr>
-                      <tr>
-                        <td class="payment-submit">
-                          <input type="hidden" name="currency_code" value="GBP"><br/>
+<?php
+                      if ($payment->product_available == "yes") {
+                        ?>
+                        <tr>
+                          <td class="payment-field-description"><input type="hidden" name="on1"
+                                                                       value="<?php echo $payment->field_description; ?>"><?php echo $payment->field_description; ?>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="payment-required-field"><input type="text" name="os1" maxlength="200"></td>
+                        </tr>
+                        <tr>
+                          <td class="payment-submit">
+                            <input type="hidden" name="currency_code" value="GBP"><br/>
                             <button type="submit" class="btn btn-info paypal-button" border="0" name="submit"
-                                   alt="PayPal – The safer, easier way to pay online!">
+                                    alt="PayPal – The safer, easier way to pay online!">
                               <?php echo $payment->button_text; ?><span class="paypal-image"></span>
-                            </button><br/>
+                            </button>
+                            <br/>
                             <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1"
                                  height="1">
-                        </td>
-                      </tr>
+                          </td>
+                        </tr>
+<?php
+                      } else {
+?>
+                        <tr>
+                          <td class="payment-not-available">We are sorry but this option is no longer available</td>
+                        </tr>
+<?php
+                      }
+?>
                     </table>
                   </form>
                 </div>

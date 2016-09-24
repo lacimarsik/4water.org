@@ -328,7 +328,8 @@ DefCallToAction::$payments = json_encode(
       'student_charge' => esc_html__('Student £30.00 GBP', 'parallax-one'),
       'non_student_charge' => esc_html__('Non-student £35.00 GBP', 'parallax-one'),
       'field_description' => esc_html__('Full Name (for class register)', 'parallax-one'),
-      'button_text' => esc_html__('Pay with', 'parallax-one')
+      'button_text' => esc_html__('Pay with', 'parallax-one'),
+      'product_available' => esc_html__('yes', 'parallax-one')
     ),
     array(
       'hosted_button_id' => esc_html__('LKK243PV3QFAQ', 'parallax-one'),
@@ -336,7 +337,8 @@ DefCallToAction::$payments = json_encode(
       'student_charge' => esc_html__('Student £30.00 GBP', 'parallax-one'),
       'non_student_charge' => esc_html__('Non-student £35.00 GBP', 'parallax-one'),
       'field_description' => esc_html__('Full Name (for class register)', 'parallax-one'),
-      'button_text' => esc_html__('Pay with', 'parallax-one')
+      'button_text' => esc_html__('Pay with', 'parallax-one'),
+      'product_available' => esc_html__('yes', 'parallax-one')
     ),
     array(
       'hosted_button_id' => esc_html__('E4XSYVJPNB9VJ', 'parallax-one'),
@@ -344,7 +346,8 @@ DefCallToAction::$payments = json_encode(
       'student_charge' => esc_html__('Student £30.00 GBP', 'parallax-one'),
       'non_student_charge' => esc_html__('Non-student £35.00 GBP', 'parallax-one'),
       'field_description' => esc_html__('Full Name (for class register)', 'parallax-one'),
-      'button_text' => esc_html__('Pay with', 'parallax-one')
+      'button_text' => esc_html__('Pay with', 'parallax-one'),
+      'product_available' => esc_html__('yes', 'parallax-one')
     ),
   )
 );
