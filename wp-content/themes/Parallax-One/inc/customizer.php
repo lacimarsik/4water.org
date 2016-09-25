@@ -1151,6 +1151,79 @@ function parallax_one_customize_register( $wp_customize ) {
   ));
 
   /********************************************************/
+  /*******************  TEAM OPTIONS  *********************/
+  /********************************************************/
+
+
+  $wp_customize->add_section( 'parallax_one_team_section' , array(
+    'title'       => esc_html__( 'Team section', 'parallax-one' ),
+    'priority'    => 34,
+  ));
+
+  /* Team title */
+  $wp_customize->add_setting( 'parallax_one_our_team_title', array(
+    'default' => esc_html__('Our Team','parallax-one'),
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control( 'parallax_one_our_team_title', array(
+    'label'    => esc_html__( 'Main title', 'parallax-one' ),
+    'section'  => 'parallax_one_team_section',
+    'active_callback' => 'parallax_one_show_on_front',
+    'priority'    => 1,
+  ));
+
+  /* Team subtitle */
+  $wp_customize->add_setting( 'parallax_one_our_team_subtitle', array(
+    'default' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit.','parallax-one'),
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control( 'parallax_one_our_team_subtitle', array(
+    'label'    => esc_html__( 'Subtitle', 'parallax-one' ),
+    'section'  => 'parallax_one_team_section',
+    'active_callback' => 'parallax_one_show_on_front',
+    'priority'    => 2,
+  ));
+
+  /* Team content */
+  $wp_customize->add_setting( 'parallax_one_team_content', array(
+      'sanitize_callback' => 'parallax_one_sanitize_text',
+      'default' => DefTeam::$content
+    )
+  );
+  $wp_customize->add_control(
+    new Parallax_One_General_Repeater(
+      $wp_customize,
+      'parallax_one_team_content',
+      array(
+        'label'   => esc_html__('Add new team member','parallax-one'),
+        'section' => 'parallax_one_team_section',
+        'active_callback' => 'parallax_one_show_on_front',
+        'priority' => 3,
+        'fields' => array(
+          'image_url' => array('type' => 'image', 'label' => 'Image'),
+          'title' => array('type' => 'text', 'label' => 'Title', 'placeholder' => 'Title'),
+          'subtitle' => array('type' => 'textarea', 'label' => 'Description', 'placeholder' => 'Description')
+        )
+      )
+    )
+  );
+  
+  /* Team show/hide */
+  
+  $wp_customize->add_setting('parallax_one_team_show', array(
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'default' => DefTeam::$hide));
+  $wp_customize->add_control(
+    'parallax_one_team_show', array(
+    'type' => 'checkbox',
+    'label' => __('Hide team section?', 'parallax-one'),
+    'section' => 'parallax_one_team_section',
+    'priority' => 4,
+  ));
+
+  /********************************************************/
   /****************** ARTICLES OPTIONS ********************/
   /********************************************************/
 
@@ -1620,7 +1693,6 @@ function parallax_one_sanitize_html( $input ){
   $string = force_balance_tags($input);
   return wp_kses($string, $allowed_html);
 }
-
 
 function parallax_one_customizer_script() {
   wp_enqueue_script( 'parallax_one_customizer_script', parallax_get_file('/js/parallax_one_customizer.js'), array("jquery","jquery-ui-draggable"),'1.0.0', true  );

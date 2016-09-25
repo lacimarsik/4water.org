@@ -64,6 +64,11 @@
         array_push($not_hidden_sections, 'sections/parallax_one_prices_section');
       endif;
 
+      $parallax_one_team_show = get_theme_mod('parallax_one_team_show', DefTeam::$hide);
+      if (isset($parallax_one_team_show) && $parallax_one_team_show != 1):
+        array_push($not_hidden_sections, 'sections/parallax_one_our_team_section');
+      endif;
+
       // temporary fix for Language4Water and 4Water to have Image section in the right place
       if (($sitePath != '/glasgow/language/') && ($sitePath != '/')) {
         $parallax_one_image_section_show = get_theme_mod('parallax_one_image_section_show', DefImage::$hide);
