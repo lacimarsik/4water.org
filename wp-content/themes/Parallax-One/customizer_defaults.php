@@ -196,7 +196,7 @@ DefTeam::$content = json_encode(
       'subtitle' => esc_html__('Dancing Salsa is not only moving your feet. Adding some funky circular movements with your hands is nice, but you can still step up your game by working with your whole body. Body isolations can make a big difference in your dance. It will give you more possibilities to interprete the music you\'re dancing on and it\'s basically great fun.','parallax-one')),
     array(
       'image_url' => parallax_get_file('/images/team/berlin_square_2.jpg'),
-      'title' => esc_html__('Salsa Partner Styling\nYaros & Katerina','parallax-one'),
+      'title' => esc_html__('Salsa Partner Styling - Yaros & Katerina','parallax-one'),
       'subtitle' => esc_html__('Yaros & Katerina will be teaching advanced Partner Styling in Rueda. A combination of Rumba, Salsa, Afro and Styling. This class will be for advanced dancers, who are comfortable with dancing Cuban Salsa on a dance floor.','parallax-one')),
     array(
       'image_url' => parallax_get_file('/images/team/berlin_square_3.jpg'),
@@ -204,7 +204,7 @@ DefTeam::$content = json_encode(
       'subtitle' => esc_html__('Afro-cuban Rumba consists of 3 different dances: Yambú, Guaguanco and Columbia. Columbia is a direct interaction between rumbero and percussionist. The dancer will alternate between slow and fast and show off his skills within a circle of spectators. Columbia movements are also perfect for pimping up your style while Casino/Timba dancing.','parallax-one')),
     array(
       'image_url' => parallax_get_file('/images/team/berlin_square_4.jpg'),
-      'title' => esc_html__('Introduction to Orishas\nYaros, Katerina & Marvin','parallax-one'),
+      'title' => esc_html__('Introduction to Orishas - Yaros, Katerina & Marvin','parallax-one'),
       'subtitle' => esc_html__('The deities or gods of Yoruba religion are an important part of Cuban culture. When you dance an Orisha, you also tell his story and character by your dancing. Let us introduce you to Elegua, the opener or all roads, Ochún, goddess of beauty, love, sexuality and fresh water and Ogun, god of metal who lives in the jungle.','parallax-one'))
   )
 );
