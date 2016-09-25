@@ -15,7 +15,8 @@
                         return translationDiv.textContent;
                     }
                 },
-                templateUrl:  templateUrl
+                templateUrl: templateUrl
+            }
         }
     );
 })();
