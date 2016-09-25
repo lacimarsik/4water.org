@@ -62,19 +62,10 @@ $calendar_next_week = get_theme_mod('calendar_next_week', DefCalendar::$next_wee
           <div id="cal-switches">
             <calendar-week-switch></calendar-week-switch>
           </div>
-<?php
-          if (!empty($calendar_this_week)) {
-?>
-            <div id="calendar-this-week" style="display: none;"><?php echo $calendar_this_week ?></div>
-<?php
-          }
-          if (!empty($calendar_next_week)) {
-?>
-            <div id="calendar-next-week" style="display: none;"><?php echo $calendar_next_week ?></div>
-<?php
-          }
-?>
+          <div id="calendar-this-week" style="display: none;"><?php echo $calendar_this_week ?></div>
+          <div id="calendar-next-week" style="display: none;"><?php echo $calendar_next_week ?></div>
         </div>
+        
       </div>
     </div>
   </div>
