@@ -3100,13 +3100,19 @@ a.control_next.fade-btn {
 	-o-transition: all 0.3s;
 	transition: all 0.3s;
 	background: rgba(0,0,0,0);
-	text-align: center;
+	line-height: 16px;
+}
+
+.member-details .small-text {
+	font-size: 0.7em;
 }
 
 .member-details h5 {
 	margin: 0;
 	margin-bottom: 5px;
 	color: #FFF;
+	line-height: 20px;
+	font-size: 12px;
 }
 
 .team-member-wrap {
@@ -3123,6 +3129,9 @@ a.control_next.fade-btn {
 .member-details-inner {
 	display: table-cell;
 	vertical-align: middle;
+	text-align: justify;
+	padding: 15px !important;
+	padding-bottom: 10px;
 }
 
 .team-member:hover .member-details {
