@@ -3075,6 +3075,11 @@ a.control_next.fade-btn {
 	opacity: 1;
 }
 
+.team-member-wrap .title-above {
+	padding-bottom: 8px;
+	font-weight: bold;
+}
+
 .member-pic {
 	border: none;
 	-webkit-border-radius: 0px;
@@ -3129,7 +3134,7 @@ a.control_next.fade-btn {
 
 .member-details-inner {
 	display: table-cell;
-	vertical-align: middle;
+	vertical-align: bottom;
 	text-align: justify;
 	padding: 15px !important;
 	padding-bottom: 10px;

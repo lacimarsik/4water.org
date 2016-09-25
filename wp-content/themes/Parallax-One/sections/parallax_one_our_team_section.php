@@ -43,6 +43,7 @@
 							foreach($parallax_one_team_decoded as $parallax_one_team_member){
 								if( !empty($parallax_one_team_member->image_url) ||  !empty($parallax_one_team_member->title) || !empty($parallax_one_team_member->subtitle)){?>
 									<div class="col-md-3 team-member-box">
+										<div class="title-above"><?php echo nl2br(esc_attr($parallax_one_team_member->title_above)); ?></div>
 										<div class="team-member border-bottom-hover">
 											<div class="member-pic">
 												<?php

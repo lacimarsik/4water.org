@@ -1203,6 +1203,7 @@ function parallax_one_customize_register( $wp_customize ) {
         'priority' => 3,
         'fields' => array(
           'image_url' => array('type' => 'image', 'label' => 'Image'),
+          'title_above' => array('type' => 'text', 'label' => 'Description', 'placeholder' => 'Title'),
           'title' => array('type' => 'text', 'label' => 'Title', 'placeholder' => 'Title'),
           'subtitle' => array('type' => 'textarea', 'label' => 'Description', 'placeholder' => 'Description')
         )
