@@ -2,8 +2,8 @@
  SECTION: TEAM   
 ============================== -->
 <?php
-	$parallax_one_our_team_title = get_theme_mod('parallax_one_our_team_title','Our Team');
-	$parallax_one_our_team_subtitle = get_theme_mod('parallax_one_our_team_subtitle','Lorem ipsum dolor sit amet, consectetur adipiscing elit.');
+	$parallax_one_our_team_title = get_theme_mod('parallax_one_our_team_title', DefTeam::$title);
+	$parallax_one_our_team_subtitle = get_theme_mod('parallax_one_our_team_subtitle', DefTeam::$subtitle);
 	$parallax_one_team_content = get_theme_mod('parallax_one_team_content', DefTeam::$content);
 
 	if(!empty($parallax_one_our_team_title) || !empty($parallax_one_our_team_subtitle) || !empty($parallax_one_team_content)){

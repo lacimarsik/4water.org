@@ -184,6 +184,8 @@ DefPrices::$content = json_encode(
 
 class DefTeam {
   public static $hide = true;
+  public static $title = 'OUR TEACHERS';
+  public static $subtitle = 'Our teachers and volunteers have been gathering skills on congresses and trainings all over the world.';
   public static $content; //need to initialize later
 };
 DefTeam::$content = json_encode(

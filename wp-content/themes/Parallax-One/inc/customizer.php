@@ -1162,7 +1162,7 @@ function parallax_one_customize_register( $wp_customize ) {
 
   /* Team title */
   $wp_customize->add_setting( 'parallax_one_our_team_title', array(
-    'default' => esc_html__('Our Team','parallax-one'),
+    'default' => esc_html__(DefTeam::$title,'parallax-one'),
     'sanitize_callback' => 'parallax_one_sanitize_text',
     'transport' => 'postMessage'
   ));
@@ -1175,7 +1175,7 @@ function parallax_one_customize_register( $wp_customize ) {
 
   /* Team subtitle */
   $wp_customize->add_setting( 'parallax_one_our_team_subtitle', array(
-    'default' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit.','parallax-one'),
+    'default' => esc_html__(DefTeam::$subtitle,'parallax-one'),
     'sanitize_callback' => 'parallax_one_sanitize_text',
     'transport' => 'postMessage'
   ));
