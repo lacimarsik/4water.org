@@ -16,9 +16,6 @@ LOCAL_PW = None  #keep none = pw will be asked for
 REMOTE_HOST = 'salsa.forma.sk'
 REMOTE_USER_NAME = 'salsa09'
 
-# others
-CUSTOMIZER_KEY = 'theme_mods_Parallax-One'
-
 # FTP
 FTP_ADDRESS = 'ftp://salsa.forma.sk'
 FTP_USER = 'salsa09'
