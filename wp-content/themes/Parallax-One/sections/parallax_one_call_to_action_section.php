@@ -120,7 +120,7 @@
           if(!empty($call_to_action_note)) {
             echo '<div class="call-to-action-note">'. $call_to_action_note;
             if (!empty($call_to_action_note_link) && !empty($call_to_action_note_link_text)) {
-              echo '<a href="' . $call_to_action_note_link . '>"> ' . $call_to_action_note_link_text . '</a>';
+              echo '<a href="' . $call_to_action_note_link . '"> ' . $call_to_action_note_link_text . '</a>';
             }
             echo '</div>';
           } ?>
