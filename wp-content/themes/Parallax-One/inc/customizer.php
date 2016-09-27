@@ -558,6 +558,32 @@ function parallax_one_customize_register( $wp_customize ) {
     'active_callback' => 'parallax_one_show_on_front',
     'priority'    => 1
   ));
+  
+  /* call to action - note link */
+  $wp_customize->add_setting('call_to_action_note_link', array(
+    'default' => DefCallToAction::$note_link,
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control('call_to_action_note_link', array(
+    'label'    => esc_html__('Note Link', 'parallax-one'),
+    'section'  => 'call_to_action_section',
+    'active_callback' => 'parallax_one_show_on_front',
+    'priority'    => 1
+  ));
+  
+  /* call to action - note link text */
+  $wp_customize->add_setting('call_to_action_note_link_text', array(
+    'default' => DefCallToAction::$note_link_text,
+    'sanitize_callback' => 'parallax_one_sanitize_text',
+    'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control('call_to_action_note_link_text', array(
+    'label'    => esc_html__('Note Link Text', 'parallax-one'),
+    'section'  => 'call_to_action_section',
+    'active_callback' => 'parallax_one_show_on_front',
+    'priority'    => 1
+  ));
 
   /* Call to action content */
   $wp_customize->add_setting(

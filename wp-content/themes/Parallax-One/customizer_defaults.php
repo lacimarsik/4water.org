@@ -342,6 +342,8 @@ class DefCallToAction {
   public static $payments_image = '';
   public static $payments; //need to initialize later
   public static $note = 'No money to donate? There are plenty of other ways to get involved';
+  public static $note_link = '';
+  public static $note_link_text = '';
   public static $big_buttons = false;
   public static $hide = true;
 };
