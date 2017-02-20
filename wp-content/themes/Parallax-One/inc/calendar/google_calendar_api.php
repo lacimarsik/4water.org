@@ -28,7 +28,7 @@
       "/berlin/" => "ield8ot8l0g16un4orvngi6qfs@group.calendar.google.com",
       "/berlin-volunteers/" => "eb2loeck1dsfjlmc2q1000rb2o@group.calendar.google.com",
       "/cardiff/dance/" => "demvn53ua2igi8qb9pecniegpk@group.calendar.google.com",
-      "/sample/" => "6vuhl5mspdfs9tht3tlgadenn8@group.calendar.google.com"
+      "/sample/" => "e57vivupm3e3p5qmknpn4kvv9g@group.calendar.google.com"
     );
 
     //----------------------------------------------
