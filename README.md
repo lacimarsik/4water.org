@@ -9,3 +9,5 @@ For contribution, we invite you to [contact us](mailto:laci.marsik@gmail.com) to
 - Push the branch to the repository `git push origin xy/section-calendar` and create a pull request
 - Our [Developer guide Wiki](https://github.com/lacimarsik/4water.org/wiki) should help you with every detail to get started
 - We are also happy to invite you to our developer chat on [Slack](https://4water.slack.com) and other systems we use. Do not hesitate to [contact us](mailto:laci.marsik@gmail.com).
+
+![Screenshot of 4water.org](http://www.marsik.sk/laci/4water/github/screen.png)
