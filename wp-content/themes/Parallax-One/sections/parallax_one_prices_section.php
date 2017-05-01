@@ -70,7 +70,7 @@
 <?php 
                   // the remaining elements after full row (e.g. 4th and 5th after row of 3 columns)
                   // should be centered
-                  if (($counter + 1) > (round(sizeof($prices_decoded) / 3) * 3)) {
+                  if (($counter + 1) > (round(sizeof($prices_decoded) / 3) * 3) || sizeof($prices_decoded) < 3) {
                     echo 'style="float: none;"';
                   }
 ?>
