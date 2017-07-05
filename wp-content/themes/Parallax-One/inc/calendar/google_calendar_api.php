@@ -26,7 +26,7 @@
       "/prague/dance/" => "6ong06rnp8jg5p207vmdbn5734@group.calendar.google.com",
       "/prague/dance/cz/" => "su0vk1k5df0datpi4meu20gf50@group.calendar.google.com",
       "/berlin/dance/" => "e57vivupm3e3p5qmknpn4kvv9g@group.calendar.google.com",
-      "/berlin/dance/de/" => "e57vivupm3e3p5qmknpn4kvv9g@group.calendar.google.com",
+      "/berlin/dance/en/" => "e57vivupm3e3p5qmknpn4kvv9g@group.calendar.google.com",
       "/berlin-volunteers/" => "eb2loeck1dsfjlmc2q1000rb2o@group.calendar.google.com",
       "/cardiff/dance/" => "demvn53ua2igi8qb9pecniegpk@group.calendar.google.com",
       "/sample/" => "e57vivupm3e3p5qmknpn4kvv9g@group.calendar.google.com"
