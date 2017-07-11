@@ -1,0 +1,28 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
+# add a trailing slash to /wp-admin
+RewriteRule ^([_0-9a-zA-Z-]+/)?wp-admin$ $1wp-admin/ [R=301,L]
+
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+# changed per https://paulund.co.uk/wordpress-multisite-nested-paths
+# Berlin, Lyon, Cardiff: dance -> salsa
+RewriteRule ^([_0-9a-zA-Z-]+/)?berlin/dance(/.*)?$ berlin/salsa$2 [R=301,L]
+RewriteRule ^([_0-9a-zA-Z-]+/)?lyon/dance(/.*)?$ lyon/salsa$2 [R=301,L]
+RewriteRule ^([_0-9a-zA-Z-]+/)?cardiff/dance(/.*)?$ cardiff/salsa$2 [R=301,L]
+# All the rest: salsa -> dance
+RewriteRule ^([_0-9a-zA-Z-]+/)?copenhagen/salsa(/.*)?$ copenhagen/dance$2 [R=301,L]
+RewriteRule ^([_0-9a-zA-Z-]+/)?glasgow/salsa(/.*)?$ glasgow/dance$2 [R=301,L]
+RewriteRule ^([_0-9a-zA-Z-]+/)?kuwait/salsa(/.*)?$ kuwait/dance$2 [R=301,L]
+RewriteRule ^([_0-9a-zA-Z-]+/)?linkoping/salsa(/.*)?$ linkoping/dance$2 [R=301,L]
+RewriteRule ^([_0-9a-zA-Z-]+/)?prague/salsa(/.*)?$ prague/dance$2 [R=301,L]
+RewriteRule  ^(.+)?/(wp-.*) /$2 [L]
+RewriteRule ^([_0-9a-zA-Z-]+/)?(.*\.php)$ $2 [L]
+RewriteRule . index.php [L]
+</IfModule>
