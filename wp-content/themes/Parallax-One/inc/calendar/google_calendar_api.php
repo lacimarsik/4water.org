@@ -29,7 +29,7 @@
       "/berlin/salsa/de/" => "38u7necgtctgcjo6a3joga71ek@group.calendar.google.com",
       "/berlin-volunteers/" => "eb2loeck1dsfjlmc2q1000rb2o@group.calendar.google.com",
       "/cardiff/dance/" => "demvn53ua2igi8qb9pecniegpk@group.calendar.google.com",
-      "/sample/" => "e57vivupm3e3p5qmknpn4kvv9g@group.calendar.google.com"
+      "/sample/" => "6ong06rnp8jg5p207vmdbn5734@group.calendar.google.com"
     );
 
     //----------------------------------------------
