@@ -27,6 +27,8 @@
       "/prague/dance/cz/" => "su0vk1k5df0datpi4meu20gf50@group.calendar.google.com",
       "/berlin/salsa/" => "ield8ot8l0g16un4orvngi6qfs@group.calendar.google.com",
       "/berlin/salsa/de/" => "38u7necgtctgcjo6a3joga71ek@group.calendar.google.com",
+      "/berlin/salsa/es/" => "ield8ot8l0g16un4orvngi6qfs@group.calendar.google.com",
+      "/berlin/salsa/fr/" => "ield8ot8l0g16un4orvngi6qfs@group.calendar.google.com",
       "/berlin-volunteers/" => "eb2loeck1dsfjlmc2q1000rb2o@group.calendar.google.com",
       "/cardiff/dance/" => "demvn53ua2igi8qb9pecniegpk@group.calendar.google.com",
       "/sample/" => "6ong06rnp8jg5p207vmdbn5734@group.calendar.google.com"
