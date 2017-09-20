@@ -20,6 +20,7 @@ if(!empty($image_section_title_above) ||
   !empty($ribbon_background) ||
   !empty($static_image)) {
 ?>
+  <div id="calendar-section"></div>
   <section id="image-section">
 <?php  
   if (!empty($image_section_title_above)) {
