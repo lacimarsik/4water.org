@@ -1440,6 +1440,7 @@ section#image-section {
 #image-section div.subtitle-above {
 	padding-bottom: 20px;
 	font-size: 1.0em;
+	margin: 0 150px;
 }
 
 .image-section-static-image {
