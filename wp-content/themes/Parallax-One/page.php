@@ -37,16 +37,10 @@
 
 			<?php endwhile; // end of the loop. ?>
 
-			<?php
-				if (true) { // TODO: only if cashier app page
-					echo "Hello world";
-				}
-			?>
-
 			</main><!-- #main -->
 		</div><!-- #primary -->
 
-		<?php //get_sidebar(); ?>
+		<?php get_sidebar(); ?>
 
 	</div>
 </div><!-- .content-wrap -->
