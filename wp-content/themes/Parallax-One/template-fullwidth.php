@@ -37,7 +37,7 @@
 	if ($pagename == "cashier") {
 ?>
 	<div class="cashier">
-		<form action="/action_page.php" id="cashier">
+		<form action="/cashier_app.php" id="cashier">
 			<div class="cashier-upper">
 				<label for="city">Location</label>
 				<select name="city" form="cashier">
