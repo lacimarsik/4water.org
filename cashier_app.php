@@ -1,7 +1,12 @@
 <?php
-// CASHIER APP - PROTOTYPE //
 
-// DISPLAY PLACEHOLDER HEADER
+// =============================
+// CASHIER APP - PROTOTYPE //
+// =============================
+
+// =============================
+// 1. DUMMY HEADER TAKEN FROM 4water.org
+// =============================
 ?>
 
 <!DOCTYPE html>
@@ -50,13 +55,6 @@
 </head>
 <body class="home blog">
 
-<!-- =============================
-   PRE LOADER
-============================== -->
-
-<!-- ============================
-   SECTION: HOME / HEADER
-============================== -->
 <header class="header header-style-one" data-stellar-background-ratio="0.5" id="home">
 	<!-- COLOR OVER IMAGE -->
 	<div class="overlay-layer-nav sticky-navigation-open">
@@ -169,7 +167,11 @@
 	</div>
 	<!-- /END COLOR OVER IMAGE -->
 </header>
-
+<?php
+// =============================
+// 2. CASHIER APP
+// =============================
+?>
 <div class="content-wrap">
 	<div class="container">
 

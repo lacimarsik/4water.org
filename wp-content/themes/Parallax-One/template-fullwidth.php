@@ -4,7 +4,6 @@
  *
  * @package parallax-one
  */
-
 	get_header(); 
 ?>
 
@@ -33,7 +32,9 @@
 			<?php endwhile; // end of the loop. ?>
 
 <?php
-	// CASHIER APP - PROTOTYPE //
+// =============================
+// CASHIER APP - PROTOTYPE
+// =============================
 	if ($pagename == "cashier") {
 		require_once(ABSPATH . 'wp-config.php');
 		$connection_4w = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD);
