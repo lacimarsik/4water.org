@@ -40,8 +40,17 @@
 		$connection_4w = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD);
 		mysqli_select_db($connection_4w, DB_NAME);
 
-		// TODO: Know the branch from the URL
-		$branch_id = 3;
+		// Find branch ID from URL
+		$url = parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH );
+		$patharray = (array) explode( '/', trim( $url, '/' ));
+		$city = $patharray[0];
+		$activity = $patharray[1];
+
+		$sql= "SELECT * FROM 4w_branches WHERE LOWER(city) = '" . $city . "' AND LOWER(activity) = '" . $activity . "'";
+		$result = $connection_4w->query($sql);
+		$row = mysqli_fetch_assoc($result);
+		$branch_id = $row['id'];
+
 ?>
 	<div class="cashier">
 		<form action="/cashier_app.php" id="cashier">
