@@ -35,30 +35,49 @@
 <?php
 	// CASHIER APP - PROTOTYPE //
 	if ($pagename == "cashier") {
+		require_once(ABSPATH . 'wp-config.php');
+		$connection_4w = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD);
+		mysqli_select_db($connection_4w, DB_NAME);
+
+		// TODO: Know the branch from the URL
+		$branch_id = 3;
 ?>
 	<div class="cashier">
 		<form action="/cashier_app.php" id="cashier">
 			<div class="cashier-upper">
-				<label for="city">Location</label>
-				<select name="city" form="cashier">
-					<option value="Berlin">Berlin</option>
-					<option value="Cardiff">Cardiff</option>
-					<option value="Copenhagen">Copenhagen</option>
-					<option value="Glasgow">Glasgow</option>
+				<label for="branch">Branch</label>
+				<select name="branch" form="cashier">
+<?php
+					$sql= "SELECT * FROM 4w_branches";
+					$result = $connection_4w->query($sql);
+					while ($row = mysqli_fetch_assoc($result)) {
+						echo '<option value=\"'. $row['id'] . '" ' . (($branch_id == $row['id']) ? "selected" : "") . '>' . $row['activity'] . "4Water " . $row['city'] . '</option>';
+					}
+?>
 				</select>
 				<label for="date">Date</label>
 				<input type="text" name="date" value="2017-09-26" />
 				<label for="time">Time</label>
 				<input type="text" name="time" value="2017-09-26" />
-				<label for="lesson">Lesson</label>
-				<select name="lesson" form="cashier">
-					<option value="Salsa">Salsa</option>
-					<option value="Bachata">Bachata</option>
+				<label for="class">Class</label>
+				<select name="class" form="cashier">
+<?php
+					$sql= "SELECT DISTINCT(class_type) FROM 4w_branch_classes WHERE branch_id = " . $branch_id;
+					$result = $connection_4w->query($sql);
+					while ($row = mysqli_fetch_assoc($result)) {
+						echo '<option value=\"'. $row['class_type'] . '">' . $row['class_type'] . '</option>';
+					}
+?>
 				</select>
 				<label for="level">Level</label>
 				<select name="level" form="cashier">
-					<option value="Beginners">Beginners</option>
-					<option value="Advanced">Advanced</option>
+<?php
+					$sql= "SELECT DISTINCT(level) FROM 4w_branch_classes WHERE branch_id = " . $branch_id;
+					$result = $connection_4w->query($sql);
+					while ($row = mysqli_fetch_assoc($result)) {
+						echo '<option value=\"'. $row['level'] . '">' . $row['level'] . '</option>';
+					}
+?>
 				</select>
 			</div>
 			<div class="cashier-below">
