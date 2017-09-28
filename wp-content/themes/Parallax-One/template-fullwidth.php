@@ -45,11 +45,15 @@
 		$patharray = (array) explode( '/', trim( $url, '/' ));
 		$city = $patharray[0];
 		$activity = $patharray[1];
-
 		$sql= "SELECT * FROM 4w_branches WHERE LOWER(city) = '" . $city . "' AND LOWER(activity) = '" . $activity . "'";
 		$result = $connection_4w->query($sql);
 		$row = mysqli_fetch_assoc($result);
 		$branch_id = $row['id'];
+
+		// Find current date and time
+		date_default_timezone_set('Europe/' . $row['city']);
+		$date = date('Y-m-d', time());
+		$time = date('H:i:s', time());
 
 ?>
 	<div class="cashier">
@@ -66,9 +70,9 @@
 ?>
 				</select>
 				<label for="date">Date</label>
-				<input type="text" name="date" value="2017-09-26" />
+				<input type="text" name="date" value="<?php echo $date; ?>" />
 				<label for="time">Time</label>
-				<input type="text" name="time" value="2017-09-26" />
+				<input type="text" name="time" value="<?php echo $time; ?>" />
 				<label for="class">Class</label>
 				<select name="class" form="cashier">
 <?php
