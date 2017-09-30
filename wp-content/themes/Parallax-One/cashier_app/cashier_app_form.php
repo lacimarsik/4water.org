@@ -99,14 +99,18 @@ function get_closest_lesson($connection_4w, $branch_id) {
 			</div>
 			<div class="cashier-count">
 				<script type="text/javascript" src="../wp-content/themes/Parallax-One/cashier_app/cashier_app.js"></script>
+<?php
+				$sql= "SELECT * FROM 4w_branch_prices WHERE branch_id = " . $branch_id . " AND class_type = '" . $closest_lesson_class_type . "'";
+				$result = $connection_4w->query($sql);
+				while ($row = mysqli_fetch_assoc($result)) {
+?>
 				<div class="price-type">
-					<label for="price-type-1">Adult 1-time</label>
-					<button id="adult-minus" type="button" class="js-minus minus">-</button><input type="text" id="adult" name="adult" value="0" /><button id="adult-plus" type="button" class="js-plus plus">+</button>
+					<label for="price-type-price<?php echo $row['id']; ?>"><?php echo $row['price_type']; ?></label>
+					<button id="price<?php echo $row['id']; ?>-minus" type="button" class="js-minus">-</button><input type="text" id="price<?php echo $row['id']; ?>" name="price<?php echo $row['id']; ?>" value="0" /><button id="price<?php echo $row['id']; ?>-plus" type="button" class="js-plus">+</button>
 				</div>
-				<div class="price-type">
-					<label for="price-type-2">Student 1-time</label>
-					<button id="student-minus" type="button" class="js-minus minus">-</button><input type="text" id="student" name="student" value="0" /><button id="student-plus" type="button" class="js-plus plus">+</button>
-				</div>
+<?php
+				}
+?>
 			</div>
 			<input type="submit">
 		</form>
