@@ -98,13 +98,14 @@ function get_closest_lesson($connection_4w, $branch_id) {
 				<input type="text" name="name" value="" />
 			</div>
 			<div class="cashier-count">
+				<script type="text/javascript" src="../wp-content/themes/Parallax-One/cashier_app/cashier_app.js"></script>
 				<div class="price-type">
 					<label for="price-type-1">Adult 1-time</label>
-					<button class="js-minus minus">-</button><input type="text" name="name" value="0" /><button class="js-plus plus">+</button>
+					<button id="adult-minus" type="button" class="js-minus minus">-</button><input type="text" id="adult" name="adult" value="0" /><button id="adult-plus" type="button" class="js-plus plus">+</button>
 				</div>
 				<div class="price-type">
 					<label for="price-type-2">Student 1-time</label>
-					<button class="js-minus minus">-</button><input type="text" name="name" value="0" /><button class="js-plus plus">+</button>
+					<button id="student-minus" type="button" class="js-minus minus">-</button><input type="text" id="student" name="student" value="0" /><button id="student-plus" type="button" class="js-plus plus">+</button>
 				</div>
 			</div>
 			<input type="submit">
