@@ -15,10 +15,23 @@ $(document).ready(function() {
     var buttonId = $(this).attr('id');
     var counterId = getCounterId(buttonId)
     $('#' + counterId).val(function (i, val) {
+      form_data = {
+        'cashier': true,
+        'increment': true,
+        'branch': $('#branch option:selected').val(),
+        'date': $('#date').val(),
+        'time': $('#time').val(),
+        'class_type': $('#class_type option:selected').val(),
+        'level': $('#level option:selected').val(),
+        'name': $('#name').val()
+      };
+      $('.price').each(function(index) {
+        console.log("{" + $( this ).attr('id') + ": " + $( this ).val() + "}");
+      });
       $.ajax({
         url: './index.php',
         type: 'POST',
-        data: {'cashier': true, 'increment': true },
+        data: form_data,
         success: function (data) {
 
         }
