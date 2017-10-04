@@ -58,6 +58,7 @@ function get_closest_lesson($connection_4w, $branch_id) {
 		<form action="/index.php" id="cashier" method="post">
 			<div class="cashier-upper">
 				<input type="hidden" name="cashier" />
+				<input type="hidden" name="submitform" />
 				<label for="branch">Branch</label>
 				<select id="branch_id" name="branch" form="cashier">
 <?php

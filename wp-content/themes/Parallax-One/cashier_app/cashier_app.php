@@ -32,7 +32,7 @@ function countsExist($post, $connection) {
 // 2. AJAX / FORM HANDLING
 // =============================
 
-if (isset($_POST['increment']) || isset($_POST['decrement']) || isset($_POST['cashier'])) {
+if (isset($_POST['increment']) || isset($_POST['decrement']) || isset($_POST['submitform'])) {
 	$prices_array = getArrayOfPrices($_POST);
 	if (countsExist($_POST, $connection_4w)) {
 		foreach ($prices_array as $price_id => $count) {
@@ -447,6 +447,10 @@ if (isset($_POST['increment']) || isset($_POST['decrement']) || isset($_POST['ca
 // =============================
 // 4. CASHIER APP VIEW
 // =============================
+
+$sql= "SELECT * FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id;";
+$result = $connection_4w->query($sql);
+
 ?>
 <div class="content-wrap">
 	<div class="container">
@@ -459,6 +463,29 @@ if (isset($_POST['increment']) || isset($_POST['decrement']) || isset($_POST['ca
 						<div class="colored-line-left"></div>
 						<div class="clearfix"></div>
 				</article>
+				<table class="report">
+					<thead style="font-weight: bold; border-botom: 1px solid black;">
+						<tr>
+							<td>Branch</td><td>Class</td><td>Level</td><td>Date</td><td>Time</td><td>Price Type</td><td>Price</td><td>Count</td><td>Money made</td><td>Cashier</td>
+						</tr>
+					</thead>
+<?php
+	while ($row = mysqli_fetch_assoc($result)) {
+		echo '<tr>';
+		echo '<td>' . $row['activity'] . '4Water ' . $row['city'] . '</td>';
+		echo '<td>' . $row['class_type'] . '</td>';
+		echo '<td>' . $row['level'] . '</td>';
+		echo '<td>' . $row['date'] . '</td>';
+		echo '<td>' . $row['time'] . '</td>';
+		echo '<td>' . $row['price_type'] . '</td>';
+		echo '<td>' . $row['price'] . ' ' . $row['currency'] . '</td>';
+		echo '<td>' . $row['count'] . '</td>';
+		echo '<td>' . intval($row['price']) * intval($row['count']) . ' ' . $row['currency'] . '</td>';
+		echo '<td>' . $row['volunteer_name'] . '</td>';
+		echo '</tr>';
+	}
+?>
+				</table>
 			</main>
 		</div>
 	</div>
