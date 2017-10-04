@@ -1382,7 +1382,7 @@ function parallax_one_customize_register( $wp_customize ) {
       'sanitize_callback' => 'parallax_one_sanitize_text',
       'transport' => 'postMessage'
   ));
-  $wp_customize->add_control('image_section_subtitle_above', array(
+  $wp_customize->add_control('subscription_section_subtitle', array(
       'label'    => esc_html__('Subtitle', 'parallax-one'),
       'section'  => 'subscription_section',
       'active_callback' => 'parallax_one_show_on_front',

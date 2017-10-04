@@ -2,9 +2,9 @@
  SECTION: SUBSCRIPTION  
 ============================== -->
 <?php
-$subscription_title = get_theme_mod('subscription_title',  DefSubscription::$title);
-$subscription_subtitle = get_theme_mod('subscription_subtitle',  DefSubscription::$subtitle);
-$subscription_url = get_theme_mod('subscription_url', DefSubscription::$url);
+$subscription_title = get_theme_mod('subscription_section_title',  DefSubscription::$title);
+$subscription_subtitle = get_theme_mod('subscription_section_subtitle',  DefSubscription::$subtitle);
+$subscription_url = get_theme_mod('subscription_section_url', DefSubscription::$url);
 
 if(!empty($subscription_title) ||
 	!empty($subscription_subtitle) ||
@@ -28,7 +28,7 @@ if(!empty($subscription_title) ||
 				</div>
 
 				<div class="subscription">
-					<link href="//cdn-images.mailchimp.com/embedcode/slim-10_7.css" rel="stylesheet" type="text/css">
+					<link href="<?php echo $subscription_url; ?>" rel="stylesheet" type="text/css">
 					<style type="text/css">
 						#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
 						/* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
