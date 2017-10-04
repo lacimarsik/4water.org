@@ -1313,6 +1313,111 @@ function parallax_one_customize_register( $wp_customize ) {
   ));
 
   /********************************************************/
+  /**************** IMAGE SECTION OPTIONS *****************/
+  /********************************************************/
+
+  $wp_customize->add_section('image_section', array(
+      'title'       => esc_html__('Image section', 'parallax-one'),
+      'priority'    => 33,
+  ));
+
+  /* Image section - use static image */
+
+  $wp_customize->add_setting('image_section_use_static_image', array(
+      'sanitize_callback' => 'parallax_one_sanitize_text',
+      'default' => DefImage::$use_static_image
+  ));
+  $wp_customize->add_control(
+      'image_section_use_static_image', array(
+      'type' => 'checkbox',
+      'label' => __('Use static image?', 'parallax-one'),
+      'section' => 'image_section',
+      'priority' => 1,
+  ));
+
+  /* Ribbon Background */
+  $wp_customize->add_setting('paralax_one_ribbon_background', array(
+      'default' => parallax_get_file(DefImage::$ribbon_background),
+      'sanitize_callback' => 'esc_url',
+      'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control(new WP_Customize_Image_Control( $wp_customize, 'paralax_one_ribbon_background', array(
+      'label'    => esc_html__('Ribbon Background', 'parallax-one' ),
+      'section'  => 'image_section',
+      'active_callback' => 'parallax_one_show_on_front',
+      'priority'    => 1
+  )));
+
+  /* Image section - static image */
+  $wp_customize->add_setting('image_section_static_image', array(
+      'default' => parallax_get_file(DefImage::$static_image),
+      'sanitize_callback' => 'esc_url',
+      'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control(new WP_Customize_Image_Control( $wp_customize, 'image_section_static_image', array(
+      'label'    => esc_html__('Static image', 'parallax-one' ),
+      'section'  => 'image_section',
+      'active_callback' => 'parallax_one_show_on_front',
+      'priority'    => 1
+  )));
+
+  /* Subscription section - title */
+
+  $wp_customize->add_setting('subscription_section_title', array(
+      'default' => esc_html__(DefSubscription::$title, 'parallax-one'),
+      'sanitize_callback' => 'parallax_one_sanitize_text',
+      'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control('subscription_section_title', array(
+      'label'    => esc_html__('Title', 'parallax-one'),
+      'section'  => 'subscription_section',
+      'active_callback' => 'parallax_one_show_on_front',
+      'priority'    => 2
+  ));
+
+  /* Subscription section - subtitle */
+
+  $wp_customize->add_setting('subscription_section_subtitle', array(
+      'default' => esc_html__(DefSubscription::$subtitle, 'parallax-one'),
+      'sanitize_callback' => 'parallax_one_sanitize_text',
+      'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control('image_section_subtitle_above', array(
+      'label'    => esc_html__('Subtitle', 'parallax-one'),
+      'section'  => 'subscription_section',
+      'active_callback' => 'parallax_one_show_on_front',
+      'priority'    => 2
+  ));
+
+  /* Subscription section - url */
+
+  $wp_customize->add_setting('subscription_section_url', array(
+      'default' => esc_html__(DefSubscription::$url, 'parallax-one'),
+      'sanitize_callback' => 'esc_url',
+      'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control('subscription_section_url', array(
+      'label'    => esc_html__('Mailchimp URL', 'parallax-one'),
+      'section'  => 'subscription_section',
+      'active_callback' => 'parallax_one_show_on_front',
+      'priority'    => 4
+  ));
+
+  /* Subscription section show/hide */
+
+  $wp_customize->add_setting('parallax_one_subscription_section_show', array(
+      'sanitize_callback' => 'parallax_one_sanitize_text',
+      'default' => DefSubscription::$hide
+  ));
+  $wp_customize->add_control(
+      'parallax_one_subscription_section_show', array(
+      'type' => 'checkbox',
+      'label' => __('Hide Subscription section?', 'parallax-one'),
+      'section' => 'subscription_section',
+      'priority' => 5
+  ));
+
+  /********************************************************/
   /****************** CONTACT OPTIONS  ********************/
   /********************************************************/
 
