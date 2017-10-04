@@ -441,7 +441,7 @@ class DefImage {
 /********************************************************/
 
 class DefSubscription {
-    public static $title = 'Stay tuned to 4Water';
+    public static $title = 'Stay tuned';
     public static $subtitle = 'Subscribe to our mailinglist to know about the notable updates to our cause';
     public static $url = '';
     public static $hide = true;

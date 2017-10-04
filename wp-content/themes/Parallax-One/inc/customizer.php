@@ -1361,6 +1361,11 @@ function parallax_one_customize_register( $wp_customize ) {
       'priority'    => 1
   )));
 
+  $wp_customize->add_section('subscription_section', array(
+      'title'       => esc_html__('Subscription section', 'parallax-one'),
+      'priority'    => 32,
+  ));
+
   /* Subscription section - title */
 
   $wp_customize->add_setting('subscription_section_title', array(
