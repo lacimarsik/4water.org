@@ -78,6 +78,7 @@ if ($form_submitted) {
 	<title>Cashier - Success | 4Water</title>
 	<meta name="description" itemprop="description"
 	      content="Welcome, dear cashier. On this page you count the number of attendees and add new email subscriptions (when someone buys 10-time pass). When you are done your"/>
+	<link rel="stylesheet" href="/wp-content/themes/Parallax-One/cashier_app/cashier_app.css">
 	<link rel='stylesheet' id='menu-image-css'
 	      href='http://4water.org/wp-content/plugins/menu-image/menu-image.css?ver=1.1' type='text/css' media='all'/>
 	<link rel='stylesheet' id='parallax-one-bootstrap-style-css'
@@ -471,7 +472,7 @@ $result = $connection_4w->query($sql);
 						<h1 class="entry-title single-title">Cashier</h1>
 						<div class="colored-line-left"></div>
 						<div class="clearfix"></div>
-						Thank you for cashiering! Below are the counts and money made.
+						<div class="cashier-done">Thank you for cashiering! Below are the counts and money made.</div>
 				</article>
 				<table class="report">
 					<thead style="font-weight: bold; border-botom: 1px solid black;">

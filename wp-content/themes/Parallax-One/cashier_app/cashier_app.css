@@ -1,0 +1,20 @@
+.cashier-above label {
+	text-align: left;
+}
+
+#name {
+	width: 400px;
+}
+
+.cashier-submit {
+	padding-top: 20px;
+}
+
+.price-type {
+	line-height: 35px;
+}
+
+.cashier-done {
+	padding-top: 20px;
+	padding-bottom: 10px;
+}
