@@ -59,8 +59,8 @@ function get_closest_lesson($connection_4w, $branch_id) {
 			<div class="cashier-upper">
 				<input type="hidden" name="cashier" />
 				<input type="hidden" name="submitform" />
-				<label for="branch">Branch</label>
-				<select id="branch_id" name="branch" form="cashier">
+				<label for="branch_id">Branch</label>
+				<select id="branch_id" name="branch_id" form="cashier">
 <?php
 					$sql= "SELECT * FROM 4w_branches";
 					$result = $connection_4w->query($sql);

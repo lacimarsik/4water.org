@@ -22,17 +22,26 @@ function getArrayOfPrices($post) {
 }
 
 function countsExist($post, $connection) {
-	$sql= "SELECT COUNT(*) FROM 4w_accounting WHERE date = '" . $post['date'] . "' AND time = '" . $post['time']
+	$sql= "SELECT * FROM 4w_accounting WHERE date = '" . $post['date'] . "' AND time = '" . $post['time']
 		. "' AND branch_id = '" . $post['branch_id'] . "' AND class_type = '" . $post['class_type'] . "' AND level = '" . $post['level'] . "';";
 	$result = $connection->query($sql);
-	return ($result > 0);
+	return ($result->num_rows > 0);
+}
+
+function getCurrentBranchUrl($post, $connection) {
+	$sql= "SELECT * FROM 4w_branches WHERE id = 3";"'" . $post['branch_id'] . "';";
+	$result = $connection->query($sql);
+	$row = mysqli_fetch_assoc($result);
+	return '/' . strtolower($row['city']) . '/' . strtolower($row['activity']) . '/cashier';
 }
 
 // =============================
 // 2. AJAX / FORM HANDLING
 // =============================
 
-if (isset($_POST['increment']) || isset($_POST['decrement']) || isset($_POST['submitform'])) {
+$form_submitted = isset($_POST['increment']) || isset($_POST['decrement']) || isset($_POST['submitform']);
+
+if ($form_submitted) {
 	$prices_array = getArrayOfPrices($_POST);
 	if (countsExist($_POST, $connection_4w)) {
 		foreach ($prices_array as $price_id => $count) {
@@ -462,6 +471,7 @@ $result = $connection_4w->query($sql);
 						<h1 class="entry-title single-title">Cashier</h1>
 						<div class="colored-line-left"></div>
 						<div class="clearfix"></div>
+						Thank you for cashiering! Below are the counts and money made.
 				</article>
 				<table class="report">
 					<thead style="font-weight: bold; border-botom: 1px solid black;">
@@ -486,6 +496,15 @@ $result = $connection_4w->query($sql);
 	}
 ?>
 				</table>
+<?php
+	if ($form_submitted) {
+		$branch_url = getCurrentBranchUrl($_POST, $connection_4w);
+?>
+				<br />
+				<a href="<?php echo $branch_url; ?>">Back to Cashiering</a>
+<?php
+	}
+?>
 			</main>
 		</div>
 	</div>
