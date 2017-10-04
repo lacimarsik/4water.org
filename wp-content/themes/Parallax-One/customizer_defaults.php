@@ -435,3 +435,14 @@ class DefImage {
   public static $static_image = '';
   public static $hide = true;
 };
+
+/********************************************************/
+/*************** SUBSCRIPTION SECTION *******************/
+/********************************************************/
+
+class DefSubscription {
+    public static $title = 'Stay tuned to 4Water';
+    public static $subtitle = 'Subscribe to our mailinglist to know about the notable updates to our cause';
+    public static $url = '';
+    public static $hide = true;
+};

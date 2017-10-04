@@ -90,6 +90,11 @@
         endif;
       }
 
+      $parallax_one_subscription_show = get_theme_mod('parallax_one_subscription_show');
+      if (isset($parallax_one_subscription_show) && $parallax_one_subscription_show != 1):
+        array_push($not_hidden_sections, 'sections/parallax_one_subscription_section');
+      endif;
+
       $parallax_one_map_show = get_theme_mod('parallax_one_map_show');
       if (isset($parallax_one_map_show) && $parallax_one_map_show != 1):
         array_push($not_hidden_sections, 'sections/parallax_one_map_section');
