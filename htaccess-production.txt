@@ -22,6 +22,8 @@ RewriteRule ^([_0-9a-zA-Z-]+/)?glasgow/salsa(/.*)?$ glasgow/dance$2 [R=301,L]
 RewriteRule ^([_0-9a-zA-Z-]+/)?kuwait/salsa(/.*)?$ kuwait/dance$2 [R=301,L]
 RewriteRule ^([_0-9a-zA-Z-]+/)?linkoping/salsa(/.*)?$ linkoping/dance$2 [R=301,L]
 RewriteRule ^([_0-9a-zA-Z-]+/)?prague/salsa(/.*)?$ prague/dance$2 [R=301,L]
+# Copenhagen DK site redirect
+RewriteRule ^([_0-9a-zA-Z-]+/)?copenhagen/dance/dk(/.*)?$ copenhagen/dance$2 [R=301,L]
 RewriteRule  ^(.+)?/(wp-.*) /$2 [L]
 RewriteRule ^([_0-9a-zA-Z-]+/)?(.*\.php)$ $2 [L]
 RewriteRule . index.php [L]

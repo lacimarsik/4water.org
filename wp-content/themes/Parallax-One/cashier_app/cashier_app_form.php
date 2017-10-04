@@ -55,63 +55,89 @@ function get_closest_lesson($connection_4w, $branch_id) {
 	$closest_lesson_level = $closest_lesson[2];
 ?>
 	<div class="cashier">
+		<br />
+		<link rel="stylesheet" href="../wp-content/themes/Parallax-One/cashier_app/cashier_app.css">
 		<form action="/index.php" id="cashier" method="post">
-			<div class="cashier-upper">
+			<div class="cashier-upper col-md-12">
 				<input type="hidden" name="cashier" />
-				<label for="branch">Branch</label>
-				<select id="branch" name="branch" form="cashier">
+				<input type="hidden" name="submitform" />
+				<div class="form-group col-md-4">
+					<label for="branch_id">Branch</label>
+					<select id="branch_id" name="branch_id" form="cashier">
 <?php
-					$sql= "SELECT * FROM 4w_branches";
-					$result = $connection_4w->query($sql);
-					while ($row = mysqli_fetch_assoc($result)) {
-						echo '<option value="'. $row['id'] . '" ' . (($branch_id == $row['id']) ? "selected" : "") . '>' . $row['activity'] . "4Water " . $row['city'] . '</option>';
-					}
+						$sql= "SELECT * FROM 4w_branches";
+						$result = $connection_4w->query($sql);
+						while ($row = mysqli_fetch_assoc($result)) {
+							echo '<option value="'. $row['id'] . '" ' . (($branch_id == $row['id']) ? "selected" : "") . '>' . $row['activity'] . "4Water " . $row['city'] . '</option>';
+						}
 ?>
-				</select>
-				<label for="date">Date</label>
-				<input id="date" type="text" name="date" value="<?php echo $closest_lesson_date; ?>" />
-				<label for="time">Time</label>
-				<input id="time" type="text" name="time" value="<?php echo $closest_lesson_time; ?>" />
-				<label for="class_type">Class</label>
-				<select id="class_type" name="class_type" form="cashier">
-<?php
-					$sql= "SELECT DISTINCT(class_type) FROM 4w_branch_classes WHERE branch_id = " . $branch_id;
-					$result = $connection_4w->query($sql);
-					while ($row = mysqli_fetch_assoc($result)) {
-						echo '<option value="'. $row['class_type'] . '" ' . (($closest_lesson_class_type == $row['class_type']) ? "selected" : "") . '>' . $row['class_type'] . '</option>';
-					}
-?>
-				</select>
-				<label for="level">Level</label>
-				<select id="level" name="level" form="cashier">
-<?php
-					$sql= "SELECT DISTINCT(level) FROM 4w_branch_classes WHERE branch_id = " . $branch_id;
-					$result = $connection_4w->query($sql);
-					while ($row = mysqli_fetch_assoc($result)) {
-						echo '<option value="'. $row['level'] . '" ' . (($closest_lesson_level == $row['level']) ? "selected" : "") . '>' . $row['level'] . '</option>';
-					}
-?>
-				</select>
+					</select>
+				</div>
+				<div class="form-group col-md-4">
+					<label for="class_type">Class</label>
+					<select id="class_type" name="class_type" form="cashier">
+						<?php
+						$sql= "SELECT DISTINCT(class_type) FROM 4w_branch_classes WHERE branch_id = " . $branch_id;
+						$result = $connection_4w->query($sql);
+						while ($row = mysqli_fetch_assoc($result)) {
+							echo '<option value="'. $row['class_type'] . '" ' . (($closest_lesson_class_type == $row['class_type']) ? "selected" : "") . '>' . $row['class_type'] . '</option>';
+						}
+						?>
+					</select>
+				</div>
+				<div class="form-group col-md-4">
+					<label for="level">Level</label>
+					<select id="level" name="level" form="cashier">
+						<?php
+						$sql= "SELECT DISTINCT(level) FROM 4w_branch_classes WHERE branch_id = " . $branch_id;
+						$result = $connection_4w->query($sql);
+						while ($row = mysqli_fetch_assoc($result)) {
+							echo '<option value="'. $row['level'] . '" ' . (($closest_lesson_level == $row['level']) ? "selected" : "") . '>' . $row['level'] . '</option>';
+						}
+						?>
+					</select>
+				</div>
+				<div class="clearfix"></div>
+				<div class="form-group col-md-4">
+					<label for="date">Date</label>
+					<input id="date" type="text" name="date" value="<?php echo $closest_lesson_date; ?>" />
+				</div>
+				<div class="form-group col-md-4">
+					<label for="time">Time</label>
+					<input id="time" type="text" name="time" value="<?php echo $closest_lesson_time; ?>" />
+				</div>
 			</div>
-			<div class="cashier-below">
-				<label for="name">Volunteer</label>
-				<input id="name" type="text" name="name" value="" />
+			<div class="cashier-below col-md-12">
+				<div class="form-group col-md-12">
+					<label for="name">Volunteer</label>
+					<input id="name" type="text" name="name" value="" />
+				</div>
 			</div>
-			<div class="cashier-count">
+			<br />
+			<div class="cashier-count col-md-12">
 				<script type="text/javascript" src="../wp-content/themes/Parallax-One/cashier_app/cashier_app.js"></script>
 <?php
 				$sql= "SELECT * FROM 4w_branch_prices WHERE branch_id = " . $branch_id . " AND class_type = '" . $closest_lesson_class_type . "'";
 				$result = $connection_4w->query($sql);
 				while ($row = mysqli_fetch_assoc($result)) {
 ?>
-				<div class="price-type">
-					<label for="price-type-price<?php echo $row['id']; ?>"><?php echo $row['price_type']; ?></label>
-					<button id="price<?php echo $row['id']; ?>-minus" type="button" class="js-minus">-</button><input type="text" class="price" id="price<?php echo $row['id']; ?>" name="price<?php echo $row['id']; ?>" value="0" /><button id="price<?php echo $row['id']; ?>-plus" type="button" class="js-plus">+</button>
+				<div class="prices-iterator">
+					<div class="price-type col-md-3">
+						<label for="price-type-price<?php echo $row['id']; ?>"><?php echo $row['price_type']; ?></label>
+					</div>
+					<div class="price-entry col-md-9">
+						<button id="price<?php echo $row['id']; ?>-minus" type="button" class="js-minus">-</button><input type="text" class="price" id="price<?php echo $row['id']; ?>" name="price<?php echo $row['id']; ?>" value="0" /><button id="price<?php echo $row['id']; ?>-plus" type="button" class="js-plus">+</button>
+					</div>
 				</div>
+				<div class="clearfix"></div>
 <?php
 				}
 ?>
 			</div>
-			<input type="submit">
+			<div class="cashier-submit col-md-12">
+				<div class="form-group col-md-4">
+					<input type="submit">
+				</div>
+			</div>
 		</form>
 	</div>
