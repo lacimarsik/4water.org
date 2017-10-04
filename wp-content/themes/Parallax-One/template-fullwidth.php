@@ -4,7 +4,6 @@
  *
  * @package parallax-one
  */
-
 	get_header(); 
 ?>
 
@@ -32,6 +31,11 @@
 
 			<?php endwhile; // end of the loop. ?>
 
+<?php
+	if ($pagename == "cashier") {
+		include 'cashier_app/cashier_app_form.php';
+	}
+?>
 			</main><!-- #main -->
 		</div><!-- #primary -->
 
