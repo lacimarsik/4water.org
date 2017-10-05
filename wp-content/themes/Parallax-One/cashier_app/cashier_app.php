@@ -15,7 +15,7 @@ function getArrayOfPrices($post) {
 	$prices_array = array();
 	foreach ($post as $key => $val) {
 		if (substr($key, 0, 5) == 'price') {
-			$prices_array[substr($key, 5, 1)] = $val;
+			$prices_array[substr($key, 5)] = $val;
 		}
 	}
 	return $prices_array;
