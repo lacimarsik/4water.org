@@ -494,6 +494,8 @@ $currency = "";
 						$total += intval($row['price']) * intval($row['count']);
 						if ($row['totals'] != "yes") {
 							$students += intval($row['count']);
+						} else {
+							$students_manual = ($students_manual < $row['count']) ? $row['count'] : $students_manual;
 						}
 						echo '<tr>';
 						echo '<td>' . $row['activity'] . '4Water ' . $row['city'] . '</td>';
@@ -510,8 +512,9 @@ $currency = "";
 					}
 					?>
 				</table>
+				<?php $total_students = ($students_manual > $students) ? $students_manual : $students; ?>
 				<strong>Total money made: </strong> <span style="font-size: 2em;"><?php echo $total; ?> <?php echo $currency; ?></span><br /><br />
-				<strong>Number of students: </strong> <span style="font-size: 2em;"><?php echo $students; ?></span>
+				<strong>Number of students: </strong> <span style="font-size: 2em;"><?php echo $total_students; ?></span>
 <?php
 $sql= "SELECT * FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id;";
 $result = $connection_4w->query($sql);
