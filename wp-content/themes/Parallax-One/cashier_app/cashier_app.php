@@ -492,7 +492,9 @@ $currency = "";
 					while ($row = mysqli_fetch_assoc($result)) {
 						$currency = $row['currency'];
 						$total += intval($row['price']) * intval($row['count']);
-						$students += intval($row['count']);
+						if ($row['totals'] != "yes") {
+							$students += intval($row['count']);
+						}
 						echo '<tr>';
 						echo '<td>' . $row['activity'] . '4Water ' . $row['city'] . '</td>';
 						echo '<td>' . $row['class_type'] . '</td>';
