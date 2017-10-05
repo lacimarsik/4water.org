@@ -45,7 +45,9 @@ if ($form_submitted) {
 	$prices_array = getArrayOfPrices($_POST);
 	if (countsExist($_POST, $connection_4w)) {
 		foreach ($prices_array as $price_id => $count) {
-			$sql = "UPDATE 4w_accounting SET count = '" . $count . "', volunteer_name = '" . $_POST['name'] . "' WHERE price_type_id = '" . $price_id . "';";
+			$sql = "UPDATE 4w_accounting SET count = '" . $count . "', volunteer_name = '" . $_POST['name'] . "' WHERE price_type_id = '" . $price_id
+				. "' AND date = '" . $_POST['date'] . "' AND time = '" . $_POST['time']  . "' AND branch_id = '" . $_POST['branch_id']
+				. "' AND class_type = '" . $_POST['class_type'] . "' AND level = '" . $_POST['level'] . "';";
 			$result = $connection_4w->query($sql);
 		}
 	} else {
