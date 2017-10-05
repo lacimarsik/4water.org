@@ -108,7 +108,7 @@ function get_closest_lesson($connection_4w, $branch_id) {
 				</div>
 			</div>
 			<div class="cashier-below col-md-12">
-				<div class="form-group col-md-12">
+				<div class="form-group col-md-6">
 					<label for="name">Volunteer</label>
 					<input id="name" type="text" name="name" value="" />
 				</div>
@@ -126,10 +126,10 @@ function get_closest_lesson($connection_4w, $branch_id) {
 						<label for="price-type-price<?php echo $row['id']; ?>"><?php echo $row['price_type']; ?></label>
 					</div>
 					<div class="price-entry col-md-9">
-						<button id="price<?php echo $row['id']; ?>-minus" type="button" class="js-minus">-</button><input type="text" class="price" id="price<?php echo $row['id']; ?>" name="price<?php echo $row['id']; ?>" value="0" /><button id="price<?php echo $row['id']; ?>-plus" type="button" class="js-plus">+</button>
+						<button id="price<?php echo $row['id']; ?>-minus" type="button" class="js-minus price-button">-</button><input type="text" class="price" id="price<?php echo $row['id']; ?>" name="price<?php echo $row['id']; ?>" value="0" /><button id="price<?php echo $row['id']; ?>-plus" type="button" class="js-plus price-button">+</button>
 					</div>
 				</div>
-				<div class="clearfix"></div>
+				<div class="clearfix smallpadding"></div>
 <?php
 				}
 ?>
