@@ -9,7 +9,7 @@ $subscription_url = get_theme_mod('subscription_section_url', DefSubscription::$
 if(!empty($subscription_title) ||
 	!empty($subscription_subtitle) ||
 	!empty($subscription_url)) { ?>
-	<section id="subscription">
+	<section id="subscription" style="background-color: #F7F8FA;">
 		<div class="section-overlay-layer">
 			<div class="container">
 				<!-- HEADER -->
@@ -27,7 +27,7 @@ if(!empty($subscription_title) ||
 					} ?>
 				</div>
 
-				<div class="subscription">
+				<div class="subscription" style="text-align: center;">
 					<!-- Do not use Mailchimp styles <link href="//cdn-images.mailchimp.com/embedcode/slim-10_7.css" rel="stylesheet" type="text/css"> -->
 					<style type="text/css">
 						#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
