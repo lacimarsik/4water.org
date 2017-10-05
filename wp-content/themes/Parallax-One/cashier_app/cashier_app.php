@@ -459,10 +459,6 @@ if ($form_submitted) {
 // =============================
 // 4. CASHIER APP VIEW
 // =============================
-
-$sql= "SELECT * FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id;";
-$result = $connection_4w->query($sql);
-
 ?>
 <div class="content-wrap">
 	<div class="container">
@@ -476,6 +472,46 @@ $result = $connection_4w->query($sql);
 						<div class="clearfix"></div>
 						<div class="cashier-done">Thank you for cashiering! Below are the counts and money made.</div>
 				</article>
+<?php
+$sql= "SELECT * FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE a.date = '" . date('Y-m-d') . "'";
+$result = $connection_4w->query($sql);
+
+$total = 0;
+$currency = "";
+?>
+				<h2>Today</h2>
+				<table class="report">
+					<thead style="font-weight: bold; border-botom: 1px solid black;">
+					<tr>
+						<td>Branch</td><td>Class</td><td>Level</td><td>Date</td><td>Time</td><td>Price Type</td><td>Price</td><td>Count</td><td>Money made</td><td>Cashier</td>
+					</tr>
+					</thead>
+					<?php
+					while ($row = mysqli_fetch_assoc($result)) {
+						$currency = $row['currency'];
+						$total += intval($row['price']) * intval($row['count']);
+						echo '<tr>';
+						echo '<td>' . $row['activity'] . '4Water ' . $row['city'] . '</td>';
+						echo '<td>' . $row['class_type'] . '</td>';
+						echo '<td>' . $row['level'] . '</td>';
+						echo '<td>' . $row['date'] . '</td>';
+						echo '<td>' . $row['time'] . '</td>';
+						echo '<td>' . $row['price_type'] . '</td>';
+						echo '<td>' . $row['price'] . ' ' . $row['currency'] . '</td>';
+						echo '<td>' . $row['count'] . '</td>';
+						echo '<td>' . intval($row['price']) * intval($row['count']) . ' ' . $row['currency'] . '</td>';
+						echo '<td>' . $row['volunteer_name'] . '</td>';
+						echo '</tr>';
+					}
+					?>
+				</table>
+				<strong>Total money made: </strong> <span style="font-size: 2em;"><?php echo $total; ?> <?php echo $currency; ?></span>
+<?php
+$sql= "SELECT * FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id;";
+$result = $connection_4w->query($sql);
+
+?>
+				<h2>All classes</h2>
 				<table class="report">
 					<thead style="font-weight: bold; border-botom: 1px solid black;">
 						<tr>
@@ -504,7 +540,7 @@ $result = $connection_4w->query($sql);
 		$branch_url = getCurrentBranchUrl($_POST, $connection_4w);
 ?>
 				<br />
-				<a href="<?php echo $branch_url; ?>">Back to Cashiering</a>
+				<a href="<?php echo $branch_url; ?>">Back to Cashiering</a> (the counts and class will re-set for new cashiering)
 <?php
 	}
 ?>
