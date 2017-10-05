@@ -477,6 +477,8 @@ $sql= "SELECT * FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id 
 $result = $connection_4w->query($sql);
 
 $total = 0;
+$students = 0;
+$students_manual = 0;
 $currency = "";
 ?>
 				<h2>Today</h2>
@@ -490,6 +492,7 @@ $currency = "";
 					while ($row = mysqli_fetch_assoc($result)) {
 						$currency = $row['currency'];
 						$total += intval($row['price']) * intval($row['count']);
+						$students += intval($row['count']);
 						echo '<tr>';
 						echo '<td>' . $row['activity'] . '4Water ' . $row['city'] . '</td>';
 						echo '<td>' . $row['class_type'] . '</td>';
@@ -505,7 +508,8 @@ $currency = "";
 					}
 					?>
 				</table>
-				<strong>Total money made: </strong> <span style="font-size: 2em;"><?php echo $total; ?> <?php echo $currency; ?></span>
+				<strong>Total money made: </strong> <span style="font-size: 2em;"><?php echo $total; ?> <?php echo $currency; ?></span><br /><br />
+				<strong>Number of students: </strong> <span style="font-size: 2em;"><?php echo $students; ?></span>
 <?php
 $sql= "SELECT * FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id;";
 $result = $connection_4w->query($sql);
