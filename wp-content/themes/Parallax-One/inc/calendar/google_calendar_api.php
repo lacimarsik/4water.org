@@ -31,6 +31,7 @@
       "/berlin/salsa/fr/" => "ield8ot8l0g16un4orvngi6qfs@group.calendar.google.com",
       "/berlin-volunteers/" => "eb2loeck1dsfjlmc2q1000rb2o@group.calendar.google.com",
       "/cardiff/salsa/" => "demvn53ua2igi8qb9pecniegpk@group.calendar.google.com",
+      "/london/dance" => "weare4water@gmail.com",
       "/sample/" => "gvse6taa5s4sav26epmlcskv4g@group.calendar.google.com"
     );
 
