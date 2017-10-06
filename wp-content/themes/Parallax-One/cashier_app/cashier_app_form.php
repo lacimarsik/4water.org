@@ -13,8 +13,8 @@ function get_closest_lesson($connection_4w, $branch_id) {
 	$sql= "SELECT * FROM 4w_branch_classes WHERE branch_id = " . $branch_id;
 	$result = $connection_4w->query($sql);
 	while ($row = mysqli_fetch_assoc($result)) {
-		if (date('l') == $row['day']) {
-			// if the lesson is today
+		if ((date('l') == $row['day']) && (date('H:i:s') < $row['time'])) {
+			// if the lesson is today, and didn't yet start
 			$day_as_string = strtolower($row['day']) . 'this week';
 		} else {
 			$day_as_string = 'next ' . strtolower($row['day']);
