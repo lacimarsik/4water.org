@@ -112,11 +112,17 @@ function get_closest_lesson($connection_4w, $branch_id) {
 					<label for="time">Time</label>
 					<input id="time" type="text" name="time" value="<?php echo $closest_lesson_time; ?>" />
 				</div>
-			</div>
-			<div class="cashier-below col-md-12">
-				<div class="form-group col-md-6">
-					<label for="name">Volunteer</label>
-					<input id="name" type="text" name="name" value="" />
+				<div class="cashier-below col-md-4">
+					<label for="name">Cashier</label>
+					<select id="name" name="name" form="cashier">
+						<?php
+						$sql= "SELECT * FROM 4w_volunteers WHERE branch_id = " . $branch_id;
+						$result = $connection_4w->query($sql);
+						while ($row = mysqli_fetch_assoc($result)) {
+							echo '<option value="'. $row['first'] . ' ' . $row['last'] . '">' . $row['first'] . ' ' . $row['last'] . '</option>';
+						}
+						?>
+					</select>
 				</div>
 			</div>
 			<br />

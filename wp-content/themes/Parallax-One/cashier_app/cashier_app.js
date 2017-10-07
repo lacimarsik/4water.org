@@ -25,7 +25,7 @@ function sendValuesToServer(buttonId, change) {
       'time': $('#time').val(),
       'class_type': $('#class_type option:selected').val(),
       'level': $('#level option:selected').val(),
-      'name': $('#name').val()
+      'name': $('#name option:selected').val(),
     };
     prices_data = {};
     $('.price').each(function() {
