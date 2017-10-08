@@ -500,17 +500,14 @@ $total = 0;
 $students = 0;
 $students_manual = 0;
 $currency = "";
+$volunteer_name = "";
 ?>
 				<h2>Today</h2>
-				<table class="report">
-					<thead style="font-weight: bold; border-botom: 1px solid black;">
-					<tr>
-						<td>Branch</td><td>Class</td><td>Level</td><td>Date</td><td>Time</td><td>Price Type</td><td>Price</td><td>Count</td><td>Money made</td><td>Cashier</td>
-					</tr>
-					</thead>
-					<?php
+				<table class="table table-striped">
+<?php
 					while ($row = mysqli_fetch_assoc($result)) {
 						$currency = $row['currency'];
+						$volunteer_name = $row['volunteer_name'];
 						$total += intval($row['price']) * intval($row['count']);
 						if ($row['totals'] != "yes") {
 							$students += intval($row['count']);
@@ -518,48 +515,34 @@ $currency = "";
 							$students_manual = ($students_manual < $row['count']) ? $row['count'] : $students_manual;
 						}
 						echo '<tr>';
-						echo '<td>' . $row['activity'] . '4Water ' . $row['city'] . '</td>';
-						echo '<td>' . $row['class_type'] . '</td>';
-						echo '<td>' . $row['level'] . '</td>';
-						echo '<td>' . $row['date'] . '</td>';
-						echo '<td>' . $row['time'] . '</td>';
-						echo '<td>' . $row['price_type'] . '</td>';
-						echo '<td>' . $row['price'] . ' ' . $row['currency'] . '</td>';
-						echo '<td>' . $row['count'] . '</td>';
-						echo '<td>' . intval($row['price']) * intval($row['count']) . ' ' . $row['currency'] . '</td>';
-						echo '<td>' . $row['volunteer_name'] . '</td>';
+						echo '<td><strong class="bold">' . $row['price_type'] . '</strong></td>';
+						echo '<td><span>' . $row['count'] . '</span></td>';
+						echo '<td><span>' . intval($row['price']) * intval($row['count']) . ' ' . $row['currency'] . '</span></td>';
 						echo '</tr>';
 					}
-					?>
-				</table>
+?>
 				<?php $total_students = ($students_manual > $students) ? $students_manual : $students; ?>
-				<strong>Total money made: </strong> <span style="font-size: 2em;"><?php echo $total; ?> <?php echo $currency; ?></span><br /><br />
-				<strong>Number of students: </strong> <span style="font-size: 2em;"><?php echo $total_students; ?></span>
+				<tr class="success"><td><strong class="medium bold">Totals</strong></td><td><span class="medium"><?php echo $total_students; ?></span></td><td><span class="medium"><?php echo $total; ?> <?php echo $currency; ?></span></td></tr>
+				</table>
+				<p>Counted by: <strong class="bold"><?php echo $volunteer_name; ?></strong></p>
 <?php
-$sql= "SELECT * FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id;";
+$sql= "SELECT EXTRACT(YEAR_MONTH FROM a.date) as month, sum(a.count) as students, sum(a.count * p.price) as money_made, p.currency FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE a.branch_id = '" . $_POST['branch_id'] . "' GROUP BY month ORDER BY month;";
 $result = $connection_4w->query($sql);
 
 ?>
-				<h2>All classes</h2>
-				<table class="report">
+				<h2>Monthly</h2>
+				<table class="table table-striped">
 					<thead style="font-weight: bold; border-botom: 1px solid black;">
 						<tr>
-							<td>Branch</td><td>Class</td><td>Level</td><td>Date</td><td>Time</td><td>Price Type</td><td>Price</td><td>Count</td><td>Money made</td><td>Cashier</td>
+							<td>Month</td><td>Students</td><td>Money made</td>
 						</tr>
 					</thead>
 <?php
 	while ($row = mysqli_fetch_assoc($result)) {
 		echo '<tr>';
-		echo '<td>' . $row['activity'] . '4Water ' . $row['city'] . '</td>';
-		echo '<td>' . $row['class_type'] . '</td>';
-		echo '<td>' . $row['level'] . '</td>';
-		echo '<td>' . $row['date'] . '</td>';
-		echo '<td>' . $row['time'] . '</td>';
-		echo '<td>' . $row['price_type'] . '</td>';
-		echo '<td>' . $row['price'] . ' ' . $row['currency'] . '</td>';
-		echo '<td>' . $row['count'] . '</td>';
-		echo '<td>' . intval($row['price']) * intval($row['count']) . ' ' . $row['currency'] . '</td>';
-		echo '<td>' . $row['volunteer_name'] . '</td>';
+		echo '<td>' .  date('F', mktime(0, 0, 0, substr($row['month'], 4), 10)) . " " . substr($row['month'], 0, 4) . '</td>';
+		echo '<td>' . $row['students'] . '</td>';
+		echo '<td>' . $row['money_made'] . ' ' . $row['currency'] . '</td>';
 		echo '</tr>';
 	}
 ?>

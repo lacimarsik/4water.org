@@ -29,3 +29,15 @@
 	padding-top: 20px;
 	padding-bottom: 10px;
 }
+
+.medium {
+	font-size: 1.2em;
+}
+
+.big {
+	font-size: 2em;
+}
+
+.bold {
+	font-weight: bold;
+}

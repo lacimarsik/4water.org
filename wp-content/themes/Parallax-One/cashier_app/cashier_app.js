@@ -74,7 +74,7 @@ function getValuesFromServer() {
         data = JSON.parse(data);
         var volunteer_name = data['volunteer_name'];
         if (volunteer_name != $('#name').val()) {
-          alert("This class was already counted by: " + volunteer_name + ". Submitting will overwrite the previous count.")
+          alert("This class was already counted by: " + volunteer_name + ". Making changes overwrite the previous count.")
         } else {
           alert("Previous counts were found and were loaded.")
         }
