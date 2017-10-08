@@ -35,6 +35,35 @@ function getCurrentBranchUrl($post, $connection) {
 	return '/' . strtolower($row['city']) . '/' . strtolower($row['activity']) . '/cashier';
 }
 
+function get_last_lesson($connection, $branch_id) {
+	// Get the array of lessons depending on what days the branch has lessons
+	// Array will be in the form "Class type, Level" => Timestamp
+	$array_of_next_lessons = array();
+	$sql= "SELECT * FROM 4w_branch_classes WHERE branch_id = " . $branch_id;
+	$result = $connection->query($sql);
+	while ($row = mysqli_fetch_assoc($result)) {
+		if ((date('l') == $row['day']) && (date('H:i:s') > $row['time'])) {
+			// if the lesson is today, and didn't yet start
+			$day_as_string = strtolower($row['day']) . 'this week';
+		} else {
+			$day_as_string = 'last ' . strtolower($row['day']);
+		}
+		$array_of_next_lessons[$row['class_type'] . "," . $row['level']] = strtotime($day_as_string . ' ' . $row['time']);
+	}
+	arsort($array_of_next_lessons);
+	reset($array_of_next_lessons);
+	// Return only the closest lesson as: Timestamp, Class type, Level
+	$class_type_level = explode(",", key($array_of_next_lessons));
+	$timestamp = $array_of_next_lessons[key($array_of_next_lessons)];
+	$class_type = $class_type_level[0];
+	$level = $class_type_level[1];
+	$result_array = array();
+	array_push($result_array, $timestamp);
+	array_push($result_array, $class_type);
+	array_push($result_array, $level);
+	return $result_array;
+}
+
 // =============================
 // 2. AJAX / FORM HANDLING
 // =============================
@@ -532,6 +561,8 @@ $volunteer_name = "";
 				<tr class="success"><td><strong class="medium bold">Totals</strong></td><td><span class="medium"><?php echo $total_students; ?></span></td><td><span class="medium"><?php echo $total; ?> <?php echo $currency; ?></span></td></tr>
 				</table>
 				<p>Counted by: <strong class="bold"><?php echo $volunteer_name; ?></strong></p>
+				<?php $last_lesson = get_last_lesson($connection_4w, $_POST['branch_id']); ?>
+				<button>Edit last lesson (<?php echo $last_lesson[1] . ' ' . $last_lesson[2] . ')';?></button>
 <?php
 $sql= "SELECT EXTRACT(YEAR_MONTH FROM a.date) as month, sum(a.count) as students, sum(a.count * p.price) as money_made, p.currency FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE a.branch_id = '" . $_POST['branch_id'] . "' GROUP BY month ORDER BY month;";
 $result = $connection_4w->query($sql);
@@ -681,8 +712,7 @@ $result = $connection_4w->query($sql);
 					);
 				</script>
 <?php
-				//$sql= "SELECT a.date as day, sum(case when p.price_type LIKE '*Student*' then (a.count * p.price) else 0) as students_money_made, sum(case when p.price_type LIKE '*Non-Student*' then (a.count * p.price) else 0) as non_students_money_made, p.currency FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE a.branch_id = '" . $_POST['branch_id'] . "' GROUP BY day ORDER BY day;";
-$sql= 'SELECT a.date as month, sum(case when p.student = 1 then (a.count * p.price) else 0 end) as students_money_made, sum(case when p.student = 0 then (a.count * p.price) else 0 end) as non_students_money_made, p.currency FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE a.branch_id = "' . $_POST['branch_id'] . '" GROUP BY month ORDER BY month;';
+$sql= 'SELECT a.date, sum(case when p.student = 1 then (a.count * p.price) else 0 end) as students_money_made, sum(case when p.student = 0 then (a.count * p.price) else 0 end) as non_students_money_made, p.currency FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE a.branch_id = "' . $_POST['branch_id'] . '" GROUP BY a.date ORDER BY a.date;';
 $result = $connection_4w->query($sql);
 ?>
 
@@ -704,7 +734,7 @@ $result = $connection_4w->query($sql);
 						while ($row = mysqli_fetch_assoc($result)) {
 ?>
 							<tr>
-								<td><?php echo $row['month']; ?></td>
+								<td><?php echo $row['date']; ?></td>
 								<td><?php echo $row['students_money_made']; ?></td>
 								<td><?php echo $row['non_students_money_made']; ?></td>
 							</tr>
@@ -720,7 +750,8 @@ $result = $connection_4w->query($sql);
 		$branch_url = getCurrentBranchUrl($_POST, $connection_4w);
 ?>
 				<br />
-				<a href="<?php echo $branch_url; ?>">Back to Cashiering</a>
+				<a href="<?php echo $branch_url; ?>"><button>Back to Cashiering</button></a>
+				<br />
 <?php
 	}
 ?>
