@@ -91,6 +91,8 @@ if ($get_data) {
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
+
 	<script>
 		if (!window.jQuery) {
 			document.write('<script src="http://4water.org/wp-content/themes/Parallax-One/js/jquery-1.11.3.js"><\/script>');
@@ -101,6 +103,11 @@ if ($get_data) {
 	<meta name="description" itemprop="description"
 	      content="Welcome, dear cashier. On this page you count the number of attendees and add new email subscriptions (when someone buys 10-time pass). When you are done your"/>
 	<link rel="stylesheet" href="/wp-content/themes/Parallax-One/cashier_app/cashier_app.css">
+	<script src="/wp-content/themes/Parallax-One/cashier_app/highcharts/js/highcharts.js"></script>
+	<script src="/wp-content/themes/Parallax-One/cashier_app/highcharts/js/modules/data.js"></script>
+	<script src="/wp-content/themes/Parallax-One/cashier_app/highcharts/js/modules/exporting.js"></script>
+	<link href="/wp-content/themes/Parallax-One/cashier_app/css/charts.css"  rel="stylesheet" type='text/css' />
+
 	<link rel='stylesheet' id='menu-image-css'
 	      href='http://4water.org/wp-content/plugins/menu-image/menu-image.css?ver=1.1' type='text/css' media='all'/>
 	<link rel='stylesheet' id='parallax-one-bootstrap-style-css'
@@ -502,7 +509,7 @@ $students_manual = 0;
 $currency = "";
 $volunteer_name = "";
 ?>
-				<h2>Today</h2>
+				<h2 class="report-heading">Today</h2>
 				<table class="table table-striped">
 <?php
 					while ($row = mysqli_fetch_assoc($result)) {
@@ -528,9 +535,8 @@ $volunteer_name = "";
 <?php
 $sql= "SELECT EXTRACT(YEAR_MONTH FROM a.date) as month, sum(a.count) as students, sum(a.count * p.price) as money_made, p.currency FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE a.branch_id = '" . $_POST['branch_id'] . "' GROUP BY month ORDER BY month;";
 $result = $connection_4w->query($sql);
-
 ?>
-				<h2>Monthly</h2>
+				<h2 class="report-heading">Monthly</h2>
 				<table class="table table-striped">
 					<thead style="font-weight: bold; border-botom: 1px solid black;">
 						<tr>
@@ -547,6 +553,168 @@ $result = $connection_4w->query($sql);
 	}
 ?>
 				</table>
+				<script type="text/javascript">
+					$(function() {
+							Highcharts.setOptions( {
+									lang: {
+										decimalPoint: ",", thousandsSep: " "
+									}
+								}
+							);
+							Highcharts.getData=function(table, options) {
+								var sliceNames=[];
+								$("th", table).each(function(i) {
+										if(i>0) {
+											sliceNames.push(this.innerHTML)
+										}
+									}
+								);
+								options.series=[];
+								$("tr", table).each(function(i) {
+										var tr=this;
+										$("th, td", tr).each(function(j) {
+												if(j>0) {
+													if(i==0) {
+														options.series[j-1]= {
+															name: this.innerHTML, data: []
+														}
+													}
+													else {
+														if(i==1) {
+															options.series[j-1].data.push( {
+																	sliced: true, selected: true, name: sliceNames[i-1], y: parseFloat(this.innerHTML)
+																}
+															)
+														}
+														else {
+															options.series[j-1].data.push( {
+																	name: sliceNames[i-1], y: parseFloat(this.innerHTML)
+																}
+															)
+														}
+													}
+												}
+											}
+										)
+									}
+								)
+							}
+						}
+
+					);
+					$(function() {
+							Highcharts.setOptions( {
+									colors: ["#3bb479", "#4a99e3"]
+								}
+							);
+							var table=document.getElementById("datatable_for_chart1");
+							$("#chart1").highcharts( {
+									data: {
+										table: table
+									}
+									, chart: {
+										type: "column"
+									}
+									, title: {
+										text: table.caption.innerHTML
+									}
+									, xAxis: {}
+									, yAxis: {
+										title: {
+											text: "<?php echo $currency; ?>"
+										}
+										, stackLabels: {
+											enabled:true, style: {
+												fontWeight: "bold", color: (Highcharts.theme&&Highcharts.theme.textColor)||"gray"
+											}
+											, formatter:function() {
+												return Highcharts.numberFormat(this.total, "0")+" <?php echo $currency; ?>"
+											}
+										}
+										, labels: {
+											formatter:function() {
+												return this.value
+											}
+										}
+									}
+									, tooltip: {
+										formatter:function() {
+											if(this.series.name=="Students") {
+												return"<b>"+this.x+"</b><br/>"+"Students: "+Highcharts.numberFormat(this.y, "2f")+" <?php echo $currency; ?><br/>"+"<b>All: "+Highcharts.numberFormat(this.point.stackTotal, "2f")+" <?php echo $currency; ?></b>"
+											}
+											else {
+												return"<b>"+this.x+"</b><br/>"+"<b>"+this.series.name+": "+Highcharts.numberFormat(this.y, "2f")+" <?php echo $currency; ?></b>"
+											}
+										}
+									}
+									, plotOptions: {
+										column: {
+											stacking:"normal", dataLabels: {
+												enabled:true, color:(Highcharts.theme&&Highcharts.theme.dataLabelsColor)||"white", style: {
+													textShadow: "0 0 3px black, 0 0 3px black"
+												}
+												, formatter:function() {
+													return Highcharts.numberFormat(this.point.y, "0")+" <?php echo $currency; ?>"
+												}
+											}
+										}
+									}
+									, series:[ {
+										pointWidth: 50
+									}
+										, {
+											pointWidth: 50
+										}
+									]
+								}
+							)
+						}
+
+					);
+					$(function() {
+							Highcharts.setOptions( {
+									colors: ["#4a99e3", "#3bb479", "#434348", "#f9913d", "#7b62b5", "#db4646"]
+								}
+							);
+						}
+
+					);
+				</script>
+<?php
+				//$sql= "SELECT a.date as day, sum(case when p.price_type LIKE '*Student*' then (a.count * p.price) else 0) as students_money_made, sum(case when p.price_type LIKE '*Non-Student*' then (a.count * p.price) else 0) as non_students_money_made, p.currency FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE a.branch_id = '" . $_POST['branch_id'] . "' GROUP BY day ORDER BY day;";
+$sql= 'SELECT a.date as month, sum(case when p.student = 1 then (a.count * p.price) else 0 end) as students_money_made, sum(case when p.student = 0 then (a.count * p.price) else 0 end) as non_students_money_made, p.currency FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE a.branch_id = "' . $_POST['branch_id'] . '" GROUP BY month ORDER BY month;';
+$result = $connection_4w->query($sql);
+?>
+
+				<h2 class="report-heading">Timeline</h2>
+					<div id="chart1" class="report-column-small">
+					</div>
+
+					<table id="datatable_for_chart1" class="report-datatable">
+						<caption>Money collected</caption>
+						<thead>
+						<tr>
+							<th></th>
+							<th>Students</th>
+							<th>Non-Students</th>
+						</tr>
+						</thead>
+						<tbody>
+<?php
+						while ($row = mysqli_fetch_assoc($result)) {
+?>
+							<tr>
+								<td><?php echo $row['month']; ?></td>
+								<td><?php echo $row['students_money_made']; ?></td>
+								<td><?php echo $row['non_students_money_made']; ?></td>
+							</tr>
+<?php
+						}
+?>
+						</tbody>
+					</table>
+
+				</div>
 <?php
 	if ($form_submitted) {
 		$branch_url = getCurrentBranchUrl($_POST, $connection_4w);

@@ -1,0 +1,202 @@
+/* 
+ * Tables and charts style
+ *
+ * based on: http://www.smashingmagazine.com/2008/08/13/top-10-css-table-designs/
+ *
+ * Bubbletooltip from:
+ *
+ * http://www.careerbless.com/services/css/csstooltipcreator.php
+ *
+ * Chart color palette:
+ * 
+ * 1 (blue): #4a99e3
+ * 2 (green): #3bb479
+ * 3 (black): #434348
+ * 4 (orange): #f9913d
+ * 5 (purple): #7b62b5
+ * 6 (red): #db4646 
+ * 
+ * Table color palette:
+ * 
+ * 1 (green): #9ddabb
+ * 
+ * Ladislav Marsik (laci@marsik.sk)
+ * 
+ */
+
+/* Report info table */
+
+.report-info {
+    clear: both;
+    position: relative;
+    *zoom: 1;
+}
+
+.report-info:before,
+.report-info:after {
+    display: table;
+    content: "";
+    line-height: 0;
+}
+.report-info:after {
+    clear: both;
+}
+.report-info dt {
+    float: left;
+    width: 160px;
+    clear: left;
+    text-align: right;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.report-info dd {
+    margin-left: 180px;
+}
+.report-info dd,
+.report-info dt {
+    line-height: 20px;
+    margin-bottom: 10px;
+}
+
+/* Report table */
+
+.report-table {
+    border-collapse: collapse;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 12px;
+    text-align: left;
+    width: 600px;
+    margin: 20px auto;
+}
+.report-table thead th.rounded-company {
+    background-color: #9ddabb;
+}
+.report-table thead th.rounded-q4 {
+    background-color: #9ddabb;
+}
+.report-table th {
+    background-color: #9ddabb;
+    color: #125332;
+    font-size: 13px;
+    font-weight: normal;
+    padding: 8px;
+}
+.report-table td {
+    background: #e8e8e8;
+    border-top: 1px solid #fff; 
+    color: #000;
+    padding: 8px;
+}
+.report-table tbody tr:hover td {
+    background: #d0d0d0;
+}
+
+.report-table td.darker {
+    background-color: #ccc;
+}
+
+.report-table tbody tr:hover td.darker {
+    background-color: #bbb;
+}
+
+.report-table td.empty {
+    min-width: 50px;
+}
+
+/* Charts */
+
+.report-column,
+.report-line,
+.report-column-small,
+.report-line-small {
+    min-width: 310px;
+    height: 400px;
+    margin: 0 auto 30px;
+}
+
+.report-column-small,
+.report-line-small {
+    max-width: 700px;
+}
+
+.report-pie {
+    min-width: 310px;
+    height: 400px;
+    margin: 0 auto 30px;
+}
+
+.report-diagram {
+    margin: 20px auto;
+}
+
+.report-datatable {
+    display: none;
+}
+
+/* Bubbletooltip */
+
+a[bubbletooltip]:link, a[bubbletooltip]:visited {
+    text-decoration: none;
+    position: relative;
+    color : red;
+}
+
+a[bubbletooltip]:after {
+    position: absolute;
+    content: attr(bubbletooltip);
+    color: #000;
+    font-size: 0.9em;
+    top: -35px;
+    left: -26px;
+    background: #fafafa;
+    padding: 5px 10px;
+    -moz-border-radius: 1px;
+    -webkit-border-radius: 1px;
+    -khtml-border-radius: 1px;
+    border-radius: 1px;
+    box-shadow: #888 1px 1px 2px;
+    -webkit-box-shadow: #888 1px 1px 2px;
+    -moz-box-shadow: #888 1px 1px 2px; 
+    white-space: nowrap;
+    visibility: hidden;
+    border: 1px solid #3bb479;
+    opacity: 0.85;
+    filter: alpha(opacity=85);
+}
+
+a[bubbletooltip]:hover:before, a[bubbletooltip]:hover:after {
+    visibility: visible;
+    -moz-transition: visibility 0s linear .0s;
+}
+
+.grey {
+    color: #999;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.pointer:hover {
+    text-decoration: none;
+}
+
+/* Misc */
+
+.center {
+    width: 100%;
+    text-align: center;
+}
+
+.section-heading {
+    font-size: 1.5em;
+}
+
+.separator {
+    border: 1px solid #ddd;
+}
+
+.separator2 {
+    border-top: 1px solid #eee;
+}
