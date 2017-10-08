@@ -70,7 +70,7 @@ function getValuesFromServer() {
     type: 'POST',
     data: get_data,
     success: function (data) {
-      if (typeof data !== undefined) {
+      if (data != "") {
         data = JSON.parse(data);
         var volunteer_name = data['volunteer_name'];
         if (volunteer_name != $('#name').val()) {

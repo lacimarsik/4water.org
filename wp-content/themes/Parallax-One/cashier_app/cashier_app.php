@@ -43,7 +43,8 @@ $form_submitted = isset($_POST['increment']) || isset($_POST['decrement']) || is
 
 if ($form_submitted) {
 	$prices_array = getArrayOfPrices($_POST);
-	if (countsExist($_POST, $connection_4w)) {
+	$result = countsExist($_POST, $connection_4w);
+	if ($result->num_rows > 0) {
 		foreach ($prices_array as $price_id => $count) {
 			$sql = "UPDATE 4w_accounting SET count = '" . $count . "', volunteer_name = '" . $_POST['name'] . "' WHERE price_type_id = '" . $price_id
 				. "' AND date = '" . $_POST['date'] . "' AND time = '" . $_POST['time']  . "' AND branch_id = '" . $_POST['branch_id']
@@ -63,7 +64,8 @@ if ($form_submitted) {
 $get_data = isset($_POST['get_data']);
 
 if ($get_data) {
-	if ($result = countsExist($_POST, $connection_4w)) {
+	$result = countsExist($_POST, $connection_4w);
+	if ($result->num_rows > 0) {
 		$volunteer_name = "";
 		$return_json = array();
 		$return_json['prices_array'] = array();
@@ -567,7 +569,7 @@ $result = $connection_4w->query($sql);
 		$branch_url = getCurrentBranchUrl($_POST, $connection_4w);
 ?>
 				<br />
-				<a href="<?php echo $branch_url; ?>">Back to Cashiering</a> (the counts and class will re-set for new cashiering)
+				<a href="<?php echo $branch_url; ?>">Back to Cashiering</a>
 <?php
 	}
 ?>
