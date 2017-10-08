@@ -60,6 +60,12 @@ if ($form_submitted) {
 	}
 }
 
+$get_data = isset($_POST['get_data']);
+
+if ($get_data) {
+	
+}
+
 // =============================
 // 3. DUMMY HEADER TAKEN FROM 4water.org
 // =============================

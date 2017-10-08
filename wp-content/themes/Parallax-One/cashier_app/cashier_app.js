@@ -46,6 +46,35 @@ function sendValuesToServer(buttonId, change) {
   });
 }
 
+function enableForm() {
+  $('.price-button').prop('disabled', false);
+  $('.price').prop('disabled', false);
+  $('.submit-button').prop('disabled', false);
+  $('.price-button').prop('style', 'background-color: #00a5f9;');
+  $('.submit-button').prop('style', 'background-color: #00a5f9;');
+}
+
+function getValuesFromServer() {
+  get_data = {
+    'cashier': true,
+    'get_data': true,
+    'branch_id': $('#branch_id option:selected').val(),
+    'date': $('#date').val(),
+    'time': $('#time').val(),
+    'class_type': $('#class_type option:selected').val(),
+    'level': $('#level option:selected').val(),
+    'name': $('#name option:selected').val(),
+  };
+  $.ajax({
+    url: './index.php',
+    type: 'POST',
+    data: get_data,
+    success: function (data) {
+      
+    }
+  });
+}
+
 $(document).ready(function() {
   $('.js-plus').click(function () {
     var buttonId = $(this).attr('id');
@@ -55,5 +84,10 @@ $(document).ready(function() {
   $('.js-minus').click(function () {
     var buttonId = $(this).attr('id');
     sendValuesToServer(buttonId, change = -1);
+  })
+
+  $('.js-start').change(function () {
+    getValuesFromServer();
+    enableForm();
   })
 })

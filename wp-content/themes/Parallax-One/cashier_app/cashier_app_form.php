@@ -64,6 +64,8 @@ function get_closest_lesson($connection_4w, $branch_id) {
 		<br />
 		<link rel="stylesheet" href="../wp-content/themes/Parallax-One/cashier_app/cashier_app.css">
 		<form action="/index.php" id="cashier" method="post">
+			<p>Welcome, dear cashier. On this page you count the number of sold entries and vouchers.</p>
+			<p>Please check the class, level, date and time.</p>
 			<div class="cashier-upper col-md-12">
 				<input type="hidden" name="cashier" />
 				<input type="hidden" name="submitform" />
@@ -112,20 +114,20 @@ function get_closest_lesson($connection_4w, $branch_id) {
 					<label for="time">Time</label>
 					<input id="time" type="text" name="time" value="<?php echo $closest_lesson_time; ?>" />
 				</div>
-				<div class="cashier-below col-md-4">
-					<label for="name">Cashier</label>
-					<select id="name" name="name" form="cashier">
-						<?php
-						$sql= "SELECT * FROM 4w_volunteers WHERE branch_id = " . $branch_id;
-						$result = $connection_4w->query($sql);
-						while ($row = mysqli_fetch_assoc($result)) {
-							echo '<option value="'. $row['first'] . ' ' . $row['last'] . '">' . $row['first'] . ' ' . $row['last'] . '</option>';
-						}
-						?>
-					</select>
-				</div>
 			</div>
-			<br />
+			<p>Please select your name to start.</p>
+			<div class="form-group col-md-6">
+				<label for="name">Cashier</label>
+				<select id="name" name="name" form="cashier" class="js-start">
+					<?php
+					$sql= "SELECT * FROM 4w_volunteers WHERE branch_id = " . $branch_id;
+					$result = $connection_4w->query($sql);
+					while ($row = mysqli_fetch_assoc($result)) {
+						echo '<option value="'. $row['first'] . ' ' . $row['last'] . '">' . $row['first'] . ' ' . $row['last'] . '</option>';
+					}
+					?>
+				</select>
+			</div>
 			<div class="cashier-count col-md-12">
 				<script type="text/javascript" src="../wp-content/themes/Parallax-One/cashier_app/cashier_app.js"></script>
 <?php
@@ -138,7 +140,7 @@ function get_closest_lesson($connection_4w, $branch_id) {
 						<label for="price-type-price<?php echo $row['id']; ?>"><?php echo $row['price_type']; ?></label>
 					</div>
 					<div class="price-entry col-md-9">
-						<button id="price<?php echo $row['id']; ?>-minus" type="button" class="js-minus price-button">-</button><input type="text" class="price" id="price<?php echo $row['id']; ?>" name="price<?php echo $row['id']; ?>" value="0" /><button id="price<?php echo $row['id']; ?>-plus" type="button" class="js-plus price-button">+</button>
+						<button disabled="disabled" style="background-color: grey;" id="price<?php echo $row['id']; ?>-minus" type="button" class="js-minus price-button">-</button><input disabled="disabled" type="text" class="price" id="price<?php echo $row['id']; ?>" name="price<?php echo $row['id']; ?>" value="0" /><button id="price<?php echo $row['id']; ?>-plus" disabled="disabled" style="background-color: grey;" type="button" class="js-plus price-button">+</button>
 					</div>
 				</div>
 				<div class="clearfix smallpadding"></div>
@@ -146,9 +148,11 @@ function get_closest_lesson($connection_4w, $branch_id) {
 				}
 ?>
 			</div>
+			<br />
+			<p>When done counting <strong>for the class</strong> (i.e. Beginners class), please submit. You can then continue counting next class, or also modify counts for this class.</p>
 			<div class="cashier-submit col-md-12">
 				<div class="form-group col-md-4">
-					<input type="submit">
+					<input class="submit-button" disabled="disabled" style="background-color: grey;" type="submit">
 				</div>
 			</div>
 		</form>
