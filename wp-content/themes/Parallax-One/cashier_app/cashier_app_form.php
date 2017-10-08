@@ -149,7 +149,7 @@ function get_closest_lesson($connection_4w, $branch_id) {
 ?>
 			</div>
 			<br />
-			<p>When done counting <strong>for the class</strong> (i.e. Beginners class), please submit. You can then continue counting next class, or also modify counts for this class.</p>
+			<p>When done counting <strong>for the class</strong> (i.e. Beginners class), please submit. You can then continue counting the class that follows.</p>
 			<div class="cashier-submit col-md-12">
 				<div class="form-group col-md-4">
 					<input class="submit-button" disabled="disabled" style="background-color: grey;" type="submit">
