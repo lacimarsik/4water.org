@@ -64,7 +64,7 @@ function get_closest_lesson($connection_4w, $branch_id) {
 		<br />
 		<link rel="stylesheet" href="../wp-content/themes/Parallax-One/cashier_app/cashier_app.css">
 		<form action="/index.php" id="cashier" method="post">
-			<p>Welcome, dear cashier. On this page you count the number of sold 1-time entries, vouchers, and entries on already-paid vouchers.</p>
+			<p>Welcome, dear cashier. On this page you count the number of sold 1-time entries, vouchers, and how many people came on already-paid vouchers.</p>
 			<p>Please check the class, level, date and time.</p>
 			<div class="cashier-upper col-md-12">
 				<input type="hidden" name="cashier" />
