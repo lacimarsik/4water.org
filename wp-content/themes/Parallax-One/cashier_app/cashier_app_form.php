@@ -71,7 +71,7 @@ function get_closest_lesson($connection_4w, $branch_id) {
 				<input type="hidden" name="submitform" />
 				<div class="form-group col-md-4">
 					<label for="branch_id">Branch</label>
-					<select id="branch_id" name="branch_id" form="cashier">
+					<select id="branch_id" name="branch_id" class="js-start" form="cashier">
 <?php
 						$sql= "SELECT * FROM 4w_branches";
 						$result = $connection_4w->query($sql);
@@ -83,7 +83,7 @@ function get_closest_lesson($connection_4w, $branch_id) {
 				</div>
 				<div class="form-group col-md-4">
 					<label for="class_type">Class</label>
-					<select id="class_type" name="class_type" form="cashier">
+					<select id="class_type" name="class_type" class="js-start" form="cashier">
 						<?php
 						$sql= "SELECT DISTINCT(class_type) FROM 4w_branch_classes WHERE branch_id = " . $branch_id;
 						$result = $connection_4w->query($sql);
@@ -95,7 +95,7 @@ function get_closest_lesson($connection_4w, $branch_id) {
 				</div>
 				<div class="form-group col-md-4">
 					<label for="level">Level</label>
-					<select id="level" name="level" form="cashier">
+					<select id="level" name="level" class="js-start" form="cashier">
 						<?php
 						$sql= "SELECT DISTINCT(level) FROM 4w_branch_classes WHERE branch_id = " . $branch_id;
 						$result = $connection_4w->query($sql);
@@ -108,11 +108,11 @@ function get_closest_lesson($connection_4w, $branch_id) {
 				<div class="clearfix"></div>
 				<div class="form-group col-md-4">
 					<label for="date">Date</label>
-					<input id="date" type="text" name="date" value="<?php echo $closest_lesson_date; ?>" />
+					<input id="date" type="text" name="date" class="js-start" value="<?php echo $closest_lesson_date; ?>" />
 				</div>
 				<div class="form-group col-md-4">
 					<label for="time">Time</label>
-					<input id="time" type="text" name="time" value="<?php echo $closest_lesson_time; ?>" />
+					<input id="time" type="text" name="time" class="js-start" value="<?php echo $closest_lesson_time; ?>" />
 				</div>
 			</div>
 			<p>Please select your name to start.</p>
