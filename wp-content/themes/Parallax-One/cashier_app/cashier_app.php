@@ -25,7 +25,7 @@ function countsExist($post, $connection) {
 	$sql= "SELECT * FROM 4w_accounting WHERE date = '" . $post['date'] . "' AND time = '" . $post['time']
 		. "' AND branch_id = '" . $post['branch_id'] . "' AND class_type = '" . $post['class_type'] . "' AND level = '" . $post['level'] . "';";
 	$result = $connection->query($sql);
-	return ($result->num_rows > 0);
+	return $result;
 }
 
 function getCurrentBranchUrl($post, $connection) {
@@ -63,7 +63,19 @@ if ($form_submitted) {
 $get_data = isset($_POST['get_data']);
 
 if ($get_data) {
-	
+	if ($result = countsExist($_POST, $connection_4w)) {
+		$volunteer_name = "";
+		$return_json = array();
+		$return_json['prices_array'] = array();
+		while ($row = mysqli_fetch_assoc($result)) {
+			$return_json['volunteer_name'] = $row['volunteer_name'];
+			$return_json['prices_array'][$row['price_type_id']] = $row['count'];
+		}
+		echo json_encode($return_json);
+		return;
+	} else {
+		return;
+	}
 }
 
 // =============================
