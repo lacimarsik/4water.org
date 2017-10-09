@@ -563,27 +563,6 @@ $volunteer_name = "";
 				<p>Counted by: <strong class="bold"><?php echo $volunteer_name; ?></strong></p>
 				<?php $last_lesson = get_last_lesson($connection_4w, $_POST['branch_id']); ?>
 				<button>Edit last lesson (<?php echo $last_lesson[1] . ' ' . $last_lesson[2] . ')';?></button>
-<?php
-$sql= "SELECT EXTRACT(YEAR_MONTH FROM a.date) as month, sum(a.count) as students, sum(a.count * p.price) as money_made, p.currency FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE a.branch_id = '" . $_POST['branch_id'] . "' GROUP BY month ORDER BY month;";
-$result = $connection_4w->query($sql);
-?>
-				<h2 class="report-heading">Monthly</h2>
-				<table class="table table-striped">
-					<thead style="font-weight: bold; border-botom: 1px solid black;">
-						<tr>
-							<td>Month</td><td>Students</td><td>Money made</td>
-						</tr>
-					</thead>
-<?php
-	while ($row = mysqli_fetch_assoc($result)) {
-		echo '<tr>';
-		echo '<td>' .  date('F', mktime(0, 0, 0, substr($row['month'], 4), 10)) . " " . substr($row['month'], 0, 4) . '</td>';
-		echo '<td>' . $row['students'] . '</td>';
-		echo '<td>' . $row['money_made'] . ' ' . $row['currency'] . '</td>';
-		echo '</tr>';
-	}
-?>
-				</table>
 				<script type="text/javascript">
 					$(function() {
 							Highcharts.setOptions( {
@@ -699,6 +678,67 @@ $result = $connection_4w->query($sql);
 									]
 								}
 							)
+
+						Highcharts.setOptions( {
+								colors: ["#4a99e3", "#3bb479", "#434348", "#f9913d", "#7b62b5", "#db4646"]
+							}
+						);
+						var table=document.getElementById("datatable_for_chart2");
+						$("#chart2").highcharts( {
+								data: {
+									table: table
+								}
+								, chart: {
+									type: "column"
+								}
+								, title: {
+									text: table.caption.innerHTML
+								}
+								, xAxis: {}
+								, yAxis: {
+									title: {
+										text: "Attended"
+									}
+									, stackLabels: {
+										enabled:true, style: {
+											fontWeight: "bold", color: (Highcharts.theme&&Highcharts.theme.textColor)||"gray"
+										}
+										, formatter:function() {
+											return Highcharts.numberFormat(this.total, "0")
+										}
+									}
+									, labels: {
+										formatter:function() {
+											return this.value
+										}
+									}
+								}
+								, tooltip: {
+									formatter:function() {
+										return "<b>"+this.x+"</b><br/>"+"<b>"+this.series.name+": "+Highcharts.numberFormat(this.y, "2f")+"</b>"
+									}
+								}
+								, plotOptions: {
+									column: {
+										stacking:"normal", dataLabels: {
+											enabled:true, color:(Highcharts.theme&&Highcharts.theme.dataLabelsColor)||"white", style: {
+												textShadow: "0 0 3px black, 0 0 3px black"
+											}
+											, formatter:function() {
+												return ''//Highcharts.numberFormat(this.point.y, "0")
+											}
+										}
+									}
+								}
+								, series:[ {
+									pointWidth: 30
+								}
+									, {
+										pointWidth: 30
+									}
+								]
+							}
+						)
 						}
 
 					);
@@ -712,11 +752,11 @@ $result = $connection_4w->query($sql);
 					);
 				</script>
 <?php
-$sql= 'SELECT a.date, sum(case when p.student = 1 then (a.count * p.price) else 0 end) as students_money_made, sum(case when p.student = 0 then (a.count * p.price) else 0 end) as non_students_money_made, p.currency FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE a.branch_id = "' . $_POST['branch_id'] . '" GROUP BY a.date ORDER BY a.date;';
+$sql= 'SELECT EXTRACT(YEAR_MONTH FROM a.date) as month, sum(case when p.student = 1 then (a.count * p.price) else 0 end) as students_money_made, sum(case when p.student = 0 then (a.count * p.price) else 0 end) as non_students_money_made, p.currency FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE a.branch_id = "' . $_POST['branch_id'] . '" GROUP BY month ORDER BY month;';
 $result = $connection_4w->query($sql);
 ?>
 
-				<h2 class="report-heading">Timeline</h2>
+				<h2 class="report-heading">Monthly</h2>
 					<div id="chart1" class="report-column-small">
 					</div>
 
@@ -724,7 +764,7 @@ $result = $connection_4w->query($sql);
 						<caption>Money collected</caption>
 						<thead>
 						<tr>
-							<th></th>
+							<th>Month</th>
 							<th>Students</th>
 							<th>Non-Students</th>
 						</tr>
@@ -734,13 +774,47 @@ $result = $connection_4w->query($sql);
 						while ($row = mysqli_fetch_assoc($result)) {
 ?>
 							<tr>
-								<td><?php echo $row['date']; ?></td>
+								<td><?php echo date('F', mktime(0, 0, 0, substr($row['month'], 4), 10)) . " " . substr($row['month'], 0, 4); ?></td>
 								<td><?php echo $row['students_money_made']; ?></td>
 								<td><?php echo $row['non_students_money_made']; ?></td>
 							</tr>
 <?php
 						}
+$sql= 'SELECT WEEK(date, 1) as week, sum(case when (WEEKDAY(date) = 0) then (a.count) else 0 end) as attendance_monday, sum(case when (WEEKDAY(date) = 1) then (a.count) else 0 end) as attendance_tuesday, sum(case when (WEEKDAY(date) = 2) then (a.count) else 0 end) as attendance_wednesday, sum(case when (WEEKDAY(date) = 3) then (a.count) else 0 end) as attendance_thursday, sum(case when (WEEKDAY(date) = 4) then (a.count) else 0 end) as attendance_friday FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE a.branch_id = "' . $_POST['branch_id'] . '" GROUP BY week ORDER BY week;';
+$result = $connection_4w->query($sql);
 ?>
+
+<h2 class="report-heading">Weekly attendance</h2>
+<div id="chart2" class="report-column-small">
+</div>
+
+<table id="datatable_for_chart2" class="report-datatable">
+	<caption>Attendance</caption>
+	<thead>
+	<tr>
+		<th>Week</th>
+		<th>Monday</th>
+		<th>Tuesday</th>
+		<th>Wednesday</th>
+		<th>Thursday</th>
+		<th>Friday</th>
+	</tr>
+	</thead>
+	<tbody>
+	<?php
+	while ($row = mysqli_fetch_assoc($result)) {
+		?>
+		<tr>
+			<td><?php echo 'Week ' . ($row['week'] - 39) % 53; ?></td>
+			<td><?php echo $row['attendance_monday']; ?></td>
+			<td><?php echo $row['attendance_tuesday']; ?></td>
+			<td><?php echo $row['attendance_wednesday']; ?></td>
+			<td><?php echo $row['attendance_thursday']; ?></td>
+			<td><?php echo $row['attendance_friday']; ?></td>
+		</tr>
+		<?php
+	}
+	?>
 						</tbody>
 					</table>
 
