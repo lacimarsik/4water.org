@@ -64,6 +64,35 @@ function get_last_lesson($connection, $branch_id) {
 	return $result_array;
 }
 
+function get_closest_lesson($connection, $branch_id) {
+	// Get the array of next lessons from the "next monday" (tuesday, ...) depending on what days the branch has lessons
+	// Array will be in the form "Class type, Level" => Timestamp
+	$array_of_next_lessons = array();
+	$sql= "SELECT * FROM 4w_branch_classes WHERE branch_id = " . $branch_id;
+	$result = $connection->query($sql);
+	while ($row = mysqli_fetch_assoc($result)) {
+		if ((date('l') == $row['day']) && (date('H:i:s') < $row['time'])) {
+			// if the lesson is today, and didn't yet start
+			$day_as_string = strtolower($row['day']) . 'this week';
+		} else {
+			$day_as_string = 'next ' . strtolower($row['day']);
+		}
+		$array_of_next_lessons[$row['class_type'] . "," . $row['level']] = strtotime($day_as_string . ' ' . $row['time']);
+	}
+	asort($array_of_next_lessons);
+	reset($array_of_next_lessons);
+	// Return only the closest lesson as: Timestamp, Class type, Level
+	$class_type_level = explode(",", key($array_of_next_lessons));
+	$timestamp = $array_of_next_lessons[key($array_of_next_lessons)];
+	$class_type = $class_type_level[0];
+	$level = $class_type_level[1];
+	$result_array = array();
+	array_push($result_array, $timestamp);
+	array_push($result_array, $class_type);
+	array_push($result_array, $level);
+	return $result_array;
+}
+
 // =============================
 // 2. AJAX / FORM HANDLING
 // =============================
@@ -840,9 +869,10 @@ $result = $connection_4w->query($sql);
 <?php
 	if ($form_submitted) {
 		$branch_url = getCurrentBranchUrl($_POST, $connection_4w);
+		$closest_lesson = get_closest_lesson($connection_4w, $_POST['branch_id']);
 ?>
 				<div class="report-footer">
-				<a href="<?php echo $branch_url; ?>"><button>Cashier next lesson</button></a>
+				<a href="<?php echo $branch_url; ?>"><button>Cashier next lesson (<?php echo $closest_lesson[1] . ' ' . $closest_lesson[2] . ')'; ?></button></a>
 				</div>
 <?php
 	}
