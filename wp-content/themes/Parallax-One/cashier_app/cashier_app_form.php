@@ -59,6 +59,20 @@ function get_closest_lesson($connection_4w, $branch_id) {
 	$closest_lesson_time = date('H:i:s', $closest_lesson[0]);
 	$closest_lesson_class_type = $closest_lesson[1];
 	$closest_lesson_level = $closest_lesson[2];
+
+	// Normal situation: show closest lesson
+	$filled_date = $closest_lesson_date;
+	$filled_time = $closest_lesson_time;
+	$filled_class_type = $closest_lesson_class_type;
+	$filled_level = $closest_lesson_level;
+
+	// But if Edit button was used from the Report page, use the desired lesson
+	if (isset($_POST['return'])) {
+		$filled_date =  date('Y-m-d', $_POST['datetime']);
+		$filled_time =  date('H:i:s', $_POST['datetime']);
+		$filled_class_type = $_POST['class'];
+		$filled_level = $_POST['level'];
+	}
 ?>
 	<div class="cashier">
 		<br />
@@ -88,7 +102,7 @@ function get_closest_lesson($connection_4w, $branch_id) {
 						$sql= "SELECT DISTINCT(class_type) FROM 4w_branch_classes WHERE branch_id = " . $branch_id;
 						$result = $connection_4w->query($sql);
 						while ($row = mysqli_fetch_assoc($result)) {
-							echo '<option value="'. $row['class_type'] . '" ' . (($closest_lesson_class_type == $row['class_type']) ? "selected" : "") . '>' . $row['class_type'] . '</option>';
+							echo '<option value="'. $row['class_type'] . '" ' . (($filled_class_type == $row['class_type']) ? "selected" : "") . '>' . $row['class_type'] . '</option>';
 						}
 						?>
 					</select>
@@ -100,7 +114,7 @@ function get_closest_lesson($connection_4w, $branch_id) {
 						$sql= "SELECT DISTINCT(level) FROM 4w_branch_classes WHERE branch_id = " . $branch_id;
 						$result = $connection_4w->query($sql);
 						while ($row = mysqli_fetch_assoc($result)) {
-							echo '<option value="'. $row['level'] . '" ' . (($closest_lesson_level == $row['level']) ? "selected" : "") . '>' . $row['level'] . '</option>';
+							echo '<option value="'. $row['level'] . '" ' . (($filled_level == $row['level']) ? "selected" : "") . '>' . $row['level'] . '</option>';
 						}
 						?>
 					</select>
@@ -108,11 +122,11 @@ function get_closest_lesson($connection_4w, $branch_id) {
 				<div class="clearfix"></div>
 				<div class="form-group col-md-4">
 					<label for="date">Date</label>
-					<input id="date" type="text" name="date" class="js-start" value="<?php echo $closest_lesson_date; ?>" />
+					<input id="date" type="text" name="date" class="js-start" value="<?php echo $filled_date; ?>" />
 				</div>
 				<div class="form-group col-md-4">
 					<label for="time">Time</label>
-					<input id="time" type="text" name="time" class="js-start" value="<?php echo $closest_lesson_time; ?>" />
+					<input id="time" type="text" name="time" class="js-start" value="<?php echo $filled_time; ?>" />
 				</div>
 			</div>
 			<p>Please select your name to start.</p>

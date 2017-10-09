@@ -561,8 +561,20 @@ $volunteer_name = "";
 				<tr class="success"><td><strong class="medium bold">Totals</strong></td><td><span class="medium"><?php echo $total_students; ?></span></td><td><span class="medium"><?php echo $total; ?> <?php echo $currency; ?></span></td></tr>
 				</table>
 				<p>Counted by: <strong class="bold"><?php echo $volunteer_name; ?></strong></p>
-				<?php $last_lesson = get_last_lesson($connection_4w, $_POST['branch_id']); ?>
-				<button>Edit last lesson (<?php echo $last_lesson[1] . ' ' . $last_lesson[2] . ')';?></button>
+<?php
+				if ($form_submitted) {
+					$last_lesson = get_last_lesson($connection_4w, $_POST['branch_id']);
+					$branch_url = getCurrentBranchUrl($_POST, $connection_4w); ?>
+					<form action="<?php echo $branch_url; ?>" id="return-form" method="post">
+						<input type="hidden" name="return" value="true">
+						<input type="hidden" name="datetime" value="<?php echo $last_lesson[0]; ?>">
+						<input type="hidden" name="class" value="<?php echo $last_lesson[1]; ?>">
+						<input type="hidden" name="level" value="<?php echo $last_lesson[2]; ?>">
+						<input class="submit-button" type="submit" value="Edit last lesson (<?php echo $last_lesson[1] . ' ' . $last_lesson[2] . ')'; ?>">
+					</form>
+<?php
+				}
+?>
 				<script type="text/javascript">
 					$(function() {
 							Highcharts.setOptions( {
@@ -829,9 +841,9 @@ $result = $connection_4w->query($sql);
 	if ($form_submitted) {
 		$branch_url = getCurrentBranchUrl($_POST, $connection_4w);
 ?>
-				<br />
-				<a href="<?php echo $branch_url; ?>"><button>Back to Cashiering</button></a>
-				<br />
+				<div class="report-footer">
+				<a href="<?php echo $branch_url; ?>"><button>Cashier next lesson</button></a>
+				</div>
 <?php
 	}
 ?>

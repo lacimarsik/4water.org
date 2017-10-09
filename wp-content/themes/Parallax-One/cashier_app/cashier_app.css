@@ -46,3 +46,13 @@
 	margin-top: 20px;
 	margin-bottom: 10px;
 }
+
+#return-form {
+	text-align: center;
+}
+
+.report-footer {
+	padding-bottom: 50px;
+	padding-top: 20px;
+	text-align: center;
+}
