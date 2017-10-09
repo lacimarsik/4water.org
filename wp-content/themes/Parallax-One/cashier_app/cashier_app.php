@@ -845,6 +845,8 @@ $result = $connection_4w->query($sql);
 		<th>Wednesday</th>
 		<th>Thursday</th>
 		<th>Friday</th>
+		<th>Saturday</th>
+		<th>Sunday</th>
 	</tr>
 	</thead>
 	<tbody>
