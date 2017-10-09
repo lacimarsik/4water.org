@@ -650,10 +650,10 @@ $volunteer_name = "";
 									, tooltip: {
 										formatter:function() {
 											if(this.series.name=="Students") {
-												return"<b>"+this.x+"</b><br/>"+"Students: "+Highcharts.numberFormat(this.y, "2f")+" <?php echo $currency; ?><br/>"+"<b>All: "+Highcharts.numberFormat(this.point.stackTotal, "2f")+" <?php echo $currency; ?></b>"
+												return"Students: "+Highcharts.numberFormat(this.y, "2f")+" <?php echo $currency; ?><br/>"+"<b>All: "+Highcharts.numberFormat(this.point.stackTotal, "2f")+" <?php echo $currency; ?></b>"
 											}
 											else {
-												return"<b>"+this.x+"</b><br/>"+"<b>"+this.series.name+": "+Highcharts.numberFormat(this.y, "2f")+" <?php echo $currency; ?></b>"
+												return"Non-Students: "+Highcharts.numberFormat(this.y, "2f")+" <?php echo $currency; ?><br/>"+"<b>All: "+Highcharts.numberFormat(this.point.stackTotal, "2f")+" <?php echo $currency; ?></b>"
 											}
 										}
 									}
@@ -715,7 +715,7 @@ $volunteer_name = "";
 								}
 								, tooltip: {
 									formatter:function() {
-										return "<b>"+this.x+"</b><br/>"+"<b>"+this.series.name+": "+Highcharts.numberFormat(this.y, "2f")+"</b>"
+										return "<b>Week "+(this.x + 1)+"</b><br/>"+"<b>"+this.series.name+": "+Highcharts.numberFormat(this.y, "2f")+"</b>"
 									}
 								}
 								, plotOptions: {
@@ -731,11 +731,17 @@ $volunteer_name = "";
 									}
 								}
 								, series:[ {
-									pointWidth: 30
-								}
-									, {
 										pointWidth: 30
 									}
+									, {
+										pointWidth: 30
+									}, {
+									pointWidth: 30
+								}, {
+									pointWidth: 30
+								}, {
+									pointWidth: 30
+								}
 								]
 							}
 						)
