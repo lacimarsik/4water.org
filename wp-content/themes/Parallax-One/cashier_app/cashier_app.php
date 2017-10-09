@@ -29,7 +29,7 @@ function countsExist($post, $connection) {
 }
 
 function getCurrentBranchUrl($post, $connection) {
-	$sql= "SELECT * FROM 4w_branches WHERE id = 3";"'" . $post['branch_id'] . "';";
+	$sql= "SELECT * FROM 4w_branches WHERE id = '" . $post['branch_id'] . "';";
 	$result = $connection->query($sql);
 	$row = mysqli_fetch_assoc($result);
 	return '/' . strtolower($row['city']) . '/' . strtolower($row['activity']) . '/cashier';
