@@ -149,7 +149,7 @@ function get_closest_lesson($connection_4w, $branch_id) {
 			<div class="cashier-count col-md-12">
 				<script type="text/javascript" src="../wp-content/themes/Parallax-One/cashier_app/cashier_app.js"></script>
 <?php
-				$sql= "SELECT * FROM 4w_branch_prices WHERE branch_id = " . $branch_id . " AND class_type = '" . $closest_lesson_class_type . "'";
+				$sql= "SELECT * FROM 4w_branch_prices WHERE branch_id = " . $branch_id . ";";
 				$result = $connection_4w->query($sql);
 				while ($row = mysqli_fetch_assoc($result)) {
 ?>
