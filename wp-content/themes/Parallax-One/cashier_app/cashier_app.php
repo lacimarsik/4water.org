@@ -558,7 +558,10 @@ if ($get_data) {
 						<div class="cashier-done">Thank you for cashiering! Below are the counts and money made.</div>
 				</article>
 <?php
-$sql= "SELECT * FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE a.date = '" . date('Y-m-d') . "'";
+
+$last_lesson = get_last_lesson($connection_4w, $_POST['branch_id']);
+
+$sql= "SELECT * FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE b.id = " . $_POST['branch_id']. " AND a.date = '" . date('Y-m-d', $last_lesson[0]) . "'";
 $result = $connection_4w->query($sql);
 
 $total = 0;
@@ -566,8 +569,18 @@ $students = 0;
 $students_manual = 0;
 $currency = "";
 $volunteer_name = "";
+
+if (date('Y-m-d', $last_lesson[0]) == date('Y-m-d')) {
 ?>
 				<h2 class="report-heading">Today</h2>
+<?php
+} else {
+?>
+				<h2 class="report-heading">Last class</h2>
+<?php
+}
+
+?>
 				<table class="table table-striped">
 <?php
 					while ($row = mysqli_fetch_assoc($result)) {
@@ -599,7 +612,7 @@ $volunteer_name = "";
 						<input type="hidden" name="datetime" value="<?php echo $last_lesson[0]; ?>">
 						<input type="hidden" name="class" value="<?php echo $last_lesson[1]; ?>">
 						<input type="hidden" name="level" value="<?php echo $last_lesson[2]; ?>">
-						<input class="submit-button" type="submit" value="Edit last lesson (<?php echo $last_lesson[1] . ' ' . $last_lesson[2] . ')'; ?>">
+						<input class="submit-button" type="submit" value="Edit last class (<?php echo $last_lesson[1] . ' ' . $last_lesson[2] . ')'; ?>">
 					</form>
 <?php
 				}
@@ -782,6 +795,10 @@ $volunteer_name = "";
 									pointWidth: 30
 								}, {
 									pointWidth: 30
+								}, {
+									pointWidth: 30
+								}, {
+									pointWidth: 30
 								}
 								]
 							}
@@ -876,7 +893,7 @@ $result = $connection_4w->query($sql);
 		$closest_lesson = get_closest_lesson($connection_4w, $_POST['branch_id']);
 ?>
 				<div class="report-footer">
-				<a href="<?php echo $branch_url; ?>"><button>Cashier next lesson (<?php echo $closest_lesson[1] . ' ' . $closest_lesson[2] . ')'; ?></button></a>
+				<a href="<?php echo $branch_url; ?>"><button>Cashier next class (<?php echo $closest_lesson[1] . ' ' . $closest_lesson[2] . ')'; ?></button></a>
 				</div>
 <?php
 	}
