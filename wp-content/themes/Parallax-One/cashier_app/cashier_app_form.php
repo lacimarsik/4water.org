@@ -48,6 +48,10 @@ function get_closest_lesson($connection_4w, $branch_id) {
 	$result = $connection_4w->query($sql);
 	$row = mysqli_fetch_assoc($result);
 	$branch_id = $row['id'];
+	$timezone = $row['timezone'];
+
+	// Set proper timezone
+	date_default_timezone_set($timezone);
 
 	// Find current date and time (use if exact time of cashiering is needed)
 	//date_default_timezone_set('Europe/' . $row['city']);

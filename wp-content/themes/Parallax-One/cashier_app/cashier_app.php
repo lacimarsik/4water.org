@@ -559,6 +559,13 @@ if ($get_data) {
 				</article>
 <?php
 
+// Set proper timezone
+$sql= "SELECT * FROM 4w_branches WHERE id = '" . $_POST['branch_id'] . "';";
+$result = $connection_4w->query($sql);
+$row = mysqli_fetch_assoc($result);
+$timezone = $row['timezone'];
+date_default_timezone_set($timezone);
+
 $last_lesson = get_last_lesson($connection_4w, $_POST['branch_id']);
 
 $sql= "SELECT * FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE b.id = " . $_POST['branch_id']. " AND a.date = '" . date('Y-m-d', $last_lesson[0]) . "'";
