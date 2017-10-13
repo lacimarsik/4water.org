@@ -34,7 +34,7 @@
                 !empty($intro_under_construction_link_text)) { ?>
                 <div id="intro-under-construction">
                   <?php echo $intro_under_construction_text; ?> <a
-                    href="<?php echo $intro_under_construction_link; ?>"><?php echo $intro_under_construction_link_text; ?></a>
+                    href="<?php echo $intro_under_construction_link; ?>" target="_blank"><?php echo $intro_under_construction_link_text; ?></a>
                 </div>
                 <?php
               }
