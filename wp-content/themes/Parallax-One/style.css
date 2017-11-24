@@ -6344,6 +6344,7 @@ h2.screen-reader-text {
     .features,
     .stats {
 		background-attachment: scroll !important;
+		max-height: 900px;
 	}
 
     .vertical-registration-form,
