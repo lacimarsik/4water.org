@@ -33,6 +33,7 @@
       "/cardiff/salsa/" => "demvn53ua2igi8qb9pecniegpk@group.calendar.google.com",
       "/london/dance/" => "m9onkpg6lvd80njafi1uoqgaqk@group.calendar.google.com",
       "/valencia/salsa/" => "jnmvi2cg207rljp7aa9jt5f3pc@group.calendar.google.com",
+      "/valencia/salsa/es/" => "jnmvi2cg207rljp7aa9jt5f3pc@group.calendar.google.com",
       "/sample/" => "gvse6taa5s4sav26epmlcskv4g@group.calendar.google.com"
     );
 
