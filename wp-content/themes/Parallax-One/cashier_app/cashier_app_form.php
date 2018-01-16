@@ -133,7 +133,7 @@ function get_closest_lesson($connection_4w, $branch_id) {
 					<input id="time" type="text" name="time" class="js-start" value="<?php echo $filled_time; ?>" />
 				</div>
 			</div>
-			<p>Please select your name to start. <strong>note: use 'Already had a voucher' if you only stamp the voucher, without money. In that case do not hit any of the first 4 pluses, those are only if you collect money :)</strong></p>
+			<p>Please select your name to start. <strong>note: use 'Already had a voucher' if you only stamp the voucher, without money. In that case, it does not matter if the voucher person was student/non-student. We only ask for it when we sell the voucher & collect money (first buttons) :)</strong></p>
 			<div class="form-group col-md-6">
 				<label for="name">Cashier</label>
 				<select id="name" name="name" form="cashier" class="js-start">
