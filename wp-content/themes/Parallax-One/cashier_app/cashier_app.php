@@ -860,9 +860,9 @@ $result = $connection_4w->query($sql);
 function getStartAndEndDate($week, $year) {
 	$dto = new DateTime();
 	$dto->setISODate($year, $week);
-	$ret['week_start'] = $dto->format('Y-m-d');
+	$ret['week_start'] = $dto;
 	$dto->modify('+6 days');
-	$ret['week_end'] = $dto->format('Y-m-d');
+	$ret['week_end'] = $dto;
 	return $ret;
 }
 ?>
@@ -889,11 +889,11 @@ function getStartAndEndDate($week, $year) {
 	<?php
 	while ($row = mysqli_fetch_assoc($result)) {
 		$year = (($row['week'] - 39) > 0) ? 2017 : 2018;
-		$first_day = strftime("%d.%m", date_parse(getStartAndEndDate($row['week'], $year)['week_start']));
-		$week_number_from_october = (($row['week'] - 39) > 0) ? ($row['week'] - 39) :  ($row['week'] + 15);
+		$first_day = getStartAndEndDate($row['week'], $year)['week_start']->format('d.m.');
+		//$week_number_from_october = (($row['week'] - 39) > 0) ? ($row['week'] - 39) :  ($row['week'] + 15);
 		?>
 		<tr>
-			<td><?php echo "Week " . $week_number_from_october; ?></td>
+			<td><?php echo $first_day; ?></td>
 			<td><?php echo $row['attendance_monday']; ?></td>
 			<td><?php echo $row['attendance_tuesday']; ?></td>
 			<td><?php echo $row['attendance_wednesday']; ?></td>
@@ -903,7 +903,6 @@ function getStartAndEndDate($week, $year) {
 			<td><?php echo $row['attendance_sunday']; ?></td>
 		</tr>
 		<?php
-		echo "<!--" . $first_day . "-->";
 	}
 	?>
 						</tbody>
