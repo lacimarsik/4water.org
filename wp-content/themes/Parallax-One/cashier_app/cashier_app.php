@@ -903,7 +903,7 @@ function getStartAndEndDate($week, $year) {
 			<td><?php echo $row['attendance_sunday']; ?></td>
 		</tr>
 		<?php
-		echo "<!--" . $first_day . "-->"
+		echo "<!--" . $first_day . "-->";
 	}
 	?>
 						</tbody>
