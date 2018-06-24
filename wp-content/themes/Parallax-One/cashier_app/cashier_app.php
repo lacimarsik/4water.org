@@ -558,7 +558,7 @@ if ($get_data) {
 						<?php if ($form_submitted) { ?>
 						<div class="cashier-done">Thank you for cashiering! Below are the counts and money made.</div>
 						<?php } else { ?>
-						<div class="cashier-done">Here are the results! Thank you all for cashiering!</div>
+						<div class="cashier-done">Here are the results! Thank you all for cashiering! If you wish to make your own charts you can <a href="http://4waterdev.org/wp-content/themes/Parallax-One/cashier_app/results/cashier-3-2018-results.csv">download the results as CSV</a>.</div>
 						<?php } ?>
 				</article>
 <?php
