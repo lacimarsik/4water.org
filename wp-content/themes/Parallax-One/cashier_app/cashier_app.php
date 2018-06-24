@@ -855,14 +855,15 @@ $sql= 'SELECT WEEK(date, 1) as week, sum(case when (WEEKDAY(date) = 0) then (a.c
 $result = $connection_4w->query($sql);
 
 // @param $week [int]
-// @param $year [string]
-// @return [date] the first day of the week, given weeknumber and year
-function getFirstDayDate($week, $year)
-{
-	$time = strtotime("1 January $year", time());
-	$day = date('w', $time);
-	$time += ((7*$week)+1-$day)*24*3600;
-	return date('Y-n-j', $time);
+// @param $year [int]
+// @return [Array] the first day and last day of the week, in $ret['week_start'] and $ret['week_nd'] 
+function getStartAndEndDate($week, $year) {
+	$dto = new DateTime();
+	$dto->setISODate($year, $week);
+	$ret['week_start'] = $dto->format('Y-m-d');
+	$dto->modify('+6 days');
+	$ret['week_end'] = $dto->format('Y-m-d');
+	return $ret;
 }
 ?>
 
@@ -887,7 +888,8 @@ function getFirstDayDate($week, $year)
 	<tbody>
 	<?php
 	while ($row = mysqli_fetch_assoc($result)) {
-		$first_day = strftime("%d.%m", getFirstDayDate($row['week'], '2018'));
+		$year = (($row['week'] - 39) > 0) ? 2017 : 2018;
+		$first_day = strftime("%d.%m", getStartAndEndDate($row['week'], $year));
 		$week_number_from_october = (($row['week'] - 39) > 0) ? ($row['week'] - 39) :  ($row['week'] + 15);
 		?>
 		<tr>
