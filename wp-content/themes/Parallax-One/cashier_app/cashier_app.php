@@ -888,9 +888,10 @@ function getFirstDayDate($week, $year)
 	<?php
 	while ($row = mysqli_fetch_assoc($result)) {
 		$first_day = strftime("%d.%m", getFirstDayDate($row['week'], '2018'));
+		$week_number_from_october = (($row['week'] - 39) > 0) ? ($row['week'] - 39) :  ($row['week'] + 15);
 		?>
 		<tr>
-			<td><?php echo $first_day; ?></td>
+			<td><?php echo $week_number_from_october; ?></td>
 			<td><?php echo $row['attendance_monday']; ?></td>
 			<td><?php echo $row['attendance_tuesday']; ?></td>
 			<td><?php echo $row['attendance_wednesday']; ?></td>
