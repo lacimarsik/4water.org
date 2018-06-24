@@ -853,6 +853,17 @@ $result = $connection_4w->query($sql);
 						}
 $sql= 'SELECT WEEK(date, 1) as week, sum(case when (WEEKDAY(date) = 0) then (a.count) else 0 end) as attendance_monday, sum(case when (WEEKDAY(date) = 1) then (a.count) else 0 end) as attendance_tuesday, sum(case when (WEEKDAY(date) = 2) then (a.count) else 0 end) as attendance_wednesday, sum(case when (WEEKDAY(date) = 3) then (a.count) else 0 end) as attendance_thursday, sum(case when (WEEKDAY(date) = 4) then (a.count) else 0 end) as attendance_friday, sum(case when (WEEKDAY(date) = 5) then (a.count) else 0 end) as attendance_saturday, sum(case when (WEEKDAY(date) = 6) then (a.count) else 0 end) as attendance_sunday FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE a.branch_id = "' . $_POST['branch_id'] . '" GROUP BY week ORDER BY week;';
 $result = $connection_4w->query($sql);
+
+// @param $week [int]
+// @param $year [string]
+// @return [date] the first day of the week, given weeknumber and year
+function getFirstDayDate($week, $year)
+{
+	$time = strtotime("1 January $year", time());
+	$day = date('w', $time);
+	$time += ((7*$week)+1-$day)*24*3600;
+	return date('Y-n-j', $time);
+}
 ?>
 
 <h2 class="report-heading">Weekly attendance</h2>
@@ -876,9 +887,10 @@ $result = $connection_4w->query($sql);
 	<tbody>
 	<?php
 	while ($row = mysqli_fetch_assoc($result)) {
+		$first_day = strftime("%d.%m", getFirstDayDate($row['week'], '2018'));
 		?>
 		<tr>
-			<td><?php echo 'Week ' . ($row['week'] - 39) % 53; ?></td>
+			<td><?php echo $first_day; ?></td>
 			<td><?php echo $row['attendance_monday']; ?></td>
 			<td><?php echo $row['attendance_tuesday']; ?></td>
 			<td><?php echo $row['attendance_wednesday']; ?></td>
