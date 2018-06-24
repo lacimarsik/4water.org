@@ -97,7 +97,7 @@ function get_closest_lesson($connection, $branch_id) {
 // 2. AJAX / FORM HANDLING
 // =============================
 
-$form_submitted = isset($_POST['increment']) || isset($_POST['decrement']) || isset($_POST['submitform']);
+$form_submitted = (isset($_POST['increment']) || isset($_POST['decrement']) || isset($_POST['submitform'])) && !isset($_POST['resuls']);
 
 if ($form_submitted) {
 	$prices_array = getArrayOfPrices($_POST);
@@ -555,7 +555,11 @@ if ($get_data) {
 						<h1 class="entry-title single-title">Cashier</h1>
 						<div class="colored-line-left"></div>
 						<div class="clearfix"></div>
+						<?php if ($form_submitted) { ?>
 						<div class="cashier-done">Thank you for cashiering! Below are the counts and money made.</div>
+						<?php } else { ?>
+						<div class="cashier-done">Here are the results! Thank you all for cashiering!</div>
+						<?php } ?>
 				</article>
 <?php
 
@@ -577,52 +581,59 @@ $students_manual = 0;
 $currency = "";
 $volunteer_name = "";
 
-if (date('Y-m-d', $last_lesson[0]) == date('Y-m-d')) {
-?>
-				<h2 class="report-heading">Today</h2>
-<?php
-} else {
-?>
-				<h2 class="report-heading">Last class</h2>
-<?php
-}
+if ($form_submitted) {
+	if (date('Y-m-d', $last_lesson[0]) == date('Y-m-d')) {
+		?>
+		<h2 class="report-heading">Today</h2>
+		<?php
+	} else {
+		?>
+		<h2 class="report-heading">Last class</h2>
+		<?php
+	}
 
-?>
-				<table class="table table-striped">
-<?php
-					while ($row = mysqli_fetch_assoc($result)) {
-						$currency = $row['currency'];
-						$volunteer_name = $row['volunteer_name'];
-						$total += intval($row['price']) * intval($row['count']);
-						if ($row['totals'] != "yes") {
-							$students += intval($row['count']);
-						} else {
-							$students_manual = ($students_manual < $row['count']) ? $row['count'] : $students_manual;
-						}
-						echo '<tr>';
-						echo '<td><strong class="bold">' . $row['price_type'] . '</strong></td>';
-						echo '<td><span>' . $row['count'] . '</span></td>';
-						echo '<td><span>' . intval($row['price']) * intval($row['count']) . ' ' . $row['currency'] . '</span></td>';
-						echo '</tr>';
-					}
-?>
-				<?php $total_students = ($students_manual > $students) ? $students_manual : $students; ?>
-				<tr class="success"><td><strong class="medium bold">Totals</strong></td><td><span class="medium"><?php echo $total_students; ?></span></td><td><span class="medium"><?php echo $total; ?> <?php echo $currency; ?></span></td></tr>
-				</table>
-				<p>Counted by: <strong class="bold"><?php echo $volunteer_name; ?></strong></p>
-<?php
-				if ($form_submitted) {
-					$last_lesson = get_last_lesson($connection_4w, $_POST['branch_id']);
-					$branch_url = getCurrentBranchUrl($_POST, $connection_4w); ?>
-					<form action="<?php echo $branch_url; ?>" id="return-form" method="post">
-						<input type="hidden" name="return" value="true">
-						<input type="hidden" name="datetime" value="<?php echo $last_lesson[0]; ?>">
-						<input type="hidden" name="class" value="<?php echo $last_lesson[1]; ?>">
-						<input type="hidden" name="level" value="<?php echo $last_lesson[2]; ?>">
-						<input class="submit-button" type="submit" value="Edit last class (<?php echo $last_lesson[1] . ' ' . $last_lesson[2] . ')'; ?>">
-					</form>
-<?php
-				}
+	?>
+	<table class="table table-striped">
+		<?php
+		while ($row = mysqli_fetch_assoc($result)) {
+			$currency = $row['currency'];
+			$volunteer_name = $row['volunteer_name'];
+			$total += intval($row['price']) * intval($row['count']);
+			if ($row['totals'] != "yes") {
+				$students += intval($row['count']);
+			} else {
+				$students_manual = ($students_manual < $row['count']) ? $row['count'] : $students_manual;
+			}
+			echo '<tr>';
+			echo '<td><strong class="bold">' . $row['price_type'] . '</strong></td>';
+			echo '<td><span>' . $row['count'] . '</span></td>';
+			echo '<td><span>' . intval($row['price']) * intval($row['count']) . ' ' . $row['currency'] . '</span></td>';
+			echo '</tr>';
+		}
+		?>
+		<?php $total_students = ($students_manual > $students) ? $students_manual : $students; ?>
+		<tr class="success">
+			<td><strong class="medium bold">Totals</strong></td>
+			<td><span class="medium"><?php echo $total_students; ?></span></td>
+			<td><span class="medium"><?php echo $total; ?><?php echo $currency; ?></span></td>
+		</tr>
+	</table>
+	<p>Counted by: <strong class="bold"><?php echo $volunteer_name; ?></strong></p>
+	<?php
+	if ($form_submitted) {
+		$last_lesson = get_last_lesson($connection_4w, $_POST['branch_id']);
+		$branch_url = getCurrentBranchUrl($_POST, $connection_4w); ?>
+		<form action="<?php echo $branch_url; ?>" id="return-form" method="post">
+			<input type="hidden" name="return" value="true">
+			<input type="hidden" name="datetime" value="<?php echo $last_lesson[0]; ?>">
+			<input type="hidden" name="class" value="<?php echo $last_lesson[1]; ?>">
+			<input type="hidden" name="level" value="<?php echo $last_lesson[2]; ?>">
+			<input class="submit-button" type="submit"
+			       value="Edit last class (<?php echo $last_lesson[1] . ' ' . $last_lesson[2] . ')'; ?>">
+		</form>
+		<?php
+	}
+}
 ?>
 				<script type="text/javascript">
 					$(function() {

@@ -1,6 +1,6 @@
 <?php
 
-if (isset($_POST['cashier'])) {
+if (isset($_POST['cashier']) || isset($_POST['results'])) {
 	include 'wp-content/themes/Parallax-One/cashier_app/cashier_app.php';
 } else {
 
