@@ -930,9 +930,9 @@ $result = $connection_4w->query($sql);
 				?>
 				<tr>
 					<td>AVERAGE ATTENDANCE (from <?php echo $num_weeks; ?> weeks)</td>
-					<td><?php echo $row['attendance_monday'] / $num_weeks; ?></td>
-					<td><?php echo $row['attendance_wednesday'] / $num_weeks; ?></td>
-					<td><?php echo $row['attendance_thursday'] / $num_weeks; ?></td>
+					<td><?php echo round($row['attendance_monday'] / $num_weeks, 2); ?></td>
+					<td><?php echo round($row['attendance_wednesday'] / $num_weeks, 2); ?></td>
+					<td><?php echo round($row['attendance_thursday'] / $num_weeks, 2); ?></td>
 				</tr>
 				<tr>
 					<td>TOTAL STUDENTS CAME PER CLASS</td>
@@ -1008,7 +1008,7 @@ $result = $connection_4w->query($sql);
 				<tr>
 					<td>ENTRANCES 1x vs Voucher</td>
 					<td colspan="2"><?php echo $row['students_one_time_count'] + $row['non_students_one_time_count']; ?></td>
-					<td colspan="2"><?php echo $row['students_voucher_count'] + $row['non_students_voucher_count']; ?></td>
+					<td colspan="2"><?php echo $row['students_voucher_count'] + $row['non_students_voucher_count']; ?> x 10</td>
 				</tr>
 				<?php
 			}
