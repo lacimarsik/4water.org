@@ -891,7 +891,7 @@ function getFirstDayDate($week, $year)
 		$week_number_from_october = (($row['week'] - 39) > 0) ? ($row['week'] - 39) :  ($row['week'] + 15);
 		?>
 		<tr>
-			<td><?php echo $week_number_from_october; ?></td>
+			<td><?php echo "Week " . $week_number_from_october; ?></td>
 			<td><?php echo $row['attendance_monday']; ?></td>
 			<td><?php echo $row['attendance_tuesday']; ?></td>
 			<td><?php echo $row['attendance_wednesday']; ?></td>
@@ -901,6 +901,7 @@ function getFirstDayDate($week, $year)
 			<td><?php echo $row['attendance_sunday']; ?></td>
 		</tr>
 		<?php
+		echo "<!--" . $first_day . "-->";
 	}
 	?>
 						</tbody>
