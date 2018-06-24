@@ -887,7 +887,9 @@ function getStartAndEndDate($week, $year) {
 	</thead>
 	<tbody>
 	<?php
+	$num_weeks = 0;
 	while ($row = mysqli_fetch_assoc($result)) {
+		$num_weeks++;
 		$year = (($row['week'] - 39) > 0) ? 2017 : 2018;
 		$first_day = getStartAndEndDate($row['week'], $year)['week_start']->format('d.m.');
 		$week_number_from_october = (($row['week'] - 39) > 0) ? ($row['week'] - 39) :  ($row['week'] + 9);
@@ -911,6 +913,109 @@ function getStartAndEndDate($week, $year) {
 
 				</div>
 <?php
+$sql= 'SELECT sum(case when (WEEKDAY(date) = 0) then (a.count) else 0 end) as attendance_monday, sum(case when (WEEKDAY(date) = 1) then (a.count) else 0 end) as attendance_tuesday, sum(case when (WEEKDAY(date) = 2) then (a.count) else 0 end) as attendance_wednesday, sum(case when (WEEKDAY(date) = 3) then (a.count) else 0 end) as attendance_thursday, sum(case when (WEEKDAY(date) = 4) then (a.count) else 0 end) as attendance_friday, sum(case when (WEEKDAY(date) = 5) then (a.count) else 0 end) as attendance_saturday, sum(case when (WEEKDAY(date) = 6) then (a.count) else 0 end) as attendance_sunday FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE a.branch_id = "' . $_POST['branch_id'] . '"';
+$result = $connection_4w->query($sql);
+
+	?>
+	<h2 class="report-heading">Stats</h2>
+		<table class="table table-striped">
+			<tr>
+				<td></td>
+				<td>Monday classes</td>
+				<td>Wednesday classes</td>
+				<td>Thursday classes</td>
+			</tr>
+			<?php
+			while ($row = mysqli_fetch_assoc($result)) {
+				?>
+				<tr>
+					<td>AVERAGE ATTENDANCE (from <?php echo $num_weeks; ?> weeks)</td>
+					<td><?php echo $row['attendance_monday'] / $num_weeks; ?></td>
+					<td><?php echo $row['attendance_wednesday'] / $num_weeks; ?></td>
+					<td><?php echo $row['attendance_thursday'] / $num_weeks; ?></td>
+				</tr>
+				<tr>
+					<td>TOTAL STUDENTS CAME PER CLASS</td>
+					<td><?php echo $row['attendance_monday']; ?></td>
+					<td><?php echo $row['attendance_wednesday']; ?></td>
+					<td><?php echo $row['attendance_thursday']; ?></td>
+				</tr>
+				<tr>
+					<td>TOTAL STUDENTS CAME</td>
+					<td colspan="3"><?php echo $row['attendance_monday'] + $row['attendance_wednesday'] + $row['attendance_thursday']; ?></td>
+				</tr>
+			<?php
+			}
+			?>
+		</table>
+
+	<?php
+		$sql= 'SELECT sum(case when p.student = 1 then (a.count * p.price) else 0 end) as students_money_made, sum(case when p.student = 0 then (a.count * p.price) else 0 end) as non_students_money_made, p.currency FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE a.branch_id = "' . $_POST['branch_id'] . '"';
+		$result = $connection_4w->query($sql);
+
+		?>
+		<table class="table table-striped">
+			<tr>
+				<td></td>
+				<td>Students</td>
+				<td>Non-Students</td>
+			</tr>
+			<?php
+			while ($row = mysqli_fetch_assoc($result)) {
+				?>
+				<tr>
+					<td>TOTAL REVENUES PER TYPE</td>
+					<td><?php echo $row['students_money_made']; ?></td>
+					<td><?php echo $row['non_students_money_made']; ?></td>
+				</tr>
+				<tr>
+					<td>TOTAL REVENUES</td>
+					<td colspan="2"><?php echo $row['students_money_made'] + $row['non_students_money_made']; ?></td>
+				</tr>
+				<?php
+			}
+			?>
+		</table>
+
+		<?php
+		$sql= 'SELECT sum(case when a.price_type_id = 1 then (a.count * p.price) else 0 end) as students_one_time, sum(case when a.price_type_id = 2 then (a.count * p.price) else 0 end) as non_students_one_time, sum(case when a.price_type_id = 3 then (a.count * p.price) else 0 end) as students_voucher, sum(case when a.price_type_id = 4 then (a.count * p.price) else 0 end) as non_students_voucher, sum(case when a.price_type_id = 1 then (a.count) else 0 end) as students_one_time_count, sum(case when a.price_type_id = 2 then (a.count) else 0 end) as non_students_one_time_count, sum(case when a.price_type_id = 3 then (a.count) else 0 end) as students_voucher_count, sum(case when a.price_type_id = 4 then (a.count) else 0 end) as non_students_voucher_count, p.currency FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE a.branch_id = "' . $_POST['branch_id'] . '"';
+		$result = $connection_4w->query($sql);
+
+		?>
+		<table class="table table-striped">
+			<tr>
+				<td></td>
+				<td>Student 1x</td>
+				<td>Non-Student 1x</td>
+				<td>Student Voucher</td>
+				<td>Non-Student Voucher</td>
+			</tr>
+			<?php
+			while ($row = mysqli_fetch_assoc($result)) {
+				?>
+				<tr>
+					<td>TOTAL REVENUES PER TYPE</td>
+					<td><?php echo $row['students_one_time']; ?></td>
+					<td><?php echo $row['non_students_one_time']; ?></td>
+					<td><?php echo $row['students_voucher']; ?></td>
+					<td><?php echo $row['non_students_voucher']; ?></td>
+				</tr>
+				<tr>
+					<td>TOTAL REVENUES 1x vs Voucher</td>
+					<td colspan="2"><?php echo $row['students_one_time'] + $row['non_students_one_time']; ?></td>
+					<td colspan="2"><?php echo $row['students_voucher'] + $row['non_students_voucher']; ?></td>
+				</tr>
+				<tr>
+					<td>ENTRANCES 1x vs Voucher</td>
+					<td colspan="2"><?php echo $row['students_one_time_count'] + $row['non_students_one_time_count']; ?></td>
+					<td colspan="2"><?php echo $row['students_voucher_count'] + $row['non_students_voucher_count']; ?></td>
+				</tr>
+				<?php
+			}
+			?>
+		</table>
+<?php
+
 	if ($form_submitted) {
 		$branch_url = getCurrentBranchUrl($_POST, $connection_4w);
 		$closest_lesson = get_closest_lesson($connection_4w, $_POST['branch_id']);
