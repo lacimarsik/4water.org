@@ -803,20 +803,20 @@ if ($form_submitted) {
 									}
 								}
 								, series:[ {
-										pointWidth: 30
+										pointWidth: 10
 									}
 									, {
-										pointWidth: 30
+										pointWidth: 10
 									}, {
-									pointWidth: 30
+									pointWidth: 10
 								}, {
-									pointWidth: 30
+									pointWidth: 10
 								}, {
-									pointWidth: 30
+									pointWidth: 10
 								}, {
-									pointWidth: 30
+									pointWidth: 10
 								}, {
-									pointWidth: 30
+									pointWidth: 10
 								}
 								]
 							}
