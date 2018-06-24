@@ -890,7 +890,7 @@ function getStartAndEndDate($week, $year) {
 	while ($row = mysqli_fetch_assoc($result)) {
 		$year = (($row['week'] - 39) > 0) ? 2017 : 2018;
 		$first_day = getStartAndEndDate($row['week'], $year)['week_start']->format('d.m.');
-		$week_number_from_october = (($row['week'] - 39) > 0) ? ($row['week'] - 39) :  ($row['week'] + 8);
+		$week_number_from_october = (($row['week'] - 39) > 0) ? ($row['week'] - 39) :  ($row['week'] + 9);
 		?>
 		<tr>
 			<td><?php echo $week_number_from_october; ?></td>
