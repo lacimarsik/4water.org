@@ -5,6 +5,7 @@
   $call_to_action_title = get_theme_mod('call_to_action_title', DefCallToAction::$title);
   $call_to_action_text = get_theme_mod('call_to_action_text', DefCallToAction::$text);
   $call_to_action_content = get_theme_mod('call_to_action_content', DefCallToAction::$content);
+  $call_to_action_form = get_theme_mod('call_to_action_form', DefCallToAction::$form);
   $call_to_action_payments_heading = get_theme_mod('call_to_action_payments_heading', DefCallToAction::$payments_heading);
   $call_to_action_payments_note = get_theme_mod('call_to_action_payments_note', DefCallToAction::$payments_note);
   $call_to_action_payments_image = get_theme_mod('call_to_action_payments_image', parallax_get_file(DefCallToAction::$payments_image));
@@ -42,8 +43,8 @@
 
           <!-- SCRIPT TO SHOW/HIDE UP PAYMENTS SECTION -->
           <script>
-            function openPaymentSection() {
-              document.getElementById("call-to-action-payments-wrap").style.display = 'block';
+            function openPaymentOrFormSection() {
+              document.getElementById("call-to-action-payments-or-form-wrap").style.display = 'block';
               var openButtons = document.getElementsByClassName("open-button");
               for (var i = 0; i < openButtons.length; i++) {
                 openButtons[i].style.display = "none";
@@ -52,7 +53,7 @@
             }
 
             function closePaymentSection() {
-              document.getElementById("call-to-action-payments-wrap").style.display = 'none';
+              document.getElementById("call-to-action-payments-or-form-wrap").style.display = 'none';
               var openButtons = document.getElementsByClassName("open-button");
               for (var i = 0; i < openButtons.length; i++) {
                 openButtons[i].style.display = "inline-block";
@@ -87,7 +88,7 @@
                         } ?>"
 
                         <?php if ($call_to_action_item->is_payment == "yes") {
-                          echo 'onClick="openPaymentSection();"';
+                          echo 'onClick="openPaymentOrFormSection();"';
                         } else {
                           echo 'href="' . esc_attr($call_to_action_item->link) . '"';
                         }?>>
@@ -125,9 +126,15 @@
             echo '</div>';
           } ?>
 <?php
-          if (!empty($call_to_action_payments)) {
+          if (!empty($call_to_action_form)) {
+              echo '<div id="call-to-action-payments-or-form-wrap">';
+              echo do_shortcode($call_to_action_form);
+              echo '</div>';
+          }
+
+          if ((empty($call_to_action_form)) && (!empty($call_to_action_payments))) {
             $call_to_action_payments_decoded = json_decode($call_to_action_payments);
-            echo '<div id="call-to-action-payments-wrap">';
+            echo '<div id="call-to-action-payments-or-form-wrap">';
             if (!empty($call_to_action_payments_heading)) {
               echo '<h2>' . $call_to_action_payments_heading . '</h2>';
             }

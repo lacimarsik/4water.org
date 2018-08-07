@@ -1166,22 +1166,22 @@ div.call-to-action-box {
 	display: inline;
 }
 
-#call-to-action-payments-wrap {
+#call-to-action-payments-or-form-wrap {
 	display: none;
 	text-align: center;
 }
 
-#call-to-action-payments-wrap h2 {
+#call-to-action-payments-or-form-wrap h2 {
 	font-size: 25px;
 	margin: 30px auto 0;
 }
 
-#call-to-action-payments-wrap div.call-to-action-payments-note {
+#call-to-action-payments-or-form-wrap div.call-to-action-payments-note {
 	font-size: 0.8em;
 	margin: 20px auto 10px;
 }
 
-#call-to-action-payments-wrap img.call-to-action-payments-image {
+#call-to-action-payments-or-form-wrap img.call-to-action-payments-image {
 	width: 200px;
 }
 
