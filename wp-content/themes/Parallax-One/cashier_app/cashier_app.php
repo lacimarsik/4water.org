@@ -557,9 +557,6 @@ if ($get_data) {
 						<div class="clearfix"></div>
 						<?php if ($form_submitted) { ?>
 						<div class="cashier-done">Thank you for cashiering! Below are the counts and money made.</div>
-						<?php } else { ?>
-						<div class="cashier-done">Here are the results! Thank you all for cashiering! If you wish to make your own charts you can <a href="http://4waterdev.org/wp-content/themes/Parallax-One/cashier_app/results/cashier-3-2018-results.csv">download the results as CSV</a>.</div>
-							<br /><div class="cashier-done">Also, please watch out that this season there were mistakes <strong>of up to 10%</strong>- please see the fixed charts here: <a href="http://4waterdev.org/wp-content/themes/Parallax-One/cashier_app/results/cashier-3-2018-fixes-1.png">revenues</a> <a href="http://4waterdev.org/wp-content/themes/Parallax-One/cashier_app/results/cashier-3-2018-fixes-2.png">attendance</a> <a href="http://4waterdev.org/wp-content/themes/Parallax-One/cashier_app/results/cashier-3-2018-fixes-3.png">stats</a></div>
 						<?php } ?>
 				</article>
 <?php
@@ -1026,6 +1023,10 @@ $result = $connection_4w->query($sql);
 			}
 			?>
 		</table>
+		
+		<div class="cashier-done">Results as: <a href="http://4waterdev.org/wp-content/themes/Parallax-One/cashier_app/results/cashier-3-2018-results.csv">CSV</a></div>
+		<div class="cashier-done">Missed classes: <strong>10%</strong></div>
+		<div class="cashier-done">Original charts: <a href="http://4waterdev.org/wp-content/themes/Parallax-One/cashier_app/results/cashier-3-2018-fixes-1.png">revenues</a> <a href="http://4waterdev.org/wp-content/themes/Parallax-One/cashier_app/results/cashier-3-2018-fixes-2.png">attendance</a> <a href="http://4waterdev.org/wp-content/themes/Parallax-One/cashier_app/results/cashier-3-2018-fixes-3.png">stats</a></div>
 <?php
 
 	if ($form_submitted) {
