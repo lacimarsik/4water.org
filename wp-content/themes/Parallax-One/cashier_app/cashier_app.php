@@ -1026,7 +1026,7 @@ $result = $connection_4w->query($sql);
 		
 		<div class="cashier-done">Results as: <a href="http://4waterdev.org/wp-content/themes/Parallax-One/cashier_app/results/cashier-3-2018-results.csv">CSV</a></div>
 		<div class="cashier-done">Missed classes: <strong>10%</strong></div>
-		<div class="cashier-done">Original charts: <a href="http://4waterdev.org/wp-content/themes/Parallax-One/cashier_app/results/cashier-3-2018-fixes-1.png">revenues</a> <a href="http://4waterdev.org/wp-content/themes/Parallax-One/cashier_app/results/cashier-3-2018-fixes-2.png">attendance</a> <a href="http://4waterdev.org/wp-content/themes/Parallax-One/cashier_app/results/cashier-3-2018-fixes-3.png">stats</a></div>
+		<div class="cashier-done">See the REAL counts + how the estimations of missed classes were made: <a href="http://4waterdev.org/wp-content/themes/Parallax-One/cashier_app/results/cashier-3-2018-fixes-1.png">revenues</a> <a href="http://4waterdev.org/wp-content/themes/Parallax-One/cashier_app/results/cashier-3-2018-fixes-2.png">attendance</a> <a href="http://4waterdev.org/wp-content/themes/Parallax-One/cashier_app/results/cashier-3-2018-fixes-3.png">stats</a></div>
 <?php
 
 	if ($form_submitted) {
