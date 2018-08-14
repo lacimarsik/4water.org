@@ -936,6 +936,8 @@ $result = $connection_4w->query($sql);
 			</tr>
 			<?php
 			while ($row = mysqli_fetch_assoc($result)) {
+				# FIX only for 2018:
+				$num_weeks = 33;
 				?>
 				<tr>
 					<td>AVERAGE ATTENDANCE (from <?php echo $num_weeks; ?> weeks)</td>
@@ -1004,20 +1006,22 @@ $result = $connection_4w->query($sql);
 				?>
 				<tr>
 					<td>TOTAL REVENUES PER TYPE</td>
-					<td><?php echo $row['students_one_time']; ?></td>
-					<td><?php echo $row['non_students_one_time']; ?></td>
-					<td><?php echo $row['students_voucher']; ?></td>
-					<td><?php echo $row['non_students_voucher']; ?></td>
+					<?php # FIX only for 2018: ?>
+					<td><?php echo 44344;#$row['students_one_time']; ?></td>
+					<td><?php echo 146034;#$row['non_students_one_time']; ?></td>
+					<td><?php echo 56628;#$row['students_voucher']; ?></td>
+					<td><?php echo 67953;#$row['non_students_voucher']; ?></td>
 				</tr>
 				<tr>
 					<td>TOTAL REVENUES 1x vs Voucher</td>
-					<td colspan="2"><?php echo $row['students_one_time'] + $row['non_students_one_time']; ?></td>
-					<td colspan="2"><?php echo $row['students_voucher'] + $row['non_students_voucher']; ?></td>
+					<?php # FIX only for 2018: ?>
+					<td colspan="2"><?php echo 190379;#echo $row['students_one_time'] + $row['non_students_one_time']; ?></td>
+					<td colspan="2"><?php echo 124581;#echo $row['students_voucher'] + $row['non_students_voucher']; ?></td>
 				</tr>
 				<tr>
 					<td>ENTRANCES 1x vs Voucher</td>
-					<td colspan="2"><?php echo $row['students_one_time_count'] + $row['non_students_one_time_count']; ?></td>
-					<td colspan="2"><?php echo $row['students_voucher_count'] + $row['non_students_voucher_count']; ?> x 10</td>
+					<td colspan="2"><?php echo 2014;#echo $row['students_one_time_count'] + $row['non_students_one_time_count']; ?></td>
+					<td colspan="2"><?php echo 198;#echo $row['students_voucher_count'] + $row['non_students_voucher_count']; ?> x 10</td>
 				</tr>
 				<?php
 			}
@@ -1026,7 +1030,7 @@ $result = $connection_4w->query($sql);
 		
 		<div class="cashier-done">Results as: <a href="http://4waterdev.org/wp-content/themes/Parallax-One/cashier_app/results/cashier-3-2018-results.csv">CSV</a></div>
 		<div class="cashier-done">Missed classes: <strong>10%</strong></div>
-		<div class="cashier-done">See the REAL counts + how the estimations of missed classes were made: <a href="http://4waterdev.org/wp-content/themes/Parallax-One/cashier_app/results/cashier-3-2018-fixes-1.png">revenues</a> <a href="http://4waterdev.org/wp-content/themes/Parallax-One/cashier_app/results/cashier-3-2018-fixes-2.png">attendance</a> <a href="http://4waterdev.org/wp-content/themes/Parallax-One/cashier_app/results/cashier-3-2018-fixes-3.png">stats</a></div>
+		<div class="cashier-done">See the REAL counts + how the estimations of missed classes were made: <a href="http://4water.org/wp-content/themes/Parallax-One/cashier_app/results/cashier-3-2018-fixes-1.png">revenues</a> <a href="http://4water.org/wp-content/themes/Parallax-One/cashier_app/results/cashier-3-2018-fixes-2.png">attendance</a> <a href="http://4water.org/wp-content/themes/Parallax-One/cashier_app/results/cashier-3-2018-fixes-3.png">stats</a></div>
 <?php
 
 	if ($form_submitted) {
