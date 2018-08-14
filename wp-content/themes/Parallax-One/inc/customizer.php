@@ -605,11 +605,23 @@ function parallax_one_customize_register( $wp_customize ) {
         'fields' => array(
           'text' => array('type' => 'text', 'label' => 'Button text'),
           'link' => array('type' => 'text', 'label' => 'Link to open after clicking', 'placeholder' => 'http://4water.org'),
-          'is_payment' => array('type' => 'text', 'label' => 'Opens up payment section?', 'placeholder' => 'yes / no')
+          'is_payment' => array('type' => 'text', 'label' => 'Opens up payment/form section?', 'placeholder' => 'yes / no')
         )
       )
     )
   );
+  /* Call to action form */
+  $wp_customize->add_setting('call_to_action_form', array(
+      'default' => esc_html__(DefCallToAction::$form, 'parallax-one'),
+      'sanitize_callback' => 'parallax_one_sanitize_text',
+      'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control('call_to_action_form', array(
+      'label' => esc_html__('Form shortcode', 'parallax-one' ),
+      'section'  => 'call_to_action_section',
+      'active_callback' => 'parallax_one_show_on_front',
+      'priority' => 3
+  ));
   
   /* Call to action payments heading */
   $wp_customize->add_setting('call_to_action_payments_heading', array(

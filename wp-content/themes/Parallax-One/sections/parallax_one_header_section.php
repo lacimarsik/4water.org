@@ -77,8 +77,8 @@
 
 								if ($parallax_one_header_button_opens_payments) { ?>
 									<script>
-										function openPaymentSectionFromHeader() {
-											document.getElementById("call-to-action-payments-wrap").style.display = 'block';
+										function openPaymentOrFormSectionFromHeader() {
+											document.getElementById("call-to-action-payments-or-form-wrap").style.display = 'block';
 											var openButtons = document.getElementsByClassName("open-button");
 											for (var i = 0; i < openButtons.length; i++) {
 												openButtons[i].style.display = "none";
@@ -96,7 +96,7 @@
 									} else { ?>
 										<div id="intro_section_text_3" class="button"><a 
 											<?php if ($parallax_one_header_button_opens_payments) {
-												echo 'onClick="openPaymentSectionFromHeader();"';
+												echo 'onClick="openPaymentOrFormSectionFromHeader();"';
 											} ?>
 											href="<?php echo esc_url($parallax_one_header_button_link); ?>" class="btn btn-info header-button"><?php echo $parallax_one_header_button_text; ?></a></div>
 <?php
