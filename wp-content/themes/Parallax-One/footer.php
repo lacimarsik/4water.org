@@ -117,6 +117,11 @@
               </div> <!-- END footer right -->
             </div> <!-- END footer grid -->
 <?php
+          $uri_parts = explode('?', $_SERVER['REQUEST_URI'], 2);
+          $is_main_page = $uri_parts[0] == '/';
+          if( $is_main_page ) {
+              echo '<div class="row footer-policy"><a href="' . get_permalink('privacy-policy') . '">' . get_the_title(url_to_postid('privacy-policy')) . '</a></div>';
+          }
           if( !empty($copyright) ){
             echo '<div class="row footer-copyright">'.esc_attr($copyright).'</div>';
           }
