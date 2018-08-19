@@ -5,8 +5,6 @@
  * The permissions for the base directory must allow for writing files in order
  * for the wp-config.php to be created using this page.
  *
- * @internal This file must be parsable by PHP4.
- *
  * @package WordPress
  * @subpackage Administration
  */
@@ -28,40 +26,50 @@ define('WP_SETUP_CONFIG', true);
  */
 error_reporting(0);
 
-define( 'ABSPATH', dirname( dirname( __FILE__ ) ) . '/' );
+if ( ! defined( 'ABSPATH' ) ) {
+	define( 'ABSPATH', dirname( dirname( __FILE__ ) ) . '/' );
+}
 
 require( ABSPATH . 'wp-settings.php' );
 
 /** Load WordPress Administration Upgrade API */
 require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 
-/** Load WordPress Translation Install API */
+/** Load WordPress Translation Installation API */
 require_once( ABSPATH . 'wp-admin/includes/translation-install.php' );
 
 nocache_headers();
 
 // Support wp-config-sample.php one level up, for the develop repo.
-if ( file_exists( ABSPATH . 'wp-config-sample.php' ) )
+if ( file_exists( ABSPATH . 'wp-config-sample.php' ) ) {
 	$config_file = file( ABSPATH . 'wp-config-sample.php' );
-elseif ( file_exists( dirname( ABSPATH ) . '/wp-config-sample.php' ) )
+} elseif ( file_exists( dirname( ABSPATH ) . '/wp-config-sample.php' ) ) {
 	$config_file = file( dirname( ABSPATH ) . '/wp-config-sample.php' );
-else
-	wp_die( __( 'Sorry, I need a wp-config-sample.php file to work from. Please re-upload this file to your WordPress installation.' ) );
+} else {
+	wp_die( sprintf(
+		/* translators: %s: wp-config-sample.php */
+		__( 'Sorry, I need a %s file to work from. Please re-upload this file to your WordPress installation.' ),
+		'<code>wp-config-sample.php</code>'
+	) );
+}
 
 // Check if wp-config.php has been created
-if ( file_exists( ABSPATH . 'wp-config.php' ) )
+if ( file_exists( ABSPATH . 'wp-config.php' ) ) {
 	wp_die( '<p>' . sprintf(
-			/* translators: %s: install.php */
-			__( "The file 'wp-config.php' already exists. If you need to reset any of the configuration items in this file, please delete it first. You may try <a href='%s'>installing now</a>." ),
+			/* translators: 1: wp-config.php 2: install.php */
+			__( 'The file %1$s already exists. If you need to reset any of the configuration items in this file, please delete it first. You may try <a href="%2$s">installing now</a>.' ),
+			'<code>wp-config.php</code>',
 			'install.php'
 		) . '</p>'
 	);
+}
 
-// Check if wp-config.php exists above the root directory but is not part of another install
+// Check if wp-config.php exists above the root directory but is not part of another installation
 if ( @file_exists( ABSPATH . '../wp-config.php' ) && ! @file_exists( ABSPATH . '../wp-settings.php' ) ) {
 	wp_die( '<p>' . sprintf(
-			/* translators: %s: install.php */
-			__( "The file 'wp-config.php' already exists one level above your WordPress installation. If you need to reset any of the configuration items in this file, please delete it first. You may try <a href='%s'>installing now</a>." ),
+			/* translators: 1: wp-config.php 2: install.php */
+			__( 'The file %1$s already exists one level above your WordPress installation. If you need to reset any of the configuration items in this file, please delete it first. You may try <a href="%2$s">installing now</a>.' ),
+			'<code>wp-config.php</code>',
 			'install.php'
 		) . '</p>'
 	);
@@ -99,13 +107,13 @@ function setup_config_display_header( $body_classes = array() ) {
 	<?php wp_admin_css( 'install', true ); ?>
 </head>
 <body class="<?php echo implode( ' ', $body_classes ); ?>">
-<p id="logo"><a href="<?php esc_attr_e( 'https://wordpress.org/' ); ?>" tabindex="-1"><?php _e( 'WordPress' ); ?></a></p>
+<p id="logo"><a href="<?php echo esc_url( __( 'https://wordpress.org/' ) ); ?>" tabindex="-1"><?php _e( 'WordPress' ); ?></a></p>
 <?php
 } // end function setup_config_display_header();
 
 $language = '';
 if ( ! empty( $_REQUEST['language'] ) ) {
-	$language = preg_replace( '/[^a-zA-Z_]/', '', $_REQUEST['language'] );
+	$language = preg_replace( '/[^a-zA-Z0-9_]/', '', $_REQUEST['language'] );
 } elseif ( isset( $GLOBALS['wp_local_package'] ) ) {
 	$language = $GLOBALS['wp_local_package'];
 }
@@ -181,24 +189,24 @@ switch($step) {
 
 		setup_config_display_header();
 	?>
-<h1 class="screen-reader-text"><?php _e( 'Setup your database connection' ) ?></h1>
+<h1 class="screen-reader-text"><?php _e( 'Set up your database connection' ) ?></h1>
 <form method="post" action="setup-config.php?step=2">
 	<p><?php _e( 'Below you should enter your database connection details. If you&#8217;re not sure about these, contact your host.' ); ?></p>
 	<table class="form-table">
 		<tr>
 			<th scope="row"><label for="dbname"><?php _e( 'Database Name' ); ?></label></th>
 			<td><input name="dbname" id="dbname" type="text" size="25" value="wordpress" /></td>
-			<td><?php _e( 'The name of the database you want to run WP in.' ); ?></td>
+			<td><?php _e( 'The name of the database you want to use with WordPress.' ); ?></td>
 		</tr>
 		<tr>
-			<th scope="row"><label for="uname"><?php _e( 'User Name' ); ?></label></th>
+			<th scope="row"><label for="uname"><?php _e( 'Username' ); ?></label></th>
 			<td><input name="uname" id="uname" type="text" size="25" value="<?php echo htmlspecialchars( _x( 'username', 'example username' ), ENT_QUOTES ); ?>" /></td>
-			<td><?php _e( 'Your MySQL username' ); ?></td>
+			<td><?php _e( 'Your database username.' ); ?></td>
 		</tr>
 		<tr>
 			<th scope="row"><label for="pwd"><?php _e( 'Password' ); ?></label></th>
 			<td><input name="pwd" id="pwd" type="text" size="25" value="<?php echo htmlspecialchars( _x( 'password', 'example password' ), ENT_QUOTES ); ?>" autocomplete="off" /></td>
-			<td><?php _e( '&hellip;and your MySQL password.' ); ?></td>
+			<td><?php _e( 'Your database password.' ); ?></td>
 		</tr>
 		<tr>
 			<th scope="row"><label for="dbhost"><?php _e( 'Database Host' ); ?></label></th>
@@ -276,26 +284,46 @@ switch($step) {
 	if ( ! empty( $wpdb->error ) )
 		wp_die( $wpdb->error->get_error_message() . $tryagain_link );
 
-	// Fetch or generate keys and salts.
-	$no_api = isset( $_POST['noapi'] );
-	if ( ! $no_api ) {
-		$secret_keys = wp_remote_get( 'https://api.wordpress.org/secret-key/1.1/salt/' );
+	$errors = $wpdb->hide_errors();
+	$wpdb->query( "SELECT $prefix" );
+	$wpdb->show_errors( $errors );
+	if ( ! $wpdb->last_error ) {
+		// MySQL was able to parse the prefix as a value, which we don't want. Bail.
+		wp_die( __( '<strong>ERROR</strong>: "Table Prefix" is invalid.' ) );
 	}
 
-	if ( $no_api || is_wp_error( $secret_keys ) ) {
-		$secret_keys = array();
+	// Generate keys and salts using secure CSPRNG; fallback to API if enabled; further fallback to original wp_generate_password().
+	try {
+		$chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_ []{}<>~`+=,.;:/?|';
+		$max = strlen($chars) - 1;
 		for ( $i = 0; $i < 8; $i++ ) {
-			$secret_keys[] = wp_generate_password( 64, true, true );
+			$key = '';
+			for ( $j = 0; $j < 64; $j++ ) {
+				$key .= substr( $chars, random_int( 0, $max ), 1 );
+			}
+			$secret_keys[] = $key;
 		}
-	} else {
-		$secret_keys = explode( "\n", wp_remote_retrieve_body( $secret_keys ) );
-		foreach ( $secret_keys as $k => $v ) {
-			$secret_keys[$k] = substr( $v, 28, 64 );
+	} catch ( Exception $ex ) {
+		$no_api = isset( $_POST['noapi'] );
+
+		if ( ! $no_api ) {
+			$secret_keys = wp_remote_get( 'https://api.wordpress.org/secret-key/1.1/salt/' );
+		}
+
+		if ( $no_api || is_wp_error( $secret_keys ) ) {
+			$secret_keys = array();
+			for ( $i = 0; $i < 8; $i++ ) {
+				$secret_keys[] = wp_generate_password( 64, true, true );
+			}
+		} else {
+			$secret_keys = explode( "\n", wp_remote_retrieve_body( $secret_keys ) );
+			foreach ( $secret_keys as $k => $v ) {
+				$secret_keys[$k] = substr( $v, 28, 64 );
+			}
 		}
 	}
 
 	$key = 0;
-	// Not a PHP5-style by-reference foreach, as this file must be parseable by PHP4.
 	foreach ( $config_file as $line_num => $line ) {
 		if ( '$table_prefix  =' == substr( $line, 0, 16 ) ) {
 			$config_file[ $line_num ] = '$table_prefix  = \'' . addcslashes( $prefix, "\\'" ) . "';\r\n";
@@ -343,15 +371,15 @@ switch($step) {
 ?></p>
 <p><?php
 	/* translators: %s: wp-config.php */
-	printf( __( 'You can create the %s manually and paste the following text into it.' ), '<code>wp-config.php</code>' );
+	printf( __( 'You can create the %s file manually and paste the following text into it.' ), '<code>wp-config.php</code>' );
 ?></p>
 <textarea id="wp-config" cols="98" rows="15" class="code" readonly="readonly"><?php
 		foreach ( $config_file as $line ) {
 			echo htmlentities($line, ENT_COMPAT, 'UTF-8');
 		}
 ?></textarea>
-<p><?php _e( 'After you&#8217;ve done that, click &#8220;Run the install.&#8221;' ); ?></p>
-<p class="step"><a href="<?php echo $install; ?>" class="button button-large"><?php _e( 'Run the install' ); ?></a></p>
+<p><?php _e( 'After you&#8217;ve done that, click &#8220;Run the installation.&#8221;' ); ?></p>
+<p class="step"><a href="<?php echo $install; ?>" class="button button-large"><?php _e( 'Run the installation' ); ?></a></p>
 <script>
 (function(){
 if ( ! /iPad|iPod|iPhone/.test( navigator.userAgent ) ) {
@@ -383,7 +411,7 @@ if ( ! /iPad|iPod|iPhone/.test( navigator.userAgent ) ) {
 <h1 class="screen-reader-text"><?php _e( 'Successful database connection' ) ?></h1>
 <p><?php _e( 'All right, sparky! You&#8217;ve made it through this part of the installation. WordPress can now communicate with your database. If you are ready, time now to&hellip;' ); ?></p>
 
-<p class="step"><a href="<?php echo $install; ?>" class="button button-large"><?php _e( 'Run the install' ); ?></a></p>
+<p class="step"><a href="<?php echo $install; ?>" class="button button-large"><?php _e( 'Run the installation' ); ?></a></p>
 <?php
 	endif;
 	break;

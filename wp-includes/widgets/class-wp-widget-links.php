@@ -20,18 +20,19 @@ class WP_Widget_Links extends WP_Widget {
 	 * Sets up a new Links widget instance.
 	 *
 	 * @since 2.8.0
-	 * @access public
 	 */
 	public function __construct() {
-		$widget_ops = array('description' => __( "Your blogroll" ) );
-		parent::__construct('links', __('Links'), $widget_ops);
+		$widget_ops = array(
+			'description' => __( 'Your blogroll' ),
+			'customize_selective_refresh' => true,
+		);
+		parent::__construct( 'links', __( 'Links' ), $widget_ops );
 	}
 
 	/**
 	 * Outputs the content for the current Links widget instance.
 	 *
 	 * @since 2.8.0
-	 * @access public
 	 *
 	 * @param array $args     Display arguments including 'before_title', 'after_title',
 	 *                        'before_widget', and 'after_widget'.
@@ -66,10 +67,10 @@ class WP_Widget_Links extends WP_Widget {
 		);
 
 		/**
-		 * Filter the arguments for the Links widget.
+		 * Filters the arguments for the Links widget.
 		 *
 		 * @since 2.6.0
-		 * @since 4.4.0 The `$instance` parameter was added.
+		 * @since 4.4.0 Added the `$instance` parameter.
 		 *
 		 * @see wp_list_bookmarks()
 		 *
@@ -83,7 +84,6 @@ class WP_Widget_Links extends WP_Widget {
 	 * Handles updating settings for the current Links widget instance.
 	 *
 	 * @since 2.8.0
-	 * @access public
 	 *
 	 * @param array $new_instance New settings for this instance as input by the user via
 	 *                            WP_Widget::form().
@@ -112,7 +112,6 @@ class WP_Widget_Links extends WP_Widget {
 	 * Outputs the settings form for the Links widget.
 	 *
 	 * @since 2.8.0
-	 * @access public
 	 *
 	 * @param array $instance Current settings.
 	 */

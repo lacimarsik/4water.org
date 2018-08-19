@@ -22,7 +22,6 @@ class WP_Http_Curl {
 	 * Temporary header storage for during requests.
 	 *
 	 * @since 3.2.0
-	 * @access private
 	 * @var string
 	 */
 	private $headers = '';
@@ -31,7 +30,6 @@ class WP_Http_Curl {
 	 * Temporary body storage for during requests.
 	 *
 	 * @since 3.6.0
-	 * @access private
 	 * @var string
 	 */
 	private $body = '';
@@ -40,7 +38,6 @@ class WP_Http_Curl {
 	 * The maximum amount of data to receive from the remote server.
 	 *
 	 * @since 3.6.0
-	 * @access private
 	 * @var int
 	 */
 	private $max_body_length = false;
@@ -49,7 +46,6 @@ class WP_Http_Curl {
 	 * The file resource used for streaming to file.
 	 *
 	 * @since 3.6.0
-	 * @access private
 	 * @var resource
 	 */
 	private $stream_handle = false;
@@ -58,7 +54,6 @@ class WP_Http_Curl {
 	 * The total bytes written in the current request.
 	 *
 	 * @since 4.1.0
-	 * @access private
 	 * @var int
 	 */
 	private $bytes_written_total = 0;
@@ -66,7 +61,6 @@ class WP_Http_Curl {
 	/**
 	 * Send a HTTP request to a URI using cURL extension.
 	 *
-	 * @access public
 	 * @since 2.7.0
 	 *
 	 * @param string $url The request URL.
@@ -185,8 +179,14 @@ class WP_Http_Curl {
 				$this->stream_handle = @fopen( $r['filename'], 'w+' );
 			else
 				$this->stream_handle = fopen( $r['filename'], 'w+' );
-			if ( ! $this->stream_handle )
-				return new WP_Error( 'http_request_failed', sprintf( __( 'Could not open handle for fopen() to %s' ), $r['filename'] ) );
+			if ( ! $this->stream_handle ) {
+				return new WP_Error( 'http_request_failed', sprintf(
+					/* translators: 1: fopen() 2: file name */
+					__( 'Could not open handle for %1$s to %2$s.' ),
+					'fopen()',
+					$r['filename']
+				) );
+			}
 		} else {
 			$this->stream_handle = false;
 		}
@@ -213,7 +213,7 @@ class WP_Http_Curl {
 		 *
 		 * @since 2.8.0
 		 *
-		 * @param resource &$handle The cURL handle returned by curl_init().
+		 * @param resource $handle  The cURL handle returned by curl_init() (passed by reference).
 		 * @param array    $r       The HTTP request arguments.
 		 * @param string   $url     The request URL.
 		 */
@@ -298,13 +298,16 @@ class WP_Http_Curl {
 	}
 
 	/**
-	 * Grab the headers of the cURL request
+	 * Grabs the headers of the cURL request.
 	 *
-	 * Each header is sent individually to this callback, so we append to the $header property for temporary storage
+	 * Each header is sent individually to this callback, so we append to the `$header` property
+	 * for temporary storage
 	 *
 	 * @since 3.2.0
-	 * @access private
-	 * @return int
+	 *
+	 * @param resource $handle  cURL handle.
+	 * @param string   $headers cURL request headers.
+	 * @return int Length of the request headers.
 	 */
 	private function stream_headers( $handle, $headers ) {
 		$this->headers .= $headers;
@@ -312,14 +315,17 @@ class WP_Http_Curl {
 	}
 
 	/**
-	 * Grab the body of the cURL request
+	 * Grabs the body of the cURL request.
 	 *
-	 * The contents of the document are passed in chunks, so we append to the $body property for temporary storage.
-	 * Returning a length shorter than the length of $data passed in will cause cURL to abort the request with CURLE_WRITE_ERROR
+	 * The contents of the document are passed in chunks, so we append to the `$body`
+	 * property for temporary storage. Returning a length shorter than the length of
+	 * `$data` passed in will cause cURL to abort the request with `CURLE_WRITE_ERROR`.
 	 *
 	 * @since 3.6.0
-	 * @access private
-	 * @return int
+	 *
+	 * @param resource $handle  cURL handle.
+	 * @param string   $data    cURL request body.
+	 * @return int Total bytes of data written.
 	 */
 	private function stream_body( $handle, $data ) {
 		$data_length = strlen( $data );
@@ -343,11 +349,12 @@ class WP_Http_Curl {
 	}
 
 	/**
-	 * Whether this class can be used for retrieving an URL.
+	 * Determines whether this class can be used for retrieving a URL.
 	 *
 	 * @static
 	 * @since 2.7.0
 	 *
+	 * @param array $args Optional. Array of request arguments. Default empty array.
 	 * @return bool False means this class can not be used, true means it can.
 	 */
 	public static function test( $args = array() ) {
@@ -364,7 +371,7 @@ class WP_Http_Curl {
 		}
 
 		/**
-		 * Filter whether cURL can be used as a transport for retrieving a URL.
+		 * Filters whether cURL can be used as a transport for retrieving a URL.
 		 *
 		 * @since 2.7.0
 		 *
