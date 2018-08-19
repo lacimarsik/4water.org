@@ -118,9 +118,10 @@
             </div> <!-- END footer grid -->
 <?php
           $uri_parts = explode('?', $_SERVER['REQUEST_URI'], 2);
-          $is_main_page = $uri_parts[0] == '/';
+          $is_main_page = in_array($uri_parts[0], array('/', '/privacy-policy/'));
+          $privacy_policy_page_id = url_to_postid('privacy-policy');
           if( $is_main_page ) {
-              echo '<div class="row footer-policy"><a href="' . get_permalink('privacy-policy') . '">' . get_the_title(url_to_postid('privacy-policy')) . '</a></div>';
+              echo '<div class="row footer-policy"><a href="' . get_permalink($privacy_policy_page_id) . '">' . get_the_title($privacy_policy_page_id) . '</a></div>';
           }
           if( !empty($copyright) ){
             echo '<div class="row footer-copyright">'.esc_attr($copyright).'</div>';
