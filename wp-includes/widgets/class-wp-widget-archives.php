@@ -20,10 +20,13 @@ class WP_Widget_Archives extends WP_Widget {
 	 * Sets up a new Archives widget instance.
 	 *
 	 * @since 2.8.0
-	 * @access public
 	 */
 	public function __construct() {
-		$widget_ops = array('classname' => 'widget_archive', 'description' => __( 'A monthly archive of your site&#8217;s Posts.') );
+		$widget_ops = array(
+			'classname' => 'widget_archive',
+			'description' => __( 'A monthly archive of your site&#8217;s Posts.' ),
+			'customize_selective_refresh' => true,
+		);
 		parent::__construct('archives', __('Archives'), $widget_ops);
 	}
 
@@ -31,20 +34,22 @@ class WP_Widget_Archives extends WP_Widget {
 	 * Outputs the content for the current Archives widget instance.
 	 *
 	 * @since 2.8.0
-	 * @access public
 	 *
 	 * @param array $args     Display arguments including 'before_title', 'after_title',
 	 *                        'before_widget', and 'after_widget'.
 	 * @param array $instance Settings for the current Archives widget instance.
 	 */
 	public function widget( $args, $instance ) {
+		$title = ! empty( $instance['title'] ) ? $instance['title'] : __( 'Archives' );
+
+		/** This filter is documented in wp-includes/widgets/class-wp-widget-pages.php */
+		$title = apply_filters( 'widget_title', $title, $instance, $this->id_base );
+
 		$c = ! empty( $instance['count'] ) ? '1' : '0';
 		$d = ! empty( $instance['dropdown'] ) ? '1' : '0';
 
-		/** This filter is documented in wp-includes/widgets/class-wp-widget-pages.php */
-		$title = apply_filters( 'widget_title', empty( $instance['title'] ) ? __( 'Archives' ) : $instance['title'], $instance, $this->id_base );
-
 		echo $args['before_widget'];
+
 		if ( $title ) {
 			echo $args['before_title'] . $title . $args['after_title'];
 		}
@@ -56,19 +61,21 @@ class WP_Widget_Archives extends WP_Widget {
 		<select id="<?php echo esc_attr( $dropdown_id ); ?>" name="archive-dropdown" onchange='document.location.href=this.options[this.selectedIndex].value;'>
 			<?php
 			/**
-			 * Filter the arguments for the Archives widget drop-down.
+			 * Filters the arguments for the Archives widget drop-down.
 			 *
 			 * @since 2.8.0
+			 * @since 4.9.0 Added the `$instance` parameter.
 			 *
 			 * @see wp_get_archives()
 			 *
-			 * @param array $args An array of Archives widget drop-down arguments.
+			 * @param array $args     An array of Archives widget drop-down arguments.
+			 * @param array $instance Settings for the current Archives widget instance.
 			 */
 			$dropdown_args = apply_filters( 'widget_archives_dropdown_args', array(
 				'type'            => 'monthly',
 				'format'          => 'option',
 				'show_post_count' => $c
-			) );
+			), $instance );
 
 			switch ( $dropdown_args['type'] ) {
 				case 'yearly':
@@ -97,18 +104,20 @@ class WP_Widget_Archives extends WP_Widget {
 		<ul>
 		<?php
 		/**
-		 * Filter the arguments for the Archives widget.
+		 * Filters the arguments for the Archives widget.
 		 *
 		 * @since 2.8.0
+		 * @since 4.9.0 Added the `$instance` parameter.
 		 *
 		 * @see wp_get_archives()
 		 *
-		 * @param array $args An array of Archives option arguments.
+		 * @param array $args     An array of Archives option arguments.
+		 * @param array $instance Array of settings for the current widget.
 		 */
 		wp_get_archives( apply_filters( 'widget_archives_args', array(
 			'type'            => 'monthly',
 			'show_post_count' => $c
-		) ) );
+		), $instance ) );
 		?>
 		</ul>
 		<?php
@@ -121,7 +130,6 @@ class WP_Widget_Archives extends WP_Widget {
 	 * Handles updating settings for the current Archives widget instance.
 	 *
 	 * @since 2.8.0
-	 * @access public
 	 *
 	 * @param array $new_instance New settings for this instance as input by the user via
 	 *                            WP_Widget_Archives::form().
@@ -142,7 +150,6 @@ class WP_Widget_Archives extends WP_Widget {
 	 * Outputs the settings form for the Archives widget.
 	 *
 	 * @since 2.8.0
-	 * @access public
 	 *
 	 * @param array $instance Current settings.
 	 */

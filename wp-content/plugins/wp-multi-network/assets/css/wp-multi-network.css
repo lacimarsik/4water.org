@@ -74,19 +74,63 @@ table.assign-sites thead th {
 	background: #f4f4f4;
 }
 
-table.assign-sites select {
-	width: 100%;
+.networks tbody td,
+.networks tbody th {
+	-webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .1);
+	box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .1);
+	padding: 10px 9px;
 }
 
-table.assign-sites td.column-available,
-table.assign-sites td.column-assigned {
-	width: 44%;
+.networks .current th.check-column {
+	border-left: 4px solid #00a0d2;
+}
+
+.networks .current td,
+.networks .current th {
+	background-color: #f7fcfe;
+	padding: 10px 9px;
+}
+
+table.assign-sites select[multiple] {
+	width: 100%;
+	height: 80px !important;
+	margin: 0;
+}
+
+table.assign-sites .button {
+	margin: 0 5px;
+	width: 35%;
+	height: 80px;
 }
 
 table.assign-sites td.column-actions {
-	width: 12%;
-	text-align: center;
-	vertical-align: middle;
+	width: 16%;
+	padding: 8px 0;
+}
+
+table.assign-sites td.column-actions .assign {
+	float: left;
+	content: "\f341";
+}
+
+table.assign-sites td.column-actions .unassign {
+	float: right;
+}
+
+table.assign-sites td.column-available {
+	padding-right: 0;
+}
+
+table.assign-sites td.column-assigned {
+	padding-left: 0;
+}
+table.assign-sites td.column-available,
+table.assign-sites td.column-assigned {
+	width: 42%;
+}
+
+table.assign-sites td.column-assigned {
+	text-align: right;
 }
 
 div.network-delete {

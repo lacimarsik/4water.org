@@ -3,7 +3,7 @@
 /**
  * Metaboxes related to moving a site to a different network
  *
- * @package Networks/Metaboxes/Site/Move
+ * @package Plugins/Networks/Metaboxes/Site/Move
  */
 
 // Exit if accessed directly
@@ -14,35 +14,38 @@ defined( 'ABSPATH' ) || exit;
  *
  * @since 1.7.0
  *
- * @global type $wpdb
- *
- * @param object $site Results of get_blog_details()
+ * @param WP_Site $site Results of get_site()
  */
 function wpmn_move_site_list_metabox( $site = null ) {
-	global $wpdb;
 
 	// Get all networks
-	$networks = $wpdb->get_results( "SELECT * FROM {$wpdb->site}" ); ?>
+	$networks = get_networks(); ?>
 
 	<table class="move-site widefat">
 		<tr>
-			<th><?php echo esc_html( get_blog_option( $site->blog_id, 'blogname' ) ); ?></th>
+			<th><?php esc_html_e( 'New Network', 'wp-multi-network' ); ?></th>
 			<td>
 				<select name="to" id="to">
+					<option value="0"><?php
 
-					<option value="0">
-						<?php esc_html_e( '&mdash; No Network &mdash;', 'wp-multi-network' ); ?>
-					</option>
+						esc_html_e( '&mdash; No Network &mdash;', 'wp-multi-network' );
 
-					<?php foreach ( $networks as $new_network ) : ?>
+					?></option><?php
 
-						<option value="<?php echo esc_attr( $new_network->id ); ?>" <?php selected( $site->site_id, $new_network->id ); ?>>
-							<?php echo esc_html( $new_network->domain ); ?>
-						</option>
+					// Loop through networks
+					foreach ( $networks as $new_network ) :
 
-					<?php endforeach; ?>
+						// Option value is network ID
+						?><option value="<?php echo esc_attr( $new_network->id ); ?>" <?php selected( $site->network_id, $new_network->id ); ?>><?php
 
-				</select>
+						// Include scheme, domain, & path
+						echo wp_get_scheme() . esc_html( $new_network->domain . '/' . ltrim( $new_network->path, '/' ) );
+
+						?></option><?php
+
+					endforeach;
+
+				?></select>
 			</td>
 		</tr>
 	</table>
@@ -55,7 +58,7 @@ function wpmn_move_site_list_metabox( $site = null ) {
  *
  * @since 1.7.0
  *
- * @param object $site
+ * @param WP_Site $site
  */
 function wpmn_move_site_assign_metabox( $site = null ) {
 ?>
@@ -64,13 +67,13 @@ function wpmn_move_site_assign_metabox( $site = null ) {
 		<div id="minor-publishing">
 			<div id="misc-publishing-actions">
 				<div class="misc-pub-section curtime misc-pub-section-first">
-					<span><?php printf( __( 'Created: <strong>%1$s</strong>',  'wp-user-profiles' ), $site->registered ); ?></span>
+					<span><?php printf( __( 'Created: <strong>%1$s</strong>',  'wp-multi-network' ), $site->registered ); ?></span>
 				</div>
 				<div class="misc-pub-section misc-pub-section-last" id="domain">
-					<span><?php printf( __( 'Domain: <strong>%1$s</strong>', 'wp-user-profiles' ), $site->domain ); ?></span>
+					<span><?php printf( __( 'Domain: <strong>%1$s</strong>', 'wp-multi-network' ), $site->domain ); ?></span>
 				</div>
 				<div class="misc-pub-section misc-pub-section-last" id="path">
-					<span><?php printf( __( 'Path: <strong>%1$s</strong>', 'wp-user-profiles' ), $site->path ); ?></span>
+					<span><?php printf( __( 'Path: <strong>%1$s</strong>', 'wp-multi-network' ), $site->path ); ?></span>
 				</div>
 			</div>
 
@@ -80,9 +83,15 @@ function wpmn_move_site_assign_metabox( $site = null ) {
 		<div id="major-publishing-actions">
 			<a class="button" href="./sites.php"><?php esc_html_e( 'Cancel', 'wp-multi-network' ); ?></a>
 			<div id="publishing-action">
-				<?php submit_button( esc_attr__( 'Move', 'wp-multi-network' ), 'primary', 'move', false ); ?>
+				<?php
+
+				wp_nonce_field( 'edit_network', 'network_edit' );
+
+				submit_button( esc_attr__( 'Move', 'wp-multi-network' ), 'primary', 'move', false );
+
+				?>
 				<input type="hidden" name="action" value="update">
-				<input type="hidden" name="from" value="<?php echo esc_attr( $site->site_id ); ?>">
+				<input type="hidden" name="from" value="<?php echo esc_attr( $site->network_id ); ?>">
 			</div>
 			<div class="clear"></div>
 		</div>
