@@ -58,6 +58,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
     3.15 TEMPLATE: CONTACT PAGE
     3.16 WOOCOMMERCE STYLE
     3.17 FOOTER
+    3.18 CUSTOM PAGES
 
 4. DEFAULT COLORS
 
@@ -163,7 +164,7 @@ body {
 }
 
 /*---------------------------------------
-   2.3 ANCHOR AND BOLD TEXT           
+   1.4 ANCHOR AND BOLD TEXT
 -----------------------------------------*/
 a {
 	text-decoration: none;
@@ -176,7 +177,7 @@ a:hover {
 }
 
 /*---------------------------------------
-   1.4 MISC FIXES         
+   1.5 MISC FIXES
 -----------------------------------------*/
 @-webkit-viewport {
 	width: device-width;
@@ -5201,12 +5202,16 @@ footer.footer .footer-image {
 	filter: alpha(opacity=80);
 }
 
-footer.footer .footer-copyright {
+footer.footer .footer-copyright, footer.footer .footer-policy {
 	text-align: center;
 	font-size: 14px;
 	color: #aaa;
 	clear: both;
 	padding-top: 10px;
+}
+
+footer.footer .footer-policy a {
+	color: #aaa;
 }
 
 /* foooter widget */
@@ -5384,6 +5389,22 @@ footer.footer .team-member-box .team-member {
 	margin: 0 auto;
 	margin-bottom: 40px;
 	max-width: 350px;
+}
+
+/*---------------------------------------
+   3.18 CUSTOM PAGES
+-----------------------------------------*/
+
+/* Privacy Policy */
+
+em.policy-highlight {
+	color: #008ed6;
+	font-style: normal;
+}
+
+h2.policy {
+	font-size: 1.1em;
+	color: #008ed6;
 }
 
 /*---------------------------------------
