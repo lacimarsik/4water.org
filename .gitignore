@@ -22,6 +22,7 @@ wp-content/themes/zerif-lite/
 wp-content/themes/skt-white/
 wp-content/themes/parallax/
 wp-content/themes/Parallax-One/composer/vendor/
+wp-content/themes/Parallax-One/inc/calendar/credentials.json
 dev/
 php.ini
 *.sql
