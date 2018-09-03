@@ -1271,6 +1271,12 @@ div.call-to-action-payments-box table.payment-table td.payment-not-available {
 	}
 }
 
+.wpcf7 textarea {
+    width: 34%; 
+    height: 50px;
+}
+
+
 /*---------------------------------------
    HOW WE TEACH
 -----------------------------------------*/
