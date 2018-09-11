@@ -7,7 +7,7 @@ $calendar_title = get_theme_mod('calendar_title', DefCalendar::$title);
 $calendar_mode = get_theme_mod('calendar_mode', DefCalendar::$mode);
 $calendar_this_week = get_theme_mod('calendar_this_week', DefCalendar::$this_week);
 $calendar_next_week = get_theme_mod('calendar_next_week', DefCalendar::$next_week);
-
+$calendar_fallback = get_theme_mod('calendar_fallback', DefCalendar::$fallback);
 ?>
 
 <script src="<?= get_bloginfo("template_url"); ?>/inc/calendar/frontend/app.js"></script>
@@ -60,8 +60,17 @@ $calendar_next_week = get_theme_mod('calendar_next_week', DefCalendar::$next_wee
               ng-show="calendar.weekIndex === weekIndex">
           </for-water-calendar>
           <div class="for-water-calendar-ie" style="display: none;">
-              Unfortunately, Internet Explorer / Edge cannot render the calendar properly. Please use Google Chrome or Mozilla Firefox to display the calendar.
-          </div>
+<?php
+                $static_image = get_theme_mod('image_section_static_image', parallax_get_file(DefImage::$static_image));
+                if ($static_image && $calendar_fallback) {
+                  echo '<div class="image-section-static-image"><img src="' . $static_image . '" /></div>';
+                } else {
+?>
+                    Unfortunately, Internet Explorer / Edge cannot render the calendar properly. Please use Google Chrome or Mozilla Firefox to display the calendar.
+<?php
+                }
+?>
+              </div>
           <div id="cal-switches">
             <calendar-week-switch></calendar-week-switch>
           </div>

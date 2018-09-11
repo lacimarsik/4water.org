@@ -1744,6 +1744,20 @@ function parallax_one_customize_register( $wp_customize ) {
     'priority'    => 1
   ));
 
+  /* Calendar fallback */
+
+  $wp_customize->add_setting('parallax_one_calendar_fallback', array(
+      'default' => DefCalendar::$fallback,
+      'sanitize_callback' => 'parallax_one_sanitize_text'
+      ));
+  $wp_customize->add_control(
+      'parallax_one_calendar_fallback', array(
+      'type' => 'checkbox',
+      'label' => __('Use fallback image from Image section (if calendar cannot be loaded, e.g. on Internet Explorer)?', 'parallax-one'),
+      'section' => 'calendar_section',
+      'priority' => 4,
+  ));
+
   /* Calendar show/hide */
 
   $wp_customize->add_setting('parallax_one_calendar_show', array('sanitize_callback' => 'parallax_one_sanitize_text'));
