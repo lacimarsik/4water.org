@@ -1705,6 +1705,20 @@ section#calendar {
     padding-bottom: 20px;
 }
 
+div.for-water-calendar-ie {
+	display: none;
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+	/* IE10+ CSS styles go here */
+	div.for-water-calendar {
+		display: none;
+	}
+	div.for-water-calendar-ie {
+		display: block;
+	}
+}
+
 /*---------------------------------------
    3.1 SECTION: HOME / HEADER         
 -----------------------------------------*/
@@ -5411,6 +5425,37 @@ em.policy-highlight {
 h2.policy {
 	font-size: 1.1em;
 	color: #008ed6;
+}
+
+/*---------------------------------------
+  3.19 FIXES FOR IE
+-----------------------------------------*/
+
+/* Unfortunately, font may get broken on IE if diacritics is in use, e.g. /prague/dance/cz
+A proper fix would be not using @import to import Avenir fonts, and using e.g. <link> in html.
+But as this fix was not tested and needs some trial&error, in the meantime the below hack is suggested.
+TODO: Implement a proper fix, or try to refactor how we use font-family: Avenir throughout this CSS
+- we have a lot of duplication there, and so the below fix has to be long
+*/
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {     /* IE10+ CSS styles go here */    body {
+	font-family: sans-serif !important;
+	font-weight: 100 !important;
+}
+	h1,h2,h3,h4,h5,h6 {
+		font-family: sans-serif !important;
+	}
+	.sub-heading {
+		font-family: sans-serif;
+		font-weight: 100 !important;
+	}
+	.intro-section h5 {
+		font-family: sans-serif !important;
+	}
+	#intro-under-construction {
+		font-family: sans-serif !important;
+		font-weight: 200 !important;
+	}
 }
 
 /*---------------------------------------
