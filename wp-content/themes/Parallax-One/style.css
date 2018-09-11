@@ -1712,10 +1712,10 @@ div.for-water-calendar-ie {
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
 	/* IE10+ CSS styles go here */
 	div.for-water-calendar {
-		display: none;
+		display: none !important;
 	}
 	div.for-water-calendar-ie {
-		display: block;
+		display: block !important;
 	}
 }
 
@@ -5434,26 +5434,14 @@ h2.policy {
 /* Unfortunately, font may get broken on IE if diacritics is in use, e.g. /prague/dance/cz
 A proper fix would be not using @import to import Avenir fonts, and using e.g. <link> in html.
 But as this fix was not tested and needs some trial&error, in the meantime the below hack is suggested, that uses sans-serif as something that looks nice.
-TODO: Implement a proper fix, or try to refactor how we use font-family: Avenir throughout this CSS
-- we have a lot of duplication there, and so the below fix has to be long
+TODO: Implement a proper fix using <link>, or try to refactor how we use font-family: Avenir throughout this CSS, so that this fix does not need to name so many elements
 */
 
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {     /* IE10+ CSS styles go here */   
-	html:lang(cs-CS) body {
-		font-family: sans-serif !important;
-		font-weight: 100 !important;
-	}
-	html:lang(cs-CS) h1,h2,h3,h4,h5,h6 {
+	html:lang(cs-CZ) h1,h2,h3,h4,h5,h6, html:lang(cs-CZ) body, html:lang(cs-CZ) p, html:lang(cs-CZ) div, html:lang(cs-CZ) span {
 		font-family: sans-serif !important;
 	}
-	html:lang(cs-CS) .sub-heading {
-		font-family: sans-serif;
-		font-weight: 100 !important;
-	}
-	html:lang(cs-CS) .intro-section h5 {
-		font-family: sans-serif !important;
-	}
-	html:lang(cs-CS) #intro-under-construction {
+	html:lang(cs-CZ) #intro-under-construction, html:lang(cs-CZ) #intro-under-construction span {
 		font-family: sans-serif !important;
 		font-weight: 200 !important;
 	}
