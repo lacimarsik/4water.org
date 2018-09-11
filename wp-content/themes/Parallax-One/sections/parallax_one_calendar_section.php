@@ -59,6 +59,9 @@ $calendar_next_week = get_theme_mod('calendar_next_week', DefCalendar::$next_wee
               ng-repeat="calendar in calendars" 
               ng-show="calendar.weekIndex === weekIndex">
           </for-water-calendar>
+          <div class="for-water-calendar-ie" style="display: none;">
+              Unfortunately, Internet Explorer / Edge cannot render the calendar properly. Please use Google Chrome or Mozilla Firefox to display the calendar.
+          </div>
           <div id="cal-switches">
             <calendar-week-switch></calendar-week-switch>
           </div>
