@@ -39,6 +39,14 @@
         endif;
       }
 
+      // temporary fix for 4Water to have Many things section in the right place
+      if ($sitePath == '/') {
+        $parallax_one_many_things_show = get_theme_mod('parallax_one_many_things_show', DefImage::$hide);
+        if (isset($parallax_one_many_things_show) && $parallax_one_many_things_show != 1):
+          array_push($not_hidden_sections, 'sections/parallax_one_many_things_section');
+        endif;
+      }
+
       $parallax_one_call_to_action_show = get_theme_mod('parallax_one_call_to_action_show', DefCallToAction::$hide);
       if (isset($parallax_one_call_to_action_show) && $parallax_one_call_to_action_show != 1):
         array_push($not_hidden_sections, 'sections/parallax_one_call_to_action_section');
@@ -54,10 +62,13 @@
         array_push($not_hidden_sections, 'sections/parallax_one_faq_section');
       endif;
 
-      $parallax_one_many_things_show = get_theme_mod('parallax_one_many_things_show');
-      if (isset($parallax_one_many_things_show) && $parallax_one_many_things_show != 1):
-        array_push($not_hidden_sections, 'sections/parallax_one_many_things_section');
-      endif;
+      // temporary fix for 4Water to have Many things section in the right place
+      if ($sitePath != '/') {
+        $parallax_one_many_things_show = get_theme_mod('parallax_one_many_things_show');
+        if (isset($parallax_one_many_things_show) && $parallax_one_many_things_show != 1):
+          array_push($not_hidden_sections, 'sections/parallax_one_many_things_section');
+        endif;
+      }
 
       $parallax_one_prices_show = get_theme_mod('parallax_one_prices_show');
       if (isset($parallax_one_prices_show) && $parallax_one_prices_show != 1):
