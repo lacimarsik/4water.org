@@ -510,6 +510,82 @@ function parallax_one_customize_register( $wp_customize ) {
     'section' => 'why_us_section',
     'priority' => 4,
   ));
+  
+  /********************************************************/
+  /****************** VIDEO OPTIONS  ***************/
+  /********************************************************/
+  
+  $wp_customize->add_section('video_section', array(
+      'title'       => esc_html__('Video section', 'parallax-one'),
+      'priority'    => 32,
+  ));
+  
+  /* Video link */
+  $wp_customize->add_setting('video_link', array(
+      'default' => esc_html__(DefVideo::$video_link, 'parallax-one'),
+      'sanitize_callback' => 'parallax_one_sanitize_text',
+      'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control('video_link', array(
+      'label'    => esc_html__('Video embed-link', 'parallax-one'),
+      'section'  => 'video_section',
+      'active_callback' => 'parallax_one_show_on_front',
+      'priority'    => 1
+  ));
+  
+  /* Video caption */
+  $wp_customize->add_setting('video_caption', array(
+      'default' => esc_html__(DefVideo::$video_caption, 'parallax-one'),
+      'sanitize_callback' => 'parallax_one_sanitize_text',
+      'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control('video_caption', array(
+      'label'    => esc_html__('Video caption', 'parallax-one' ),
+      'section'  => 'video_section',
+      'active_callback' => 'parallax_one_show_on_front',
+      'priority'    => 1
+  ));
+  
+  /* Video title */
+  $wp_customize->add_setting('video_title', array(
+      'default' => esc_html__(DefVideo::$title,'parallax-one'),
+      'sanitize_callback' => 'parallax_one_sanitize_html',
+      'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control('video_title', array(
+      'label'   => esc_html__('Video title', 'parallax-one'),
+      'section' => 'video_section',
+      'active_callback' => 'parallax_one_show_on_front',
+      'priority'    => 2,
+  ));
+  
+  /* Video text */
+  $wp_customize->add_setting('video_text', array(
+      'default' => esc_html__(DefVideo::$text,'parallax-one'),
+      'sanitize_callback' => 'parallax_one_sanitize_html',
+      'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control('video_text', array(
+      'type' => 'textarea',
+      'label'   => esc_html__('Video text', 'parallax-one'),
+      'section' => 'video_section',
+      'active_callback' => 'parallax_one_show_on_front',
+      'priority'    => 2,
+  ));
+  
+  /* Video show/hide */
+  
+  $wp_customize->add_setting('parallax_one_video_show', array(
+      'sanitize_callback' => 'parallax_one_sanitize_text',
+      'default' => DefVideo::$hide
+  ));
+  $wp_customize->add_control(
+      'parallax_one_video_show', array(
+      'type' => 'checkbox',
+      'label' => __('Hide video section?', 'parallax-one'),
+      'section' => 'video_section',
+      'priority' => 3,
+  ));
 
   /********************************************************/
   /*************** CALL TO ACTION OPTIONS *****************/
