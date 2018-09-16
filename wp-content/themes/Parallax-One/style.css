@@ -1096,6 +1096,72 @@ img.why-us-img {
 }
 
 /*---------------------------------------
+   IMAGE SECTION
+-----------------------------------------*/
+
+section#video-section {
+	text-align: center;
+	background-color: #3a98cb;
+	color: white;
+}
+
+#video-section h2 {
+	padding-top: 20px;
+	padding-bottom: 10px;
+	color: white;
+}
+
+#video-section div.subtitle {
+	padding-bottom: 20px;
+	font-size: 1.0em;
+	margin: 0 150px;
+}
+
+#video-container {
+	padding-bottom: 15px;
+}
+
+@media only screen and (max-width: 800px) {
+	#video-section div.subtitle {
+		margin: 0 40px;
+	}
+}
+
+/* Video and keeping its aspect ratio */
+
+iframe#iframe-videosection-video {
+	margin: auto;
+	margin-top: 0;
+	position: absolute;
+	display: block;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+}
+
+div#video-container {
+	position: relative;
+	padding-top: 0%;
+	padding-left: 5%;
+	padding-right: 5%;
+	min-height: 500px;
+}
+
+@media (max-width: 768px) {
+	div#video-container {
+		padding: 10%;
+		min-height: 180px;
+	}
+
+	iframe#iframe-videosection-video {
+		width: 90%;
+	}
+}
+
+/*---------------------------------------
    CALL TO ACTION
 -----------------------------------------*/
 

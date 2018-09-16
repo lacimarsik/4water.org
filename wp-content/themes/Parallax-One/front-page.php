@@ -47,6 +47,11 @@
         endif;
       }
 
+      $parallax_one_video_show = get_theme_mod('parallax_one_video_show', DefVideo::$hide);
+      if (isset($parallax_one_video_show) && $parallax_one_video_show != 1):
+        array_push($not_hidden_sections, 'sections/parallax_one_video_section');
+      endif;
+
       $parallax_one_call_to_action_show = get_theme_mod('parallax_one_call_to_action_show', DefCallToAction::$hide);
       if (isset($parallax_one_call_to_action_show) && $parallax_one_call_to_action_show != 1):
         array_push($not_hidden_sections, 'sections/parallax_one_call_to_action_section');

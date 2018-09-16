@@ -447,3 +447,15 @@ class DefSubscription {
     public static $url = '';
     public static $hide = true;
 };
+
+/*************************************************/
+/*************** VIDEO SECTION *******************/
+/*************************************************/
+
+class DefVideo {
+    public static $video_link = 'https://www.youtube.com/embed/Rl-CLqAOSTs';
+    public static $video_caption = 'Would you enjoy such opportunity? Fill out our form below.';
+    public static $title = '4Water Journey';
+    public static $text = 'How it all started';
+    public static $hide = true;
+};
