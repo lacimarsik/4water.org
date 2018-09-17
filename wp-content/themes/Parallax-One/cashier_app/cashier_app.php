@@ -1,6 +1,6 @@
 <?php
 // =============================
-// CASHIER APP - PROTOTYPE //
+// CASHIER APP - V1.0 Processing part
 // =============================
 
 require_once('wp-config.php');

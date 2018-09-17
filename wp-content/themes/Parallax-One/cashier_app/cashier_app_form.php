@@ -1,7 +1,7 @@
 <?php
 
 // =============================
-// CASHIER APP - PROTOTYPE (Form part)
+// CASHIER APP - V1.0 Form part
 // =============================
 
 // @return closest_lesson [Array] Array containing: Timestamp of the closest lesson, Class type, Level
