@@ -23,7 +23,8 @@ mysqli_select_db($connection_4w, DB_NAME);
 // TODO: Refactor us to a service to avoid duplication among form/process/summary
 
 function getCurrentBranchUrl($post, $connection, $suffix) {
-	$sql= "SELECT * FROM 4w_branches WHERE id = '" . $post['branch_id'] . "';";
+	$branch_id = findBranchIdFromUrl($connection);
+	$sql= "SELECT * FROM 4w_branches WHERE id = '" . $branch_id . "';";
 	$result = $connection->query($sql);
 	$row = mysqli_fetch_assoc($result);
 	return '/' . strtolower($row['city']) . '/' . strtolower($row['activity']) . '/' . $suffix;
