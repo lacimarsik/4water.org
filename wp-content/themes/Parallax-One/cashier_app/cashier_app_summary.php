@@ -133,6 +133,12 @@ $last_lesson = get_last_lesson($connection_4w, $branch_id);
 $cashier_url = getCurrentBranchUrl($_POST, $connection_4w, "cashier");
 
 ?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
+<script src="/wp-content/themes/Parallax-One/cashier_app/highcharts/js/highcharts.js"></script>
+<script src="/wp-content/themes/Parallax-One/cashier_app/highcharts/js/modules/data.js"></script>
+<script src="/wp-content/themes/Parallax-One/cashier_app/highcharts/js/modules/exporting.js"></script>
+<link href="/wp-content/themes/Parallax-One/cashier_app/css/charts.css"  rel="stylesheet" type='text/css' />
 <div class="content-wrap">
 	<div class="container">
 
@@ -405,7 +411,7 @@ if (date('Y-m-d', $last_lesson[0]) == date('Y-m-d')) {
 // 3. MONTHLY REVENUES
 // =============================
 
-$sql= 'SELECT EXTRACT(YEAR_MONTH FROM a.date) as month, sum(case when p.student = 1 then (a.count * p.price) else 0 end) as students_money_made, sum(case when p.student = 0 then (a.count * p.price) else 0 end) as non_students_money_made, p.currency FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE a.branch_id = "' . $_POST['branch_id'] . '" GROUP BY month ORDER BY month;';
+$sql= 'SELECT EXTRACT(YEAR_MONTH FROM a.date) as month, sum(case when p.student = 1 then (a.count * p.price) else 0 end) as students_money_made, sum(case when p.student = 0 then (a.count * p.price) else 0 end) as non_students_money_made, p.currency FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE a.branch_id = "' . $branch_id . '" GROUP BY month ORDER BY month;';
 $result = $connection_4w->query($sql);
 ?>
 
@@ -433,7 +439,7 @@ $result = $connection_4w->query($sql);
 							</tr>
 <?php
 						}
-$sql= 'SELECT WEEK(date, 1) as week, sum(case when (WEEKDAY(date) = 0) then (a.count) else 0 end) as attendance_monday, sum(case when (WEEKDAY(date) = 1) then (a.count) else 0 end) as attendance_tuesday, sum(case when (WEEKDAY(date) = 2) then (a.count) else 0 end) as attendance_wednesday, sum(case when (WEEKDAY(date) = 3) then (a.count) else 0 end) as attendance_thursday, sum(case when (WEEKDAY(date) = 4) then (a.count) else 0 end) as attendance_friday, sum(case when (WEEKDAY(date) = 5) then (a.count) else 0 end) as attendance_saturday, sum(case when (WEEKDAY(date) = 6) then (a.count) else 0 end) as attendance_sunday FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE a.branch_id = "' . $_POST['branch_id'] . '" GROUP BY week ORDER BY week;';
+$sql= 'SELECT WEEK(date, 1) as week, sum(case when (WEEKDAY(date) = 0) then (a.count) else 0 end) as attendance_monday, sum(case when (WEEKDAY(date) = 1) then (a.count) else 0 end) as attendance_tuesday, sum(case when (WEEKDAY(date) = 2) then (a.count) else 0 end) as attendance_wednesday, sum(case when (WEEKDAY(date) = 3) then (a.count) else 0 end) as attendance_thursday, sum(case when (WEEKDAY(date) = 4) then (a.count) else 0 end) as attendance_friday, sum(case when (WEEKDAY(date) = 5) then (a.count) else 0 end) as attendance_saturday, sum(case when (WEEKDAY(date) = 6) then (a.count) else 0 end) as attendance_sunday FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE a.branch_id = "' . $branch_id . '" GROUP BY week ORDER BY week;';
 $result = $connection_4w->query($sql);
 ?>
 
