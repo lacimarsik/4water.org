@@ -35,6 +35,9 @@
 	if ($pagename == "cashier") {
 		include 'cashier_app/cashier_app_form.php';
 	}
+	if ($pagename == "summary") {
+		include 'cashier_app/cashier_app_summary.php';
+	}
 ?>
 			</main><!-- #main -->
 		</div><!-- #primary -->

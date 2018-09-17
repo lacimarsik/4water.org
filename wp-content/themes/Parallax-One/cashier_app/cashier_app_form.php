@@ -1,8 +1,27 @@
 <?php
+// =============================
+// CASHIER APP - V1.0 Form part
+
+// Form part: cashier_app_process.php (in the theme folder)
+// Process part: cashier_app_process.php (in the root folder)
+// Summary part: cashier_app_summary.php (in the theme folder)
+
+// Javascript part: cashier_app.js (in the theme folder)
+
+// OUTLINE
+// 1. FUNCTIONS
+// 2. INITIALIZATION
+// 3. FORM
+// =============================
+
+require_once(ABSPATH . 'wp-config.php');
+$connection_4w = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD);
+mysqli_select_db($connection_4w, DB_NAME);
 
 // =============================
-// CASHIER APP - PROTOTYPE (Form part)
+// 1. FUNCTIONS
 // =============================
+// TODO: Refactor us to a service to avoid duplication among form/process/summary
 
 // @return closest_lesson [Array] Array containing: Timestamp of the closest lesson, Class type, Level
 // TODO: Create struct for lessons
@@ -35,11 +54,8 @@ function get_closest_lesson($connection_4w, $branch_id) {
 	return $result_array;
 }
 
-	require_once(ABSPATH . 'wp-config.php');
-	$connection_4w = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD);
-	mysqli_select_db($connection_4w, DB_NAME);
-
-	// Find branch ID from URL
+// gets branch ID by parsing URL, e.g. prague/language -> searches 4w_branches table by city and activity
+function findBranchIdFromUrl($connection_4w) {
 	$url = parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH );
 	$patharray = (array) explode( '/', trim( $url, '/' ));
 	$city = $patharray[0];
@@ -47,7 +63,15 @@ function get_closest_lesson($connection_4w, $branch_id) {
 	$sql= "SELECT * FROM 4w_branches WHERE LOWER(city) = '" . $city . "' AND LOWER(activity) = '" . $activity . "'";
 	$result = $connection_4w->query($sql);
 	$row = mysqli_fetch_assoc($result);
-	$branch_id = $row['id'];
+	return $row['id'];
+}
+
+// =============================
+// 2. INITIALIZATION
+// =============================
+
+	// Find branch ID from URL
+	$branch_id = findBranchIdFromUrl($connection_4w);
 	$timezone = $row['timezone'];
 
 	// Set proper timezone
@@ -77,11 +101,15 @@ function get_closest_lesson($connection_4w, $branch_id) {
 		$filled_class_type = $_POST['class'];
 		$filled_level = $_POST['level'];
 	}
+
+// =============================
+// 3. FORM
+// =============================
 ?>
 	<div class="cashier">
 		<br />
 		<link rel="stylesheet" href="../wp-content/themes/Parallax-One/cashier_app/cashier_app.css">
-		<form action="/index.php" id="cashier" method="post">
+		<form action="/cashier_app_process.php" id="cashier" method="post">
 			<p>Welcome, dear cashier. On this page you count the number of sold 1-time entries, vouchers, and how many people came on already-paid vouchers.</p>
 			<p>Please check the class, level, date and time.</p>
 			<div class="cashier-upper col-md-12">
