@@ -136,12 +136,6 @@ $cashier_url = getCurrentBranchUrl($_POST, $connection_4w, "cashier");
 
 		<div id="primary" class="content-area col-md-12">
 			<main id="main" class="site-main" role="main">
-				<article id="post-38" class="post-38 page type-page status-publish hentry">
-					<header class="entry-header">
-						<h1 class="entry-title single-title">Cashier</h1>
-						<div class="colored-line-left"></div>
-						<div class="clearfix"></div>
-				</article>
 <?php
 
 // =============================
