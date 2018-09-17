@@ -29,6 +29,47 @@ function getCurrentBranchUrl($post, $connection) {
 	return '/' . strtolower($row['city']) . '/' . strtolower($row['activity']) . '/cashier';
 }
 
+function get_last_lesson($connection, $branch_id) {
+	// Get the array of lessons depending on what days the branch has lessons
+	// Array will be in the form "Class type, Level" => Timestamp
+	$array_of_next_lessons = array();
+	$sql= "SELECT * FROM 4w_branch_classes WHERE branch_id = " . $branch_id;
+	$result = $connection->query($sql);
+	while ($row = mysqli_fetch_assoc($result)) {
+		if ((date('l') == $row['day']) && (date('H:i:s') > $row['time'])) {
+			// if the lesson is today, and didn't yet start
+			$day_as_string = strtolower($row['day']) . 'this week';
+		} else {
+			$day_as_string = 'last ' . strtolower($row['day']);
+		}
+		$array_of_next_lessons[$row['class_type'] . "," . $row['level']] = strtotime($day_as_string . ' ' . $row['time']);
+	}
+	arsort($array_of_next_lessons);
+	reset($array_of_next_lessons);
+	// Return only the closest lesson as: Timestamp, Class type, Level
+	$class_type_level = explode(",", key($array_of_next_lessons));
+	$timestamp = $array_of_next_lessons[key($array_of_next_lessons)];
+	$class_type = $class_type_level[0];
+	$level = $class_type_level[1];
+	$result_array = array();
+	array_push($result_array, $timestamp);
+	array_push($result_array, $class_type);
+	array_push($result_array, $level);
+	return $result_array;
+}
+
+// @param $week [int]
+// @param $year [int]
+// @return [Array] the first day and last day of the week, in $ret['week_start'] and $ret['week_nd']
+function getStartAndEndDate($week, $year) {
+	$dto = new DateTime();
+	$dto->setISODate($year, $week);
+	$ret['week_start'] = $dto;
+	$dto->modify('+6 days');
+	$ret['week_end'] = $dto;
+	return $ret;
+}
+
 // =============================
 // 2. SUMMARY CONTAINER
 // =============================
@@ -359,18 +400,6 @@ $result = $connection_4w->query($sql);
 						}
 $sql= 'SELECT WEEK(date, 1) as week, sum(case when (WEEKDAY(date) = 0) then (a.count) else 0 end) as attendance_monday, sum(case when (WEEKDAY(date) = 1) then (a.count) else 0 end) as attendance_tuesday, sum(case when (WEEKDAY(date) = 2) then (a.count) else 0 end) as attendance_wednesday, sum(case when (WEEKDAY(date) = 3) then (a.count) else 0 end) as attendance_thursday, sum(case when (WEEKDAY(date) = 4) then (a.count) else 0 end) as attendance_friday, sum(case when (WEEKDAY(date) = 5) then (a.count) else 0 end) as attendance_saturday, sum(case when (WEEKDAY(date) = 6) then (a.count) else 0 end) as attendance_sunday FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE a.branch_id = "' . $_POST['branch_id'] . '" GROUP BY week ORDER BY week;';
 $result = $connection_4w->query($sql);
-
-// @param $week [int]
-// @param $year [int]
-// @return [Array] the first day and last day of the week, in $ret['week_start'] and $ret['week_nd'] 
-function getStartAndEndDate($week, $year) {
-	$dto = new DateTime();
-	$dto->setISODate($year, $week);
-	$ret['week_start'] = $dto;
-	$dto->modify('+6 days');
-	$ret['week_end'] = $dto;
-	return $ret;
-}
 ?>
 
 <h2 class="report-heading">Weekly attendance</h2>
