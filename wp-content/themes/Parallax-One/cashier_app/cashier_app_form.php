@@ -51,11 +51,8 @@ function get_closest_lesson($connection_4w, $branch_id) {
 	return $result_array;
 }
 
-// =============================
-// 2. INITIALIZATION
-// =============================
-
-	// Find branch ID from URL
+// gets branch ID by parsing URL, e.g. prague/language -> searches 4w_branches table by city and activity
+function findBranchIdFromUrl($connection_4w) {
 	$url = parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH );
 	$patharray = (array) explode( '/', trim( $url, '/' ));
 	$city = $patharray[0];
@@ -63,7 +60,15 @@ function get_closest_lesson($connection_4w, $branch_id) {
 	$sql= "SELECT * FROM 4w_branches WHERE LOWER(city) = '" . $city . "' AND LOWER(activity) = '" . $activity . "'";
 	$result = $connection_4w->query($sql);
 	$row = mysqli_fetch_assoc($result);
-	$branch_id = $row['id'];
+	return $row['id'];
+}
+
+// =============================
+// 2. INITIALIZATION
+// =============================
+
+	// Find branch ID from URL
+	$branch_id = findBranchIdFromUrl($connection_4w);
 	$timezone = $row['timezone'];
 
 	// Set proper timezone

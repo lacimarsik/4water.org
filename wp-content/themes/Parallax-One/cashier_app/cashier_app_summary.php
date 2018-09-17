@@ -7,10 +7,10 @@
 
 // OUTLINE
 // 1. FUNCTIONS
-// 1. SUMMARY CONTAINER
-// 2. ATTENDANCE
-// 3. MONTHLY REVENUES
-// 4. WRAP-UP
+// 2. INITIALIZATION
+// 3. ATTENDANCE
+// 4. MONTHLY REVENUES
+// 5. WRAP-UP
 // =============================
 
 require_once('wp-config.php');
@@ -22,11 +22,11 @@ mysqli_select_db($connection_4w, DB_NAME);
 // =============================
 // TODO: Refactor us to a service to avoid duplication among form/process/summary
 
-function getCurrentBranchUrl($post, $connection) {
+function getCurrentBranchUrl($post, $connection, $suffix) {
 	$sql= "SELECT * FROM 4w_branches WHERE id = '" . $post['branch_id'] . "';";
 	$result = $connection->query($sql);
 	$row = mysqli_fetch_assoc($result);
-	return '/' . strtolower($row['city']) . '/' . strtolower($row['activity']) . '/cashier';
+	return '/' . strtolower($row['city']) . '/' . strtolower($row['activity']) . '/' . $suffix;
 }
 
 function get_last_lesson($connection, $branch_id) {
@@ -70,9 +70,36 @@ function getStartAndEndDate($week, $year) {
 	return $ret;
 }
 
+// gets branch ID by parsing URL, e.g. prague/language -> searches 4w_branches table by city and activity
+function findBranchIdFromUrl($connection_4w) {
+	$url = parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH );
+	$patharray = (array) explode( '/', trim( $url, '/' ));
+	$city = $patharray[0];
+	$activity = $patharray[1];
+	$sql= "SELECT * FROM 4w_branches WHERE LOWER(city) = '" . $city . "' AND LOWER(activity) = '" . $activity . "'";
+	$result = $connection_4w->query($sql);
+	$row = mysqli_fetch_assoc($result);
+	return $row['id'];
+}
+
 // =============================
-// 2. SUMMARY CONTAINER
+// 2. INITIALIZATION
 // =============================
+
+// Set proper timezone
+$branch_id = findBranchIdFromUrl($connection_4w);
+$sql= "SELECT * FROM 4w_branches WHERE id = '" . $branch_id . "';";
+$result = $connection_4w->query($sql);
+$row = mysqli_fetch_assoc($result);
+$timezone = $row['timezone'];
+date_default_timezone_set($timezone);
+
+// Find last lesson
+$last_lesson = get_last_lesson($connection_4w, $branch_id);
+
+// Url back to form page
+$cashier_url = getCurrentBranchUrl($_POST, $connection_4w, "cashier");
+
 ?>
 <div class="content-wrap">
 	<div class="container">
@@ -84,9 +111,6 @@ function getStartAndEndDate($week, $year) {
 						<h1 class="entry-title single-title">Cashier</h1>
 						<div class="colored-line-left"></div>
 						<div class="clearfix"></div>
-						<?php if ($form_submitted) { ?>
-						<div class="cashier-done">Thank you for cashiering! Below are the counts and money made.</div>
-						<?php } ?>
 				</article>
 <?php
 
@@ -94,16 +118,7 @@ function getStartAndEndDate($week, $year) {
 // 2. ATTENDANCE
 // =============================
 
-// Set proper timezone
-$sql= "SELECT * FROM 4w_branches WHERE id = '" . $_POST['branch_id'] . "';";
-$result = $connection_4w->query($sql);
-$row = mysqli_fetch_assoc($result);
-$timezone = $row['timezone'];
-date_default_timezone_set($timezone);
-
-$last_lesson = get_last_lesson($connection_4w, $_POST['branch_id']);
-
-$sql= "SELECT * FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE b.id = " . $_POST['branch_id']. " AND a.date = '" . date('Y-m-d', $last_lesson[0]) . "'";
+$sql= "SELECT * FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE b.id = " . $branch_id . " AND a.date = '" . date('Y-m-d', $last_lesson[0]) . "'";
 $result = $connection_4w->query($sql);
 
 $total = 0;
@@ -112,60 +127,54 @@ $students_manual = 0;
 $currency = "";
 $volunteer_name = "";
 
-if ($form_submitted) {
-	if (date('Y-m-d', $last_lesson[0]) == date('Y-m-d')) {
-		?>
-		<h2 class="report-heading">Today</h2>
-		<?php
-	} else {
-		?>
-		<h2 class="report-heading">Last class</h2>
-		<?php
-	}
 
+if (date('Y-m-d', $last_lesson[0]) == date('Y-m-d')) {
 	?>
-	<table class="table table-striped">
-		<?php
-		while ($row = mysqli_fetch_assoc($result)) {
-			$currency = $row['currency'];
-			$volunteer_name = $row['volunteer_name'];
-			$total += intval($row['price']) * intval($row['count']);
-			if ($row['totals'] != "yes") {
-				$students += intval($row['count']);
-			} else {
-				$students_manual = ($students_manual < $row['count']) ? $row['count'] : $students_manual;
-			}
-			echo '<tr>';
-			echo '<td><strong class="bold">' . $row['price_type'] . '</strong></td>';
-			echo '<td><span>' . $row['count'] . '</span></td>';
-			echo '<td><span>' . intval($row['price']) * intval($row['count']) . ' ' . $row['currency'] . '</span></td>';
-			echo '</tr>';
-		}
-		?>
-		<?php $total_students = ($students_manual > $students) ? $students_manual : $students; ?>
-		<tr class="success">
-			<td><strong class="medium bold">Totals</strong></td>
-			<td><span class="medium"><?php echo $total_students; ?></span></td>
-			<td><span class="medium"><?php echo $total; ?><?php echo $currency; ?></span></td>
-		</tr>
-	</table>
-	<p>Counted by: <strong class="bold"><?php echo $volunteer_name; ?></strong></p>
+	<h2 class="report-heading">Today</h2>
 	<?php
-	if ($form_submitted) {
-		$last_lesson = get_last_lesson($connection_4w, $_POST['branch_id']);
-		$branch_url = getCurrentBranchUrl($_POST, $connection_4w, "summary"); ?>
-		<form action="<?php echo $branch_url; ?>" id="return-form" method="post">
-			<input type="hidden" name="return" value="true">
-			<input type="hidden" name="datetime" value="<?php echo $last_lesson[0]; ?>">
-			<input type="hidden" name="class" value="<?php echo $last_lesson[1]; ?>">
-			<input type="hidden" name="level" value="<?php echo $last_lesson[2]; ?>">
-			<input class="submit-button" type="submit"
-			       value="Edit last class (<?php echo $last_lesson[1] . ' ' . $last_lesson[2] . ')'; ?>">
-		</form>
-		<?php
-	}
+} else {
+	?>
+	<h2 class="report-heading">Last class</h2>
+	<?php
 }
+
 ?>
+<table class="table table-striped">
+	<?php
+	while ($row = mysqli_fetch_assoc($result)) {
+		$currency = $row['currency'];
+		$volunteer_name = $row['volunteer_name'];
+		$total += intval($row['price']) * intval($row['count']);
+		if ($row['totals'] != "yes") {
+			$students += intval($row['count']);
+		} else {
+			$students_manual = ($students_manual < $row['count']) ? $row['count'] : $students_manual;
+		}
+		echo '<tr>';
+		echo '<td><strong class="bold">' . $row['price_type'] . '</strong></td>';
+		echo '<td><span>' . $row['count'] . '</span></td>';
+		echo '<td><span>' . intval($row['price']) * intval($row['count']) . ' ' . $row['currency'] . '</span></td>';
+		echo '</tr>';
+	}
+	?>
+	<?php $total_students = ($students_manual > $students) ? $students_manual : $students; ?>
+	<tr class="success">
+		<td><strong class="medium bold">Totals</strong></td>
+		<td><span class="medium"><?php echo $total_students; ?></span></td>
+		<td><span class="medium"><?php echo $total; ?><?php echo $currency; ?></span></td>
+	</tr>
+</table>
+<p>Counted by: <strong class="bold"><?php echo $volunteer_name; ?></strong></p>
+
+<form action="<?php echo $cashier_url; ?>" id="return-form" method="post">
+	<input type="hidden" name="return" value="true">
+	<input type="hidden" name="datetime" value="<?php echo $last_lesson[0]; ?>">
+	<input type="hidden" name="class" value="<?php echo $last_lesson[1]; ?>">
+	<input type="hidden" name="level" value="<?php echo $last_lesson[2]; ?>">
+	<input class="submit-button" type="submit"
+	       value="Edit last class (<?php echo $last_lesson[1] . ' ' . $last_lesson[2] . ')'; ?>">
+</form>
+
 				<script type="text/javascript">
 					$(function() {
 							Highcharts.setOptions( {
@@ -448,7 +457,7 @@ $result = $connection_4w->query($sql);
 
 				</div>
 <?php
-$sql= 'SELECT sum(case when (WEEKDAY(date) = 0) then (a.count) else 0 end) as attendance_monday, sum(case when (WEEKDAY(date) = 1) then (a.count) else 0 end) as attendance_tuesday, sum(case when (WEEKDAY(date) = 2) then (a.count) else 0 end) as attendance_wednesday, sum(case when (WEEKDAY(date) = 3) then (a.count) else 0 end) as attendance_thursday, sum(case when (WEEKDAY(date) = 4) then (a.count) else 0 end) as attendance_friday, sum(case when (WEEKDAY(date) = 5) then (a.count) else 0 end) as attendance_saturday, sum(case when (WEEKDAY(date) = 6) then (a.count) else 0 end) as attendance_sunday FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE a.branch_id = "' . $_POST['branch_id'] . '"';
+$sql= 'SELECT sum(case when (WEEKDAY(date) = 0) then (a.count) else 0 end) as attendance_monday, sum(case when (WEEKDAY(date) = 1) then (a.count) else 0 end) as attendance_tuesday, sum(case when (WEEKDAY(date) = 2) then (a.count) else 0 end) as attendance_wednesday, sum(case when (WEEKDAY(date) = 3) then (a.count) else 0 end) as attendance_thursday, sum(case when (WEEKDAY(date) = 4) then (a.count) else 0 end) as attendance_friday, sum(case when (WEEKDAY(date) = 5) then (a.count) else 0 end) as attendance_saturday, sum(case when (WEEKDAY(date) = 6) then (a.count) else 0 end) as attendance_sunday FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE a.branch_id = "' . $branch_id . '"';
 $result = $connection_4w->query($sql);
 
 	?>
@@ -487,7 +496,7 @@ $result = $connection_4w->query($sql);
 		</table>
 
 	<?php
-		$sql= 'SELECT sum(case when p.student = 1 then (a.count * p.price) else 0 end) as students_money_made, sum(case when p.student = 0 then (a.count * p.price) else 0 end) as non_students_money_made, p.currency FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE a.branch_id = "' . $_POST['branch_id'] . '"';
+		$sql= 'SELECT sum(case when p.student = 1 then (a.count * p.price) else 0 end) as students_money_made, sum(case when p.student = 0 then (a.count * p.price) else 0 end) as non_students_money_made, p.currency FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE a.branch_id = "' . $branch_id . '"';
 		$result = $connection_4w->query($sql);
 
 		?>
@@ -515,7 +524,7 @@ $result = $connection_4w->query($sql);
 		</table>
 
 		<?php
-		$sql= 'SELECT sum(case when a.price_type_id = 1 then (a.count * p.price) else 0 end) as students_one_time, sum(case when a.price_type_id = 2 then (a.count * p.price) else 0 end) as non_students_one_time, sum(case when a.price_type_id = 3 then (a.count * p.price) else 0 end) as students_voucher, sum(case when a.price_type_id = 4 then (a.count * p.price) else 0 end) as non_students_voucher, sum(case when a.price_type_id = 1 then (a.count) else 0 end) as students_one_time_count, sum(case when a.price_type_id = 2 then (a.count) else 0 end) as non_students_one_time_count, sum(case when a.price_type_id = 3 then (a.count) else 0 end) as students_voucher_count, sum(case when a.price_type_id = 4 then (a.count) else 0 end) as non_students_voucher_count, p.currency FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE a.branch_id = "' . $_POST['branch_id'] . '"';
+		$sql= 'SELECT sum(case when a.price_type_id = 1 then (a.count * p.price) else 0 end) as students_one_time, sum(case when a.price_type_id = 2 then (a.count * p.price) else 0 end) as non_students_one_time, sum(case when a.price_type_id = 3 then (a.count * p.price) else 0 end) as students_voucher, sum(case when a.price_type_id = 4 then (a.count * p.price) else 0 end) as non_students_voucher, sum(case when a.price_type_id = 1 then (a.count) else 0 end) as students_one_time_count, sum(case when a.price_type_id = 2 then (a.count) else 0 end) as non_students_one_time_count, sum(case when a.price_type_id = 3 then (a.count) else 0 end) as students_voucher_count, sum(case when a.price_type_id = 4 then (a.count) else 0 end) as non_students_voucher_count, p.currency FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE a.branch_id = "' . $branch_id . '"';
 		$result = $connection_4w->query($sql);
 
 		?>
@@ -560,18 +569,16 @@ $result = $connection_4w->query($sql);
 // =============================
 
 ?>
-		<div class="cashier-done">Results as: <a href="http://4waterdev.org/wp-content/themes/Parallax-One/cashier_app/results/cashier-3-2018-results.csv">CSV</a></div>
-		<div class="cashier-done">Missed classes: <strong>10%</strong></div>
-		<div class="cashier-done">See the REAL counts + how the estimations of missed classes were made: <a href="http://4water.org/wp-content/themes/Parallax-One/cashier_app/results/cashier-3-2018-fixes-1.png">revenues</a> <a href="http://4water.org/wp-content/themes/Parallax-One/cashier_app/results/cashier-3-2018-fixes-2.png">attendance</a> <a href="http://4water.org/wp-content/themes/Parallax-One/cashier_app/results/cashier-3-2018-fixes-3.png">stats</a></div>
+	<div class="cashier-done">Results as: <a href="http://4waterdev.org/wp-content/themes/Parallax-One/cashier_app/results/cashier-3-2018-results.csv">CSV</a></div>
+	<div class="cashier-done">Missed classes: <strong>10%</strong></div>
+	<div class="cashier-done">See the REAL counts + how the estimations of missed classes were made: <a href="http://4water.org/wp-content/themes/Parallax-One/cashier_app/results/cashier-3-2018-fixes-1.png">revenues</a> <a href="http://4water.org/wp-content/themes/Parallax-One/cashier_app/results/cashier-3-2018-fixes-2.png">attendance</a> <a href="http://4water.org/wp-content/themes/Parallax-One/cashier_app/results/cashier-3-2018-fixes-3.png">stats</a></div>
 <?php
 
-	if ($form_submitted) {
-		$branch_url = getCurrentBranchUrl($_POST, $connection_4w, "cashier");
-		$closest_lesson = get_closest_lesson($connection_4w, $_POST['branch_id']);
+	$closest_lesson = get_closest_lesson($connection_4w, $branch_id);
 ?>
-				<div class="report-footer">
-				<a href="<?php echo $branch_url; ?>"><button>Cashier next class (<?php echo $closest_lesson[1] . ' ' . $closest_lesson[2] . ')'; ?></button></a>
-				</div>
+	<div class="report-footer">
+		<a href="<?php echo $cashier_url; ?>"><button>Cashier next class (<?php echo $closest_lesson[1] . ' ' . $closest_lesson[2] . ')'; ?></button></a>
+	</div>
 <?php
-	}
+	
 ?>
