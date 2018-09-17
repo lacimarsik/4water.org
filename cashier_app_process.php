@@ -102,9 +102,9 @@ if ($form_submitted) {
 		}
 	} else {
 		foreach ($prices_array as $price_id => $count) {
-			$sql = "INSERT INTO 4w_accounting (date, time, branch_id, class_type, level, price_type_id, count, volunteer_name) VALUES "
+			$sql = "INSERT INTO 4w_accounting (date, time, branch_id, class_type, level, price_type_id, count, volunteer_name, season) VALUES "
 				. "('" . $_POST['date'] . "', '" . $_POST['time'] . "', '" . $_POST['branch_id'] . "', '" . $_POST['class_type'] . "', '"
-				. $_POST['level'] . "', '" . $price_id . "', '" . $count . "', '" . $_POST['name'] . "' AND season = '" . $current_season . "';";
+				. $_POST['level'] . "', '" . $price_id . "', '" . $count . "', '" . $_POST['name'] . "', '" . $current_season . "');";
 			$result = $connection_4w->query($sql);
 		}
 	}
