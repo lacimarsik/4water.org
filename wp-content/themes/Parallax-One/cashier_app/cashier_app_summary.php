@@ -32,11 +32,11 @@ function getCurrentBranchUrl($post, $connection, $suffix) {
 	return '/' . strtolower($row['city']) . '/' . strtolower($row['activity']) . '/' . $suffix;
 }
 
-function get_last_lesson($connection, $branch_id) {
+function get_last_lesson($connection, $branch_id, $current_season) {
 	// Get the array of lessons depending on what days the branch has lessons
 	// Array will be in the form "Class type, Level" => Timestamp
 	$array_of_next_lessons = array();
-	$sql= "SELECT * FROM 4w_branch_classes WHERE branch_id = " . $branch_id;
+	$sql= "SELECT * FROM 4w_branch_classes WHERE branch_id = " . $branch_id . " AND season = '" . $current_season . "';";
 	$result = $connection->query($sql);
 	while ($row = mysqli_fetch_assoc($result)) {
 		if ((date('l') == $row['day']) && (date('H:i:s') > $row['time'])) {
@@ -61,11 +61,11 @@ function get_last_lesson($connection, $branch_id) {
 	return $result_array;
 }
 
-function get_closest_lesson($connection, $branch_id) {
+function get_closest_lesson($connection, $branch_id, $current_season) {
 	// Get the array of next lessons from the "next monday" (tuesday, ...) depending on what days the branch has lessons
 	// Array will be in the form "Class type, Level" => Timestamp
 	$array_of_next_lessons = array();
-	$sql= "SELECT * FROM 4w_branch_classes WHERE branch_id = " . $branch_id;
+	$sql= "SELECT * FROM 4w_branch_classes WHERE branch_id = " . $branch_id . " AND season = '" . $current_season . "';";
 	$result = $connection->query($sql);
 	while ($row = mysqli_fetch_assoc($result)) {
 		if ((date('l') == $row['day']) && (date('H:i:s') < $row['time'])) {
@@ -114,20 +114,38 @@ function findBranchIdFromUrl($connection_4w) {
 	return $row['id'];
 }
 
+// gets current season of the branch
+function findCurrentSeason($connection_4w, $branch_id) {
+	$sql= "SELECT * FROM 4w_branches WHERE id = " . $branch_id;
+	$result = $connection_4w->query($sql);
+	$row = mysqli_fetch_assoc($result);
+	return $row['current_season'];
+}
+
+// finds a proper timezone
+function findTimezone($connection_4w, $branch_id) {
+	$sql= "SELECT * FROM 4w_branches WHERE id = '" . $branch_id . "';";
+	$result = $connection_4w->query($sql);
+	$row = mysqli_fetch_assoc($result);
+	return $row['timezone'];
+}
+
 // =============================
 // 2. INITIALIZATION
 // =============================
 
 // Set proper timezone
 $branch_id = findBranchIdFromUrl($connection_4w);
-$sql= "SELECT * FROM 4w_branches WHERE id = '" . $branch_id . "';";
-$result = $connection_4w->query($sql);
-$row = mysqli_fetch_assoc($result);
-$timezone = $row['timezone'];
+
+// Find proper timezone
+$timezone = findTimezone($connection_4w, $branch_id);
 date_default_timezone_set($timezone);
 
+// Find current season
+$current_season = findCurrentSeason($connection_4w, $branch_id);
+
 // Find last lesson
-$last_lesson = get_last_lesson($connection_4w, $branch_id);
+$last_lesson = get_last_lesson($connection_4w, $branch_id, $current_season);
 
 // Url back to form page
 $cashier_url = getCurrentBranchUrl($_POST, $connection_4w, "cashier");
@@ -150,7 +168,7 @@ $cashier_url = getCurrentBranchUrl($_POST, $connection_4w, "cashier");
 // 2. ATTENDANCE
 // =============================
 
-$sql= "SELECT * FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE b.id = " . $branch_id . " AND a.date = '" . date('Y-m-d', $last_lesson[0]) . "'";
+$sql= "SELECT * FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE b.id = " . $branch_id . " AND a.date = '" . date('Y-m-d', $last_lesson[0]) . "' AND a.season = '" . $current_season . "'";
 $result = $connection_4w->query($sql);
 
 $total = 0;
@@ -411,7 +429,7 @@ if (date('Y-m-d', $last_lesson[0]) == date('Y-m-d')) {
 // 3. MONTHLY REVENUES
 // =============================
 
-$sql= 'SELECT EXTRACT(YEAR_MONTH FROM a.date) as month, sum(case when p.student = 1 then (a.count * p.price) else 0 end) as students_money_made, sum(case when p.student = 0 then (a.count * p.price) else 0 end) as non_students_money_made, p.currency FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE a.branch_id = "' . $branch_id . '" GROUP BY month ORDER BY month;';
+$sql= 'SELECT EXTRACT(YEAR_MONTH FROM a.date) as month, sum(case when p.student = 1 then (a.count * p.price) else 0 end) as students_money_made, sum(case when p.student = 0 then (a.count * p.price) else 0 end) as non_students_money_made, p.currency FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE a.branch_id = ' . $branch_id . " AND a.season = '" . $current_season . "' GROUP BY month ORDER BY month;";
 $result = $connection_4w->query($sql);
 ?>
 
@@ -439,7 +457,7 @@ $result = $connection_4w->query($sql);
 							</tr>
 <?php
 						}
-$sql= 'SELECT WEEK(date, 1) as week, sum(case when (WEEKDAY(date) = 0) then (a.count) else 0 end) as attendance_monday, sum(case when (WEEKDAY(date) = 1) then (a.count) else 0 end) as attendance_tuesday, sum(case when (WEEKDAY(date) = 2) then (a.count) else 0 end) as attendance_wednesday, sum(case when (WEEKDAY(date) = 3) then (a.count) else 0 end) as attendance_thursday, sum(case when (WEEKDAY(date) = 4) then (a.count) else 0 end) as attendance_friday, sum(case when (WEEKDAY(date) = 5) then (a.count) else 0 end) as attendance_saturday, sum(case when (WEEKDAY(date) = 6) then (a.count) else 0 end) as attendance_sunday FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE a.branch_id = "' . $branch_id . '" GROUP BY week ORDER BY week;';
+$sql= 'SELECT WEEK(date, 1) as week, sum(case when (WEEKDAY(date) = 0) then (a.count) else 0 end) as attendance_monday, sum(case when (WEEKDAY(date) = 1) then (a.count) else 0 end) as attendance_tuesday, sum(case when (WEEKDAY(date) = 2) then (a.count) else 0 end) as attendance_wednesday, sum(case when (WEEKDAY(date) = 3) then (a.count) else 0 end) as attendance_thursday, sum(case when (WEEKDAY(date) = 4) then (a.count) else 0 end) as attendance_friday, sum(case when (WEEKDAY(date) = 5) then (a.count) else 0 end) as attendance_saturday, sum(case when (WEEKDAY(date) = 6) then (a.count) else 0 end) as attendance_sunday FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE a.branch_id = ' . $branch_id . " AND a.season = '" . $current_season . "' GROUP BY week ORDER BY week;";
 $result = $connection_4w->query($sql);
 ?>
 
@@ -489,7 +507,7 @@ $result = $connection_4w->query($sql);
 
 				</div>
 <?php
-$sql= 'SELECT sum(case when (WEEKDAY(date) = 0) then (a.count) else 0 end) as attendance_monday, sum(case when (WEEKDAY(date) = 1) then (a.count) else 0 end) as attendance_tuesday, sum(case when (WEEKDAY(date) = 2) then (a.count) else 0 end) as attendance_wednesday, sum(case when (WEEKDAY(date) = 3) then (a.count) else 0 end) as attendance_thursday, sum(case when (WEEKDAY(date) = 4) then (a.count) else 0 end) as attendance_friday, sum(case when (WEEKDAY(date) = 5) then (a.count) else 0 end) as attendance_saturday, sum(case when (WEEKDAY(date) = 6) then (a.count) else 0 end) as attendance_sunday FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE a.branch_id = "' . $branch_id . '"';
+$sql= 'SELECT sum(case when (WEEKDAY(date) = 0) then (a.count) else 0 end) as attendance_monday, sum(case when (WEEKDAY(date) = 1) then (a.count) else 0 end) as attendance_tuesday, sum(case when (WEEKDAY(date) = 2) then (a.count) else 0 end) as attendance_wednesday, sum(case when (WEEKDAY(date) = 3) then (a.count) else 0 end) as attendance_thursday, sum(case when (WEEKDAY(date) = 4) then (a.count) else 0 end) as attendance_friday, sum(case when (WEEKDAY(date) = 5) then (a.count) else 0 end) as attendance_saturday, sum(case when (WEEKDAY(date) = 6) then (a.count) else 0 end) as attendance_sunday FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE a.branch_id = ' . $branch_id . " AND a.season = '" . $current_season . "'";
 $result = $connection_4w->query($sql);
 
 	?>
@@ -528,7 +546,7 @@ $result = $connection_4w->query($sql);
 		</table>
 
 	<?php
-		$sql= 'SELECT sum(case when p.student = 1 then (a.count * p.price) else 0 end) as students_money_made, sum(case when p.student = 0 then (a.count * p.price) else 0 end) as non_students_money_made, p.currency FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE a.branch_id = "' . $branch_id . '"';
+		$sql= 'SELECT sum(case when p.student = 1 then (a.count * p.price) else 0 end) as students_money_made, sum(case when p.student = 0 then (a.count * p.price) else 0 end) as non_students_money_made, p.currency FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE a.branch_id = ' . $branch_id . " AND a.season = '" . $current_season . "'";
 		$result = $connection_4w->query($sql);
 
 		?>
@@ -556,7 +574,7 @@ $result = $connection_4w->query($sql);
 		</table>
 
 		<?php
-		$sql= 'SELECT sum(case when a.price_type_id = 1 then (a.count * p.price) else 0 end) as students_one_time, sum(case when a.price_type_id = 2 then (a.count * p.price) else 0 end) as non_students_one_time, sum(case when a.price_type_id = 3 then (a.count * p.price) else 0 end) as students_voucher, sum(case when a.price_type_id = 4 then (a.count * p.price) else 0 end) as non_students_voucher, sum(case when a.price_type_id = 1 then (a.count) else 0 end) as students_one_time_count, sum(case when a.price_type_id = 2 then (a.count) else 0 end) as non_students_one_time_count, sum(case when a.price_type_id = 3 then (a.count) else 0 end) as students_voucher_count, sum(case when a.price_type_id = 4 then (a.count) else 0 end) as non_students_voucher_count, p.currency FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE a.branch_id = "' . $branch_id . '"';
+		$sql= 'SELECT sum(case when a.price_type_id = 1 then (a.count * p.price) else 0 end) as students_one_time, sum(case when a.price_type_id = 2 then (a.count * p.price) else 0 end) as non_students_one_time, sum(case when a.price_type_id = 3 then (a.count * p.price) else 0 end) as students_voucher, sum(case when a.price_type_id = 4 then (a.count * p.price) else 0 end) as non_students_voucher, sum(case when a.price_type_id = 1 then (a.count) else 0 end) as students_one_time_count, sum(case when a.price_type_id = 2 then (a.count) else 0 end) as non_students_one_time_count, sum(case when a.price_type_id = 3 then (a.count) else 0 end) as students_voucher_count, sum(case when a.price_type_id = 4 then (a.count) else 0 end) as non_students_voucher_count, p.currency FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE a.branch_id = ' . $branch_id . " AND a.season = '" . $current_season . "'";
 		$result = $connection_4w->query($sql);
 
 		?>
@@ -606,7 +624,7 @@ $result = $connection_4w->query($sql);
 	<div class="cashier-done">See the REAL counts + how the estimations of missed classes were made: <a href="http://4water.org/wp-content/themes/Parallax-One/cashier_app/results/cashier-3-2018-fixes-1.png">revenues</a> <a href="http://4water.org/wp-content/themes/Parallax-One/cashier_app/results/cashier-3-2018-fixes-2.png">attendance</a> <a href="http://4water.org/wp-content/themes/Parallax-One/cashier_app/results/cashier-3-2018-fixes-3.png">stats</a></div>
 <?php
 
-	$closest_lesson = get_closest_lesson($connection_4w, $branch_id);
+	$closest_lesson = get_closest_lesson($connection_4w, $branch_id, $current_season);
 ?>
 	<div class="report-footer">
 		<a href="<?php echo $cashier_url; ?>"><button>Cashier next class (<?php echo $closest_lesson[1] . ' ' . $closest_lesson[2] . ')'; ?></button></a>

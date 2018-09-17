@@ -74,13 +74,24 @@ function findCurrentSeason($connection_4w, $branch_id) {
 	return $row['current_season'];
 }
 
+// finds a proper timezone
+function findTimezone($connection_4w, $branch_id) {
+	$sql= "SELECT * FROM 4w_branches WHERE id = '" . $branch_id . "';";
+	$result = $connection_4w->query($sql);
+	$row = mysqli_fetch_assoc($result);
+	return $row['timezone'];
+}
+
 // =============================
 // 2. INITIALIZATION
 // =============================
 
 	// Find branch ID from URL
 	$branch_id = findBranchIdFromUrl($connection_4w);
-	$timezone = $row['timezone'];
+
+	// Find proper timezone
+	$timezone = findTimezone($connection_4w, $branch_id);
+	date_default_timezone_set($timezone);
 
 	// Find current season
 	$current_season = findCurrentSeason($connection_4w, $branch_id);
