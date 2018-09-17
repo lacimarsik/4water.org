@@ -6,6 +6,7 @@
 // Process part: cashier_app_process.php (in the root folder)
 
 // OUTLINE
+// 1. FUNCTIONS
 // 1. SUMMARY CONTAINER
 // 2. ATTENDANCE
 // 3. MONTHLY REVENUES
@@ -17,7 +18,19 @@ $connection_4w = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD);
 mysqli_select_db($connection_4w, DB_NAME);
 
 // =============================
-// 1. SUMMARY CONTAINER
+// 1. FUNCTIONS
+// =============================
+// TODO: Refactor us to a service to avoid duplication among form/process/summary
+
+function getCurrentBranchUrl($post, $connection) {
+	$sql= "SELECT * FROM 4w_branches WHERE id = '" . $post['branch_id'] . "';";
+	$result = $connection->query($sql);
+	$row = mysqli_fetch_assoc($result);
+	return '/' . strtolower($row['city']) . '/' . strtolower($row['activity']) . '/cashier';
+}
+
+// =============================
+// 2. SUMMARY CONTAINER
 // =============================
 ?>
 <div class="content-wrap">
@@ -99,7 +112,7 @@ if ($form_submitted) {
 	<?php
 	if ($form_submitted) {
 		$last_lesson = get_last_lesson($connection_4w, $_POST['branch_id']);
-		$branch_url = getCurrentBranchUrl($_POST, $connection_4w); ?>
+		$branch_url = getCurrentBranchUrl($_POST, $connection_4w, "summary"); ?>
 		<form action="<?php echo $branch_url; ?>" id="return-form" method="post">
 			<input type="hidden" name="return" value="true">
 			<input type="hidden" name="datetime" value="<?php echo $last_lesson[0]; ?>">
@@ -524,7 +537,7 @@ $result = $connection_4w->query($sql);
 <?php
 
 	if ($form_submitted) {
-		$branch_url = getCurrentBranchUrl($_POST, $connection_4w);
+		$branch_url = getCurrentBranchUrl($_POST, $connection_4w, "cashier");
 		$closest_lesson = get_closest_lesson($connection_4w, $_POST['branch_id']);
 ?>
 				<div class="report-footer">

@@ -8,6 +8,8 @@
 // OUTLINE
 // 1. FUNCTIONS
 // 2. AJAX / FORM HANDLING
+// 3. INITIALIZATION
+// 4. SUCCESS PAGE
 // =============================
 
 if (!isset($_POST['cashier'])) {
@@ -21,6 +23,7 @@ mysqli_select_db($connection_4w, DB_NAME);
 // =============================
 // 1. FUNCTIONS
 // =============================
+// TODO: Refactor us to a service to avoid duplication among form/process/summary
 
 function getArrayOfPrices($post) {
 	$prices_array = array();
@@ -39,11 +42,11 @@ function countsExist($post, $connection) {
 	return $result;
 }
 
-function getCurrentBranchUrl($post, $connection) {
+function getCurrentBranchUrl($post, $connection, $suffix) {
 	$sql= "SELECT * FROM 4w_branches WHERE id = '" . $post['branch_id'] . "';";
 	$result = $connection->query($sql);
 	$row = mysqli_fetch_assoc($result);
-	return '/' . strtolower($row['city']) . '/' . strtolower($row['activity']) . '/cashier';
+	return '/' . strtolower($row['city']) . '/' . strtolower($row['activity']) . '/' . $suffix;
 }
 
 function get_last_lesson($connection, $branch_id) {
@@ -149,6 +152,15 @@ if ($get_data) {
 	}
 }
 
+// =============================
+// 3. INITIALIZATION
+// =============================
+
+$summary_url = getCurrentBranchUrl($_POST, $connection_4w, "summary")
+
+// =============================
+// 4. SUCCESS PAGE
+// =============================
 ?>
 <style>
 	@font-face {
@@ -187,7 +199,7 @@ if ($get_data) {
 		Your counts were saved!
 		<br />
 	</div>
-	<a class="btn btn-info btn-lg">Continue to the summary</a>
+	<a class="btn btn-info btn-lg" href="<?php echo $summary_url ?>">Continue to the summary</a>
 </div>
 
 

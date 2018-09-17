@@ -18,6 +18,7 @@ mysqli_select_db($connection_4w, DB_NAME);
 // =============================
 // 1. FUNCTIONS
 // =============================
+// TODO: Refactor us to a service to avoid duplication among form/process/summary
 
 // @return closest_lesson [Array] Array containing: Timestamp of the closest lesson, Class type, Level
 // TODO: Create struct for lessons
