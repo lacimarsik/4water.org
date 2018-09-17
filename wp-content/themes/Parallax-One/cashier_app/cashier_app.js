@@ -1,10 +1,21 @@
-/**
- * Cashier app - prototype (JS part)
- */
+// =============================
+// CASHIER APP - V1.0 Javascript part
+
+// Form part: cashier_app_process.php (in the theme folder)
+// Process part: cashier_app_process.php (in the root folder)
+// Summary part: cashier_app_summary.php (in the theme folder)
+
+// OUTLINE
+// 1. FUNCTIONS
+// =============================
 
 if (typeof jQuery === 'undefined') {
   throw new Error('Cashier app requires jQuery')
 }
+
+// =============================
+// 1. FUNCTIONS
+// =============================
 
 function getCounterId(buttonId) {
   return buttonId.substr(0, buttonId.indexOf('-'));
@@ -36,7 +47,7 @@ function sendValuesToServer(buttonId, change) {
       $.extend(prices_data, $.parseJSON('{"' + $( this ).attr('id') + '": "' + value + '"}'));
     });
     $.ajax({
-      url: './index.php',
+      url: './cashier_app_process.php',
       type: 'POST',
       data: $.extend(form_data, prices_data),
       success: function (data) {
@@ -66,7 +77,7 @@ function getValuesFromServer() {
     'name': $('#name option:selected').val(),
   };
   $.ajax({
-    url: './index.php',
+    url: './cashier_app_process.php',
     type: 'POST',
     data: get_data,
     success: function (data) {

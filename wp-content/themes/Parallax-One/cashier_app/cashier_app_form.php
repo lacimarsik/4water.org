@@ -2,8 +2,11 @@
 // =============================
 // CASHIER APP - V1.0 Form part
 
+// Form part: cashier_app_process.php (in the theme folder)
 // Process part: cashier_app_process.php (in the root folder)
 // Summary part: cashier_app_summary.php (in the theme folder)
+
+// Javascript part: cashier_app.js (in the theme folder)
 
 // OUTLINE
 // 1. FUNCTIONS
