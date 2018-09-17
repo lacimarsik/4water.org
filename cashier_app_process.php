@@ -9,8 +9,8 @@
 
 // OUTLINE
 // 1. FUNCTIONS
-// 2. AJAX / FORM HANDLING
-// 3. INITIALIZATION
+// 2. INITIALIZATION
+// 3. AJAX / FORM HANDLING
 // 4. SUCCESS PAGE
 // =============================
 
@@ -37,9 +37,9 @@ function getArrayOfPrices($post) {
 	return $prices_array;
 }
 
-function countsExist($post, $connection) {
+function countsExist($post, $connection, $current_season) {
 	$sql= "SELECT * FROM 4w_accounting WHERE date = '" . $post['date'] . "' AND time = '" . $post['time']
-		. "' AND branch_id = '" . $post['branch_id'] . "' AND class_type = '" . $post['class_type'] . "' AND level = '" . $post['level'] . "';";
+		. "' AND branch_id = '" . $post['branch_id'] . "' AND class_type = '" . $post['class_type'] . "' AND level = '" . $post['level'] . "' AND season = '" . $current_season . "';";
 	$result = $connection->query($sql);
 	return $result;
 }
@@ -51,27 +51,48 @@ function getCurrentBranchUrl($post, $connection, $suffix) {
 	return '/' . strtolower($row['city']) . '/' . strtolower($row['activity']) . '/' . $suffix;
 }
 
+// gets current season of the branch
+function findCurrentSeason($connection_4w, $branch_id) {
+	$sql= "SELECT * FROM 4w_branches WHERE id = " . $branch_id;
+	$result = $connection_4w->query($sql);
+	$row = mysqli_fetch_assoc($result);
+	return $row['current_season'];
+}
+
 // =============================
-// 2. AJAX / FORM HANDLING
+// 2. INITIALIZATION
+// =============================
+
+// Find branch ID from POST variable
+$branch_id = $_POST['branch_id'];
+
+// Find current season
+$current_season = findCurrentSeason($connection_4w, $branch_id);
+
+// Find URL for the link
+$summary_url = getCurrentBranchUrl($_POST, $connection_4w, "summary");
+
+// =============================
+// 3. AJAX / FORM HANDLING
 // =============================
 
 $form_submitted = (isset($_POST['increment']) || isset($_POST['decrement']) || isset($_POST['submitform'])) && !isset($_POST['resuls']);
 
 if ($form_submitted) {
 	$prices_array = getArrayOfPrices($_POST);
-	$result = countsExist($_POST, $connection_4w);
+	$result = countsExist($_POST, $connection_4w, $current_season);
 	if ($result->num_rows > 0) {
 		foreach ($prices_array as $price_id => $count) {
 			$sql = "UPDATE 4w_accounting SET count = '" . $count . "', volunteer_name = '" . $_POST['name'] . "' WHERE price_type_id = '" . $price_id
 				. "' AND date = '" . $_POST['date'] . "' AND time = '" . $_POST['time']  . "' AND branch_id = '" . $_POST['branch_id']
-				. "' AND class_type = '" . $_POST['class_type'] . "' AND level = '" . $_POST['level'] . "';";
+				. "' AND class_type = '" . $_POST['class_type'] . "' AND level = '" . $_POST['level'] . "' AND season = '" . $current_season . "';";
 			$result = $connection_4w->query($sql);
 		}
 	} else {
 		foreach ($prices_array as $price_id => $count) {
 			$sql = "INSERT INTO 4w_accounting (date, time, branch_id, class_type, level, price_type_id, count, volunteer_name) VALUES "
 				. "('" . $_POST['date'] . "', '" . $_POST['time'] . "', '" . $_POST['branch_id'] . "', '" . $_POST['class_type'] . "', '"
-				. $_POST['level'] . "', '" . $price_id . "', '" . $count . "', '" . $_POST['name'] . "');";
+				. $_POST['level'] . "', '" . $price_id . "', '" . $count . "', '" . $_POST['name'] . "' AND season = '" . $current_season . "';";
 			$result = $connection_4w->query($sql);
 		}
 	}
@@ -80,7 +101,7 @@ if ($form_submitted) {
 $get_data = isset($_POST['get_data']);
 
 if ($get_data) {
-	$result = countsExist($_POST, $connection_4w);
+	$result = countsExist($_POST, $connection_4w, $current_season);
 	if ($result->num_rows > 0) {
 		$volunteer_name = "";
 		$return_json = array();
@@ -95,12 +116,6 @@ if ($get_data) {
 		return;
 	}
 }
-
-// =============================
-// 3. INITIALIZATION
-// =============================
-
-$summary_url = getCurrentBranchUrl($_POST, $connection_4w, "summary")
 
 // =============================
 // 4. SUCCESS PAGE

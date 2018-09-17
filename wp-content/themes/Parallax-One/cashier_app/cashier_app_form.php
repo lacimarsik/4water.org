@@ -117,7 +117,6 @@ function findCurrentSeason($connection_4w, $branch_id) {
 // 3. FORM
 // =============================
 ?>
-<h1><?php echo $current_season; ?></h1>
 	<div class="cashier">
 		<br />
 		<link rel="stylesheet" href="../wp-content/themes/Parallax-One/cashier_app/cashier_app.css">
