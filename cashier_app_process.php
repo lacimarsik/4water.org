@@ -149,5 +149,45 @@ if ($get_data) {
 	}
 }
 
-
 ?>
+<style>
+	@font-face {
+		font-family: 'Avenir';
+		src: url(fonts/Avenir.ttc);
+		src: url(fonts/Avenir-Book.woff) format('woff');
+		src: url(fonts/Avenir-Book.ttf) format('truetype');
+	}
+
+	body {
+		font-family: 'Avenir', 'Open Sans', Helvetica Neue, sans-serif !important;
+		background-color: #3a98cb !important;
+		color: white !important;
+		font-weight: 500;
+		text-align: center;
+		margin: auto;
+	}
+
+	div.message {
+		text-align: center;
+		margin: 80px auto;
+		width: 400px;
+		font-size: 2em;
+		font-weight: bold;
+	}
+
+	a.btn {
+		font-family: 'Avenir', 'Open Sans', Helvetica Neue, sans-serif !important;
+	}
+</style>
+<link rel='stylesheet' id='parallax-one-bootstrap-style-css'  href='http://4waterdev.org/prague/language/wp-content/themes/Parallax-One/css/bootstrap.min.css?ver=3.3.1' type='text/css' media='all' />
+<div class="container">
+	<div class="message">
+		Hooray!
+		<br />
+		Your counts were saved!
+		<br />
+	</div>
+	<a class="btn btn-info btn-lg">Continue to the summary</a>
+</div>
+
+
