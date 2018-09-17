@@ -25,11 +25,11 @@ mysqli_select_db($connection_4w, DB_NAME);
 
 // @return closest_lesson [Array] Array containing: Timestamp of the closest lesson, Class type, Level
 // TODO: Create struct for lessons
-function get_closest_lesson($connection_4w, $branch_id) {
+function get_closest_lesson($connection_4w, $branch_id, $current_season) {
 	// Get the array of next lessons from the "next monday" (tuesday, ...) depending on what days the branch has lessons
 	// Array will be in the form "Class type, Level" => Timestamp
 	$array_of_next_lessons = array();
-	$sql= "SELECT * FROM 4w_branch_classes WHERE branch_id = " . $branch_id;
+	$sql= "SELECT * FROM 4w_branch_classes WHERE branch_id = " . $branch_id . ' AND season = "' . $current_season . '"';
 	$result = $connection_4w->query($sql);
 	while ($row = mysqli_fetch_assoc($result)) {
 		if ((date('l') == $row['day']) && (date('H:i:s') < $row['time'])) {
@@ -66,13 +66,35 @@ function findBranchIdFromUrl($connection_4w) {
 	return $row['id'];
 }
 
+// gets current season of the branch
+function findCurrentSeason($connection_4w, $branch_id) {
+	$sql= "SELECT * FROM 4w_branches WHERE id = " . $branch_id;
+	$result = $connection_4w->query($sql);
+	$row = mysqli_fetch_assoc($result);
+	return $row['current_season'];
+}
+
+// finds a proper timezone
+function findTimezone($connection_4w, $branch_id) {
+	$sql= "SELECT * FROM 4w_branches WHERE id = '" . $branch_id . "';";
+	$result = $connection_4w->query($sql);
+	$row = mysqli_fetch_assoc($result);
+	return $row['timezone'];
+}
+
 // =============================
 // 2. INITIALIZATION
 // =============================
 
 	// Find branch ID from URL
 	$branch_id = findBranchIdFromUrl($connection_4w);
-	$timezone = $row['timezone'];
+
+	// Find proper timezone
+	$timezone = findTimezone($connection_4w, $branch_id);
+	date_default_timezone_set($timezone);
+
+	// Find current season
+	$current_season = findCurrentSeason($connection_4w, $branch_id);
 
 	// Set proper timezone
 	date_default_timezone_set($timezone);
@@ -82,7 +104,7 @@ function findBranchIdFromUrl($connection_4w) {
 	//$date = date('Y-m-d', time());
 	//$time = date('H:i:s', time());
 	// Get next lesson
-	$closest_lesson = get_closest_lesson($connection_4w, $branch_id);
+	$closest_lesson = get_closest_lesson($connection_4w, $branch_id, $current_season);
 	$closest_lesson_date = date('Y-m-d', $closest_lesson[0]);
 	$closest_lesson_time = date('H:i:s', $closest_lesson[0]);
 	$closest_lesson_class_type = $closest_lesson[1];
@@ -119,7 +141,7 @@ function findBranchIdFromUrl($connection_4w) {
 					<label for="branch_id">Branch</label>
 					<select id="branch_id" name="branch_id" class="js-start" form="cashier">
 <?php
-						$sql= "SELECT * FROM 4w_branches";
+						$sql= 'SELECT * FROM 4w_branches WHERE current_season = "' . $current_season . '"';;
 						$result = $connection_4w->query($sql);
 						while ($row = mysqli_fetch_assoc($result)) {
 							echo '<option value="'. $row['id'] . '" ' . (($branch_id == $row['id']) ? "selected" : "") . '>' . $row['activity'] . "4Water " . $row['city'] . '</option>';
@@ -131,7 +153,7 @@ function findBranchIdFromUrl($connection_4w) {
 					<label for="class_type">Class</label>
 					<select id="class_type" name="class_type" class="js-start" form="cashier">
 						<?php
-						$sql= "SELECT DISTINCT(class_type) FROM 4w_branch_classes WHERE branch_id = " . $branch_id;
+						$sql= "SELECT DISTINCT(class_type) FROM 4w_branch_classes WHERE branch_id = " . $branch_id. ' AND season = "' . $current_season . '"';
 						$result = $connection_4w->query($sql);
 						while ($row = mysqli_fetch_assoc($result)) {
 							echo '<option value="'. $row['class_type'] . '" ' . (($filled_class_type == $row['class_type']) ? "selected" : "") . '>' . $row['class_type'] . '</option>';
@@ -143,7 +165,7 @@ function findBranchIdFromUrl($connection_4w) {
 					<label for="level">Level</label>
 					<select id="level" name="level" class="js-start" form="cashier">
 						<?php
-						$sql= "SELECT DISTINCT(level) FROM 4w_branch_classes WHERE branch_id = " . $branch_id;
+						$sql= "SELECT DISTINCT(level) FROM 4w_branch_classes WHERE branch_id = " . $branch_id . ' AND season = "' . $current_season . '"';
 						$result = $connection_4w->query($sql);
 						while ($row = mysqli_fetch_assoc($result)) {
 							echo '<option value="'. $row['level'] . '" ' . (($filled_level == $row['level']) ? "selected" : "") . '>' . $row['level'] . '</option>';
@@ -166,7 +188,7 @@ function findBranchIdFromUrl($connection_4w) {
 				<label for="name">Cashier</label>
 				<select id="name" name="name" form="cashier" class="js-start">
 					<?php
-					$sql= "SELECT * FROM 4w_volunteers WHERE branch_id = " . $branch_id;
+					$sql= "SELECT * FROM 4w_volunteers WHERE branch_id = " . $branch_id . " AND active = 1";
 					$result = $connection_4w->query($sql);
 					while ($row = mysqli_fetch_assoc($result)) {
 						echo '<option value="'. $row['first'] . ' ' . $row['last'] . '">' . $row['first'] . ' ' . $row['last'] . '</option>';
@@ -177,7 +199,7 @@ function findBranchIdFromUrl($connection_4w) {
 			<div class="cashier-count col-md-12">
 				<script type="text/javascript" src="../wp-content/themes/Parallax-One/cashier_app/cashier_app.js"></script>
 <?php
-				$sql= "SELECT * FROM 4w_branch_prices WHERE branch_id = " . $branch_id . ";";
+				$sql= "SELECT * FROM 4w_branch_prices WHERE branch_id = " . $branch_id . ' AND season = "' . $current_season . '"';
 				$result = $connection_4w->query($sql);
 				while ($row = mysqli_fetch_assoc($result)) {
 ?>
