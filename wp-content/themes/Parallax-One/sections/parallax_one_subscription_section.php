@@ -27,6 +27,20 @@ if(!empty($subscription_title) ||
 					} ?>
 				</div>
 
+				<script>
+					$(function() {
+						$('#mc-embedded-subscribe-form').on('submit', function (e) {
+							e.preventDefault();
+							var policy = $('#policy').is(":checked");
+							if (!policy) {
+								alert("You need to agree to the Privacy Policy.")
+							} else {
+								this.submit();
+							}
+						});
+					})
+				</script>
+
 				<div class="subscription" style="text-align: center;">
 					<!-- Do not use Mailchimp styles <link href="//cdn-images.mailchimp.com/embedcode/slim-10_7.css" rel="stylesheet" type="text/css"> -->
 					<style type="text/css">
@@ -41,6 +55,7 @@ if(!empty($subscription_title) ||
 								<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required style="text-align: center; margin-bottom: 10px; width: 300px;">
 								<!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
 								<div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_5410f150f2af255024e9e7612_e3f5e363b0" tabindex="-1" value=""></div>
+								<div style="padding-bottom: 10px;"><input id="policy" type="checkbox" name="privacy-policy">&nbsp;I agree to the 4Water <a href="http://4water.org/privacy-policy">Privacy Policy</a></div>
 								<div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button" style="margin-bottom: 20px;"></div>
 							</div>
 						</form>
