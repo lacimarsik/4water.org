@@ -351,7 +351,14 @@ if (date('Y-m-d', $last_lesson[0]) == date('Y-m-d')) {
 								, title: {
 									text: table.caption.innerHTML
 								}
-								, xAxis: {}
+								, xAxis: {
+									type: 'datetime',
+									labels: {
+										formatter: function() {
+											return Highcharts.dateFormat('%a %d %b', this.value);
+										}
+									}
+								}
 								, yAxis: {
 									title: {
 										text: "Attended"
@@ -479,12 +486,11 @@ $result = $connection_4w->query($sql);
 	$num_weeks = 0;
 	while ($row = mysqli_fetch_assoc($result)) {
 		$num_weeks++;
-		$year = (($row['week'] - 39) > 0) ? $current_season : $current_season + 1;
-		$first_day = getStartAndEndDate($row['week'], $year)['week_start']->format('d.m.');
-		$week_number_from_october = (($row['week'] - 39) > 0) ? ($row['week'] - 39) :  ($row['week'] + 9);
+		$year = (($row['week'] - 37) > 0) ? $current_season : $current_season + 1;
+		$first_day = getStartAndEndDate($row['week'], $year)['week_start'];
 		?>
 		<tr>
-			<td><?php echo $week_number_from_october; ?></td>
+			<td><?php echo $first_day->format('Y-m-d'); ?></td>
 			<td><?php echo $row['attendance_monday']; ?></td>
 			<td><?php echo $row['attendance_tuesday']; ?></td>
 			<td><?php echo $row['attendance_wednesday']; ?></td>
@@ -494,7 +500,7 @@ $result = $connection_4w->query($sql);
 			<td><?php echo $row['attendance_sunday']; ?></td>
 		</tr>
 		<?php
-		echo "<!--" . $first_day . "-->";
+		echo "<!--" . $first_day->format('d.m.') . "-->";
 	}
 	?>
 						</tbody>
