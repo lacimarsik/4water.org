@@ -195,11 +195,7 @@ if (date('Y-m-d', $last_lesson[0]) == date('Y-m-d')) {
 		$currency = $row['currency'];
 		$volunteer_name = $row['volunteer_name'];
 		$total += intval($row['price']) * intval($row['count']);
-		if ($row['totals'] != "yes") {
-			$students += intval($row['count']);
-		} else {
-			$students_manual = ($students_manual < $row['count']) ? $row['count'] : $students_manual;
-		}
+		$total_students += intval($row['count']);
 		echo '<tr>';
 		echo '<td><strong class="bold">' . $row['price_type'] . '</strong></td>';
 		echo '<td><span>' . $row['count'] . '</span></td>';
@@ -207,7 +203,6 @@ if (date('Y-m-d', $last_lesson[0]) == date('Y-m-d')) {
 		echo '</tr>';
 	}
 	?>
-	<?php $total_students = ($students_manual > $students) ? $students_manual : $students; ?>
 	<tr class="success">
 		<td><strong class="medium bold">Totals</strong></td>
 		<td><span class="medium"><?php echo $total_students; ?></span></td>
@@ -484,7 +479,7 @@ $result = $connection_4w->query($sql);
 	$num_weeks = 0;
 	while ($row = mysqli_fetch_assoc($result)) {
 		$num_weeks++;
-		$year = (($row['week'] - 39) > 0) ? 2017 : 2018;
+		$year = (($row['week'] - 39) > 0) ? $current_season : $current_season + 1;
 		$first_day = getStartAndEndDate($row['week'], $year)['week_start']->format('d.m.');
 		$week_number_from_october = (($row['week'] - 39) > 0) ? ($row['week'] - 39) :  ($row['week'] + 9);
 		?>
@@ -521,8 +516,6 @@ $result = $connection_4w->query($sql);
 			</tr>
 			<?php
 			while ($row = mysqli_fetch_assoc($result)) {
-				# FIX only for 2018:
-				$num_weeks = 33;
 				?>
 				<tr>
 					<td>AVERAGE ATTENDANCE (from <?php echo $num_weeks; ?> weeks)</td>
@@ -574,7 +567,7 @@ $result = $connection_4w->query($sql);
 		</table>
 
 		<?php
-		$sql= 'SELECT sum(case when a.price_type_id = 1 then (a.count * p.price) else 0 end) as students_one_time, sum(case when a.price_type_id = 2 then (a.count * p.price) else 0 end) as non_students_one_time, sum(case when a.price_type_id = 3 then (a.count * p.price) else 0 end) as students_voucher, sum(case when a.price_type_id = 4 then (a.count * p.price) else 0 end) as non_students_voucher, sum(case when a.price_type_id = 1 then (a.count) else 0 end) as students_one_time_count, sum(case when a.price_type_id = 2 then (a.count) else 0 end) as non_students_one_time_count, sum(case when a.price_type_id = 3 then (a.count) else 0 end) as students_voucher_count, sum(case when a.price_type_id = 4 then (a.count) else 0 end) as non_students_voucher_count, p.currency FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE a.branch_id = ' . $branch_id . " AND a.season = '" . $current_season . "'";
+		$sql= 'SELECT sum(case when (p.single = 1 and p.student = 1) then (a.count * p.price) else 0 end) as students_one_time, sum(case when (p.single = 1 and p.student = 0) then (a.count * p.price) else 0 end) as non_students_one_time, sum(case when (p.single = 0 and p.student = 1) then (a.count * p.price) else 0 end) as students_voucher, sum(case when (p.single = 0 and p.student = 0) then (a.count * p.price) else 0 end) as non_students_voucher, sum(case when (p.single = 1 and p.student = 1) then (a.count) else 0 end) as students_one_time_count, sum(case when (p.single = 1 and p.student = 0) then (a.count) else 0 end) as non_students_one_time_count, sum(case when (p.single = 0 and p.student = 1) then (a.count) else 0 end) as students_voucher_count, sum(case when (p.single = 0 and p.student = 0) then (a.count) else 0 end) as non_students_voucher_count, p.currency FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE a.branch_id = ' . $branch_id . " AND a.season = '" . $current_season . "'";
 		$result = $connection_4w->query($sql);
 
 		?>
