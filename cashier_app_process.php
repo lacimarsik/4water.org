@@ -163,14 +163,14 @@ if ($get_data) {
 	}
 </style>
 <link rel='stylesheet' id='parallax-one-bootstrap-style-css'  href='http://4waterdev.org/prague/language/wp-content/themes/Parallax-One/css/bootstrap.min.css?ver=3.3.1' type='text/css' media='all' />
-<div class="container">
+<div class="container bootstrap">
 	<div class="message">
 		Hooray!
 		<br />
 		Your counts were saved!
 		<br />
 	</div>
-	<a class="btn btn-info btn-lg" href="<?php echo $summary_url ?>">Continue to the summary</a>
+	<a class="btn btn-info btn-lg continue" href="<?php echo $summary_url ?>">Continue to the summary</a>
 </div>
 
 
