@@ -170,7 +170,7 @@ if ($get_data) {
 		Your counts were saved!
 		<br />
 	</div>
-	<a class="btn btn-info btn-lg continue" href="<?php echo $summary_url ?>">Continue to the summary</a>
+	<a class="btn btn-info btn-lg" style="font-size: 1.7em; color: white;" href="<?php echo $summary_url ?>">Continue to the summary</a>
 </div>
 
 

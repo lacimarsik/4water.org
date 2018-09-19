@@ -195,7 +195,7 @@ function findTimezone($connection_4w, $branch_id) {
 	<a class="btn btn-default" href="<?php echo $summary_url; ?>">Summary</a>
 	<div class="cashier">
 		<br />
-		<link rel="stylesheet" href="../wp-content/themes/Parallax-One/cashier_app/cashier_app.css">
+		<link rel="stylesheet" href="../wp-content/themes/Parallax-One/cashier_app/cashier_app.css?ver=1.0">
 		<form action="/cashier_app_process.php" id="cashier" method="post">
 			<p>Welcome, dear cashier. On this page you count the number of sold 1-time entries, vouchers, and how many people came on already-paid vouchers.</p>
 			<p>Please check the class, level, date and time.</p>

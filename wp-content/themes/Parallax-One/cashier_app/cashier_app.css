@@ -87,8 +87,3 @@ button.price-button:active + span.wrapper > input.price {
 span.wrapper:active > input.price {
 	background: yellow;
 }
-@media (max-width: 768px) {
-	a.continue {
-		font-size: 1.7em;
-	}
-}
