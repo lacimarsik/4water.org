@@ -95,11 +95,12 @@ if ($form_submitted) {
 	if (isset($_POST['submitform'])) {
 		$counts_array = array();
 		foreach ($prices_array as $price_id => $count) {
-			array_push($counts_array, $price_id . ': ' . $count);
+			array_push($counts_array, 'PRICE ID' . $price_id . ': ' . $count);
 		}
-		$humanized_counts = join("<br />", $counts_array);
+		$humanized_counts = join("; ", $counts_array);
 		# Email the administrator about the counts for logging purposes
-		wp_mail( 'laci.marsik@gmail.com', 'Cashier App v1.0 - Counts saved' , 'The following counts were just saved for ' . $_POST['class_type'] . ' ' . $_POST['level'] . ', ' . $_POST['date'] . ', ' . $_POST['time'] . ': ' . $humanized_counts, $headers = '', $attachments = array() );
+		$headers = "From: Cashier App <wordpress@4water.org>" . "\r\n";
+		wp_mail( 'laci.marsik@gmail.com', 'Cashier App v1.0 - Counts saved' , 'The following counts were just saved for ' . $_POST['class_type'] . ' ' . $_POST['level'] . ', ' . $_POST['date'] . ', ' . $_POST['time'] . ': ' . $humanized_counts, $headers, $attachments = array() );
 	}
 	$result = countsExist($_POST, $connection_4w, $current_season);
 	if ($result->num_rows > 0) {
