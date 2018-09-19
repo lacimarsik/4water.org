@@ -72,3 +72,18 @@
 	padding-top: 20px;
 	text-align: center;
 }
+
+input.price {
+	background-color: white;
+	-webkit-transition-duration: 0.12s; /* Safari */
+	transition-duration: 0.12s;
+	transition: all 0.12s
+}
+
+button.price-button:active + span.wrapper > input.price {
+	background: yellow;
+}
+
+span.wrapper:active > input.price {
+	background: yellow;
+}

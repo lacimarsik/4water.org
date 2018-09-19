@@ -208,7 +208,10 @@ function findTimezone($connection_4w, $branch_id) {
 						<label for="price-type-price<?php echo $row['id']; ?>"><?php echo '(' . $row['price'] . ' ' . $row['currency'] . ') ' . $row['price_type']; ?></label>
 					</div>
 					<div class="price-entry col-md-9">
-						<button disabled="disabled" style="background-color: grey;" id="price<?php echo $row['id']; ?>-minus" type="button" class="js-minus price-button">-</button><input disabled="disabled" type="text" class="price" id="price<?php echo $row['id']; ?>" name="price<?php echo $row['id']; ?>" value="0" /><button id="price<?php echo $row['id']; ?>-plus" disabled="disabled" style="background-color: grey;" type="button" class="js-plus price-button">+</button>
+						<button disabled="disabled" style="background-color: grey;" id="price<?php echo $row['id']; ?>-minus" type="button" class="js-minus price-button">-</button>
+						<span class="wrapper">
+						<input disabled="disabled" type="text" class="price" id="price<?php echo $row['id']; ?>" name="price<?php echo $row['id']; ?>" value="0" />
+						<button id="price<?php echo $row['id']; ?>-plus" disabled="disabled" style="background-color: grey;" type="button" class="js-plus price-button">+</button></span>
 					</div>
 				</div>
 				<div class="clearfix smallpadding"></div>
