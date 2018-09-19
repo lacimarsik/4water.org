@@ -24,8 +24,7 @@ mysqli_select_db($connection_4w, DB_NAME);
 // =============================
 // TODO: Refactor us to a service to avoid duplication among form/process/summary
 
-function getCurrentBranchUrl($post, $connection, $suffix) {
-	$branch_id = findBranchIdFromUrl($connection);
+function getCurrentBranchUrl($branch_id, $connection, $suffix) {
 	$sql= "SELECT * FROM 4w_branches WHERE id = '" . $branch_id . "';";
 	$result = $connection->query($sql);
 	$row = mysqli_fetch_assoc($result);
@@ -134,8 +133,12 @@ function findTimezone($connection_4w, $branch_id) {
 // 2. INITIALIZATION
 // =============================
 
-// Set proper timezone
+// Find branch ID from URL
 $branch_id = findBranchIdFromUrl($connection_4w);
+
+// URLs
+$cashier_url = getCurrentBranchUrl($branch_id, $connection_4w, "cashier");
+$summary_url = getCurrentBranchUrl($branch_id, $connection_4w, "summary");
 
 // Find proper timezone
 $timezone = findTimezone($connection_4w, $branch_id);
@@ -147,9 +150,6 @@ $current_season = findCurrentSeason($connection_4w, $branch_id);
 // Find last lesson
 $last_lesson = get_last_lesson($connection_4w, $branch_id, $current_season);
 
-// Url back to form page
-$cashier_url = getCurrentBranchUrl($_POST, $connection_4w, "cashier");
-
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
@@ -159,7 +159,9 @@ $cashier_url = getCurrentBranchUrl($_POST, $connection_4w, "cashier");
 <link href="/wp-content/themes/Parallax-One/cashier_app/css/charts.css"  rel="stylesheet" type='text/css' />
 <div class="content-wrap">
 	<div class="container">
-
+		<img src="../wp-content/themes/Parallax-One/cashier_app/img/Logo.jpg" style="width: 150px;" />
+		<a class="btn btn-default" href="<?php echo $cashier_url; ?>">Cashier</a>
+		<a class="btn btn-info" href="<?php echo $summary_url; ?>">Summary</a>
 		<div id="primary" class="content-area col-md-12">
 			<main id="main" class="site-main" role="main">
 <?php

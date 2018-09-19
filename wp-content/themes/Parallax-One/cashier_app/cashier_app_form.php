@@ -23,6 +23,13 @@ mysqli_select_db($connection_4w, DB_NAME);
 // =============================
 // TODO: Refactor us to a service to avoid duplication among form/process/summary
 
+function getCurrentBranchUrl($branch_id, $connection, $suffix) {
+	$sql= "SELECT * FROM 4w_branches WHERE id = '" . $branch_id . "';";
+	$result = $connection->query($sql);
+	$row = mysqli_fetch_assoc($result);
+	return '/' . strtolower($row['city']) . '/' . strtolower($row['activity']) . '/' . $suffix;
+}
+
 // @return closest_lesson [Array] Array containing: Timestamp of the closest lesson, Class type, Level
 // TODO: Create struct for lessons
 function get_closest_lesson($connection_4w, $branch_id, $current_season) {
@@ -126,6 +133,10 @@ function findTimezone($connection_4w, $branch_id) {
 	// Find branch ID from URL
 	$branch_id = findBranchIdFromUrl($connection_4w);
 
+	// URLs
+	$cashier_url = getCurrentBranchUrl($branch_id, $connection_4w, "cashier");
+	$summary_url = getCurrentBranchUrl($branch_id, $connection_4w, "summary");
+
 	// Find proper timezone
 	$timezone = findTimezone($connection_4w, $branch_id);
 	date_default_timezone_set($timezone);
@@ -179,6 +190,9 @@ function findTimezone($connection_4w, $branch_id) {
 // 3. FORM
 // =============================
 ?>
+	<img src="../wp-content/themes/Parallax-One/cashier_app/img/Logo.jpg" style="width: 150px;" />
+	<a class="btn btn-info" href="<?php echo $cashier_url; ?>">Cashier</a>
+	<a class="btn btn-default" href="<?php echo $summary_url; ?>">Summary</a>
 	<div class="cashier">
 		<br />
 		<link rel="stylesheet" href="../wp-content/themes/Parallax-One/cashier_app/cashier_app.css">

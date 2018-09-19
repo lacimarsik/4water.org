@@ -32,11 +32,19 @@
 			<?php endwhile; // end of the loop. ?>
 
 <?php
-	if ($pagename == "cashier") {
-		include 'cashier_app/cashier_app_form.php';
-	}
-	if ($pagename == "summary") {
-		include 'cashier_app/cashier_app_summary.php';
+	if (($pagename == "cashier") || ($pagename == "summary")) {
+		?>
+		<style>
+			h1.entry-title, div.colored-line-left {
+				display: none;
+			}
+		</style>
+		<?php
+		if ($pagename == "cashier") {
+			include 'cashier_app/cashier_app_form.php';
+		} else {
+			include 'cashier_app/cashier_app_summary.php';
+		}
 	}
 ?>
 			</main><!-- #main -->
