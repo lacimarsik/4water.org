@@ -113,4 +113,18 @@ $(document).ready(function() {
     getValuesFromServer();
     enableForm();
   });
+
+  $('form#cashier').on('submit', function (e) {
+    e.preventDefault();
+    var class_type = $("select[name='class_type']").val();
+    var level = $("select[name='level']").val();
+    var date = $("select[name='date']").val();
+    var time = $("select[name='time']").val();
+    var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    var dateParsed = new Date(date);
+    var dateHumanized = dateParsed.toLocaleDateString("en-US", options);
+    if (confirm("(Final check) You are submitting counts for:\n\n" + class_type + " " + level + "\n" + dateHumanized + "\n" + time + "\n\nIs that correct?")) {
+      this.submit();
+    }
+  });
 });
