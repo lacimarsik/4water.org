@@ -94,7 +94,7 @@
 									if( empty($parallax_one_header_button_link) ){
 										echo '<div id="intro_section_text_3" class="button"><a href="" class="btn btn-info header-button">'.esc_attr($parallax_one_header_button_text).'</a></div>';
 									} else { ?>
-										<div id="intro_section_text_3" class="button"><a 
+										<div id="intro_section_text_3" class="button"><a
 											<?php if ($parallax_one_header_button_opens_payments) {
 												echo 'onClick="openPaymentOrFormSectionFromHeader();"';
 											} ?>
@@ -104,8 +104,8 @@
 								} elseif ( isset( $wp_customize )   ) {
 									echo '<div id="intro_section_text_3" class="button"><a href="" class="btn btn-info header-button paralax_one_only_customizer"></a></div>';
 								}
-?>
-                </div> <!-- /END BUTTON -->
+
+?>              <!-- /END BUTTON -->
                 <div class="header-award">
 <?php
 								//AWARD
@@ -125,6 +125,7 @@
 								}
 ?>
                 </div> <!-- /END AWARD -->
+              </div>
 <?php
             } //END HEADING AND BUTTONS
 ?>
