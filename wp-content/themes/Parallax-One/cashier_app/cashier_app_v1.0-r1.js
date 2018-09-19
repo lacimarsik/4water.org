@@ -85,7 +85,11 @@ function getValuesFromServer() {
         data = JSON.parse(data);
         var volunteer_name = data['volunteer_name'];
         if (volunteer_name != $('#name').val()) {
-          alert("This class was already counted by: " + volunteer_name + ". Making changes will overwrite the previous count. Note that even hitting + or - already updates the data in the database.")
+          if (volunteer_name == 'Please Select ...') {
+            alert("The counts will be saved under " + $('#name').val());
+          } else {
+            alert("This class was already counted by: " + volunteer_name + ". Making changes will overwrite the previous count. Note that even hitting '+' or '-' saves the counts.")
+          }
         } else {
           alert("Previous counts were found and were loaded.")
         }
@@ -112,5 +116,25 @@ $(document).ready(function() {
   $('.js-start').change(function () {
     getValuesFromServer();
     enableForm();
+  });
+
+  $('form#cashier').on('submit', function (e) {
+    e.preventDefault();
+    var name = $("select[name='name']").val();
+    if (name == 'Please Select ...') {
+      alert('You did not select your name. Please select your name and submit agian.');
+      return
+    }
+
+    var class_type = $("select[name='class_type']").val();
+    var level = $("select[name='level']").val();
+    var date = $("select[name='date']").val();
+    var time = $("select[name='time']").val();
+    var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    var dateParsed = new Date(date);
+    var dateHumanized = dateParsed.toLocaleDateString("en-US", options);
+    if (confirm("(Final check) You are submitting counts for:\n\n" + class_type + " " + level + "\n" + dateHumanized + "\n" + time + "\n\nIs that correct?")) {
+      this.submit();
+    }
   });
 });
