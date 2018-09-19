@@ -148,13 +148,17 @@ function findTimezone($connection_4w, $branch_id) {
 	$array_of_string_days = array();
 	$closest_lessons = get_closest_lessons($connection_4w, $branch_id, $current_season, "last");
 	foreach ($closest_lessons as $key => $value) {
-		array_push($array_of_dates, date('Y-m-d', $value[1]));
-		array_push($array_of_string_days, ucwords($value[0]));
+		if (!in_array(ucwords($value[0]), $array_of_string_days)) {
+			array_push($array_of_dates, date('Y-m-d', $value[1]));
+			array_push($array_of_string_days, ucwords($value[0]));
+		}
 	}
 	$closest_lessons = get_closest_lessons($connection_4w, $branch_id, $current_season, "next");
 	foreach ($closest_lessons as $key => $value) {
-		array_push($array_of_dates, date('Y-m-d', $value[1]));
-		array_push($array_of_string_days, ucwords($value[0]));
+		if (!in_array(ucwords($value[0]), $array_of_string_days)) {
+			array_push($array_of_dates, date('Y-m-d', $value[1]));
+			array_push($array_of_string_days, ucwords($value[0]));
+		}
 	}
 
 	// Normal situation: show closest lesson
