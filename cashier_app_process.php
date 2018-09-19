@@ -88,10 +88,19 @@ $summary_url = getCurrentBranchUrl($_POST, $connection_4w, "summary");
 // 3. AJAX / FORM HANDLING
 // =============================
 
-$form_submitted = (isset($_POST['increment']) || isset($_POST['decrement']) || isset($_POST['submitform'])) && !isset($_POST['resuls']);
+$form_submitted = (isset($_POST['increment']) || isset($_POST['decrement']) || isset($_POST['submitform']));
 
 if ($form_submitted) {
 	$prices_array = getArrayOfPrices($_POST);
+	if (isset($_POST['submitform'])) {
+		$counts_array = array();
+		foreach ($prices_array as $price_id => $count) {
+			array_push($counts_array, $price_id . ': ' . $count);
+		}
+		$humanized_counts = join("<br />", $counts_array);
+		# Email the administrator about the counts for logging purposes
+		wp_mail( 'laci.marsik@gmail.com', 'Cashier App v1.0 - Counts saved' , 'The following counts were just saved for ' . $_POST['class_type'] . ' ' . $_POST['level'] . ', ' . $_POST['date'] . ', ' . $_POST['time'] . ': ' . $humanized_counts, $headers = '', $attachments = array() );
+	}
 	$result = countsExist($_POST, $connection_4w, $current_season);
 	if ($result->num_rows > 0) {
 		foreach ($prices_array as $price_id => $count) {
