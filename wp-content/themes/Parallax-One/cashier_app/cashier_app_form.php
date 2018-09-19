@@ -54,6 +54,43 @@ function get_closest_lesson($connection_4w, $branch_id, $current_season) {
 	return $result_array;
 }
 
+// @param $nextlast Either 'next' or 'last' depending if we want previous lessons or coming lessons
+//
+// @return closest_lessons [Array] Array of 1 week of lessons, in the form: ["Salsa,Advanced"] = ["Next Monday", Timestamp]
+// TODO: Create struct for lessons
+function get_closest_lessons($connection_4w, $branch_id, $current_season, $nextlast) {
+	// Get the array of next lessons from the "next monday" (tuesday, ...) depending on what days the branch has lessons
+	// Array will be in the form "Class type, Level" => Timestamp
+	$array_of_next_lessons = array();
+	$array_of_next_lessons_string = array();
+	$sql= "SELECT * FROM 4w_branch_classes WHERE branch_id = " . $branch_id . ' AND season = "' . $current_season . '"';
+	$result = $connection_4w->query($sql);
+	while ($row = mysqli_fetch_assoc($result)) {
+		if ((date('l') == $row['day']) && (date('H:i:s') < $row['time'])) {
+			// if the lesson is today, and didn't yet start
+			// but do not save it if we want previous lessons
+			if ($nextlast == 'last') {
+				continue;
+			}
+			$day_as_string = strtolower($row['day']) . ' this week';
+		} else {
+			$day_as_string = $nextlast . ' ' . strtolower($row['day']);
+		}
+		$array_of_next_lessons[$row['class_type'] . "," . $row['level']] = strtotime($day_as_string . ' ' . $row['time']);
+		$array_of_next_lessons_string[$row['class_type'] . "," . $row['level']] = $day_as_string;
+	}
+	asort($array_of_next_lessons);
+	reset($array_of_next_lessons);
+	$return_array = array();
+	foreach ($array_of_next_lessons as $key => $value) {
+		$tuple = array();
+		array_push($tuple, $array_of_next_lessons_string[$key]);
+		array_push($tuple, $array_of_next_lessons[$key]);
+		array_push($return_array, $tuple);
+	}
+	return $return_array;
+}
+
 // gets branch ID by parsing URL, e.g. prague/language -> searches 4w_branches table by city and activity
 function findBranchIdFromUrl($connection_4w) {
 	$url = parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH );
@@ -99,16 +136,26 @@ function findTimezone($connection_4w, $branch_id) {
 	// Set proper timezone
 	date_default_timezone_set($timezone);
 
-	// Find current date and time (use if exact time of cashiering is needed)
-	//date_default_timezone_set('Europe/' . $row['city']);
-	//$date = date('Y-m-d', time());
-	//$time = date('H:i:s', time());
 	// Get next lesson
 	$closest_lesson = get_closest_lesson($connection_4w, $branch_id, $current_season);
 	$closest_lesson_date = date('Y-m-d', $closest_lesson[0]);
 	$closest_lesson_time = date('H:i:s', $closest_lesson[0]);
 	$closest_lesson_class_type = $closest_lesson[1];
 	$closest_lesson_level = $closest_lesson[2];
+
+	// Get surrounding lessons
+	$array_of_dates = array();
+	$array_of_string_days = array();
+	$closest_lessons = get_closest_lessons($connection_4w, $branch_id, $current_season, "last");
+	foreach ($closest_lessons as $key => $value) {
+		array_push($array_of_dates, date('Y-m-d', $value[1]));
+		array_push($array_of_string_days, ucwords($value[0]));
+	}
+	$closest_lessons = get_closest_lessons($connection_4w, $branch_id, $current_season, "next");
+	foreach ($closest_lessons as $key => $value) {
+		array_push($array_of_dates, date('Y-m-d', $value[1]));
+		array_push($array_of_string_days, ucwords($value[0]));
+	}
 
 	// Normal situation: show closest lesson
 	$filled_date = $closest_lesson_date;
@@ -137,7 +184,7 @@ function findTimezone($connection_4w, $branch_id) {
 			<div class="cashier-upper col-md-12">
 				<input type="hidden" name="cashier" />
 				<input type="hidden" name="submitform" />
-				<div class="form-group col-md-4">
+				<div style="display: none;" class="form-group col-md-4">
 					<label for="branch_id">Branch</label>
 					<select id="branch_id" name="branch_id" class="js-start" form="cashier">
 <?php
@@ -175,12 +222,28 @@ function findTimezone($connection_4w, $branch_id) {
 				</div>
 				<div class="clearfix"></div>
 				<div class="form-group col-md-4">
-					<label for="date">Date</label>
-					<input id="date" type="text" name="date" class="js-start" value="<?php echo $filled_date; ?>" />
+					<label for="date">Day</label>
+					<select id="date" name="date" class="js-start" form="cashier">
+						<?php
+						$sql= "SELECT DISTINCT(time) FROM 4w_branch_classes WHERE branch_id = " . $branch_id . ' AND season = "' . $current_season . '"';
+						$result = $connection_4w->query($sql);
+						for ($i = 0; $i < sizeof($array_of_dates); $i++) {
+							echo '<option value="'. $array_of_dates[$i] . '" ' . (($filled_date == $array_of_dates[$i]) ? "selected" : "") . '>' . str_replace("This Week", "", str_replace("Next","", $array_of_string_days[$i]) . ' ' . date("d F", strtotime($array_of_dates[$i]))) . '</option>';
+						}
+						?>
+					</select>
 				</div>
 				<div class="form-group col-md-4">
 					<label for="time">Time</label>
-					<input id="time" type="text" name="time" class="js-start" value="<?php echo $filled_time; ?>" />
+					<select id="time" name="time" class="js-start" form="cashier">
+						<?php
+						$sql= "SELECT DISTINCT(time) FROM 4w_branch_classes WHERE branch_id = " . $branch_id . ' AND season = "' . $current_season . '"';
+						$result = $connection_4w->query($sql);
+						while ($row = mysqli_fetch_assoc($result)) {
+							echo '<option value="'. $row['time'] . '" ' . (($filled_time == $row['time']) ? "selected" : "") . '>' . $row['time'] . '</option>';
+						}
+						?>
+					</select>
 				</div>
 			</div>
 			<p>Please select your name to start. <strong>note: use 'Already had a voucher' if you only stamp the voucher, without money. In that case, it does not matter if the voucher person was student/non-student. We only ask for it when we sell the voucher & collect money (first buttons) :)</strong></p>
