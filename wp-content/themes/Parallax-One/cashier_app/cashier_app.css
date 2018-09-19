@@ -3,6 +3,7 @@
 }
 
 .cashier-submit {
+	width: 100%;
 	padding-top: 20px;
 }
 
@@ -22,8 +23,22 @@
 }
 
 .price-type {
-	line-height: 35px;
-	font-size: 0.98em;
+	line-height: 15px;
+	font-size: 0.90em;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 18px;
+}
+
+.cashier-count {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+@media (max-width: 768px) {
+	.cashier-count, .cashier-submit {
+		text-align: center;
+	}
 }
 
 .cashier-done {

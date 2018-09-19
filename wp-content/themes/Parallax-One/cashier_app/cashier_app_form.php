@@ -216,10 +216,11 @@ function findTimezone($connection_4w, $branch_id) {
 				}
 ?>
 			</div>
+			<div class="clearfix"></div>
 			<br />
 			<p>When done counting <strong>for the class</strong> (i.e. Beginners class), please submit. You can then continue counting the class that follows.</p>
 			<div class="cashier-submit col-md-12">
-				<div class="form-group col-md-4">
+				<div class="form-group">
 					<input class="submit-button" disabled="disabled" style="background-color: grey;" type="submit">
 				</div>
 			</div>
