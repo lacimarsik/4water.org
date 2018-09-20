@@ -100,7 +100,7 @@ if ($form_submitted) {
 		$humanized_counts = join("; ", $counts_array);
 		# Email the administrator about the counts for logging purposes
 		$headers = "From: Cashier App <wordpress@4water.org>" . "\r\n";
-		wp_mail( 'laci.marsik@gmail.com', 'Cashier App v1.0 - Counts saved' , 'The following counts were just saved for ' . $_POST['class_type'] . ' ' . $_POST['level'] . ', ' . $_POST['date'] . ', ' . $_POST['time'] . ': ' . $humanized_counts, $headers, $attachments = array() );
+		wp_mail( 'laci.marsik@gmail.com', 'Cashier App v1.0 - Counts saved' , 'The following counts were just saved for ' . $_POST['class_type'] . ' ' . $_POST['level'] . ', ' . $_POST['date'] . ', ' . $_POST['time'] . ': ' . $humanized_counts . '; volunteer: ' . $_POST['name'], $headers, $attachments = array() );
 	}
 	$result = countsExist($_POST, $connection_4w, $current_season);
 	if ($result->num_rows > 0) {
