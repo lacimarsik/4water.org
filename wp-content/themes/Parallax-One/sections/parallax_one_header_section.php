@@ -25,7 +25,7 @@
 			div.intro-section {
 				border-radius: 30px;
     			background: rgba(<?php echo $r; ?>,<?php echo $g; ?>,<?php echo $b; ?>,0.55);
-    			box-shadow: 2px 2px 5px 0px #333;
+    			box-shadow: 2px 2px 5px 0px #777;
 			}
 		</style>
 <?php
