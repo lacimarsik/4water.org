@@ -59,6 +59,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
     3.16 WOOCOMMERCE STYLE
     3.17 FOOTER
     3.18 CUSTOM PAGES
+    3.19 SECTION: VIDEO
 
 4. DEFAULT COLORS
 
@@ -1337,9 +1338,114 @@ div.call-to-action-payments-box table.payment-table td.payment-not-available {
 	}
 }
 
-.wpcf7 textarea {
-    width: 34%; 
-    height: 50px;
+/* styling for contact form 7 */
+
+div.wpcf7-validation-errors,
+div.wpcf7-mail-sent-ng {
+	border: none;
+	background-color: rgba(255, 0, 0, 0.5);
+	color: #fff;
+}
+
+div.wpcf7-response-output {
+	margin: 2em 0 1em;
+	padding: 10px;
+	border-radius: 20px;
+	-moz-border-radius: 20px;
+	-webkit-border-radius: 20px;
+	margin: 10px 0;
+}
+
+div.wpcf7-mail-sent-ok,
+div.wpcf7-mail-sent-ng {
+	border: none;
+	background-color: rgba(57, 143, 20, 0.5);
+}
+
+div.wpcf7 span.num {
+	color: #3a98cb;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+div.wpcf7 p.item {
+	font-size: 1.1em;
+	font-weight: bold;
+	margin-top: 25px;
+}
+
+div.wpcf7 p.branch {
+	margin-top: 17px;
+	text-align: center;
+}
+
+div.wpcf7 div.info {
+	background-color: #3a98cb;
+	color: white;
+	font-style: italic;
+	padding: 10px;
+	border-radius: 20px;
+	-moz-border-radius: 20px;
+	-webkit-border-radius: 20px;
+	margin-bottom: 15px;
+}
+
+div.wpcf7 p b {
+	font-size: 1.2em;
+	margin-bottom: 10px;
+}
+
+div.wpcf7 div.info {
+	margin: 25px auto;
+	max-width: 700px;
+}
+
+div.wpcf7 i.fas {
+	font-size: 1.25em; position: relative; top: 3px;
+	padding-right: 5px;
+}
+
+div.wpcf7 input[type=text],
+div.wpcf7 input[type=email], textarea {
+	width: 34%;
+}
+
+@media only screen and (max-width: 800px) {
+	div.wpcf7 input[type=text],
+	div.wpcf7 input[type=email], textarea {
+		width: 70% !important;
+	}
+}
+
+div.wpcf7 textarea {
+	height: 50px;
+}
+
+div.wpcf7 div.branch-wrapper {
+	border: 1px solid #aaa;
+	max-width: 400px;
+	margin: 0 auto;
+	padding: 5px;
+	border-radius: 15px;
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	box-shadow: 2px 2px 4px #ddd;
+}
+
+div.wpcf7 a.place, div.wpcf7 a.web, div.wpcf7 a.mail {
+	text-decoration: none;
+}
+
+div.wpcf7 a.place {
+	color: #333;
+}
+
+div.wpcf7 a.mail {
+	color: #777;
+}
+
+div.wpcf7 p.form-entry {
+	color: #3a98cb;
 }
 
 
@@ -1454,6 +1560,9 @@ div.many-things-box {
 img.many-things-img {
 	position: relative;
 	max-height: 160px;
+	border-radius: 20px;
+	-moz-border-radius: 20px;
+	-webkit-border-radius: 20px;
 }
 
 div.many-things-box h3 {
@@ -1471,7 +1580,7 @@ p.many-things-desc {
 	padding-top: 10px;
 	text-align: left;
 	padding-bottom: 0px;
-	margin-bottom: 8px;
+	margin-bottom: 18px;
 }
 
 a.many-things-link {
@@ -2193,6 +2302,8 @@ a.header-button:hover {
 div.header-award {
 	text-align: center;
 	margin: 0 auto;
+	line-height: 19px;
+	font-size: 15px;
 }
 
 table.header-award {
@@ -3582,23 +3693,6 @@ a.control_next.fade-btn {
 
 .content-page form p {
   margin-bottom: 1em;
-}
-
-div.wpcf7-validation-errors,
-div.wpcf7-mail-sent-ng {
-	border: none;
-	background-color: rgba(255, 0, 0, 0.5);
-	color: #fff;
-}
-
-div.wpcf7-response-output {
-	margin: 2em 0 1em;
-}
-
-div.wpcf7-mail-sent-ok,
-div.wpcf7-mail-sent-ng {
-	border: none;
-	background-color: rgba(57, 143, 20, 0.5);
 }
 
 .content-page .entry-footer {
@@ -5483,6 +5577,22 @@ em.policy-highlight {
 h2.policy {
 	font-size: 1.1em;
 	color: #008ed6;
+}
+
+}
+
+/*---------------------------------------
+   3.19 SECTION: VIDEO
+-----------------------------------------*/
+
+p#video-caption {
+	padding-top: 10px;
+}
+
+@media only screen and (max-width: 800px) {
+	section.video-section div.subtitle {
+		margin: 0 10px !important;
+	}
 }
 
 /*---------------------------------------

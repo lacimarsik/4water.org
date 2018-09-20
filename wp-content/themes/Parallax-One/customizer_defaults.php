@@ -14,6 +14,8 @@ class DefHeader {
   public static $header_award_text = '';
   public static $header_award_image = '';
   public static $header_button_opens_payments = false;
+  public static $use_transparent_background = false;
+  public static $transparent_background_color = '141414';
 };
 
 /********************************************************/

@@ -98,6 +98,35 @@ function parallax_one_customize_register( $wp_customize ) {
     'active_callback' => 'parallax_one_show_on_front',
     'priority'    => 4
   ));
+  
+  /* Use transparent background */
+  $wp_customize->add_setting( 'parallax_one_use_transparent_background', array(
+      'sanitize_callback' => 'parallax_one_sanitize_text',
+      'default' => DefHeader::$use_transparent_background
+  ));
+  $wp_customize->add_control(
+      'parallax_one_use_transparent_background',
+      array(
+          'type' => 'checkbox',
+          'label' => esc_html__('Use transparent background?','parallax-one'),
+          'description' => esc_html__('Can be utilized for light background photos','parallax-one'),
+          'section' => 'parallax_one_header_content',
+          'priority'    => 4,
+      )
+  );
+  
+  /* Transparent background color */
+  $wp_customize->add_setting( 'parallax_one_transparent_background_color', array(
+      'default' => esc_html__(DefHeader::$transparent_background_color, 'parallax-one'),
+      'sanitize_callback' => 'parallax_one_sanitize_text',
+      'transport' => 'postMessage'
+  ));
+  $wp_customize->add_control( 'parallax_one_transparent_background_color', array(
+      'label'    => esc_html__( 'Transparent background color', 'parallax-one' ),
+      'section'  => 'parallax_one_header_content',
+      'active_callback' => 'parallax_one_show_on_front',
+      'priority'    => 4
+  ));
 
   /* Header Button text */
   $wp_customize->add_setting( 'parallax_one_header_button_text', array(

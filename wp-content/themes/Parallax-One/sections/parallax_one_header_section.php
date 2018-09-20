@@ -11,10 +11,25 @@
 	$parallax_one_header_award_image = get_theme_mod('parallax_one_header_award_image', DefHeader::$header_award_image);
 	$parallax_one_header_award_text = get_theme_mod('parallax_one_header_award_text', DefHeader::$header_award_text);
 	$parallax_one_header_button_opens_payments = get_theme_mod('parallax_one_header_button_opens_payments', DefHeader::$header_button_opens_payments);
+	$parallax_one_use_transparent_background = get_theme_mod('parallax_one_use_transparent_background', DefHeader::$use_transparent_background);
+	$parallax_one_transparent_background_color = get_theme_mod('parallax_one_transparent_background_color', DefHeader::$transparent_background_color);
 	if(!empty($paralax_one_header_logo) || !empty($parallax_one_header_title) || !empty($parallax_one_header_subtitle) || !empty($parallax_one_header_button_text)) {
 ?>
 
 <?php
+	if (($parallax_one_use_transparent_background) && !empty($parallax_one_transparent_background_color)) {
+		list($r, $g, $b) = sscanf('#' . $parallax_one_transparent_background_color, "#%02x%02x%02x");
+		echo "RED: " . $r;
+?>
+		<style>
+			div.intro-section {
+				border-radius: 30px;
+    			background: rgba(<?php echo $r; ?>,<?php echo $g; ?>,<?php echo $b; ?>,0.55);
+    			box-shadow: 2px 2px 5px 0px #777;
+			}
+		</style>
+<?php
+	}
     if( !empty($parallax_one_enable_move) && $parallax_one_enable_move ) {
       echo '<ul id="parallax_move">';
 			if ( empty($parallax_one_first_layer) && empty($parallax_one_second_layer) ) {
