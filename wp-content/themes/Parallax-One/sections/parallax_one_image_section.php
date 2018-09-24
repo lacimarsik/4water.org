@@ -5,6 +5,8 @@
   $image_section_use_static_image = get_theme_mod('image_section_use_static_image', DefImage::$use_static_image);
   $image_section_title_above = get_theme_mod('image_section_title_above', DefImage::$title_above);
   $image_section_subtitle_above = get_theme_mod('image_section_subtitle_above', DefImage::$subtitle_above);
+  $image_section_link_above = get_theme_mod('image_section_link_above', DefImage::$link_above);
+  $image_section_link_text_above = get_theme_mod('image_section_link_text_above', DefImage::$link_text_above);
   $image_section_title_inside = get_theme_mod('image_section_title_inside', DefImage::$title_inside);
   $image_section_text_inside = get_theme_mod('image_section_text_inside', DefImage::$text_inside);
   $image_section_button_text = get_theme_mod('image_section_button_text', DefImage::$button_text);
@@ -28,7 +30,11 @@ if(!empty($image_section_title_above) ||
   }
   
   if (!empty($image_section_subtitle_above)) {
-    echo '<div class="subtitle-above">' . $image_section_subtitle_above . '</div>';
+    echo '<div class="subtitle-above">' . $image_section_subtitle_above;
+    if (!empty($image_section_link_above) && !empty($image_section_link_text_above)) {
+      echo ' <a href="' . $image_section_link_above . '">' . $image_section_link_text_above . '</a>';
+    }
+    echo '</div>';
   }
 
   if ($image_section_use_static_image) {
