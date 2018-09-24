@@ -329,6 +329,7 @@ class DefCalendar {
   public static $mode = 'condensed';
   public static $this_week = 'This week';
   public static $next_week = 'Next week';
+  public static $fallback = false;
 };
 
 /********************************************************/

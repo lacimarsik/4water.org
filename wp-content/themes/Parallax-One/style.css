@@ -1887,6 +1887,20 @@ section#calendar {
     padding-bottom: 20px;
 }
 
+div.for-water-calendar-ie {
+	display: none;
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+	/* IE10+ CSS styles go here */
+	div.for-water-calendar {
+		display: none !important;
+	}
+	div.for-water-calendar-ie {
+		display: block !important;
+	}
+}
+
 /*---------------------------------------
    3.1 SECTION: HOME / HEADER         
 -----------------------------------------*/
@@ -5594,6 +5608,26 @@ p#video-caption {
 @media only screen and (max-width: 800px) {
 	section.video-section div.subtitle {
 		margin: 0 10px !important;
+	}
+}
+
+/*---------------------------------------
+  3.19 FIXES FOR IE
+-----------------------------------------*/
+
+/* Unfortunately, font may get broken on IE if diacritics is in use, e.g. /prague/dance/cz
+A proper fix would be not using @import to import Avenir fonts, and using e.g. <link> in html.
+But as this fix was not tested and needs some trial&error, in the meantime the below hack is suggested, that uses sans-serif as something that looks nice.
+TODO: Implement a proper fix using <link>, or try to refactor how we use font-family: Avenir throughout this CSS, so that this fix does not need to name so many elements
+*/
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {     /* IE10+ CSS styles go here */   
+	html:lang(cs-CZ) h1,h2,h3,h4,h5,h6, html:lang(cs-CZ) body, html:lang(cs-CZ) p, html:lang(cs-CZ) div, html:lang(cs-CZ) span {
+		font-family: sans-serif !important;
+	}
+	html:lang(cs-CZ) #intro-under-construction, html:lang(cs-CZ) #intro-under-construction span {
+		font-family: sans-serif !important;
+		font-weight: 200 !important;
 	}
 }
 
