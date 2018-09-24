@@ -381,7 +381,7 @@ if (date('Y-m-d', $last_lesson[0]) == date('Y-m-d')) {
 								}
 								, tooltip: {
 									formatter:function() {
-										return "<b>Week "+(this.x + 1)+"</b><br/>"+"<b>"+this.series.name+": "+Highcharts.numberFormat(this.y, "2f")+"</b>"
+										return "<b>Week "+Highcharts.dateFormat('%d %b', this.x)+"</b><br/>"+"<b>"+this.series.name+": "+Highcharts.numberFormat(this.y, "2f")+"</b>"
 									}
 								}
 								, plotOptions: {
