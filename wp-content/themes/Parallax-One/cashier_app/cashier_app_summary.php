@@ -1,6 +1,6 @@
 <?php
 // =============================
-// CASHIER APP - V1.0 Summary part
+// CASHIER APP - V1.01 Summary part
 
 // Form part: cashier_app_summary.php (in the theme folder)
 // Process part: cashier_app_process.php (in the root folder)
@@ -10,9 +10,10 @@
 // OUTLINE
 // 1. FUNCTIONS
 // 2. INITIALIZATION
-// 3. ATTENDANCE
-// 4. MONTHLY REVENUES
-// 5. WRAP-UP
+// 3. TOTAL REVENUES
+// 4. ATTENDANCE
+// 5. MONTHLY REVENUES
+// 6. WRAP-UP
 // =============================
 
 require_once('wp-config.php');
@@ -157,6 +158,7 @@ $last_lesson = get_last_lesson($connection_4w, $branch_id, $current_season);
 <script src="/wp-content/themes/Parallax-One/cashier_app/highcharts/js/modules/data.js"></script>
 <script src="/wp-content/themes/Parallax-One/cashier_app/highcharts/js/modules/exporting.js"></script>
 <link href="/wp-content/themes/Parallax-One/cashier_app/css/charts.css"  rel="stylesheet" type='text/css' />
+	<link rel="stylesheet" href="../wp-content/themes/Parallax-One/cashier_app/cashier_app.css?ver=1.01">
 <div class="content-wrap">
 	<div class="container">
 		<img src="../wp-content/themes/Parallax-One/cashier_app/img/Logo.jpg" style="width: 150px;" />
@@ -166,8 +168,36 @@ $last_lesson = get_last_lesson($connection_4w, $branch_id, $current_season);
 			<main id="main" class="site-main" role="main">
 <?php
 
+
 // =============================
-// 2. ATTENDANCE
+// 3. TOTAL REVENUES
+// =============================
+
+		$sql= 'SELECT sum(a.count * p.price) as money_made, p.currency FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE a.branch_id = ' . $branch_id . " AND a.season = '" . $current_season . "'";
+		$result = $connection_4w->query($sql);
+
+		?>
+<?php
+		while ($row = mysqli_fetch_assoc($result)) { ?>
+			<div class="year-to-date">Revenues to date: <?php echo $row['money_made'] . ' ' . $row['currency']; ?>
+			<br /><br />
+				<?php
+
+				$messages = array("Great job!", "Keep on rocking!", "Saving the lives big time!", "That's awesome!");
+				if ($row['currency'] == 'CZK') {
+					array_push($messages, "That's " . round($row['money_made'] / 1200) . " families provided with clean water!");
+				}
+				if ($branch_id == 3) {
+					array_push($messages, "You rock, Prague!");
+				}
+				$random_keys = array_rand($messages);
+				echo $messages[$random_keys];
+				?></div>
+<?php
+		}
+
+// =============================
+// 4. ATTENDANCE
 // =============================
 
 $sql= "SELECT * FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE b.id = " . $branch_id . " AND a.date = '" . date('Y-m-d', $last_lesson[0]) . "' AND a.season = '" . $current_season . "'";
@@ -182,11 +212,11 @@ $volunteer_name = "";
 
 if (date('Y-m-d', $last_lesson[0]) == date('Y-m-d')) {
 	?>
-	<h2 class="report-heading">Today</h2>
+	<h2 class="report-heading">Today's classes</h2>
 	<?php
 } else {
 	?>
-	<h2 class="report-heading">Last class</h2>
+	<h2 class="report-heading">Last day's classes</h2>
 	<?php
 }
 
@@ -199,7 +229,7 @@ if (date('Y-m-d', $last_lesson[0]) == date('Y-m-d')) {
 		$total += intval($row['price']) * intval($row['count']);
 		$total_students += intval($row['count']);
 		echo '<tr>';
-		echo '<td><strong class="bold">' . $row['price_type'] . '</strong></td>';
+		echo '<td><strong class="bold">(' . $row['class_type'] . ' ' . $row['level'] . ') ' . $row['price_type'] . '</strong></td>';
 		echo '<td><span>' . $row['count'] . '</span></td>';
 		echo '<td><span>' . intval($row['price']) * intval($row['count']) . ' ' . $row['currency'] . '</span></td>';
 		echo '</tr>';
@@ -221,7 +251,7 @@ if (date('Y-m-d', $last_lesson[0]) == date('Y-m-d')) {
 	<input class="submit-button" type="submit"
 	       value="Edit last class (<?php echo $last_lesson[1] . ' ' . $last_lesson[2] . ')'; ?>">
 </form>
-
+<br />
 				<script type="text/javascript">
 					$(function() {
 							Highcharts.setOptions( {
@@ -430,7 +460,7 @@ if (date('Y-m-d', $last_lesson[0]) == date('Y-m-d')) {
 <?php
 
 // =============================
-// 3. MONTHLY REVENUES
+// 5. MONTHLY REVENUES
 // =============================
 
 $sql= 'SELECT EXTRACT(YEAR_MONTH FROM a.date) as month, sum(case when p.student = 1 then (a.count * p.price) else 0 end) as students_money_made, sum(case when p.student = 0 then (a.count * p.price) else 0 end) as non_students_money_made, p.currency FROM 4w_accounting a JOIN 4w_branch_prices p ON a.price_type_id = p.id JOIN 4w_branches b ON a.branch_id = b.id WHERE a.branch_id = ' . $branch_id . " AND a.season = '" . $current_season . "' GROUP BY month ORDER BY month;";
@@ -614,7 +644,7 @@ $result = $connection_4w->query($sql);
 <?php
 
 // =============================
-// 4. WRAP-UP
+// 6. WRAP-UP
 // =============================
 
 ?>

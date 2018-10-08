@@ -1,6 +1,6 @@
 <?php
 // =============================
-// CASHIER APP - V1.0 Process part
+// CASHIER APP - V1.01 Process part
 
 // Form part: cashier_app_process.php (in the theme folder)
 // Summary part: cashier_app_process.php (in the theme folder)

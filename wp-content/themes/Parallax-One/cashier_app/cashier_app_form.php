@@ -1,6 +1,6 @@
 <?php
 // =============================
-// CASHIER APP - V1.0 Form part
+// CASHIER APP - V1.01 Form part
 
 // Form part: cashier_app_process.php (in the theme folder)
 // Process part: cashier_app_process.php (in the root folder)
@@ -74,9 +74,16 @@ function get_closest_lessons($connection_4w, $branch_id, $current_season, $nextl
 	$result = $connection_4w->query($sql);
 	while ($row = mysqli_fetch_assoc($result)) {
 		if ((date('l') == $row['day']) && (date('H:i:s') < $row['time'])) {
-			// if the lesson is today, and didn't yet start
-			// but do not save it if we want previous lessons
+			// if the lesson is today, and didn't yet start => use "this week"
+			// But let's skip it if we want "last" lessons
 			if ($nextlast == 'last') {
+				continue;
+			}
+			$day_as_string = strtolower($row['day']) . ' this week';
+		} else if (date('l') == $row['day'])  {
+			// if the lesson is today, and is over already => "use this week"
+			// But let's skip it if we want "next" lessons
+			if ($nextlast == 'next') {
 				continue;
 			}
 			$day_as_string = strtolower($row['day']) . ' this week';
@@ -195,7 +202,7 @@ function findTimezone($connection_4w, $branch_id) {
 	<a class="btn btn-default" href="<?php echo $summary_url; ?>">Summary</a>
 	<div class="cashier">
 		<br />
-		<link rel="stylesheet" href="../wp-content/themes/Parallax-One/cashier_app/cashier_app.css?ver=1.0">
+		<link rel="stylesheet" href="../wp-content/themes/Parallax-One/cashier_app/cashier_app.css?ver=1.01">
 		<form action="/cashier_app_process.php" id="cashier" method="post">
 			<p>Welcome, dear cashier. On this page you count the number of sold 1-time entries, vouchers, and how many people came on already-paid vouchers.</p>
 			<p>Please check the class, level, date and time.</p>

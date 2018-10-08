@@ -1,5 +1,5 @@
 // =============================
-// CASHIER APP - V1.0 Javascript part
+// CASHIER APP - V1.01 Javascript part
 
 // Form part: cashier_app_process.php (in the theme folder)
 // Process part: cashier_app_process.php (in the root folder)
