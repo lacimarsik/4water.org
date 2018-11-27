@@ -95,12 +95,30 @@ if ($form_submitted) {
 	if (isset($_POST['submitform'])) {
 		$counts_array = array();
 		foreach ($prices_array as $price_id => $count) {
-			array_push($counts_array, 'PRICE ID' . $price_id . ': ' . $count);
+			// Convenience map of price types (Prague) to avoid additional SQL. Falls back to price type ID.
+			$humanized_price_type = $price_id;
+			switch (intval($price_id)) {
+				case 39:
+					$humanized_price_type = 'Student 1x';
+					break;
+				case 40:
+					$humanized_price_type = 'Non-Student 1x';
+					break;
+				case 41:
+					$humanized_price_type = 'Student Voucher';
+					break;
+				case 42:
+					$humanized_price_type = 'Non-Student Voucher';
+					break;
+			}
+			array_push($counts_array, $humanized_price_type . ': ' . $count);
 		}
 		$humanized_counts = join("; ", $counts_array);
 		# Email the administrator about the counts for logging purposes
 		$headers = "From: Cashier App <wordpress@4water.org>" . "\r\n";
-		wp_mail( 'laci.marsik@gmail.com', 'Cashier App v1.0 - Counts saved' , 'The following counts were just saved for ' . $_POST['class_type'] . ' ' . $_POST['level'] . ', ' . $_POST['date'] . ', ' . $_POST['time'] . ': ' . $humanized_counts . '; volunteer: ' . $_POST['name'], $headers, $attachments = array() );
+		$message = 'The following counts were just saved for ' . $_POST['class_type'] . ' ' . $_POST['level'] . ', ' . $_POST['date'] . ', ' . $_POST['time'] . ': ' . $humanized_counts . '; volunteer: ' . $_POST['name'] . '; http://4water.org' . $summary_url;
+		wp_mail( 'laci.marsik@gmail.com', 'Cashier App v1.0 [Admin] - Counts saved' , $message, $headers, $attachments = array() );
+		wp_mail( 'frimlova.k@seznam.cz', 'Cashier App v1.0 - Counts saved' , $message, $headers, $attachments = array() );
 	}
 	$result = countsExist($_POST, $connection_4w, $current_season);
 	if ($result->num_rows > 0) {
