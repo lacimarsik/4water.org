@@ -110,6 +110,9 @@ if ($form_submitted) {
 				case 42:
 					$humanized_price_type = 'Non-Student Voucher';
 					break;
+				case 43:
+					$humanized_price_type = 'Already had a Voucher';
+					break;
 			}
 			array_push($counts_array, $humanized_price_type . ': ' . $count);
 		}
