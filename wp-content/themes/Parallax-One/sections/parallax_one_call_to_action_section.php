@@ -146,6 +146,13 @@
             }
             echo '<div id="call-to-action-payments">';
             $counter = 0;
+            // XXX: This is a custom hack for Language4Water Glasgow.
+            // Section breaks accompanied with headings have to occur, as the number of buttons for classes is too high
+            $section_break = false;
+            $mid_headings = array();
+            array_push($mid_headings, 'Strathclyde University Campus');
+            array_push($mid_headings, 'Glasgow University Campus');
+
             foreach ($call_to_action_payments_decoded as $payment) {
               if(!empty($payment->hosted_button_id) ||
                 !empty($payment->description) ||
@@ -153,6 +160,17 @@
                 !empty($payment->non_student_charge) ||
                 !empty($payment->field_description) ||
                 !empty($payment->button_text)) {
+                  // XXX: Custom hack for Language4Water Glasgow (see above)
+                  if ($counter == 0) {
+                      echo '<h2>One-to-One Classes</h2>';
+                  }
+                  if ($section_break == true) {
+                    echo '</div>';
+                    echo '<h2>' . array_pop($mid_headings) . '</h2>';
+                    echo '<div class="call-to-action-payments-row col-md-12">';
+                    $section_break = false;
+                    $counter = 3;
+                  }
                   if ($counter % 3 == 0) {
                     if ($counter > 0) {
                       echo '</div>';
@@ -166,7 +184,16 @@
                     <table class="payment-table">
                       <tr>
                         <td class="payment-description"><input type="hidden" name="on0"
-                                   value="<?php echo $payment->description; ?>"><strong><?php echo $payment->description; ?></strong>
+                                   value="<?php echo $payment->description; ?>">
+                            <strong>
+<?php
+                                // XXX: Custom hack for Language4Water Glasgow (see above)
+                                if (($payment->description == 'One-to-one class, 10 hours') || ($payment->description == 'Turkish 1b beginners, Thursday 8-9pm, 10-week course')) {
+                                    $section_break = true;
+                                }
+                                echo $payment->description;
+?>
+                            </strong>
                         </td>
                       </tr>
                       <tr>
