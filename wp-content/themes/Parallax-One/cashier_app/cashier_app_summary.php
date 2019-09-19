@@ -650,10 +650,10 @@ $result = $connection_4w->query($sql);
 ?>
 	<div class="cashier-done">Archive:</div>
     <div class="cashier-done" style="font-weight: bold; padding-top: 10px;">2018/2019</div>
-    <div class="cashier-done"><a href="http://4water.org/prague/dance/wp-content/uploads/sites/3/2019/09/CashierApp_20182019.pdf">Final Results</div>
+        <div class="cashier-done"><a href="http://4water.org/prague/dance/wp-content/uploads/sites/3/2019/09/CashierApp_20182019.pdf">Final Results</a></div>
 
     <div class="cashier-done" style="font-weight: bold; padding-top: 10px;">2017/2018</div>
-	<div class="cashier-done"><a href="http://4water.org/prague/dance/wp-content/uploads/sites/3/2018/09/CashierApp_20172018.pdf">Final Results</div>, <a href="http://4water.org/prague/dance/wp-content/uploads/sites/3/2018/09/CashierApp_20172018_directly.pdf">Before Correction</a>, <a href="http://4water.org/prague/dance/wp-content/uploads/sites/3/2018/09/CashierApp_20172018_corrections.pdf">Correction Explained</a></div>
+        <div class="cashier-done"><a href="http://4water.org/prague/dance/wp-content/uploads/sites/3/2018/09/CashierApp_20172018.pdf">Final Results</a>, <a href="http://4water.org/prague/dance/wp-content/uploads/sites/3/2018/09/CashierApp_20172018_directly.pdf">Before Correction</a>, <a href="http://4water.org/prague/dance/wp-content/uploads/sites/3/2018/09/CashierApp_20172018_corrections.pdf">Correction Explained</a></div>
 	<br />
 <?php
 
