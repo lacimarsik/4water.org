@@ -47,7 +47,7 @@
                   }
 
                   if(!empty($why_us_item->desc)) {
-                    echo '<p>'. esc_attr($why_us_item->desc).'</p>';
+                    echo '<p class="keep-newlines">'. esc_attr($why_us_item->desc).'</p>';
                   }
                   echo '</div>';
                   $counter++;

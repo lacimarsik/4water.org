@@ -1082,6 +1082,10 @@ img.why-us-img {
     height: 100px;
 }
 
+p.keep-newlines {
+	white-space: pre-line;
+}
+
 /* when why-us boxes are next to each other in wider viewport */
 
 @media (min-width: 992px) {
