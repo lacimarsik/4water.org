@@ -47,7 +47,7 @@
                   }
 
                   if(!empty($why_us_item->desc)) {
-                    echo '<p>'. nl2br(esc_attr($why_us_item->desc)).'</p>';
+                    echo '<p style="white-space: pre-line">'. esc_attr($why_us_item->desc).'</p>';
                   }
                   echo '</div>';
                   $counter++;
