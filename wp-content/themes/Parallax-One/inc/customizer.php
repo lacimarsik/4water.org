@@ -951,7 +951,7 @@ function parallax_one_customize_register( $wp_customize ) {
         'priority' => 3,
         'fields' => array(
           'question' => array('type' => 'text', 'label' => 'Question', 'placeholder' => 'Why join 4Water?'),
-          'answer' => array('type' => 'text', 'label' => 'Answer', 'placeholder' => "It's just awesome!"),
+          'answer' => array('type' => 'textarea', 'label' => 'Answer', 'placeholder' => "It's just awesome!"),
         )
       )
     )

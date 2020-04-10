@@ -1526,7 +1526,7 @@ div.faq-box {
 
 div.faq-question {
 	font-weight: bold;
-	padding-bottom: 15px;
+	padding-bottom: 0px;
 }
 
 /* when faq boxes are next to each other in wider viewport */
@@ -5612,6 +5612,79 @@ p#video-caption {
 @media only screen and (max-width: 800px) {
 	section.video-section div.subtitle {
 		margin: 0 10px !important;
+	}
+}
+
+/*---------------------------------------
+   3.20 SECTION: CONGRESS
+-----------------------------------------*/
+
+section.congress-white-section {
+	background-color: white;
+}
+
+section.congress-grey-section {
+	background-color: #f7f8fa;
+}
+
+section.congress-blue-section {
+	background-color: #3a98cb;
+	color: white;
+}
+
+section.congress-blue-section .section-header h2 {
+	color: white;
+}
+
+.onecolumn-wrap {
+	padding: 40px 2% 30px 2%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.onecolumn-content {
+	text-align: left;
+	padding: 0 30px;
+	display: inline-block;
+	float: none !important;
+}
+
+.onecolumn-item {
+	padding-bottom: 10px;
+	text-align: left;
+}
+
+.threecolumn-wrap {
+	padding: 40px 2% 30px 2%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.threecolumn-box {
+	text-align: center;
+	padding: 0 30px;
+}
+
+.threecolumn-box h3 {
+	font-size: 21px;
+	color: #444;
+}
+
+.onecolumn-row {
+	width: 100%;
+}
+
+.threecolumn-row {
+	width: 100%;
+}
+
+/* when boxes are next to each other in wider viewport */
+
+@media (min-width: 992px) {
+	.threecolumn-box {
+		margin-bottom: 0px;
+		padding-top: 10px;
+		padding-bottom: 10px;
 	}
 }
 

@@ -38,7 +38,9 @@
                       <?php echo $faq_item->question; ?>
                     </div>
                     <div class="faq-answer">
-                      <?php echo nl2br($faq_item->answer); ?>
+                        <p style="padding-top: 0; margin-top: 0;" class="keep-newlines">
+                            <?php echo $faq_item->answer; ?>
+                        </p>
                     </div>
                   </div>
                   <?php
