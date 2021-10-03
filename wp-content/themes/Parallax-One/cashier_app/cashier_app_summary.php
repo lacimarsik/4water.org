@@ -649,6 +649,8 @@ $result = $connection_4w->query($sql);
 
 ?>
 	<div class="cashier-done">Archive:</div>
+	<div class="cashier-done" style="font-weight: bold; padding-top: 10px;">2019/2020</div>
+        <div class="cashier-done"><a href="http://4water.org/prague/dance/wp-content/uploads/sites/3/2021/10/CashierApp_20192020.pdf">Final Results</a></div>
     <div class="cashier-done" style="font-weight: bold; padding-top: 10px;">2018/2019</div>
         <div class="cashier-done"><a href="http://4water.org/prague/dance/wp-content/uploads/sites/3/2019/09/CashierApp_20182019.pdf">Final Results</a></div>
 
@@ -663,5 +665,5 @@ $result = $connection_4w->query($sql);
 		<a href="<?php echo $cashier_url; ?>"><button>Cashier next class (<?php echo $closest_lesson[1] . ' ' . $closest_lesson[2] . ')'; ?></button></a>
 	</div>
 <?php
-	
+
 ?>

@@ -2,7 +2,7 @@
 // =============================
 // CASHIER APP - V1.01 Form part
 
-// Form part: cashier_app_process.php (in the theme folder)
+// Form part: cashier_app_form.php (in the theme folder)
 // Process part: cashier_app_process.php (in the root folder)
 // Summary part: cashier_app_summary.php (in the theme folder)
 
@@ -313,6 +313,12 @@ function findTimezone($connection_4w, $branch_id) {
 			<div class="cashier-submit col-md-12">
 				<div class="form-group">
 					<input class="submit-button" disabled="disabled" style="background-color: grey;" type="submit">
+				</div>
+			</div>
+			<p><strong>Season 2021/2022</strong> Please make sure that after each student pays, they scan this QR code / or go manually to <em>4water.org/prague/dance/covid-form</em></p>
+			<div class="cashier-submit col-md-12">
+				<div class="form-group">
+					<img src="http://4water.org/prague/dance/wp-content/uploads/sites/3/2021/10/Prague_CovidFormQR_EN.png" />
 				</div>
 			</div>
 		</form>
